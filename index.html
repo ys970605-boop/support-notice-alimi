@@ -16,11 +16,9 @@
     .stats,.profile,.filters,.todo,.cards{display:grid;gap:10px}
     .stats{grid-template-columns:1fr;margin-bottom:10px}
     .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
-    .box b{font-size:22px;color:#1d3f66}
 
     .profile{grid-template-columns:repeat(4,1fr) auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
     .filters{grid-template-columns:1.2fr .8fr .8fr .8fr .8fr auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
-    .quick-filters{display:flex;flex-wrap:wrap;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
     input,select,button{padding:10px;border:1px solid #c8d5e4;border-radius:10px;background:#fff}
     button{cursor:pointer}.btn{background:var(--brand);color:#fff;border:none;font-weight:700}
     .btn-lite{background:#fff;color:#2f5b95;border:1px solid #cfe0f3;font-weight:700}
@@ -44,13 +42,6 @@
     .sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex;justify-content:center;pointer-events:none}
     .sticky-cta a{pointer-events:auto;display:inline-block;background:#FEE500;color:#1f1f1f !important;border:1px solid #e8d200;padding:12px 18px;border-radius:999px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.15)}
 
-    .modal{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;z-index:80;padding:20px}
-    .modal.on{display:flex}
-    .modal-card{width:min(780px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:14px;border:1px solid #dfe7f2;padding:16px}
-    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .detail-box{background:#f8fbff;border:1px solid #e4edf9;border-radius:10px;padding:10px}
-    .detail-box b{display:block;margin-bottom:6px;color:#173457}
-
     @media (max-width:1050px){
       .stats{grid-template-columns:1fr 1fr}
       .profile{grid-template-columns:1fr 1fr 1fr}
@@ -59,7 +50,6 @@
     @media (max-width:640px){
       .cards{grid-template-columns:1fr}
       .profile{grid-template-columns:1fr 1fr}
-      .detail-grid{grid-template-columns:1fr}
       .sticky-cta{left:8px;right:8px;bottom:8px}
     }
   </style>
@@ -97,15 +87,6 @@
     <button class="btn" onclick="render()">적용</button>
   </section>
 
-  <section class="quick-filters">
-    <span class="small" style="padding:10px 4px">원클릭 필터:</span>
-    <button class="btn-lite" onclick="applyPreset('smallbiz')">소상공인</button>
-    <button class="btn-lite" onclick="applyPreset('prestartup')">예비창업</button>
-    <button class="btn-lite" onclick="applyPreset('rnd')">R&D</button>
-    <button class="btn-lite" onclick="applyPreset('fund')">시설자금</button>
-    <button class="btn-lite" onclick="resetFilters()">초기화</button>
-  </section>
-
   <section class="todo">
     <b>오늘의 실행 플랜</b>
     <ul id="todoList"></ul>
@@ -114,35 +95,12 @@
   <section id="cards" class="cards"></section>
 </div>
 
-<div id="detailModal" class="modal" onclick="if(event.target.id==='detailModal') closeDetail()">
-  <div class="modal-card">
-    <div class="row" style="margin-bottom:6px">
-      <b style="font-size:18px">공고 상세</b>
-      <button class="btn-lite" onclick="closeDetail()">닫기</button>
-    </div>
-    <h2 id="detailTitle" style="font-size:20px;line-height:1.35;margin:8px 0 10px"></h2>
-    <div class="reasons" id="detailTags"></div>
-    <div class="detail-grid" style="margin-top:10px">
-      <div class="detail-box"><b>지원대상</b><div id="detailTarget">-</div></div>
-      <div class="detail-box"><b>지원내용</b><div id="detailBenefit">-</div></div>
-      <div class="detail-box"><b>신청방법</b><div id="detailHow">-</div></div>
-      <div class="detail-box"><b>제출서류(체크)</b><div id="detailDocs">-</div></div>
-    </div>
-    <div class="small" id="detailMeta" style="margin-top:10px"></div>
-    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-      <a id="detailUrl" class="btn" target="_blank" rel="noopener noreferrer" style="display:inline-block">원문 공고 바로가기</a>
-      <a class="openchat-btn" href="https://open.kakao.com/o/g8G5kWfi" target="_blank" rel="noopener noreferrer">카톡 오픈채팅 바로가기</a>
-    </div>
-  </div>
-</div>
-
 <div class="sticky-cta">
   <a href="https://open.kakao.com/o/g8G5kWfi" target="_blank" rel="noopener noreferrer">카톡 오픈채팅 바로가기</a>
 </div>
 
 <script>
 let RAW=[];
-let LAST_RENDERED=[];
 const PROFILE_KEY='support_notice_profile_v2';
 const BOOKMARK_KEY='support_notice_bookmarks_v1';
 let bookmarks=new Set();
@@ -199,30 +157,17 @@ function toggleBookmark(key){
   render();
 }
 
-function applyPreset(type){
-  const q=document.getElementById('q');
-  const source=document.getElementById('source');
-  const dd=document.getElementById('dd');
-  if(type==='smallbiz'){ q.value='소상공인'; source.value='all'; dd.value='all'; }
-  if(type==='prestartup'){ q.value='예비창업'; source.value='all'; dd.value='all'; }
-  if(type==='rnd'){ q.value='r&d'; source.value='iris'; dd.value='all'; }
-  if(type==='fund'){ q.value='자금'; source.value='all'; dd.value='7'; }
-  render();
-}
-
-function resetFilters(){
-  document.getElementById('q').value='';
-  document.getElementById('source').value='all';
-  document.getElementById('region').value='all';
-  document.getElementById('dd').value='all';
-  document.getElementById('viewMode').value='all';
-  render();
-}
-
 function dtag(d){ if(d<=1)return 'd1'; if(d<=3)return 'd3'; if(d<=7)return 'd7'; return ''; }
 function dlabel(d){ if(d==null)return '마감정보없음'; if(d<0)return '마감지남'; return `D-${d}`; }
 function fitClass(v){ if(v>=80) return 'fit-hi'; if(v>=60) return 'fit-mid'; return 'fit-low'; }
 function fitLabel(v){ if(v>=80) return '지금 신청'; if(v>=60) return '준비 후 신청'; return '보류'; }
+function deadlineWithTime(v){
+  const s=(v||'').toString().trim();
+  if(!s) return '-';
+  if(/\d{1,2}:\d{2}/.test(s)) return s;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s} 23:59`;
+  return s;
+}
 
 function calcScore(n,q){
   const reasons=[];
@@ -266,62 +211,6 @@ function makeTodo(list){
   return todo;
 }
 
-function inferTarget(n){
-  const t=(n.title||'');
-  if(/예비/.test(t)) return '예비창업자 중심 공고입니다.';
-  if(/소상공인/.test(t)) return '소상공인/자영업자 대상 공고입니다.';
-  if(/중소기업|중견/.test(t)) return '중소·중견기업 대상 공고입니다.';
-  return '원문 공고의 신청자격(업력/매출/지역) 섹션 확인이 필요합니다.';
-}
-
-function inferBenefit(n){
-  const t=(n.title||'');
-  if(/자금|융자|보전|지원금/.test(t)) return '자금/보전 형태의 지원 가능성이 높습니다.';
-  if(/수출|판로|전시|박람/.test(t)) return '수출·판로 개척 지원 성격 공고입니다.';
-  if(/R&D|기술|개발|연구/i.test(t)) return 'R&D/기술개발 관련 지원 공고입니다.';
-  return '사업화/교육/컨설팅/바우처 등 복합 지원 가능성이 있습니다.';
-}
-
-function inferHow(n){
-  if(n.source==='kstartup') return 'K-Startup 원문에서 회원 로그인 후 신청합니다.';
-  if(n.source==='bizinfo') return '기업마당 원문에서 접수 경로를 확인해 신청합니다.';
-  if(n.source==='iris') return 'IRIS 시스템 공고 원문에서 신청절차를 확인합니다.';
-  if(n.source==='smtech') return 'SMTECH 원문에서 온라인 접수 진행합니다.';
-  if(n.source==='gosims') return 'e나라도움 원문에서 공모신청 절차를 따릅니다.';
-  return '원문 공고의 신청방법/접수처를 확인해 온라인으로 진행합니다.';
-}
-
-function inferDocs(n){
-  const docs=['사업계획서','사업자등록(또는 예정 증빙)','재무/매출 관련 증빙','가점 증빙(해당 시)'];
-  if(/수출|해외/.test(n.title||'')) docs.push('수출실적/해외진출 계획서');
-  if(/R&D|기술|개발/i.test(n.title||'')) docs.push('기술개발 계획서/인력현황');
-  return docs.map(d=>`□ ${d}`).join('<br>');
-}
-
-function openDetail(encodedKey){
-  const key=decodeURIComponent(encodedKey);
-  const n=LAST_RENDERED.find(x=>x._key===key) || RAW.find(x=>noticeKey(x)===key);
-  if(!n) return;
-
-  document.getElementById('detailTitle').textContent=n.title||'-';
-  document.getElementById('detailTags').innerHTML=`
-    <span class="tag">${n.source||'-'}</span>
-    <span class="tag ${dtag(n.dday)}">${dlabel(n.dday)}</span>
-    <span class="tag ${fitClass(n.fit||0)}">맞춤점수 ${n.fit||0}</span>
-  `;
-  document.getElementById('detailTarget').textContent=n.target||inferTarget(n);
-  document.getElementById('detailBenefit').textContent=n.benefit||inferBenefit(n);
-  document.getElementById('detailHow').textContent=n.howToApply||inferHow(n);
-  document.getElementById('detailDocs').innerHTML=n.documents||inferDocs(n);
-  document.getElementById('detailMeta').textContent=`분류: ${n.category||'-'} · 기관: ${n.org||'-'} · 마감: ${n.deadline||'-'}`;
-  document.getElementById('detailUrl').href=n.url||'#';
-  document.getElementById('detailModal').classList.add('on');
-}
-
-function closeDetail(){
-  document.getElementById('detailModal').classList.remove('on');
-}
-
 function render(){
   const q=document.getElementById('q').value.trim().toLowerCase();
   const s=document.getElementById('source').value;
@@ -348,7 +237,6 @@ function render(){
   if(viewMode==='bookmarked') list=list.filter(n=>n.bookmarked);
 
   list.sort((a,b)=>b.fit-a.fit || ((a.dday??999)-(b.dday??999)));
-  LAST_RENDERED=list;
 
   document.getElementById('todoList').innerHTML = makeTodo(list).map(x=>`<li>${x}</li>`).join('');
 
@@ -359,18 +247,15 @@ function render(){
         <span class="tag ${dtag(n.dday)}">${dlabel(n.dday)}</span>
       </div>
       <h3 style="font-size:16px;line-height:1.4;margin:8px 0">${n.title}</h3>
-      <div class="small">분류: ${n.category||'-'} · 마감: ${n.deadline||'-'}</div>
+      <div class="small">분류: ${n.category||'-'} · 마감: ${deadlineWithTime(n.deadline)}</div>
       <div class="reasons">${(n.reasons||[]).map(r=>`<span class='reason'>${r}</span>`).join('')}</div>
       <div class="row" style="margin-top:8px">
         <span class="tag ${fitClass(n.fit)}">맞춤점수 ${n.fit} · ${fitLabel(n.fit)}</span>
         <button class="btn-lite bookbtn ${n.bookmarked?'on':''}" onclick="toggleBookmark('${n._key.replace(/'/g,"\\'")}')">${n.bookmarked?'★ 북마크 해제':'☆ 북마크 저장'}</button>
       </div>
-      <div class="row" style="margin-top:8px;align-items:flex-end">
+      <div class="row" style="margin-top:8px">
         <span class="small">기관: ${n.org||'-'}</span>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
-          <button class="btn-lite bookbtn" onclick="openDetail('${encodeURIComponent(n._key)}')">상세 보기</button>
-          <a href="${n.url}" target="_blank">원문 보기</a>
-        </div>
+        <a href="${n.url}" target="_blank">원문 보기</a>
       </div>
     </article>
   `).join('');

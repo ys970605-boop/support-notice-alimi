@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>지원공고알리미 MVP</title>
+  <script src="../gov-support-hub/notices.js"></script>
+  <script src="./notices.js"></script>
+  <style>
+    :root{--bg:#f4f7fb;--card:#fff;--line:#dce4ee;--text:#1f2d3d;--sub:#62758b;--brand:#2d7ff9}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+    h1{margin:0 0 4px;color:#16314f}
+    .small{font-size:12px;color:var(--sub)}
+
+    .stats,.profile,.filters,.todo,.cards{display:grid;gap:10px}
+    .stats{grid-template-columns:1fr;margin-bottom:10px}
+    .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+    .box b{font-size:22px;color:#1d3f66}
+
+    .profile{grid-template-columns:repeat(4,1fr) auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
+    .filters{grid-template-columns:1.2fr .8fr .8fr .8fr .8fr auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
+    input,select,button{padding:10px;border:1px solid #c8d5e4;border-radius:10px;background:#fff}
+    button{cursor:pointer}.btn{background:var(--brand);color:#fff;border:none;font-weight:700}
+    .btn-lite{background:#fff;color:#2f5b95;border:1px solid #cfe0f3;font-weight:700}
+    .btn-lite.on{background:#eef4ff}
+
+    .todo{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+    .todo ul{margin:8px 0 0 18px;padding:0}
+    .bookbtn{font-size:12px;padding:6px 10px}
+
+    .cards{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+    .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .tag{font-size:12px;padding:3px 8px;border-radius:999px;background:#eef4ff;border:1px solid #d2e1ff;color:#2f5b95;white-space:nowrap}
+    .d1{background:#fff2f2;border-color:#ffcaca;color:#b42318}.d3{background:#fff8eb;border-color:#ffd9ab;color:#ad5b00}.d7{background:#f2fbf7;border-color:#c9efdf;color:#0a7a52}
+    .fit-hi{background:#effcf6;border-color:#b8ebd4;color:#0a7a52}.fit-mid{background:#fff8eb;border-color:#ffd9ab;color:#ad5b00}.fit-low{background:#f4f7fb;border-color:#d7e1ed;color:#5f7186}
+    .reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .reason{font-size:11px;padding:2px 8px;border-radius:999px;background:#f7f9fd;border:1px solid #e1e8f2;color:#4f6479}
+    a{color:#1b73e8;text-decoration:none;font-weight:600}
+
+    @media (max-width:1050px){
+      .stats{grid-template-columns:1fr 1fr}
+      .profile{grid-template-columns:1fr 1fr 1fr}
+      .filters{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .cards{grid-template-columns:1fr}
+      .profile{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>지원공고알리미</h1>
+
+  <section class="stats">
+    <div class="box">
+      <div id="updatedAt" class="small">최근 업데이트: -</div>
+      <div id="dataSource" class="small">데이터 출처: -</div>
+      <div class="small">확장 소스: IRIS · SMTECH · e나라도움 · 이지비즈 · 중소벤처24 (연동 완료)</div>
+    </div>
+  </section>
+
+  <section class="profile">
+    <select id="p_region"><option value="all">내 지역</option><option>서울</option><option>경기</option><option>부산</option><option>전북</option><option>강원</option></select>
+    <select id="p_stage"><option value="all">업력</option><option value="예비">예비창업</option><option value="초기">3년 미만</option><option value="도약">7년 미만</option></select>
+    <select id="p_field"><option value="all">관심분야</option><option value="창업">창업</option><option value="수출">수출</option><option value="기술">기술</option><option value="금융">금융</option></select>
+    <select id="p_goal"><option value="all">목표</option><option value="지원금">지원금</option><option value="판로">판로</option><option value="투자">투자</option></select>
+    <button class="btn" onclick="saveProfile()">프로필 저장</button>
+  </section>
+
+  <section class="filters">
+    <input id="q" placeholder="키워드 (예: 예비창업패키지, 수출, R&D)"/>
+    <select id="source"><option value="all">전체 출처</option><option value="kstartup">K-Startup</option><option value="bizinfo">기업마당</option><option value="iris">IRIS(국가R&D)</option><option value="smtech">SMTECH</option><option value="gosims">e나라도움</option><option value="egbiz">이지비즈</option><option value="smes24">중소벤처24</option></select>
+    <select id="region"><option value="all">지역 전체</option><option>서울</option><option>경기</option><option>부산</option><option>전북</option><option>강원</option></select>
+    <select id="dd"><option value="all">마감 전체</option><option value="1">D-1</option><option value="3">D-3</option><option value="7">D-7</option></select>
+    <select id="viewMode"><option value="all">전체 보기</option><option value="bookmarked">북마크만</option></select>
+    <button class="btn" onclick="render()">적용</button>
+  </section>
+
+  <section class="todo">
+    <b>오늘의 실행 플랜</b>
+    <ul id="todoList"></ul>
+  </section>
+
+  <section id="cards" class="cards"></section>
+</div>
+
+<script>
+let RAW=[];
+const PROFILE_KEY='support_notice_profile_v2';
+const BOOKMARK_KEY='support_notice_bookmarks_v1';
+let bookmarks=new Set();
+let profile={region:'all',stage:'all',field:'all',goal:'all'};
+
+function initData(){
+  if(window.GOV_DATA && Array.isArray(window.GOV_DATA.notices)){
+    RAW = window.GOV_DATA.notices;
+    const updated = window.GOV_DATA.updatedAt || '-';
+    document.getElementById('updatedAt').textContent = '최근 업데이트: ' + updated;
+    const srcs = [...new Set((window.GOV_DATA.notices||[]).map(n=>n.source))];
+    document.getElementById('dataSource').textContent = '데이터 출처: ' + (srcs.length ? srcs.join(' + ') : '-');
+  } else {
+    RAW = [];
+    document.getElementById('dataSource').textContent = '데이터 출처: 로드 실패';
+  }
+}
+
+function loadProfile(){
+  try{ profile={...profile,...JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}; }catch(e){}
+  ['region','stage','field','goal'].forEach(k=>{
+    const el=document.getElementById('p_'+k);
+    if(el) el.value=profile[k]||el.value;
+  });
+}
+
+function saveProfile(){
+  profile={
+    region:document.getElementById('p_region').value,
+    stage:document.getElementById('p_stage').value,
+    field:document.getElementById('p_field').value,
+    goal:document.getElementById('p_goal').value,
+  };
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  render();
+}
+
+function loadBookmarks(){
+  try{
+    const arr=JSON.parse(localStorage.getItem(BOOKMARK_KEY)||'[]');
+    bookmarks=new Set(Array.isArray(arr)?arr:[]);
+  }catch(e){ bookmarks=new Set(); }
+}
+
+function saveBookmarks(){
+  localStorage.setItem(BOOKMARK_KEY, JSON.stringify([...bookmarks]));
+}
+
+function noticeKey(n){ return n.id || n.url || `${n.source}-${n.title}`; }
+
+function toggleBookmark(key){
+  if(bookmarks.has(key)) bookmarks.delete(key); else bookmarks.add(key);
+  saveBookmarks();
+  render();
+}
+
+function dtag(d){ if(d<=1)return 'd1'; if(d<=3)return 'd3'; if(d<=7)return 'd7'; return ''; }
+function dlabel(d){ if(d==null)return '마감정보없음'; if(d<0)return '마감지남'; return `D-${d}`; }
+function fitClass(v){ if(v>=80) return 'fit-hi'; if(v>=60) return 'fit-mid'; return 'fit-low'; }
+function fitLabel(v){ if(v>=80) return '지금 신청'; if(v>=60) return '준비 후 신청'; return '보류'; }
+
+function calcScore(n,q){
+  const reasons=[];
+  let s=0;
+  const t=(n.title||'');
+  const c=(n.category||'');
+
+  if(typeof n.dday==='number'){
+    if(n.dday<=1){s+=50; reasons.push('D-1 임박');}
+    else if(n.dday<=3){s+=35; reasons.push('D-3 임박');}
+    else if(n.dday<=7){s+=20; reasons.push('D-7 임박');}
+  }
+
+  if(q && (t.toLowerCase().includes(q) || c.toLowerCase().includes(q))){s+=20; reasons.push('검색 키워드 일치');}
+
+  if(profile.region!=='all' && t.includes(profile.region)){s+=20; reasons.push('지역 일치');}
+
+  if(profile.stage!=='all'){
+    if(profile.stage==='예비' && /예비/.test(t)){s+=25; reasons.push('업력(예비) 일치');}
+    if(profile.stage==='초기' && /초기|청년창업사관|창업성공패키지/.test(t)){s+=25; reasons.push('업력(초기) 일치');}
+    if(profile.stage==='도약' && /도약|스케일|성장/.test(t)){s+=25; reasons.push('업력(도약) 일치');}
+  }
+
+  if(profile.field!=='all' && (t.includes(profile.field)||c.includes(profile.field))){s+=20; reasons.push('관심분야 일치');}
+
+  if(profile.goal!=='all'){
+    if(profile.goal==='지원금' && /지원|보전|자금|융자/.test(t)){s+=10; reasons.push('목표(지원금) 일치');}
+    if(profile.goal==='판로' && /수출|내수|판로|전시|박람/.test(t)){s+=10; reasons.push('목표(판로) 일치');}
+    if(profile.goal==='투자' && /투자|tips|팁스|ir/.test(t.toLowerCase())){s+=10; reasons.push('목표(투자) 일치');}
+  }
+
+
+  return {fit:Math.min(100,s), reasons:reasons.slice(0,3)};
+}
+
+function makeTodo(list){
+  const top=list.filter(x=>x.fit>=60).slice(0,3);
+  const todo=[];
+  if(top[0]) todo.push(`1) ${top[0].title.slice(0,30)}... 자격요건/필수서류 먼저 확인`);
+  if(top[1]) todo.push(`2) ${top[1].title.slice(0,30)}... 접수 마감 시간 전 제출 리허설`);
+  todo.push('3) 맞춤점수 80점 이상 1건은 오늘 바로 신청 시작');
+  return todo;
+}
+
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const s=document.getElementById('source').value;
+  const d=document.getElementById('dd').value;
+  const region=document.getElementById('region').value;
+  const viewMode=document.getElementById('viewMode').value;
+
+  let list=RAW.filter(n=>s==='all'||n.source===s)
+    .filter(n=>typeof n.dday !== 'number' || n.dday >= 0)
+    .filter(n=>(n.title||'').toLowerCase().includes(q))
+    .filter(n=>region==='all'||(n.title||'').includes(region));
+
+  if(d!=='all'){
+    const lim=Number(d);
+    list=list.filter(n=>typeof n.dday==='number' && n.dday>=0 && n.dday<=lim);
+  }
+
+  list=list.map(n=>{
+    const sc=calcScore(n,q);
+    const key=noticeKey(n);
+    return {...n, _key:key, fit:sc.fit, reasons:sc.reasons, bookmarked: bookmarks.has(key)};
+  });
+
+  if(viewMode==='bookmarked') list=list.filter(n=>n.bookmarked);
+
+  list.sort((a,b)=>b.fit-a.fit || ((a.dday??999)-(b.dday??999)));
+
+
+  document.getElementById('todoList').innerHTML = makeTodo(list).map(x=>`<li>${x}</li>`).join('');
+
+  document.getElementById('cards').innerHTML = list.slice(0,60).map(n=>`
+    <article class="card">
+      <div class="row">
+        <span class="tag">${n.source}</span>
+        <span class="tag ${dtag(n.dday)}">${dlabel(n.dday)}</span>
+      </div>
+      <h3 style="font-size:16px;line-height:1.4;margin:8px 0">${n.title}</h3>
+      <div class="small">분류: ${n.category||'-'} · 마감: ${n.deadline||'-'}</div>
+      <div class="reasons">${(n.reasons||[]).map(r=>`<span class='reason'>${r}</span>`).join('')}</div>
+      <div class="row" style="margin-top:8px">
+        <span class="tag ${fitClass(n.fit)}">맞춤점수 ${n.fit} · ${fitLabel(n.fit)}</span>
+        <button class="btn-lite bookbtn ${n.bookmarked?'on':''}" onclick="toggleBookmark('${n._key.replace(/'/g,"\\'")}')">${n.bookmarked?'★ 북마크 해제':'☆ 북마크 저장'}</button>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <span class="small">기관: ${n.org||'-'}</span>
+        <a href="${n.url}" target="_blank">원문 보기</a>
+      </div>
+    </article>
+  `).join('');
+}
+
+initData();
+loadProfile();
+loadBookmarks();
+render();
+</script>
+</body>
+</html>

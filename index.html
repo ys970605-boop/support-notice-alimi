@@ -273,6 +273,7 @@ function render(){
       </div>
       <h3 style="font-size:16px;line-height:1.4;margin:8px 0">${n.title}</h3>
       <div class="small">분류: ${n.category||'-'} · 마감: ${deadlineWithTime(n)}</div>
+      <div class="small">지원금: ${n.supportAmount||'확인 필요'}</div>
       <div class="reasons">${(n.reasons||[]).map(r=>`<span class='reason'>${r}</span>`).join('')}</div>
       <div class="row" style="margin-top:8px">
         <span class="tag ${fitClass(n.fit)}">맞춤점수 ${n.fit} · ${fitLabel(n.fit)}</span>

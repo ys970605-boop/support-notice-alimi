@@ -38,6 +38,46 @@ def clean(s: str) -> str:
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
+def extract_support_amount(text: str) -> str:
+    t = clean(text or "")
+    if not t:
+        return ""
+
+    money_patterns = [
+        r"\d[\d,]*(?:\.\d+)?\s*억\s*\d*[\d,]*(?:\.\d+)?\s*만\s*원",
+        r"\d[\d,]*(?:\.\d+)?\s*억\s*원",
+        r"\d[\d,]*(?:\.\d+)?\s*천\s*만\s*원",
+        r"\d[\d,]*(?:\.\d+)?\s*만\s*원",
+        r"\d[\d,]*(?:\.\d+)?\s*원",
+    ]
+    money_re = re.compile("(" + "|".join(money_patterns) + ")")
+
+    keyword_re = re.compile(r"(지원금|지원규모|지원예산|지원한도|보조금|사업비)")
+
+    # 1) 키워드 근처 금액 우선 추출
+    for m in keyword_re.finditer(t):
+        st = max(0, m.start() - 20)
+        ed = min(len(t), m.end() + 60)
+        snippet = t[st:ed]
+        mm = money_re.search(snippet)
+        if mm:
+            val = mm.group(1)
+            if len(val) <= 2:
+                continue
+            return f"{m.group(1)} {val}".replace("  ", " ").strip()
+
+    # 2) 최대/총 + 금액 패턴
+    m2 = re.search(r"(최대|총)\s*" + money_re.pattern, t)
+    if m2:
+        return re.sub(r"\s+", " ", m2.group(0)).strip()
+
+    # 3) 금액 단독 (과도한 숫자 노이즈 방지: 만원/억/천만원 우선)
+    m3 = re.search(r"\d[\d,]*(?:\.\d+)?\s*(?:억\s*\d*[\d,]*(?:\.\d+)?\s*만\s*원|억\s*원|천\s*만\s*원|만\s*원)", t)
+    if m3:
+        return re.sub(r"\s+", " ", m3.group(0)).strip()
+
+    return ""
+
 
 def days_until(deadline: str):
     if not deadline:
@@ -96,6 +136,14 @@ def parse_kstartup() -> list:
         if not title or pbanc_sn in seen:
             continue
         seen.add(pbanc_sn)
+        detail_url = f"https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn={pbanc_sn}"
+        support_amount = ""
+        try:
+            detail_txt = get(detail_url)
+            support_amount = extract_support_amount(detail_txt)
+        except Exception:
+            support_amount = ""
+
         out.append(
             {
                 "id": f"k-{pbanc_sn}",
@@ -104,7 +152,8 @@ def parse_kstartup() -> list:
                 "category": clean(category),
                 "deadline": deadline,
                 "dday": int(dday),
-                "url": f"https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn={pbanc_sn}",
+                "supportAmount": support_amount,
+                "url": detail_url,
             }
         )
     return out[:80]
@@ -138,6 +187,13 @@ def parse_bizinfo() -> list:
         pid_match = re.search(r"(PBLN_[0-9]+)", full_url)
         pid = pid_match.group(1) if pid_match else str(abs(hash(full_url)))
 
+        support_amount = ""
+        try:
+            detail_txt = get(full_url)
+            support_amount = extract_support_amount(detail_txt)
+        except Exception:
+            support_amount = ""
+
         out.append(
             {
                 "id": f"b-{pid}",
@@ -148,6 +204,7 @@ def parse_bizinfo() -> list:
                 "dday": dday,
                 "period": period,
                 "regDate": reg_date,
+                "supportAmount": support_amount,
                 "url": full_url,
             }
         )

@@ -263,6 +263,7 @@ def parse_smtech() -> list:
 
         full_url = href if href.startswith("http") else f"https://www.smtech.go.kr{href}"
         full_url = full_url.replace("&amp;", "&")
+        full_url = re.sub(r";jsessionid=[^?]+", "", full_url, flags=re.I)
 
         out.append(
             {

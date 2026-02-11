@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-02-11 14:32:42",
-  "count": 300,
-  "beforeDedupeCount": 355,
+  "updatedAt": "2026-02-12 00:39:37",
+  "count": 299,
+  "beforeDedupeCount": 354,
   "dedupRemoved": 55,
-  "noDeadlineCount": 15,
+  "noDeadlineCount": 9,
   "sourceStats": {
     "gosims": 212,
-    "smtech": 20,
-    "kstartup": 20,
+    "smtech": 21,
+    "kstartup": 18,
     "bizinfo": 13,
     "egbiz": 10,
     "smes24": 20,
@@ -16,23 +16,12 @@
   "errors": [],
   "notices": [
     {
-      "id": "g-20260349698",
-      "source": "gosims",
-      "title": "「2026년 주민자치 특화 공모사업 추진계획」공고",
-      "category": "공모사업 지방",
-      "deadline": "2026-02-11",
-      "dday": 0,
-      "period": "2026-01-21 ~ 2026-02-11",
-      "org": "이의혁",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349698"
-    },
-    {
       "id": "g-202632000000015400001A",
       "source": "gosims",
       "title": "2026년 자살예방멘토링 보조사업자 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-29 ~ 2026-02-12",
       "org": "충청남도 홍성군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000015400001A"
@@ -43,7 +32,7 @@
       "title": "2026년 세종특별자치시 발달장애인 가족휴식지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600013A"
@@ -54,7 +43,7 @@
       "title": "2026년 세종특별자치시 발달장애인 부모교육지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600014A"
@@ -65,7 +54,7 @@
       "title": "2026년 콘텐츠 창의인재동반사업 플랫폼기관 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500001A"
@@ -76,7 +65,7 @@
       "title": "2026년도 수성구 생태녹색관광 활성화 사업 보조금 지원계획 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "대구광역시 수성구",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000013900001B"
@@ -87,7 +76,7 @@
       "title": "충남소년체전 우수종목 육성지원",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2025-12-29 ~ 2026-02-12",
       "org": "임영광",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250323524"
@@ -98,7 +87,7 @@
       "title": "2026. 느린학습자 프로그램 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "정해주",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349860"
@@ -109,7 +98,7 @@
       "title": "2026년 제주특별자치도 무형유산 공개 행사 개최 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339548"
@@ -120,7 +109,7 @@
       "title": "2026년 제주특별자치도 무형유산 재료비 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339527"
@@ -131,7 +120,7 @@
       "title": "2026년 제주특별자치도 무형유산 활용 프로그램 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339565"
@@ -142,7 +131,7 @@
       "title": "2026년 경계선 지능인 평생교육 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-02-10 ~ 2026-02-12",
       "org": "강주희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356312"
@@ -153,7 +142,7 @@
       "title": "2026년 성인장애인 평생교육 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-12",
-      "dday": 1,
+      "dday": 0,
       "period": "2026-02-10 ~ 2026-02-12",
       "org": "강주희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356237"
@@ -164,8 +153,8 @@
       "title": "2026년도 산학연 Collabo R&D사업(컨소시엄형/사업화R&D) 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017697&buclCd=S002057&dtlAncmSn=2"
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017697&buclCd=S002057&dtlAncmSn=2"
     },
     {
       "id": "smt-017629",
@@ -173,8 +162,8 @@
       "title": "2026년도 민관공동기술사업화(R&D)'구매연계(국내수요처)' 상반기 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017629&buclCd=S049807&dtlAncmSn=3"
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017629&buclCd=S049807&dtlAncmSn=3"
     },
     {
       "id": "smt-017632",
@@ -182,8 +171,8 @@
       "title": "2026년도 민관공동기술사업화(R&D)'상생협력' 상반기 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017632&buclCd=S049807&dtlAncmSn=1"
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017632&buclCd=S049807&dtlAncmSn=1"
     },
     {
       "id": "smt-017615",
@@ -191,8 +180,17 @@
       "title": "2026년도 민관공동기술사업화(R&D) '기술이전사업화' 상반기 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017615&buclCd=S049998&dtlAncmSn=1"
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017615&buclCd=S049998&dtlAncmSn=1"
+    },
+    {
+      "id": "smt-S02836",
+      "source": "smtech",
+      "title": "2026년 중소기업 연구인력지원사업(채용, 신진) 공고(과제 접수 기간)",
+      "category": "R&D 사업공고",
+      "deadline": "2026-02-12",
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02836&buclCd=S6042&dtlAncmSn=1"
     },
     {
       "id": "smt-S02831",
@@ -200,26 +198,8 @@
       "title": "2026년 제1차 중소기업 R&D 전담은행 투자지원 신청기업(우수성과 50선 분야) 모집 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02831&buclCd=S9171&dtlAncmSn=1"
-    },
-    {
-      "id": "k-176104",
-      "source": "kstartup",
-      "title": "2026년 대전 팁스타운 입주기업 모집 공고",
-      "category": "시설ㆍ공간ㆍ보육",
-      "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176104"
-    },
-    {
-      "id": "k-176043",
-      "source": "kstartup",
-      "title": "글로벌 K-파운더 네트워크 주관기관 모집공고",
-      "category": "글로벌",
-      "deadline": "2026-02-12",
-      "dday": 1,
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176043"
+      "dday": 0,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02831&buclCd=S9171&dtlAncmSn=1"
     },
     {
       "id": "g-202600000570139500002A",
@@ -227,7 +207,7 @@
       "title": "보훈단체 특화 선양활동 지원 사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-12 ~ 2026-02-13",
       "org": "국가보훈부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570139500002A"
@@ -238,7 +218,7 @@
       "title": "2026년 과수 무병묘 모수포 조성지원 사업대상자 선정",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-12 ~ 2026-02-13",
       "org": "농림축산식품부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000526500001A"
@@ -249,7 +229,7 @@
       "title": "건강한 아파트 만들기",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "경상남도 진주시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100003A"
@@ -260,7 +240,7 @@
       "title": "2026년 건강올리고 위탁사업 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "경상남도 진주시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100002A"
@@ -271,7 +251,7 @@
       "title": "2026년 노인자살예방 멘토링사업 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "충청남도 서천군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004100001A"
@@ -282,7 +262,7 @@
       "title": "2026년 충청남도 발달장애인 부모교육지원 사업 수행기관 공모(성인전환기)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600010A"
@@ -293,7 +273,7 @@
       "title": "2026년 질량유량계 설치 지원 간접보조사업자 선정 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "한국석유관리원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000007400018A"
@@ -304,7 +284,7 @@
       "title": "2026년 스마트팜 ICT 융복합확산 (에너지절감 시설)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "경상남도 거제시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800007A"
@@ -315,7 +295,7 @@
       "title": "거제시 고추비가림재배시설 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "경상남도 거제시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800008A"
@@ -326,7 +306,7 @@
       "title": "2026년 자유무역지역 기업지원사업 주관(시행)기관 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-26 ~ 2026-02-13",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900001A"
@@ -337,7 +317,7 @@
       "title": "2026년 사립 및 사립대학박물관 전문인력(교육사) 지원관 모집",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(사)한국사립박물관협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900002A"
@@ -348,7 +328,7 @@
       "title": "2026년 사립 및 사립대학박물관 예비 학예인력 지원사업 참여관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(사)한국사립박물관협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900001A"
@@ -359,7 +339,7 @@
       "title": "2026년 장애인 집합정보화교육기관 선정",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "경상북도",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010100001A"
@@ -370,7 +350,7 @@
       "title": "2026년도 장애인 집합 정보화교육기관 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "울산광역시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017600001A"
@@ -381,7 +361,7 @@
       "title": "『2026년 제천시 청소년 문화축제 ·국내외교류·어울림마당·동아리활동 』 위탁운영 법인(단체) 및 청소년 수련시설 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "충청북도 제천시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004500001B"
@@ -392,7 +372,7 @@
       "title": "2026년 창업어가 멘토링 지원사업",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-14 ~ 2026-02-13",
       "org": "전라남도",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400006B"
@@ -403,7 +383,7 @@
       "title": "2026년도 지역관광추진조직(DMO) 육성 지원 사업자 공모",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-27 ~ 2026-02-13",
       "org": "한국관광공사",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000001200001B"
@@ -414,7 +394,7 @@
       "title": "2026년 창업어가 멘토링 지원사업 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-14 ~ 2026-02-13",
       "org": "전라남도",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400007B"
@@ -425,7 +405,7 @@
       "title": "2026년 창업어가 멘토링 지원사업 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-20 ~ 2026-02-13",
       "org": "전라남도",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400004B"
@@ -436,7 +416,7 @@
       "title": "2026년 어업용기자재 이동수리소 지원사업 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-20 ~ 2026-02-13",
       "org": "전라남도",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400003B"
@@ -447,7 +427,7 @@
       "title": "2026년 장애인의 날 기념식",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김연태",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335538"
@@ -458,7 +438,7 @@
       "title": "재가장애인선진지 견학",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김연태",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335542"
@@ -469,7 +449,7 @@
       "title": "2026 관광통역안내사 양성지원 보조사업자 선정 공모",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-26 ~ 2026-02-13",
       "org": "진시아",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347338"
@@ -480,7 +460,7 @@
       "title": "2026년 문화활동 맞춤형 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-02 ~ 2026-02-13",
       "org": "이효경",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338012"
@@ -491,7 +471,7 @@
       "title": "2026년도 거창군 공동주택관리(일반/승강기) 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-23 ~ 2026-02-13",
       "org": "정현엽",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353701"
@@ -502,7 +482,7 @@
       "title": "2026년 서울특별시 비영리민간단체 공익활동지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-02 ~ 2026-02-13",
       "org": "황지현",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349017"
@@ -513,7 +493,7 @@
       "title": "구미시 경북형 행복경로당 운영(반찬지원)사업 보조사업자 모집 공고",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-10 ~ 2026-02-13",
       "org": "조호경",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356977"
@@ -524,7 +504,7 @@
       "title": "2026년 민간단체 환경보전활동 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김현지",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357030"
@@ -535,7 +515,7 @@
       "title": "사천시 청년 창업가 로컬브랭딩 지원사업 보조사업자 공개모집",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "박영희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260350041"
@@ -546,7 +526,7 @@
       "title": "2026년 마포구 살기좋은 마을만들기 공모사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "강예나",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353670"
@@ -557,7 +537,7 @@
       "title": "2026년 북한이탈주민 종합건강검진 및 관리서비스 운영",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "권미리",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355909"
@@ -568,7 +548,7 @@
       "title": "2026년 지역 대학생 미래산업 직무연계 체험사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "남수진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357266"
@@ -579,7 +559,7 @@
       "title": "(원도심)2026년 평생학습 우수 프로그램 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-04 ~ 2026-02-13",
       "org": "방미희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357738"
@@ -590,7 +570,7 @@
       "title": "2026년 창업성공패키지[글로벌창업사관학교] 창업기업 모집공고",
       "category": "사업화",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176102"
     },
     {
@@ -599,7 +579,7 @@
       "title": "2026년도 창업성공패키지[딥테크창업사관학교] 입교기업 모집공고",
       "category": "사업화",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176124"
     },
     {
@@ -608,7 +588,7 @@
       "title": "2026년 창업성공패키지 [청년창업사관학교] 기본과정 입교생 모집 공고",
       "category": "사업화",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176107"
     },
     {
@@ -617,7 +597,7 @@
       "title": "2026년도 초기창업패키지(일반형) 창업기업 모집공고",
       "category": "사업화",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176019"
     },
     {
@@ -626,7 +606,7 @@
       "title": "2026년도 창업도약패키지(일반형) 창업기업 모집공고",
       "category": "사업화",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176065"
     },
     {
@@ -635,7 +615,7 @@
       "title": "[강원] 제41회 국제의료기기병원설비전시회(KIMES 2026) 디지털헬스케어 산업 확산을 위한 부스 참가기업 모집 공고",
       "category": "내수",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-09 ~ 2026-02-13",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118438"
@@ -646,9 +626,9 @@
       "title": "[경기] 2026년 코리아 나라장터 엑스포(KOPPEX 2026) 혁신제품 홍보관 참가기업 추가 모집 공고(경기도 혁신기업 판로지원사업)",
       "category": "내수",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "2026-02-09 ~ 2026-02-13",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(경기테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051868"
     },
@@ -658,7 +638,7 @@
       "title": "[대구] 2026년 쉬메릭(CHIMERIC) 신규 제품군 모집 공고",
       "category": "경영",
       "deadline": "2026-02-13",
-      "dday": 2,
+      "dday": 1,
       "period": "26-02-11 ~ 26-02-13",
       "status": "신청 가능",
       "org": "대구경북디자인진흥원",
@@ -672,7 +652,7 @@
       "title": "2026년 예산군 고독사 예방 및 관리사회적 관계망 형성 프로그램 보조사업자 모집",
       "category": "보탬e 국고",
       "deadline": "2026-02-18",
-      "dday": 7,
+      "dday": 6,
       "period": "2026-02-03 ~ 2026-02-18",
       "org": "충청남도 예산군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000003400004B"
@@ -683,7 +663,7 @@
       "title": "4.16세월호참사 추모사업 지원",
       "category": "보탬e 국고",
       "deadline": "2026-02-18",
-      "dday": 7,
+      "dday": 6,
       "period": "2026-01-13 ~ 2026-02-18",
       "org": "재단법인416재단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002546600001B"
@@ -694,7 +674,7 @@
       "title": "2026년 용인 청년 커뮤니티 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-18",
-      "dday": 7,
+      "dday": 6,
       "period": "2026-01-29 ~ 2026-02-18",
       "org": "강미정",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355208"
@@ -705,7 +685,7 @@
       "title": "2026년 민간경상보조사업(동물병원 기반 SFTS 감시사업) 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "보건복지부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001426500002A"
@@ -716,7 +696,7 @@
       "title": "2026년 유가족 동료지원가 운영 및 교류 활동 수행기관 선정 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-09 ~ 2026-02-19",
       "org": "재단법인 한국장기조직기증원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000964600002A"
@@ -727,7 +707,7 @@
       "title": "2026년 발달장애인 부모교육지원사업(영유아기) 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-05 ~ 2026-02-19",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600012A"
@@ -738,7 +718,7 @@
       "title": "2026년 중소유통 공동협력 활성화 지원사업 운영기관 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-04 ~ 2026-02-19",
       "org": "소상공인시장진흥공단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000004800006A"
@@ -749,7 +729,7 @@
       "title": "'26년 스마트팜 실증단지 「실증기업 지원사업」 간접보조사업자 모집",
       "category": "보탬e 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-01-30 ~ 2026-02-19",
       "org": "한국농업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100001B"
@@ -760,7 +740,7 @@
       "title": "「2026년 무인도서 가치재발견」민간보조사업 수행자 재공모",
       "category": "보탬e 국고",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-11 ~ 2026-02-19",
       "org": "해양수산부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900007B"
@@ -771,7 +751,7 @@
       "title": "2026년 제54회 청양군 어버이날 행사",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-03 ~ 2026-02-19",
       "org": "반삼숙",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260340160"
@@ -782,7 +762,7 @@
       "title": "2026년 지체장애인의 날 도행사 참가",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341869"
@@ -793,7 +773,7 @@
       "title": "2026년 시각장애인 어르신 심신건강증진대회",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260346285"
@@ -804,7 +784,7 @@
       "title": "2026년 재가장애인 세상체험행사",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341866"
@@ -815,7 +795,7 @@
       "title": "2026년 충남 농아인의 날 행사 참가",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341853"
@@ -826,7 +806,7 @@
       "title": "2026년 충남 장애인의 날 행사 참가",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341871"
@@ -837,7 +817,7 @@
       "title": "2026년 장애인의날 기념행사 개최",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341864"
@@ -848,7 +828,7 @@
       "title": "2026년 흰지팡이의 날 행사 참가",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341876"
@@ -859,7 +839,7 @@
       "title": "2026년 장애인 기능경기대회 참가",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341849"
@@ -870,7 +850,7 @@
       "title": "2026년 서울청소년 마음건강 페스타",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-10 ~ 2026-02-19",
       "org": "홍인재",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349868"
@@ -881,7 +861,7 @@
       "title": "2026년 외국인주민 문화체육행사 지원사업 주관단체 공모",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-01-30 ~ 2026-02-19",
       "org": "백정유",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357223"
@@ -892,7 +872,7 @@
       "title": "2026년 지능정보서비스 과의존 예방 및 해소 교육 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "이성호",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357708"
@@ -903,7 +883,7 @@
       "title": "2026년도 에코스타트업 지원사업 일반창업분야(예비창업자,창업기업,성장창업기업) 모집 공고",
       "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-02-19",
-      "dday": 8,
+      "dday": 7,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176276"
     },
     {
@@ -912,7 +892,7 @@
       "title": "2026년 해양법·해양영토 토론대회 보조사업 수행기관 모집 재공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-11 ~ 2026-02-20",
       "org": "해양수산부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900006A"
@@ -923,7 +903,7 @@
       "title": "2026년 서울시 어르신일자리(시직속) 수행기관 모집 공고(2차)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "서울특별시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000014400006A"
@@ -934,7 +914,7 @@
       "title": "2026년 전북특별자치도 발달장애인 성인권 부모교육지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600017A"
@@ -945,7 +925,7 @@
       "title": "2026년 전북특별자치도 발달장애인 성인전환기 부모교육지원 사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600021A"
@@ -956,7 +936,7 @@
       "title": "2026년 전북특별자치도 발달장애인 영유아기 부모교육 지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600018A"
@@ -967,7 +947,7 @@
       "title": "2026년 충청남도 발달장애인 가족휴식지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600016A"
@@ -978,7 +958,7 @@
       "title": "2026 아트코리아랩 글로벌 교류·유통 지원 – (기획형) 프랑스 뉴이미지 참가 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400015A"
@@ -989,7 +969,7 @@
       "title": "2026 아트코리아랩 글로벌 교류·유통 지원 – (기획형) 스페인 소나르+D 참가 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400016A"
@@ -1000,7 +980,7 @@
       "title": "글로벌스포츠 리더십과정 운영 1차 사업자 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-28 ~ 2026-02-20",
       "org": "서울올림픽기념국민체육진흥공단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200003A"
@@ -1011,7 +991,7 @@
       "title": "2026년 지역기반형 웹툰작가 양성 사업 플랫폼기관 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500005A"
@@ -1022,7 +1002,7 @@
       "title": "2026년 소수정예 웹툰작가 양성 사업 플랫폼기관 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500006A"
@@ -1033,7 +1013,7 @@
       "title": "2026 구석구석 문화가 있는 날 - 활력촉진형(기초/문화지구)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)지역문화진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000013700002A"
@@ -1044,7 +1024,7 @@
       "title": "2026년 제주특별자치도 발달장애인 가족휴식지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-03 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600019A"
@@ -1055,7 +1035,7 @@
       "title": "2026년 스마트팜 현장실습형 교육 간접보조사업자 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-28 ~ 2026-02-20",
       "org": "한국농업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100002B"
@@ -1066,7 +1046,7 @@
       "title": "2026년 광산구 의용소방대 활성화 지원 사업(구비)",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-06 ~ 2026-02-20",
       "org": "유성진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361004"
@@ -1077,7 +1057,7 @@
       "title": "2026년 광산구 자율방범연합대 활성화 지원 사업(구비)",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-06 ~ 2026-02-20",
       "org": "유성진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260360999"
@@ -1088,7 +1068,7 @@
       "title": "'26년 장애인단체활동 및 행사 지원사업(3차 공모)_26년 서울시 장애인복지신문 보급지원",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-10 ~ 2026-02-20",
       "org": "김은주",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334944"
@@ -1099,7 +1079,7 @@
       "title": "'26년 장애인단체활동 및 행사 지원사업(2차 공모)",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-10 ~ 2026-02-20",
       "org": "김은주",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334905"
@@ -1110,7 +1090,7 @@
       "title": "공동주택 옥상출입문 자동개폐기 설치 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-12 ~ 2026-02-20",
       "org": "민병수",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338122"
@@ -1121,7 +1101,7 @@
       "title": "2026년 공동주택관리 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348210"
@@ -1132,7 +1112,7 @@
       "title": "2026년 공동주택 단지 내 노후 콘크리트저수조 내부 보수·보강 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348236"
@@ -1143,7 +1123,7 @@
       "title": "청송군 청년 소모임 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "임지은",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260344785"
@@ -1154,7 +1134,7 @@
       "title": "음식물 종량제기기(RFID) 설치 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-26 ~ 2026-02-20",
       "org": "양하은",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347536"
@@ -1165,7 +1145,7 @@
       "title": "2026년 공동주택 경비원 근무초소 개선 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-16 ~ 2026-02-20",
       "org": "우지명",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345084"
@@ -1176,7 +1156,7 @@
       "title": "2026년 아파트 경비·청소 노동자 휴게시설 개선 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-16 ~ 2026-02-20",
       "org": "우지명",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345174"
@@ -1187,7 +1167,7 @@
       "title": "사립 작은도서관 프로그램 운영 지원",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351756"
@@ -1198,7 +1178,7 @@
       "title": "작은도서관 시설개선 지원",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351721"
@@ -1209,7 +1189,7 @@
       "title": "사립 작은도서관 도서구입 지원",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351681"
@@ -1220,7 +1200,7 @@
       "title": "2026년 공동주택 노후 승강기 교체 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348284"
@@ -1231,7 +1211,7 @@
       "title": "2026 성북구 독서동아리 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "차주호",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357648"
@@ -1242,7 +1222,7 @@
       "title": "2026년 대학 평생교육 활성화 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-04 ~ 2026-02-20",
       "org": "김수경",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250357625"
@@ -1253,7 +1233,7 @@
       "title": "2026년 상자텃밭 조성사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "곽미영",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354988"
@@ -1264,7 +1244,7 @@
       "title": "소비자주권 경제역량강화 교육사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-01 ~ 2026-02-20",
       "org": "강수현",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356856"
@@ -1275,7 +1255,7 @@
       "title": "지속가능한 소비자행복포럼 운영사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-20",
-      "dday": 9,
+      "dday": 8,
       "period": "2026-02-01 ~ 2026-02-20",
       "org": "강수현",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356836"
@@ -1286,8 +1266,8 @@
       "title": "2026년 테크노파크 생산장비 고도화 지원계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-20",
-      "dday": 9,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02840&buclCd=S8012&dtlAncmSn=2"
+      "dday": 8,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02840&buclCd=S8012&dtlAncmSn=2"
     },
     {
       "id": "smt-S02838",
@@ -1295,8 +1275,8 @@
       "title": "2026년 지역특화 프로젝트 지원사업(지원) 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-20",
-      "dday": 9,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02838&buclCd=S8018&dtlAncmSn=1"
+      "dday": 8,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02838&buclCd=S8018&dtlAncmSn=1"
     },
     {
       "id": "smt-S02830",
@@ -1304,8 +1284,8 @@
       "title": "2026년도 지역혁신생태계 구축사업(수도권) 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-20",
-      "dday": 9,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02830&buclCd=S8111&dtlAncmSn=1"
+      "dday": 8,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02830&buclCd=S8111&dtlAncmSn=1"
     },
     {
       "id": "g-202633000000008600020A",
@@ -1313,7 +1293,7 @@
       "title": "2026년 전북특별자치도 발달장애인 가족휴식지원 사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-03 ~ 2026-02-23",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600020A"
@@ -1324,7 +1304,7 @@
       "title": "2026년 우리말 가꿈이 활동 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-09 ~ 2026-02-23",
       "org": "사단법인 국어문화원 연합회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000003302500001A"
@@ -1335,7 +1315,7 @@
       "title": "2026 강원 문화예술교육사 현장 역량 강화 사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-11 ~ 2026-02-23",
       "org": "재단법인강원문화재단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015900001A"
@@ -1346,7 +1326,7 @@
       "title": "2026년 스포츠마케팅 전문인력 양성 운영기관 모집",
       "category": "e나라도움 국고",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-04 ~ 2026-02-23",
       "org": "서울올림픽기념국민체육진흥공단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200004A"
@@ -1357,7 +1337,7 @@
       "title": "2026년 음식물쓰레기 줄이기 컨설팅",
       "category": "공모사업 지방",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-06 ~ 2026-02-23",
       "org": "이서정",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361208"
@@ -1368,7 +1348,7 @@
       "title": "희망학습마을 조성 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-23",
-      "dday": 12,
+      "dday": 11,
       "period": "2026-02-19 ~ 2026-02-23",
       "org": "최경아",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341408"
@@ -1379,7 +1359,7 @@
       "title": "2026년 국내 및 국제영화제 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200005A"
@@ -1390,7 +1370,7 @@
       "title": "〈2026 아트페어 육성지원〉 사업 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-09 ~ 2026-02-24",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400017A"
@@ -1401,7 +1381,7 @@
       "title": "AI융합 의료기기 신뢰성 강화 및 성능 평가ㆍ실증 통합지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "한국산업기술시험원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600001A"
@@ -1412,7 +1392,7 @@
       "title": "AI 기반 바이오 소재 융복합 제품의 적용·검증 및 시장진출 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "한국산업기술시험원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600002A"
@@ -1423,7 +1403,7 @@
       "title": "2026년도 장애인방송물 제작지원 사업 공고",
       "category": "보탬e 국고",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-02 ~ 2026-02-24",
       "org": "시청자미디어재단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000009400001B"
@@ -1434,7 +1414,7 @@
       "title": "2026년 영등포구 우수 평생학습동아리 지원사업 공모",
       "category": "공모사업 지방",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-09 ~ 2026-02-24",
       "org": "정지은",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357197"
@@ -1445,7 +1425,7 @@
       "title": "2026년 하남시 마을공동체 주민제안 공모사업 공고",
       "category": "공모사업 지방",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "2026-02-02 ~ 2026-02-24",
       "org": "정소신",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357586"
@@ -1456,7 +1436,7 @@
       "title": "초격차 스타트업 프로젝트(DIPS) Link-up(링크업) - 4대 도메인 AX 프로그램 수요기업(기관) 모집공고",
       "category": "사업화",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176066"
     },
     {
@@ -1465,7 +1445,7 @@
       "title": "[전남] 2026년 전남해양수산창업투자지원센터 수혜기업 모집 공고",
       "category": "경영",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "26-02-11 ~ 26-02-24",
       "status": "신청 가능",
       "org": "전남바이오진흥원",
@@ -1479,7 +1459,7 @@
       "title": "[전남] 2026년 전남해양수산창업투자지원센터 해양수산 스타트업 경진대회 참가자 모집 공고",
       "category": "창업",
       "deadline": "2026-02-24",
-      "dday": 13,
+      "dday": 12,
       "period": "26-02-11 ~ 26-02-24",
       "status": "신청 가능",
       "org": "목포수산식품지원센터",
@@ -1493,7 +1473,7 @@
       "title": "2026년도 발달장애인 가족휴식지원 사업 수행기관 공모(전남)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-04 ~ 2026-02-25",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600025A"
@@ -1504,7 +1484,7 @@
       "title": "2026년도 발달장애인 부모교육지원 사업 수행기관 공모(전남)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-09 ~ 2026-02-25",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600023A"
@@ -1515,7 +1495,7 @@
       "title": "2026 취약지역 어르신 문화누림",
       "category": "e나라도움 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "한국문화원연합회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000029100001A"
@@ -1526,7 +1506,7 @@
       "title": "2026 경북 문화예술교육사 현장 역량강화 지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-04 ~ 2026-02-25",
       "org": "경북문화재단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002420500001A"
@@ -1537,7 +1517,7 @@
       "title": "은평구 앵봉산 가족캠핑장 다회용기 이용지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "서울특별시 은평구",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018300003A"
@@ -1548,10 +1528,21 @@
       "title": "2026년 한국영화 기획개발지원 제작사부문(초기기획) 상반기",
       "category": "보탬e 국고",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200007B"
+    },
+    {
+      "id": "g-20260357482",
+      "source": "gosims",
+      "title": "「교통안전을 위한 자동차 무상점검」 사업자 공모",
+      "category": "공모사업 지방",
+      "deadline": "2026-02-25",
+      "dday": 13,
+      "period": "2026-02-02 ~ 2026-02-25",
+      "org": "송송이",
+      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357482"
     },
     {
       "id": "b-PBLN_000000000118427",
@@ -1559,7 +1550,7 @@
       "title": "[서울] 2026년 일본 스시테크 도쿄 서울관 참가기업 모집 공고",
       "category": "수출",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-10 ~ 2026-02-25",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118427"
@@ -1570,9 +1561,9 @@
       "title": "2026년 우수 임산물 패키지 지원사업 참가업체 모집 공고",
       "category": "수출",
       "deadline": "2026-02-25",
-      "dday": 14,
+      "dday": 13,
       "period": "2026-02-06 ~ 2026-02-25",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(한국농수산식품유통공사)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051864"
     },
@@ -1582,7 +1573,7 @@
       "title": "2026년 다중이용시설 다회용기 재사용 촉진 지원사업 보조사업자 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-11 ~ 2026-02-26",
       "org": "광주광역시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018000002A"
@@ -1593,7 +1584,7 @@
       "title": "2026년 발달장애인 부모교육지원사업(성인권) 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600028A"
@@ -1604,7 +1595,7 @@
       "title": "2026년 경기도 발달장애인 가족휴식지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600026A"
@@ -1615,7 +1606,7 @@
       "title": "2026년 경기도 발달장애인 성인전환기 부모교육지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600030A"
@@ -1626,7 +1617,7 @@
       "title": "2026년 경기도 발달장애인 영유아기 부모교육지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600029A"
@@ -1637,7 +1628,7 @@
       "title": "2026년도 국외소재문화유산 관련 민간단체 사업 지원 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-01-29 ~ 2026-02-26",
       "org": "국외소재문화유산재단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000005900001A"
@@ -1648,7 +1639,7 @@
       "title": "2026년 「해외 환경프로젝트 타당성조사 지원사업」 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-01-26 ~ 2026-02-26",
       "org": "한국환경산업기술원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900001A"
@@ -1659,7 +1650,7 @@
       "title": "[드라마 장편] 2026년 OTT특화콘텐츠제작지원(국내 플랫폼 연계형)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-05 ~ 2026-02-26",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500018A"
@@ -1670,7 +1661,7 @@
       "title": "2026년 신진 창작자 데뷔지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-05 ~ 2026-02-26",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500025A"
@@ -1681,7 +1672,7 @@
       "title": "2026년 개도국 환경개선 마스터플랜 수립지원 사업 수행기업 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "한국환경산업기술원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900012A"
@@ -1692,7 +1683,7 @@
       "title": "해외플랜트 시장개척 지원사업(26-1차)",
       "category": "보탬e 국고",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-02-03 ~ 2026-02-26",
       "org": "한국플랜트산업협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000025100001B"
@@ -1703,7 +1694,7 @@
       "title": "2026년 공동주택 가로등(보안등) 전기료 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "period": "2026-01-21 ~ 2026-02-26",
       "org": "박민주",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260328755"
@@ -1714,8 +1705,22 @@
       "title": "2026년 디지털 금융기술 내재화 사업 수혜기업 모집 수정공고",
       "category": "사업화",
       "deadline": "2026-02-26",
-      "dday": 15,
+      "dday": 14,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176246"
+    },
+    {
+      "id": "s24-PBLN_000000000117746",
+      "source": "smes24",
+      "title": "2026년 국가연구개발 우수연구성과 확산 촉진 지원사업 신규과제 공고",
+      "category": "기술",
+      "deadline": "2026-02-26",
+      "dday": 14,
+      "period": "26-02-12 ~ 26-02-26",
+      "status": "신청 가능",
+      "org": "과학기술사업화진흥원",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "244452680",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000117746"
     },
     {
       "id": "g-202600000570305100001A",
@@ -1723,7 +1728,7 @@
       "title": "2026년 이산가족 교류단체 지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "통일부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570305100001A"
@@ -1734,7 +1739,7 @@
       "title": "2026년 예술영화전용관 운영지원 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200003A"
@@ -1745,7 +1750,7 @@
       "title": "2026년 독립영화전용관 운영지원 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200004A"
@@ -1756,7 +1761,7 @@
       "title": "2026년 독립예술영화 개봉지원 공모(A부문)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-13 ~ 2026-02-27",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200002A"
@@ -1767,7 +1772,7 @@
       "title": "2026년 민간통일운동 활성화 지원 사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "통일부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002500135300001A"
@@ -1778,7 +1783,7 @@
       "title": "가축분뇨 퇴비화 발효시스템 기술보급 시범(재공고)",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-04 ~ 2026-02-27",
       "org": "대전광역시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010900007A"
@@ -1789,7 +1794,7 @@
       "title": "어선사고예방시스템 구축사업 사업자 모집공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-22 ~ 2026-02-27",
       "org": "전라남도 무안군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009300001A"
@@ -1800,7 +1805,7 @@
       "title": "2026년 광주광역시 발달장애인 가족휴식지원 사업",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-10 ~ 2026-02-27",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600032A"
@@ -1811,7 +1816,7 @@
       "title": "2026년 경상북도 발달장애인 자조모임 지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600022A"
@@ -1822,7 +1827,7 @@
       "title": "2026년 장애인 집합 정보화교육기관 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-10 ~ 2026-02-27",
       "org": "세종특별자치시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017000002A"
@@ -1833,7 +1838,7 @@
       "title": "2026 아트코리아랩 예술기술 융합 프로젝트 후속지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-04 ~ 2026-02-27",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400002A"
@@ -1844,7 +1849,7 @@
       "title": "2026 녹색기술 해외 현지실증 지원사업 신규과제 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "한국환경산업기술원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900004A"
@@ -1855,7 +1860,7 @@
       "title": "2026 녹색제품 글로벌 공급망 진출 지원사업 신규과제 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "한국환경산업기술원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900005A"
@@ -1866,7 +1871,7 @@
       "title": "2026년도 지역‧중소방송 콘텐츠 경쟁력 강화 프로그램 제작지원 사업공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-02 ~ 2026-02-27",
       "org": "한국전파진흥협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600001A"
@@ -1877,7 +1882,7 @@
       "title": "2026년도 공동제작협정 프로그램 제작지원",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "한국전파진흥협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600002A"
@@ -1888,7 +1893,7 @@
       "title": "2026년 양양군 레저스포츠관광 활성화(서프레스큐 홍보) 지원사업 보조사업자 선정 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-12 ~ 2026-02-27",
       "org": "강원특별자치도 양양군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100003A"
@@ -1899,7 +1904,7 @@
       "title": "2026년 양양 서핑페스티벌 보조사업자 공모 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-12 ~ 2026-02-27",
       "org": "강원특별자치도 양양군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100001A"
@@ -1910,7 +1915,7 @@
       "title": "영농부산물 안전처리 지원",
       "category": "보탬e 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "경상남도 창녕군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017500001B"
@@ -1921,7 +1926,7 @@
       "title": "2026년 슬레이트 처리지원사업",
       "category": "보탬e 국고",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "경상남도 산청군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024800001B"
@@ -1932,7 +1937,7 @@
       "title": "2026년 오산시 공동주택 노후 승강기 교체수선 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324838"
@@ -1943,7 +1948,7 @@
       "title": "2026년 오산시 공동주택 공동체 활성화 보조금 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324885"
@@ -1954,7 +1959,7 @@
       "title": "2026년 공동주택 안전관련시설 설치 보조금 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "이예빈",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250324797"
@@ -1965,7 +1970,7 @@
       "title": "2026년 공동주택 야간경관조명 설치 보조금 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "유미선",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324792"
@@ -1976,7 +1981,7 @@
       "title": "2026년 공동주택 새싹스테이션 설치 보조금 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "이예빈",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324820"
@@ -1987,7 +1992,7 @@
       "title": "2026년 공동주택 경비청소 노동자휴게시설 개선 지원 사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "유미선",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324794"
@@ -1998,7 +2003,7 @@
       "title": "2026년 노후 공동주택 보조금 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326437"
@@ -2009,7 +2014,7 @@
       "title": "중소기업 인증획득 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-02 ~ 2026-02-27",
       "org": "김경은",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326051"
@@ -2020,7 +2025,7 @@
       "title": "2026년 인천광역시 비영리민간단체 공익활동 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-13 ~ 2026-02-27",
       "org": "양혜린",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353039"
@@ -2031,7 +2036,7 @@
       "title": "2026년 공동주택 전기차 충전구역 화재감지 및 경보설비 구축 지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "민병수",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354417"
@@ -2042,7 +2047,7 @@
       "title": "2026년 서대문구 성평등기금 공모사업",
       "category": "공모사업 지방",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-23 ~ 2026-02-27",
       "org": "김수연",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356484"
@@ -2053,8 +2058,8 @@
       "title": "2026년 표준공정 기반 공정최적화 기술개발사업 사전연구 및 제조현장진단 전문연구기관 모집 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-27",
-      "dday": 16,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=018201&buclCd=S051309&dtlAncmSn=1"
+      "dday": 15,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=018201&buclCd=S051309&dtlAncmSn=1"
     },
     {
       "id": "k-176256",
@@ -2062,7 +2067,7 @@
       "title": "2026 서울/마포 AI 창업·생태계 확산 포럼(지역과 함께 성장하는 AI 창업 및 생태계)",
       "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176256"
     },
     {
@@ -2071,7 +2076,7 @@
       "title": "2026년도 바이오아이코어사업 (예비)창업팀 모집공고",
       "category": "사업화",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176248"
     },
     {
@@ -2080,7 +2085,7 @@
       "title": "[강원] 인제군 2026년 중소기업 역량강화 지원사업 참여기업 모집 공고",
       "category": "경영",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-10 ~ 2026-02-27",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118439"
@@ -2091,9 +2096,9 @@
       "title": "2026년 우수농식품 신선도제고 지원사업 모집 공고",
       "category": "수출",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-02-06 ~ 2026-02-27",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(한국농수산식품유통공사)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051863"
     },
@@ -2103,11 +2108,39 @@
       "title": "2026년 기업의 기술경쟁력 강화를 위한 특허 기술이전(무상이전ㆍ저가이전) 모집 공고",
       "category": "기술",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(제주테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051865"
+    },
+    {
+      "id": "s24-PBLN_000000000118319",
+      "source": "smes24",
+      "title": "2026년 전통식품 품질인증 기업 경쟁력 강화 지원 사업 공고",
+      "category": "기술",
+      "deadline": "2026-02-27",
+      "dday": 15,
+      "period": "26-02-12 ~ 26-02-27",
+      "status": "신청 가능",
+      "org": "한국식품산업클러스터진흥원",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "248959834",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118319"
+    },
+    {
+      "id": "s24-PBLN_000000000118322",
+      "source": "smes24",
+      "title": "2026년 소스 기술사업화 지원사업 공고",
+      "category": "기술",
+      "deadline": "2026-02-27",
+      "dday": 15,
+      "period": "26-02-12 ~ 26-02-27",
+      "status": "신청 가능",
+      "org": "한국식품산업클러스터진흥원",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "248959831",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118322"
     },
     {
       "id": "s24-PBLN_000000000118408",
@@ -2115,7 +2148,7 @@
       "title": "2026년 의료기기 사업화 촉진 사업 지원 기업 모집 공고",
       "category": "기술",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "26-02-11 ~ 26-02-27",
       "status": "신청 가능",
       "org": "한국산업기술시험원",
@@ -2129,7 +2162,7 @@
       "title": "2026년 대학연구소-스타트업 공동 혁신R&D 지원 신규과제 공고",
       "category": "기술",
       "deadline": "2026-02-27",
-      "dday": 16,
+      "dday": 15,
       "period": "26-02-11 ~ 26-02-27",
       "status": "신청 가능",
       "org": "과학기술사업화진흥원",
@@ -2143,8 +2176,8 @@
       "title": "2026년 중소기업 연구인력지원사업(파견) 2월 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-28",
-      "dday": 17,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02847&buclCd=S6041&dtlAncmSn=1"
+      "dday": 16,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02847&buclCd=S6041&dtlAncmSn=1"
     },
     {
       "id": "e-PD000000051870",
@@ -2152,9 +2185,9 @@
       "title": "[서울] 2026년 3기 사회성과 인센티브(SPC) 사업 참여기업 모집 공고",
       "category": "경영",
       "deadline": "2026-03-02",
-      "dday": 19,
+      "dday": 18,
       "period": "2026-02-09 ~ 2026-03-02",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(서울특별시사회적경제지원센터)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051870"
     },
@@ -2164,7 +2197,7 @@
       "title": "2026 실종아동 찾기 및 예방 홍보 공모사업",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "아동권리보장원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000014100002A"
@@ -2175,7 +2208,7 @@
       "title": "2026년 울산광역시 발달장애인 가족휴식지원사업 수행기관 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-03 ~ 2026-03-03",
       "org": "(재)한국장애인개발원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600015A"
@@ -2186,7 +2219,7 @@
       "title": "2026 장애인 웹툰아카데미 조성 및 운영사업(신규조성) 보조사업자 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국만화영상진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202622000000039700002A"
@@ -2197,7 +2230,7 @@
       "title": "방적산업 제조공정 안정화",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900017A"
@@ -2208,7 +2241,7 @@
       "title": "생활용 섬유제품 제조역량 강화",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900022A"
@@ -2219,7 +2252,7 @@
       "title": "화섬사 수요대응 수출경쟁력 강화",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900023A"
@@ -2230,7 +2263,7 @@
       "title": "K-섬유패션 협력강화 및 글로벌 브랜드 육성",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900002A"
@@ -2241,7 +2274,7 @@
       "title": "섬유패션 수요-제조간 AI 활용 디지털 공급망 구축",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900024A"
@@ -2252,7 +2285,7 @@
       "title": "섬유패션 AI 수요예측 및 비즈니스 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900026A"
@@ -2263,7 +2296,7 @@
       "title": "신속 신발제조 지원 시스템 구축",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900027A"
@@ -2274,7 +2307,7 @@
       "title": "섬유패션 수요기업 맞춤형 인력양성",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900012A"
@@ -2285,7 +2318,7 @@
       "title": "그린&클린팩토리 전환지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900014A"
@@ -2296,7 +2329,7 @@
       "title": "2026년 인공지능 게임콘텐츠 제작지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500029A"
@@ -2307,7 +2340,7 @@
       "title": "2026년 일반형게임콘텐츠제작지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500028A"
@@ -2318,7 +2351,7 @@
       "title": "2026년 기능성 게임콘텐츠 제작지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500027A"
@@ -2329,8 +2362,8 @@
       "title": "2026년 지역혁신선도기업육성(R&D)-주력산업 생태계 구축 지원계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-03-03",
-      "dday": 20,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02843&buclCd=S6581&dtlAncmSn=1"
+      "dday": 19,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02843&buclCd=S6581&dtlAncmSn=1"
     },
     {
       "id": "smt-S02844",
@@ -2338,8 +2371,8 @@
       "title": "2026년 지역혁신선도기업육성(R&D)-지역기업 역량강화 지원계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-03-03",
-      "dday": 20,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02844&buclCd=S6582&dtlAncmSn=1"
+      "dday": 19,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02844&buclCd=S6582&dtlAncmSn=1"
     },
     {
       "id": "k-176266",
@@ -2347,7 +2380,7 @@
       "title": "2026년 청소년비즈쿨 운영기관 모집 공고(거점비즈쿨)새로운게시글",
       "category": "멘토링ㆍ컨설팅ㆍ교육",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176266"
     },
     {
@@ -2356,7 +2389,7 @@
       "title": "2026년 에코스타트업 지원사업 일반창업분야 모집 공고",
       "category": "창업",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "2026-02-19 ~ 2026-03-03",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118436"
@@ -2367,7 +2400,7 @@
       "title": "2026년 지역혁신선도기업육성(R&D)-주력산업 생태계 구축 지원계획 공고",
       "category": "기술",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "26-02-11 ~ 26-03-03",
       "status": "신청 가능",
       "org": "중소기업기술정보진흥원",
@@ -2381,7 +2414,7 @@
       "title": "2026년 지역혁신선도기업육성(R&D)-지역기업 역량강화 지원계획 공고",
       "category": "기술",
       "deadline": "2026-03-03",
-      "dday": 20,
+      "dday": 19,
       "period": "26-02-11 ~ 26-03-03",
       "status": "신청 가능",
       "org": "중소기업기술정보진흥원",
@@ -2395,7 +2428,7 @@
       "title": "2026년 방송영상콘텐츠 후반작업지원 사업 공고(비드라마)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-05 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500004A"
@@ -2406,7 +2439,7 @@
       "title": "2026년 방송영상콘텐츠 확장 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-12 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500002A"
@@ -2417,7 +2450,7 @@
       "title": "2026 방송영상콘텐츠제작지원(예능교양_예능/교양 부문)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-05 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500013A"
@@ -2428,7 +2461,7 @@
       "title": "2026 국제방송문화교류지원(국제공동제작 콘텐츠 제작지원)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500030A"
@@ -2439,7 +2472,7 @@
       "title": "2026 전속작가제 지원 사업 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-04 ~ 2026-03-04",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400013A"
@@ -2450,7 +2483,7 @@
       "title": "2026년 방송포맷 랩 운영지원 사업 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500007A"
@@ -2461,7 +2494,7 @@
       "title": "2026년 글로벌 팩추얼 랩 운영지원 사업 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500008A"
@@ -2472,7 +2505,7 @@
       "title": "2026년 뉴미디어 신기술 콘텐츠 랩 운영지원 사업 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500009A"
@@ -2483,8 +2516,8 @@
       "title": "2026년 지역기업 성장사다리 지원사업(지원)(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-03-04",
-      "dday": 21,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02848&buclCd=S8018&dtlAncmSn=1"
+      "dday": 20,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02848&buclCd=S8018&dtlAncmSn=1"
     },
     {
       "id": "k-175869",
@@ -2492,7 +2525,7 @@
       "title": "2026년 재도전성공패키지 예비재창업자 및 재창업기업 모집공고새로운게시글",
       "category": "사업화",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
     {
@@ -2501,7 +2534,7 @@
       "title": "2026년 국제방송문화교류지원사업 공고(국제공동제작 콘텐츠 제작지원)",
       "category": "수출",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118432"
@@ -2512,11 +2545,25 @@
       "title": "선박용 액체수소 실증설비 구축 사업 지원기업 모집 공고",
       "category": "기술",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "2026-02-09 ~ 2026-03-04",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(경남테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051866"
+    },
+    {
+      "id": "s24-PBLN_000000000118255",
+      "source": "smes24",
+      "title": "2026년 방송영상콘텐츠 확장 지원 사업 공고",
+      "category": "경영",
+      "deadline": "2026-03-04",
+      "dday": 20,
+      "period": "26-02-12 ~ 26-03-04",
+      "status": "신청 가능",
+      "org": "한국콘텐츠진흥원",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "247918578",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118255"
     },
     {
       "id": "s24-PBLN_000000000118399",
@@ -2524,7 +2571,7 @@
       "title": "2026년 재도전성공패키지 예비재창업자 및 재창업기업 모집 공고",
       "category": "창업",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "26-02-11 ~ 26-03-04",
       "status": "신청 가능",
       "org": "창업진흥원",
@@ -2538,7 +2585,7 @@
       "title": "2026년도 재도전성공패키지 예비재창업자 및 재창업기업 모집공고",
       "category": "창업",
       "deadline": "2026-03-04",
-      "dday": 21,
+      "dday": 20,
       "period": "26-02-11 ~ 26-03-04",
       "status": "신청 가능",
       "org": "창업진흥원",
@@ -2552,7 +2599,7 @@
       "title": "2026년도 독도탐방 사업 수행단체 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-05",
-      "dday": 22,
+      "dday": 21,
       "period": "2026-02-02 ~ 2026-03-05",
       "org": "해양수산부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900003A"
@@ -2563,7 +2610,7 @@
       "title": "2026년도 독도 관련 민간단체 지원사업 수행단체 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-05",
-      "dday": 22,
+      "dday": 21,
       "period": "2026-02-02 ~ 2026-03-05",
       "org": "해양수산부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900004A"
@@ -2574,7 +2621,7 @@
       "title": "2026년 새활용 산업 육성 지원사업 참가기업 모집공고",
       "category": "보탬e 국고",
       "deadline": "2026-03-05",
-      "dday": 22,
+      "dday": 21,
       "period": "2026-02-16 ~ 2026-03-05",
       "org": "한국환경산업협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000897700005B"
@@ -2585,8 +2632,8 @@
       "title": "2026년도 상반기 중소벤처기업부 혁신제품 신규지정 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-03-05",
-      "dday": 22,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02845&buclCd=S9111&dtlAncmSn=1"
+      "dday": 21,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02845&buclCd=S9111&dtlAncmSn=1"
     },
     {
       "id": "s24-PBLN_000000000118403",
@@ -2594,7 +2641,7 @@
       "title": "2025ㆍ2026년 KOICA CTS Seed 0 창업초기기업 액셀러레이팅 프로그램 참여기업 신규 모집 공고",
       "category": "창업",
       "deadline": "2026-03-05",
-      "dday": 22,
+      "dday": 21,
       "period": "26-02-11 ~ 26-03-05",
       "status": "신청 가능",
       "org": "한국국제협력단",
@@ -2608,7 +2655,7 @@
       "title": "2026년도 지역별 재외동포 정착지원 사업 추가공모",
       "category": "보탬e 국고",
       "deadline": "2026-03-06",
-      "dday": 23,
+      "dday": 22,
       "period": "2026-02-09 ~ 2026-03-06",
       "org": "재외동포청",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002600019500001B"
@@ -2619,7 +2666,7 @@
       "title": "2026 경상북도 비영리민간단체 공익활동지원사업",
       "category": "공모사업 지방",
       "deadline": "2026-03-06",
-      "dday": 23,
+      "dday": 22,
       "period": "2026-01-28 ~ 2026-03-06",
       "org": "정태희",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354223"
@@ -2630,8 +2677,8 @@
       "title": "2026년 중소기업 연구인력지원사업(채용, 고경력) 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-03-06",
-      "dday": 23,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02833&buclCd=S6043&dtlAncmSn=1"
+      "dday": 22,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02833&buclCd=S6043&dtlAncmSn=1"
     },
     {
       "id": "k-176114",
@@ -2639,7 +2686,7 @@
       "title": "[창업진흥원] 2026년도 K-StartHub 입주기업 모집공고새로운게시글",
       "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-03-06",
-      "dday": 23,
+      "dday": 22,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
     },
     {
@@ -2648,9 +2695,9 @@
       "title": "[서울] 2026년 동대문 도매상인 브랜드 육성 사업 모집 수정 공고",
       "category": "경영",
       "deadline": "2026-03-08",
-      "dday": 25,
+      "dday": 24,
       "period": "2026-02-09 ~ 2026-03-08",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(서울패션허브)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051872"
     },
@@ -2660,7 +2707,7 @@
       "title": "2026 예술분야 초기창업 지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400020A"
@@ -2671,7 +2718,7 @@
       "title": "2026 예술분야 성장도약(스케일업) 지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400019A"
@@ -2682,7 +2729,7 @@
       "title": "2026 예술분야 창업도약 지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400021A"
@@ -2693,7 +2740,7 @@
       "title": "2026 공·사립·대학 박물관 K-뮤지엄 지역 순회 전시 및 투어 지원 사업 참여관 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-01-23 ~ 2026-03-09",
       "org": "사단법인 한국박물관협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010100002A"
@@ -2704,7 +2751,7 @@
       "title": "2026년 예술분야 초기창업 지원사업 공고",
       "category": "창업",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-09 ~ 2026-03-09",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118434"
@@ -2715,7 +2762,7 @@
       "title": "2026년 예술분야 성장도약(스케일업) 지원사업 공고",
       "category": "창업",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-09 ~ 2026-03-09",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118431"
@@ -2726,7 +2773,7 @@
       "title": "2026년 예술분야 창업도약 지원사업 공고",
       "category": "창업",
       "deadline": "2026-03-09",
-      "dday": 26,
+      "dday": 25,
       "period": "2026-02-09 ~ 2026-03-09",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118429"
@@ -2737,7 +2784,7 @@
       "title": "2026년도 방송미디어통신위원회 AI·디지털 기반 방송프로그램 제작지원 사업 공고(해외진출형_드라마 시리즈)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-10",
-      "dday": 27,
+      "dday": 26,
       "period": "2026-02-09 ~ 2026-03-10",
       "org": "한국방송통신전파진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800001A"
@@ -2748,10 +2795,24 @@
       "title": "2026년도 방송미디어통신위원회 AI·디지털 기반 방송프로그램 제작지원(다큐멘터리 해외진출 제작지원)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-10",
-      "dday": 27,
+      "dday": 26,
       "period": "2026-02-09 ~ 2026-03-10",
       "org": "한국방송통신전파진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800003A"
+    },
+    {
+      "id": "s24-PBLN_000000000118378",
+      "source": "smes24",
+      "title": "2026년 제15기 신용보증기금 혁신아이콘 모집 공고",
+      "category": "중견",
+      "deadline": "2026-03-10",
+      "dday": 26,
+      "period": "26-02-12 ~ 26-03-10",
+      "status": "신청 가능",
+      "org": "신용보증기금",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "249221393",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118378"
     },
     {
       "id": "s24-15803",
@@ -2759,7 +2820,7 @@
       "title": "2026 일본 도쿄 홈케어 & 재활박람회 Age link 수출컨소시엄",
       "category": "수출",
       "deadline": "2026-03-11",
-      "dday": 28,
+      "dday": 27,
       "period": "26-02-11 ~ 26-03-11",
       "status": "신청 가능",
       "org": "중소기업중앙회",
@@ -2773,7 +2834,7 @@
       "title": "2026년 비면허 주파수 활용 유망기술 실증 사업 신규과제 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-03-12",
-      "dday": 29,
+      "dday": 28,
       "period": "2026-02-11 ~ 2026-03-12",
       "org": "한국전파진흥협회",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600003A"
@@ -2784,7 +2845,7 @@
       "title": "2026년 로컬 스타트업 사업화 지원",
       "category": "기술개발(R&D)",
       "deadline": "2026-03-12",
-      "dday": 29,
+      "dday": 28,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176282"
     },
     {
@@ -2793,10 +2854,24 @@
       "title": "2026년 지역앵커기업-지역대학 전략기술 공동개발사업 신규지원 공고",
       "category": "기술",
       "deadline": "2026-03-12",
-      "dday": 29,
+      "dday": 28,
       "period": "2026-02-10 ~ 2026-03-12",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118433"
+    },
+    {
+      "id": "s24-PBLN_000000000118365",
+      "source": "smes24",
+      "title": "[서울] 2026년 제10회 서울혁신챌린지 공고(서울형 R&D 지원사업)",
+      "category": "기술",
+      "deadline": "2026-03-12",
+      "dday": 28,
+      "period": "26-02-12 ~ 26-03-12",
+      "status": "신청 가능",
+      "org": "서울경제진흥원",
+      "cntcInsttCd": "BI16",
+      "pblancSeq": "249221404",
+      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118365"
     },
     {
       "id": "g-202633000000015400001A",
@@ -2804,7 +2879,7 @@
       "title": "2026 국제공항 협력전시 지원",
       "category": "e나라도움 국고",
       "deadline": "2026-03-13",
-      "dday": 30,
+      "dday": 29,
       "period": "2026-02-09 ~ 2026-03-13",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400001A"
@@ -2815,7 +2890,7 @@
       "title": "2026년도 온실가스 목표관리업체 감축설비 지원사업",
       "category": "e나라도움 국고",
       "deadline": "2026-03-13",
-      "dday": 30,
+      "dday": 29,
       "period": "2026-02-11 ~ 2026-03-13",
       "org": "한국환경공단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000006500003A"
@@ -2826,7 +2901,7 @@
       "title": "2026년 「스마트 HACCP 구축 지원」 사업(대구광역시)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-20",
-      "dday": 37,
+      "dday": 36,
       "period": "2026-02-09 ~ 2026-03-20",
       "org": "대구광역시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016900002A"
@@ -2837,7 +2912,7 @@
       "title": "생태산업개발 순환형 네트워크 설비 및 사업화 지원 사업 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-20",
-      "dday": 37,
+      "dday": 36,
       "period": "2026-01-30 ~ 2026-03-20",
       "org": "한국생산기술연구원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028200001A"
@@ -2848,7 +2923,7 @@
       "title": "2026년 녹색자산유동화증권 이차보전 지원사업(기보1차) 공고",
       "category": "금융",
       "deadline": "2026-03-20",
-      "dday": 37,
+      "dday": 36,
       "period": "2026-02-09 ~ 2026-03-20",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118428"
@@ -2859,9 +2934,9 @@
       "title": "[경기] 2026년 가구 스마트제조공정시스템 구축 지원사업 공고",
       "category": "기술",
       "deadline": "2026-03-20",
-      "dday": 37,
+      "dday": 36,
       "period": "2026-02-09 ~ 2026-03-20",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(경기대진테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051871"
     },
@@ -2871,7 +2946,7 @@
       "title": "[강원] 2026년 강원형 스마트공장(기초단계) 구축지원사업 모집 공고",
       "category": "경영",
       "deadline": "2026-03-23",
-      "dday": 40,
+      "dday": 39,
       "period": "2026-03-03 ~ 2026-03-23",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118437"
@@ -2882,7 +2957,7 @@
       "title": "2026 전속작가 공사립미술관 전시 개최 지원 사업 공모",
       "category": "e나라도움 국고",
       "deadline": "2026-03-25",
-      "dday": 42,
+      "dday": 41,
       "period": "2026-02-04 ~ 2026-03-25",
       "org": "예술경영지원센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400012A"
@@ -2893,7 +2968,7 @@
       "title": "음식물류 폐기물 RFID 종량제기기 설치 지원사업 모집 공고",
       "category": "공모사업 지방",
       "deadline": "2026-03-26",
-      "dday": 43,
+      "dday": 42,
       "period": "2026-01-28 ~ 2026-03-26",
       "org": "김밝음",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260352606"
@@ -2904,7 +2979,7 @@
       "title": "2026년 청년 산림창업 마중물 지원 청년창업자 모집 공고",
       "category": "e나라도움 국고",
       "deadline": "2026-03-30",
-      "dday": 47,
+      "dday": 46,
       "period": "2026-03-02 ~ 2026-03-30",
       "org": "한국임업진흥원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000100001A"
@@ -2915,7 +2990,7 @@
       "title": "생태산업개발을 통한 미세먼지 및 온실가스 감축사업 산단 친환경설비 인프라지원 세부사업자 공모(1차)",
       "category": "e나라도움 국고",
       "deadline": "2026-03-31",
-      "dday": 48,
+      "dday": 47,
       "period": "2026-02-11 ~ 2026-03-31",
       "org": "한국산업단지공단",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000012600001A"
@@ -2926,7 +3001,7 @@
       "title": "물류기기 공동이용 지원사업",
       "category": "보탬e 국고",
       "deadline": "2026-03-31",
-      "dday": 48,
+      "dday": 47,
       "period": "2026-03-01 ~ 2026-03-31",
       "org": "강원특별자치도 고성군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800002B"
@@ -2937,7 +3012,7 @@
       "title": "[강원] 2026년 제조DX멘토단 활용지원(사후관리) 모집 공고",
       "category": "경영",
       "deadline": "2026-03-31",
-      "dday": 48,
+      "dday": 47,
       "period": "2026-02-06 ~ 2026-03-31",
       "regDate": "2026-02-11",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118440"
@@ -2948,9 +3023,9 @@
       "title": "[경기] 북부 2026년 제조DX멘토단 활용지원(사후관리) 도입기업 모집 공고",
       "category": "경영",
       "deadline": "2026-03-31",
-      "dday": 48,
+      "dday": 47,
       "period": "2026-02-06 ~ 2026-03-31",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(경기대진테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051869"
     },
@@ -2960,8 +3035,8 @@
       "title": "2026년도 딥테크 챌린지 프로젝트(DCP) 생태계혁신형 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-04-07",
-      "dday": 55,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02829&buclCd=S9C03&dtlAncmSn=1"
+      "dday": 54,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02829&buclCd=S9C03&dtlAncmSn=1"
     },
     {
       "id": "g-202600008000041200010B",
@@ -2969,7 +3044,7 @@
       "title": "2026년 한국영화기획개발지원 제작사부문(영화화)",
       "category": "보탬e 국고",
       "deadline": "2026-04-20",
-      "dday": 68,
+      "dday": 67,
       "period": "2026-04-06 ~ 2026-04-20",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200010B"
@@ -2980,7 +3055,7 @@
       "title": "2026년 해외 환경프로젝트 타당성조사 지원사업(본타, 상시) 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-10-30",
-      "dday": 261,
+      "dday": 260,
       "period": "2026-01-26 ~ 2026-10-30",
       "org": "한국환경산업기술원",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900002B"
@@ -2991,7 +3066,7 @@
       "title": "2026년 유통축산분야 보조사업 신청안내 공고",
       "category": "보탬e 국고",
       "deadline": "2026-12-10",
-      "dday": 302,
+      "dday": 301,
       "period": "2026-01-05 ~ 2026-12-10",
       "org": "강원특별자치도 고성군",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800001B"
@@ -3002,7 +3077,7 @@
       "title": "[Startup Korea Special Visa] Announcement on Application for Recommendations for the “Startup Korea Special Visa”",
       "category": "인력",
       "deadline": "2026-12-30",
-      "dday": 322,
+      "dday": 321,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=171419"
     },
     {
@@ -3011,7 +3086,7 @@
       "title": "2026년 국제영화제 및 프로젝트 행사 참가활동지원사업",
       "category": "보탬e 국고",
       "deadline": "2026-12-31",
-      "dday": 323,
+      "dday": 322,
       "period": "2026-02-02 ~ 2026-12-31",
       "org": "문화체육관광부",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200011B"
@@ -3022,7 +3097,7 @@
       "title": "거제시 슬레이트 철거.처리 및 지붕개량지원 사업 민간위탁 수탁기관 모집 공고",
       "category": "보탬e 국고",
       "deadline": "2026-12-31",
-      "dday": 323,
+      "dday": 322,
       "period": "2026-02-09 ~ 2026-12-31",
       "org": "경상남도 거제시",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800005B"
@@ -3033,28 +3108,28 @@
       "title": "2026년 대·중소기업 상생 일자리 프로그램",
       "category": "보탬e 국고",
       "deadline": "2026-12-31",
-      "dday": 323,
+      "dday": 322,
       "period": "2026-01-13 ~ 2026-12-31",
       "org": "(재)한경협중소기업협력센터",
       "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000017900001B"
     },
     {
-      "id": "k-176076",
+      "id": "k-176104",
       "source": "kstartup",
       "title": "2026년 팁스(TIPS) 창업기업 지원계획 공고",
-      "category": "사업화",
+      "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-12-31",
-      "dday": 323,
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176076"
+      "dday": 322,
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176104"
     },
     {
-      "id": "k-175783",
+      "id": "k-176043",
       "source": "kstartup",
       "title": "2026년 중앙부처 및 지자체 창업지원사업 통합공고",
-      "category": "사업화",
+      "category": "글로벌",
       "deadline": "2026-12-31",
-      "dday": 323,
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175783"
+      "dday": 322,
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176043"
     },
     {
       "id": "k-176286",
@@ -3062,7 +3137,7 @@
       "title": "민간기업 분야 우수인재 특별귀화 추천 신청 모집 공고 (Announcement on the Call for Applications for Recommendation for Special Naturalization of Outstanding Private-Sector Talent)새로운게시글",
       "category": "사업화",
       "deadline": "2030-12-31",
-      "dday": 1784,
+      "dday": 1783,
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176286"
     },
     {
@@ -3071,8 +3146,8 @@
       "title": "2026년도 창업성장기술개발사업 디딤돌(첫걸음_대전세종지방청 R&D) 제1차 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-01-23",
-      "dday": -19,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017207&buclCd=S002050&dtlAncmSn=13"
+      "dday": -20,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017207&buclCd=S002050&dtlAncmSn=13"
     },
     {
       "id": "smt-S02828",
@@ -3080,8 +3155,8 @@
       "title": "2026년도 제1차 중소벤처기업부 혁신제품 지정기간 연장(1차연장) 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-01-30",
-      "dday": -12,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=S02828&buclCd=S9112&dtlAncmSn=1"
+      "dday": -13,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=S02828&buclCd=S9112&dtlAncmSn=1"
     },
     {
       "id": "smt-017617",
@@ -3089,8 +3164,8 @@
       "title": "2026년도 중소기업기술혁신개발사업 '글로벌선도기술개발(수출지향형)' 상반기 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-09",
-      "dday": -2,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017617&buclCd=S050966&dtlAncmSn=1"
+      "dday": -3,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017617&buclCd=S050966&dtlAncmSn=1"
     },
     {
       "id": "smt-017623",
@@ -3098,8 +3173,8 @@
       "title": "2026년도 중소기업기술혁신개발사업 '중소기업유망기술개발(초격차스타트업1,000+ 연계과제)' 상반기 시행계획 공고(과제 접수 기간)",
       "category": "R&D 사업공고",
       "deadline": "2026-02-09",
-      "dday": -2,
-      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do;jsessionid=Pp2K1taYWR1AlnalSU9kIxokxcQYWQrNZN180y18oigw90oLtsZIPWMd8XG2RQhQ.smwas1_servlet_engine3?buclYy=2026&ancmId=017623&buclCd=S050967&dtlAncmSn=1"
+      "dday": -3,
+      "url": "https://www.smtech.go.kr/front/ifg/no/notice02_list.do?buclYy=2026&ancmId=017623&buclCd=S050967&dtlAncmSn=1"
     },
     {
       "id": "b-PBLN_000000000118430",
@@ -3155,90 +3230,6 @@
       "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118350"
     },
     {
-      "id": "s24-PBLN_000000000118358",
-      "source": "smes24",
-      "title": "[전북] 전주시 2026년 상반기 중소기업육성자금 지원계획 수정 공고",
-      "category": "금융",
-      "deadline": "",
-      "dday": null,
-      "period": "예산 소진시까지",
-      "status": "신청 가능",
-      "org": "전북특별자치도",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221411",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118358"
-    },
-    {
-      "id": "s24-PBLN_000000000118361",
-      "source": "smes24",
-      "title": "[경기] 부천시 2026년 유해물질 시험분석 수수료 지원 사업 참여 기업 모집 공고",
-      "category": "기술",
-      "deadline": "",
-      "dday": null,
-      "period": "예산 소진시까지",
-      "status": "신청 가능",
-      "org": "부천산업진흥원",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221408",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118361"
-    },
-    {
-      "id": "s24-PBLN_000000000118371",
-      "source": "smes24",
-      "title": "[강원] 2026년 1차 소상공인 경영안정자금 지원사업 공고",
-      "category": "금융",
-      "deadline": "",
-      "dday": null,
-      "period": "예산 소진시까지",
-      "status": "신청 가능",
-      "org": "강원신용보증재단",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221399",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118371"
-    },
-    {
-      "id": "s24-PBLN_000000000118377",
-      "source": "smes24",
-      "title": "[전북] 2026년 식품진흥기금 융자지원 사업 공고",
-      "category": "금융",
-      "deadline": "",
-      "dday": null,
-      "period": "예산 소진시까지",
-      "status": "신청 가능",
-      "org": "전북특별자치도",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221394",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118377"
-    },
-    {
-      "id": "s24-PBLN_000000000118381",
-      "source": "smes24",
-      "title": "[전남] 2026년 공산품 수출 중소기업 글로벌 경쟁력 강화 긴급지원 사업 대상 모집 공고",
-      "category": "수출",
-      "deadline": "",
-      "dday": null,
-      "period": "매월 10일 18:00까지",
-      "status": "신청 가능",
-      "org": "전라남도중소기업일자리경제진흥원",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221390",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118381"
-    },
-    {
-      "id": "s24-PBLN_000000000118386",
-      "source": "smes24",
-      "title": "[서울ㆍ인천ㆍ경기] 2026년 중장년 경력 인재 지원(직무체험형) 참여기업 모집 공고",
-      "category": "인력",
-      "deadline": "",
-      "dday": null,
-      "period": "예산 소진시까지",
-      "status": "신청 가능",
-      "org": "서울시50플러스재단",
-      "cntcInsttCd": "BI16",
-      "pblancSeq": "249221385",
-      "url": "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000118386"
-    },
-    {
       "id": "i-019116",
       "source": "iris",
       "title": "2026년도 환태평양 연구협력 이니셔티브 지원사업 신규과제 공모",
@@ -3271,22 +3262,22 @@
     {
       "id": "i-018947",
       "source": "iris",
-      "title": "2026년도 소재부품기술개발사업(2차) 신규지원 대상과제 공고",
-      "category": "산업통상부 > 한국산업기술기획평가원",
+      "title": "(재공고-국-제19호) 2026년 액체수소 저장탱크 및 적하역 시스템 기술개발 사업 시행 재공고",
+      "category": "국토교통부 > 국토교통과학기술진흥원",
       "deadline": "",
       "dday": null,
       "regDate": "2026-02-11",
       "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018947&ancmPrg=ancmIng"
     },
     {
-      "id": "i-018454",
+      "id": "i-018874",
       "source": "iris",
-      "title": "(연장공고) (사이버보안 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
-      "category": "과학기술정보통신부 > 정보통신기획평가원",
+      "title": "2026년도 스케일업 기술사업화 프로그램 사업공고",
+      "category": "산업통상부 > 한국산업기술진흥원",
       "deadline": "",
       "dday": null,
       "regDate": "2026-02-11",
-      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018454&ancmPrg=ancmIng"
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018874&ancmPrg=ancmIng"
     },
     {
       "id": "e-PD000000051867",
@@ -3296,7 +3287,7 @@
       "deadline": "예산소진시까지",
       "dday": null,
       "period": "2026-02-11 ~ 예산소진시까지",
-      "regDate": "2026-02-11",
+      "regDate": "2026-02-12",
       "org": "기업마당(인천테크노파크)",
       "url": "https://www.egbiz.or.kr/mainHotDetail.do?bizCyclId=PD000000051867"
     }

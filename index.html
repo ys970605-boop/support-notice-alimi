@@ -67,7 +67,6 @@
       <div id="updatedAt" class="small">최근 업데이트: -</div>
       <div id="dataSource" class="small">데이터 출처: -</div>
       <div class="small">확장 소스: IRIS · SMTECH · e나라도움 · 이지비즈 · 중소벤처24 (연동 완료)</div>
-      <div class="small">※ 마감시간은 원문에 표기된 경우만 노출, 미표기 공고는 ‘시간 미공개’로 표시</div>
     </div>
   </section>
 
@@ -186,7 +185,7 @@ function deadlineWithTime(n){
   if(!d) return '-';
   const t=extractDeadlineTime(n);
   if(t) return `${d} ${t}`;
-  return `${d} (시간 미공개)`;
+  return d;
 }
 
 function calcScore(n,q){

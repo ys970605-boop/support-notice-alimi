@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11 23:05:43",
+  "updatedAt": "2026-02-11 23:57:54",
   "count": 33,
   "beforeDedupeCount": 34,
   "dedupRemoved": 1,
@@ -73,14 +73,14 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118438"
     },
     {
-      "id": "k-176276",
+      "id": "k-176278",
       "source": "kstartup",
-      "title": "2026년도 에코스타트업 지원사업 일반창업분야(예비창업자,창업기업,성장창업기업) 모집 공고",
-      "category": "시설ㆍ공간ㆍ보육",
+      "title": "2026년 제10회 서울혁신챌린지 공고",
+      "category": "판로ㆍ해외진출",
       "deadline": "2026-02-19",
       "dday": 7,
       "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176276"
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176278"
     },
     {
       "id": "k-176066",
@@ -93,6 +93,16 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176066"
     },
     {
+      "id": "k-176275",
+      "source": "kstartup",
+      "title": "전라남도 1인 창조기업 지원센터 입주기업 모집공고(1차)",
+      "category": "멘토링ㆍ컨설팅ㆍ교육",
+      "deadline": "2026-02-25",
+      "dday": 13,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176275"
+    },
+    {
       "id": "b-PBLN_000000000118427",
       "source": "bizinfo",
       "title": "[서울] 2026년 일본 스시테크 도쿄 서울관 참가기업 모집 공고",
@@ -103,36 +113,6 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118427"
-    },
-    {
-      "id": "k-176246",
-      "source": "kstartup",
-      "title": "2026년 디지털 금융기술 내재화 사업 수혜기업 모집 수정공고",
-      "category": "사업화",
-      "deadline": "2026-02-26",
-      "dday": 14,
-      "supportAmount": "5천만원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176246"
-    },
-    {
-      "id": "k-176256",
-      "source": "kstartup",
-      "title": "2026 서울/마포 AI 창업·생태계 확산 포럼(지역과 함께 성장하는 AI 창업 및 생태계)",
-      "category": "시설ㆍ공간ㆍ보육",
-      "deadline": "2026-02-27",
-      "dday": 15,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176256"
-    },
-    {
-      "id": "k-176248",
-      "source": "kstartup",
-      "title": "2026년도 바이오아이코어사업 (예비)창업팀 모집공고",
-      "category": "사업화",
-      "deadline": "2026-02-27",
-      "dday": 15,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176248"
     },
     {
       "id": "b-PBLN_000000000118439",
@@ -213,6 +193,16 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
     },
     {
+      "id": "k-176293",
+      "source": "kstartup",
+      "title": "2026년 달성청년혁신센터 제1차 신규 입주기업 모집",
+      "category": "멘토링ㆍ컨설팅ㆍ교육",
+      "deadline": "2026-03-08",
+      "dday": 24,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176293"
+    },
+    {
       "id": "b-PBLN_000000000118434",
       "source": "bizinfo",
       "title": "2026년 예술분야 초기창업 지원사업 공고",
@@ -247,16 +237,6 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118429"
-    },
-    {
-      "id": "k-176282",
-      "source": "kstartup",
-      "title": "2026년 로컬 스타트업 사업화 지원",
-      "category": "기술개발(R&D)",
-      "deadline": "2026-03-12",
-      "dday": 28,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176282"
     },
     {
       "id": "b-PBLN_000000000118433",
@@ -295,6 +275,16 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118437"
     },
     {
+      "id": "k-176265",
+      "source": "kstartup",
+      "title": "2025년 남구다운 청년 창업 지원사업 추가 모집공고",
+      "category": "멘토링ㆍ컨설팅ㆍ교육",
+      "deadline": "2026-03-25",
+      "dday": 41,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176265"
+    },
+    {
       "id": "b-PBLN_000000000118440",
       "source": "bizinfo",
       "title": "[강원] 2026년 제조DX멘토단 활용지원(사후관리) 모집 공고",
@@ -305,6 +295,16 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118440"
+    },
+    {
+      "id": "k-176283",
+      "source": "kstartup",
+      "title": "2026 부니콘 육성지원 사업(부산시 창업지원사업) 통합 공고",
+      "category": "멘토링ㆍ컨설팅ㆍ교육",
+      "deadline": "2026-11-30",
+      "dday": 291,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176283"
     },
     {
       "id": "k-171419",

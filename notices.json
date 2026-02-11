@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-12 00:39:37",
+  "updatedAt": "2026-02-12 00:46:53",
   "count": 299,
   "beforeDedupeCount": 354,
   "dedupRemoved": 55,
@@ -24,7 +24,8 @@
       "dday": 0,
       "period": "2026-01-29 ~ 2026-02-12",
       "org": "충청남도 홍성군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000015400001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000015400001A"
     },
     {
       "id": "g-202633000000008600013A",
@@ -35,7 +36,8 @@
       "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600013A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600013A"
     },
     {
       "id": "g-202633000000008600014A",
@@ -46,7 +48,8 @@
       "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600014A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600014A"
     },
     {
       "id": "g-202633000000000500001A",
@@ -57,7 +60,8 @@
       "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500001A"
     },
     {
       "id": "g-202632000000013900001B",
@@ -68,7 +72,8 @@
       "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "대구광역시 수성구",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000013900001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000013900001B"
     },
     {
       "id": "g-20250323524",
@@ -79,7 +84,8 @@
       "dday": 0,
       "period": "2025-12-29 ~ 2026-02-12",
       "org": "임영광",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250323524"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250323524"
     },
     {
       "id": "g-20260349860",
@@ -90,7 +96,8 @@
       "dday": 0,
       "period": "2026-01-28 ~ 2026-02-12",
       "org": "정해주",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349860"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349860"
     },
     {
       "id": "g-20260339548",
@@ -101,7 +108,8 @@
       "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339548"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339548"
     },
     {
       "id": "g-20260339527",
@@ -112,7 +120,8 @@
       "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339527"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339527"
     },
     {
       "id": "g-20260339565",
@@ -123,7 +132,8 @@
       "dday": 0,
       "period": "2026-01-14 ~ 2026-02-12",
       "org": "변성훈",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339565"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260339565"
     },
     {
       "id": "g-20260356312",
@@ -134,7 +144,8 @@
       "dday": 0,
       "period": "2026-02-10 ~ 2026-02-12",
       "org": "강주희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356312"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356312"
     },
     {
       "id": "g-20260356237",
@@ -145,7 +156,8 @@
       "dday": 0,
       "period": "2026-02-10 ~ 2026-02-12",
       "org": "강주희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356237"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356237"
     },
     {
       "id": "smt-017697",
@@ -210,7 +222,8 @@
       "dday": 1,
       "period": "2026-01-12 ~ 2026-02-13",
       "org": "국가보훈부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570139500002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570139500002A"
     },
     {
       "id": "g-202600008000526500001A",
@@ -221,7 +234,8 @@
       "dday": 1,
       "period": "2026-01-12 ~ 2026-02-13",
       "org": "농림축산식품부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000526500001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000526500001A"
     },
     {
       "id": "g-202632000000006100003A",
@@ -232,7 +246,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "경상남도 진주시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100003A"
     },
     {
       "id": "g-202632000000006100002A",
@@ -243,7 +258,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "경상남도 진주시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000006100002A"
     },
     {
       "id": "g-202632000000004100001A",
@@ -254,7 +270,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "충청남도 서천군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004100001A"
     },
     {
       "id": "g-202633000000008600010A",
@@ -265,7 +282,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600010A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600010A"
     },
     {
       "id": "g-202633000000007400018A",
@@ -276,7 +294,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "한국석유관리원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000007400018A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000007400018A"
     },
     {
       "id": "g-202632000000009800007A",
@@ -287,7 +306,8 @@
       "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "경상남도 거제시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800007A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800007A"
     },
     {
       "id": "g-202632000000009800008A",
@@ -298,7 +318,8 @@
       "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "경상남도 거제시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800008A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800008A"
     },
     {
       "id": "g-202633000000033900001A",
@@ -309,7 +330,8 @@
       "dday": 1,
       "period": "2026-01-26 ~ 2026-02-13",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900001A"
     },
     {
       "id": "g-202621000000014900002A",
@@ -320,7 +342,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(사)한국사립박물관협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900002A"
     },
     {
       "id": "g-202621000000014900001A",
@@ -331,7 +354,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "(사)한국사립박물관협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000014900001A"
     },
     {
       "id": "g-202632000000010100001A",
@@ -342,7 +366,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "경상북도",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010100001A"
     },
     {
       "id": "g-202632000000017600001A",
@@ -353,7 +378,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "울산광역시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017600001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017600001A"
     },
     {
       "id": "g-202632000000004500001B",
@@ -364,7 +390,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "충청북도 제천시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004500001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000004500001B"
     },
     {
       "id": "g-202632000000017400006B",
@@ -375,7 +402,8 @@
       "dday": 1,
       "period": "2026-01-14 ~ 2026-02-13",
       "org": "전라남도",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400006B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400006B"
     },
     {
       "id": "g-202633000000001200001B",
@@ -386,7 +414,8 @@
       "dday": 1,
       "period": "2026-01-27 ~ 2026-02-13",
       "org": "한국관광공사",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000001200001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000001200001B"
     },
     {
       "id": "g-202632000000017400007B",
@@ -397,7 +426,8 @@
       "dday": 1,
       "period": "2026-01-14 ~ 2026-02-13",
       "org": "전라남도",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400007B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400007B"
     },
     {
       "id": "g-202632000000017400004B",
@@ -408,7 +438,8 @@
       "dday": 1,
       "period": "2026-01-20 ~ 2026-02-13",
       "org": "전라남도",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400004B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400004B"
     },
     {
       "id": "g-202632000000017400003B",
@@ -419,7 +450,8 @@
       "dday": 1,
       "period": "2026-01-20 ~ 2026-02-13",
       "org": "전라남도",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400003B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017400003B"
     },
     {
       "id": "g-20260335538",
@@ -430,7 +462,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김연태",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335538"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335538"
     },
     {
       "id": "g-20260335542",
@@ -441,7 +474,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김연태",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335542"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260335542"
     },
     {
       "id": "g-20260347338",
@@ -452,7 +486,8 @@
       "dday": 1,
       "period": "2026-01-26 ~ 2026-02-13",
       "org": "진시아",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347338"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347338"
     },
     {
       "id": "g-20260338012",
@@ -463,7 +498,8 @@
       "dday": 1,
       "period": "2026-02-02 ~ 2026-02-13",
       "org": "이효경",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338012"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338012"
     },
     {
       "id": "g-20260353701",
@@ -474,7 +510,8 @@
       "dday": 1,
       "period": "2026-01-23 ~ 2026-02-13",
       "org": "정현엽",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353701"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353701"
     },
     {
       "id": "g-20260349017",
@@ -485,7 +522,8 @@
       "dday": 1,
       "period": "2026-02-02 ~ 2026-02-13",
       "org": "황지현",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349017"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349017"
     },
     {
       "id": "g-20260356977",
@@ -496,7 +534,8 @@
       "dday": 1,
       "period": "2026-02-10 ~ 2026-02-13",
       "org": "조호경",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356977"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356977"
     },
     {
       "id": "g-20260357030",
@@ -507,7 +546,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "김현지",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357030"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357030"
     },
     {
       "id": "g-20260350041",
@@ -518,7 +558,8 @@
       "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "박영희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260350041"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260350041"
     },
     {
       "id": "g-20260353670",
@@ -529,7 +570,8 @@
       "dday": 1,
       "period": "2026-01-28 ~ 2026-02-13",
       "org": "강예나",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353670"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353670"
     },
     {
       "id": "g-20260355909",
@@ -540,7 +582,8 @@
       "dday": 1,
       "period": "2026-01-29 ~ 2026-02-13",
       "org": "권미리",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355909"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355909"
     },
     {
       "id": "g-20260357266",
@@ -551,7 +594,8 @@
       "dday": 1,
       "period": "2026-01-30 ~ 2026-02-13",
       "org": "남수진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357266"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357266"
     },
     {
       "id": "g-20260357738",
@@ -562,7 +606,8 @@
       "dday": 1,
       "period": "2026-02-04 ~ 2026-02-13",
       "org": "방미희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357738"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357738"
     },
     {
       "id": "k-176102",
@@ -655,7 +700,8 @@
       "dday": 6,
       "period": "2026-02-03 ~ 2026-02-18",
       "org": "충청남도 예산군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000003400004B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000003400004B"
     },
     {
       "id": "g-202641000002546600001B",
@@ -666,7 +712,8 @@
       "dday": 6,
       "period": "2026-01-13 ~ 2026-02-18",
       "org": "재단법인416재단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002546600001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002546600001B"
     },
     {
       "id": "g-20260355208",
@@ -677,7 +724,8 @@
       "dday": 6,
       "period": "2026-01-29 ~ 2026-02-18",
       "org": "강미정",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355208"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260355208"
     },
     {
       "id": "g-202600008001426500002A",
@@ -688,7 +736,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "보건복지부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001426500002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001426500002A"
     },
     {
       "id": "g-202641000000964600002A",
@@ -699,7 +748,8 @@
       "dday": 7,
       "period": "2026-02-09 ~ 2026-02-19",
       "org": "재단법인 한국장기조직기증원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000964600002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000964600002A"
     },
     {
       "id": "g-202633000000008600012A",
@@ -710,7 +760,8 @@
       "dday": 7,
       "period": "2026-02-05 ~ 2026-02-19",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600012A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600012A"
     },
     {
       "id": "g-202633000000004800006A",
@@ -721,7 +772,8 @@
       "dday": 7,
       "period": "2026-02-04 ~ 2026-02-19",
       "org": "소상공인시장진흥공단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000004800006A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000004800006A"
     },
     {
       "id": "g-202633000000028100001B",
@@ -732,7 +784,8 @@
       "dday": 7,
       "period": "2026-01-30 ~ 2026-02-19",
       "org": "한국농업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100001B"
     },
     {
       "id": "g-202600008001086900007B",
@@ -743,7 +796,8 @@
       "dday": 7,
       "period": "2026-02-11 ~ 2026-02-19",
       "org": "해양수산부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900007B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900007B"
     },
     {
       "id": "g-20260340160",
@@ -754,7 +808,8 @@
       "dday": 7,
       "period": "2026-02-03 ~ 2026-02-19",
       "org": "반삼숙",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260340160"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260340160"
     },
     {
       "id": "g-20260341869",
@@ -765,7 +820,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341869"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341869"
     },
     {
       "id": "g-20260346285",
@@ -776,7 +832,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260346285"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260346285"
     },
     {
       "id": "g-20260341866",
@@ -787,7 +844,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341866"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341866"
     },
     {
       "id": "g-20260341853",
@@ -798,7 +856,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341853"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341853"
     },
     {
       "id": "g-20260341871",
@@ -809,7 +868,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341871"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341871"
     },
     {
       "id": "g-20260341864",
@@ -820,7 +880,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341864"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341864"
     },
     {
       "id": "g-20260341876",
@@ -831,7 +892,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341876"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341876"
     },
     {
       "id": "g-20260341849",
@@ -842,7 +904,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "김나영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341849"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341849"
     },
     {
       "id": "g-20260349868",
@@ -853,7 +916,8 @@
       "dday": 7,
       "period": "2026-02-10 ~ 2026-02-19",
       "org": "홍인재",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349868"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260349868"
     },
     {
       "id": "g-20260357223",
@@ -864,7 +928,8 @@
       "dday": 7,
       "period": "2026-01-30 ~ 2026-02-19",
       "org": "백정유",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357223"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357223"
     },
     {
       "id": "g-20260357708",
@@ -875,7 +940,8 @@
       "dday": 7,
       "period": "2026-02-02 ~ 2026-02-19",
       "org": "이성호",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357708"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357708"
     },
     {
       "id": "k-176276",
@@ -895,7 +961,8 @@
       "dday": 8,
       "period": "2026-02-11 ~ 2026-02-20",
       "org": "해양수산부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900006A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900006A"
     },
     {
       "id": "g-202632000000014400006A",
@@ -906,7 +973,8 @@
       "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "서울특별시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000014400006A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000014400006A"
     },
     {
       "id": "g-202633000000008600017A",
@@ -917,7 +985,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600017A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600017A"
     },
     {
       "id": "g-202633000000008600021A",
@@ -928,7 +997,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600021A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600021A"
     },
     {
       "id": "g-202633000000008600018A",
@@ -939,7 +1009,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600018A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600018A"
     },
     {
       "id": "g-202633000000008600016A",
@@ -950,7 +1021,8 @@
       "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600016A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600016A"
     },
     {
       "id": "g-202633000000015400015A",
@@ -961,7 +1033,8 @@
       "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400015A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400015A"
     },
     {
       "id": "g-202633000000015400016A",
@@ -972,7 +1045,8 @@
       "dday": 8,
       "period": "2026-02-05 ~ 2026-02-20",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400016A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400016A"
     },
     {
       "id": "g-202633000000022200003A",
@@ -983,7 +1057,8 @@
       "dday": 8,
       "period": "2026-01-28 ~ 2026-02-20",
       "org": "서울올림픽기념국민체육진흥공단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200003A"
     },
     {
       "id": "g-202633000000000500005A",
@@ -994,7 +1069,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500005A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500005A"
     },
     {
       "id": "g-202633000000000500006A",
@@ -1005,7 +1081,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500006A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500006A"
     },
     {
       "id": "g-202641000000013700002A",
@@ -1016,7 +1093,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "(재)지역문화진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000013700002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000013700002A"
     },
     {
       "id": "g-202633000000008600019A",
@@ -1027,7 +1105,8 @@
       "dday": 8,
       "period": "2026-02-03 ~ 2026-02-20",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600019A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600019A"
     },
     {
       "id": "g-202633000000028100002B",
@@ -1038,7 +1117,8 @@
       "dday": 8,
       "period": "2026-01-28 ~ 2026-02-20",
       "org": "한국농업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100002B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028100002B"
     },
     {
       "id": "g-20260361004",
@@ -1049,7 +1129,8 @@
       "dday": 8,
       "period": "2026-02-06 ~ 2026-02-20",
       "org": "유성진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361004"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361004"
     },
     {
       "id": "g-20260360999",
@@ -1060,7 +1141,8 @@
       "dday": 8,
       "period": "2026-02-06 ~ 2026-02-20",
       "org": "유성진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260360999"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260360999"
     },
     {
       "id": "g-20260334944",
@@ -1071,7 +1153,8 @@
       "dday": 8,
       "period": "2026-02-10 ~ 2026-02-20",
       "org": "김은주",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334944"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334944"
     },
     {
       "id": "g-20260334905",
@@ -1082,7 +1165,8 @@
       "dday": 8,
       "period": "2026-02-10 ~ 2026-02-20",
       "org": "김은주",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334905"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260334905"
     },
     {
       "id": "g-20260338122",
@@ -1093,7 +1177,8 @@
       "dday": 8,
       "period": "2026-01-12 ~ 2026-02-20",
       "org": "민병수",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338122"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260338122"
     },
     {
       "id": "g-20260348210",
@@ -1104,7 +1189,8 @@
       "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348210"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348210"
     },
     {
       "id": "g-20260348236",
@@ -1115,7 +1201,8 @@
       "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348236"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348236"
     },
     {
       "id": "g-20260344785",
@@ -1126,7 +1213,8 @@
       "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "임지은",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260344785"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260344785"
     },
     {
       "id": "g-20260347536",
@@ -1137,7 +1225,8 @@
       "dday": 8,
       "period": "2026-01-26 ~ 2026-02-20",
       "org": "양하은",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347536"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260347536"
     },
     {
       "id": "g-20260345084",
@@ -1148,7 +1237,8 @@
       "dday": 8,
       "period": "2026-01-16 ~ 2026-02-20",
       "org": "우지명",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345084"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345084"
     },
     {
       "id": "g-20260345174",
@@ -1159,7 +1249,8 @@
       "dday": 8,
       "period": "2026-01-16 ~ 2026-02-20",
       "org": "우지명",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345174"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260345174"
     },
     {
       "id": "g-20260351756",
@@ -1170,7 +1261,8 @@
       "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351756"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351756"
     },
     {
       "id": "g-20260351721",
@@ -1181,7 +1273,8 @@
       "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351721"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351721"
     },
     {
       "id": "g-20260351681",
@@ -1192,7 +1285,8 @@
       "dday": 8,
       "period": "2026-01-21 ~ 2026-02-20",
       "org": "박수희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351681"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260351681"
     },
     {
       "id": "g-20260348284",
@@ -1203,7 +1297,8 @@
       "dday": 8,
       "period": "2026-01-19 ~ 2026-02-20",
       "org": "최아리",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348284"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260348284"
     },
     {
       "id": "g-20260357648",
@@ -1214,7 +1309,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "차주호",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357648"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357648"
     },
     {
       "id": "g-20250357625",
@@ -1225,7 +1321,8 @@
       "dday": 8,
       "period": "2026-02-04 ~ 2026-02-20",
       "org": "김수경",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250357625"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250357625"
     },
     {
       "id": "g-20260354988",
@@ -1236,7 +1333,8 @@
       "dday": 8,
       "period": "2026-02-02 ~ 2026-02-20",
       "org": "곽미영",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354988"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354988"
     },
     {
       "id": "g-20260356856",
@@ -1247,7 +1345,8 @@
       "dday": 8,
       "period": "2026-02-01 ~ 2026-02-20",
       "org": "강수현",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356856"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356856"
     },
     {
       "id": "g-20260356836",
@@ -1258,7 +1357,8 @@
       "dday": 8,
       "period": "2026-02-01 ~ 2026-02-20",
       "org": "강수현",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356836"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356836"
     },
     {
       "id": "smt-S02840",
@@ -1296,7 +1396,8 @@
       "dday": 11,
       "period": "2026-02-03 ~ 2026-02-23",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600020A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600020A"
     },
     {
       "id": "g-202641000003302500001A",
@@ -1307,7 +1408,8 @@
       "dday": 11,
       "period": "2026-02-09 ~ 2026-02-23",
       "org": "사단법인 국어문화원 연합회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000003302500001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000003302500001A"
     },
     {
       "id": "g-202633000000015900001A",
@@ -1318,7 +1420,8 @@
       "dday": 11,
       "period": "2026-02-11 ~ 2026-02-23",
       "org": "재단법인강원문화재단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015900001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015900001A"
     },
     {
       "id": "g-202633000000022200004A",
@@ -1329,7 +1432,8 @@
       "dday": 11,
       "period": "2026-02-04 ~ 2026-02-23",
       "org": "서울올림픽기념국민체육진흥공단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200004A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000022200004A"
     },
     {
       "id": "g-20260361208",
@@ -1340,7 +1444,8 @@
       "dday": 11,
       "period": "2026-02-06 ~ 2026-02-23",
       "org": "이서정",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361208"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260361208"
     },
     {
       "id": "g-20260341408",
@@ -1351,7 +1456,8 @@
       "dday": 11,
       "period": "2026-02-19 ~ 2026-02-23",
       "org": "최경아",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341408"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260341408"
     },
     {
       "id": "g-202600008000041200005A",
@@ -1362,7 +1468,8 @@
       "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200005A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200005A"
     },
     {
       "id": "g-202633000000015400017A",
@@ -1373,7 +1480,8 @@
       "dday": 12,
       "period": "2026-02-09 ~ 2026-02-24",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400017A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400017A"
     },
     {
       "id": "g-202633000000023600001A",
@@ -1384,7 +1492,8 @@
       "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "한국산업기술시험원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600001A"
     },
     {
       "id": "g-202633000000023600002A",
@@ -1395,7 +1504,8 @@
       "dday": 12,
       "period": "2026-02-10 ~ 2026-02-24",
       "org": "한국산업기술시험원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000023600002A"
     },
     {
       "id": "g-202633000000009400001B",
@@ -1406,7 +1516,8 @@
       "dday": 12,
       "period": "2026-02-02 ~ 2026-02-24",
       "org": "시청자미디어재단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000009400001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000009400001B"
     },
     {
       "id": "g-20260357197",
@@ -1417,7 +1528,8 @@
       "dday": 12,
       "period": "2026-02-09 ~ 2026-02-24",
       "org": "정지은",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357197"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357197"
     },
     {
       "id": "g-20260357586",
@@ -1428,7 +1540,8 @@
       "dday": 12,
       "period": "2026-02-02 ~ 2026-02-24",
       "org": "정소신",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357586"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357586"
     },
     {
       "id": "k-176066",
@@ -1476,7 +1589,8 @@
       "dday": 13,
       "period": "2026-02-04 ~ 2026-02-25",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600025A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600025A"
     },
     {
       "id": "g-202633000000008600023A",
@@ -1487,7 +1601,8 @@
       "dday": 13,
       "period": "2026-02-09 ~ 2026-02-25",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600023A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600023A"
     },
     {
       "id": "g-202641000000029100001A",
@@ -1498,7 +1613,8 @@
       "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "한국문화원연합회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000029100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000029100001A"
     },
     {
       "id": "g-202641000002420500001A",
@@ -1509,7 +1625,8 @@
       "dday": 13,
       "period": "2026-02-04 ~ 2026-02-25",
       "org": "경북문화재단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002420500001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000002420500001A"
     },
     {
       "id": "g-202632000000018300003A",
@@ -1520,7 +1637,8 @@
       "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "서울특별시 은평구",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018300003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018300003A"
     },
     {
       "id": "g-202600008000041200007B",
@@ -1531,7 +1649,8 @@
       "dday": 13,
       "period": "2026-02-11 ~ 2026-02-25",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200007B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200007B"
     },
     {
       "id": "g-20260357482",
@@ -1542,7 +1661,8 @@
       "dday": 13,
       "period": "2026-02-02 ~ 2026-02-25",
       "org": "송송이",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357482"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260357482"
     },
     {
       "id": "b-PBLN_000000000118427",
@@ -1576,7 +1696,8 @@
       "dday": 14,
       "period": "2026-02-11 ~ 2026-02-26",
       "org": "광주광역시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018000002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000018000002A"
     },
     {
       "id": "g-202633000000008600028A",
@@ -1587,7 +1708,8 @@
       "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600028A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600028A"
     },
     {
       "id": "g-202633000000008600026A",
@@ -1598,7 +1720,8 @@
       "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600026A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600026A"
     },
     {
       "id": "g-202633000000008600030A",
@@ -1609,7 +1732,8 @@
       "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600030A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600030A"
     },
     {
       "id": "g-202633000000008600029A",
@@ -1620,7 +1744,8 @@
       "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600029A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600029A"
     },
     {
       "id": "g-202633000000005900001A",
@@ -1631,7 +1756,8 @@
       "dday": 14,
       "period": "2026-01-29 ~ 2026-02-26",
       "org": "국외소재문화유산재단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000005900001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000005900001A"
     },
     {
       "id": "g-202621000078622900001A",
@@ -1642,7 +1768,8 @@
       "dday": 14,
       "period": "2026-01-26 ~ 2026-02-26",
       "org": "한국환경산업기술원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900001A"
     },
     {
       "id": "g-202633000000000500018A",
@@ -1653,7 +1780,8 @@
       "dday": 14,
       "period": "2026-02-05 ~ 2026-02-26",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500018A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500018A"
     },
     {
       "id": "g-202633000000000500025A",
@@ -1664,7 +1792,8 @@
       "dday": 14,
       "period": "2026-02-05 ~ 2026-02-26",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500025A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500025A"
     },
     {
       "id": "g-202621000078622900012A",
@@ -1675,7 +1804,8 @@
       "dday": 14,
       "period": "2026-02-06 ~ 2026-02-26",
       "org": "한국환경산업기술원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900012A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900012A"
     },
     {
       "id": "g-202621000000025100001B",
@@ -1686,7 +1816,8 @@
       "dday": 14,
       "period": "2026-02-03 ~ 2026-02-26",
       "org": "한국플랜트산업협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000025100001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000025100001B"
     },
     {
       "id": "g-20260328755",
@@ -1697,7 +1828,8 @@
       "dday": 14,
       "period": "2026-01-21 ~ 2026-02-26",
       "org": "박민주",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260328755"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260328755"
     },
     {
       "id": "k-176246",
@@ -1731,7 +1863,8 @@
       "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "통일부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570305100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600000570305100001A"
     },
     {
       "id": "g-202600008000041200003A",
@@ -1742,7 +1875,8 @@
       "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200003A"
     },
     {
       "id": "g-202600008000041200004A",
@@ -1753,7 +1887,8 @@
       "dday": 15,
       "period": "2026-02-11 ~ 2026-02-27",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200004A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200004A"
     },
     {
       "id": "g-202600008000041200002A",
@@ -1764,7 +1899,8 @@
       "dday": 15,
       "period": "2026-02-13 ~ 2026-02-27",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200002A"
     },
     {
       "id": "g-202600002500135300001A",
@@ -1775,7 +1911,8 @@
       "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "통일부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002500135300001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002500135300001A"
     },
     {
       "id": "g-202632000000010900007A",
@@ -1786,7 +1923,8 @@
       "dday": 15,
       "period": "2026-02-04 ~ 2026-02-27",
       "org": "대전광역시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010900007A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000010900007A"
     },
     {
       "id": "g-202632000000009300001A",
@@ -1797,7 +1935,8 @@
       "dday": 15,
       "period": "2026-01-22 ~ 2026-02-27",
       "org": "전라남도 무안군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009300001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009300001A"
     },
     {
       "id": "g-202633000000008600032A",
@@ -1808,7 +1947,8 @@
       "dday": 15,
       "period": "2026-02-10 ~ 2026-02-27",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600032A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600032A"
     },
     {
       "id": "g-202633000000008600022A",
@@ -1819,7 +1959,8 @@
       "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600022A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600022A"
     },
     {
       "id": "g-202632000000017000002A",
@@ -1830,7 +1971,8 @@
       "dday": 15,
       "period": "2026-02-10 ~ 2026-02-27",
       "org": "세종특별자치시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017000002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017000002A"
     },
     {
       "id": "g-202633000000015400002A",
@@ -1841,7 +1983,8 @@
       "dday": 15,
       "period": "2026-02-04 ~ 2026-02-27",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400002A"
     },
     {
       "id": "g-202621000078622900004A",
@@ -1852,7 +1995,8 @@
       "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "한국환경산업기술원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900004A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900004A"
     },
     {
       "id": "g-202621000078622900005A",
@@ -1863,7 +2007,8 @@
       "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "한국환경산업기술원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900005A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900005A"
     },
     {
       "id": "g-202621000000010600001A",
@@ -1874,7 +2019,8 @@
       "dday": 15,
       "period": "2026-02-02 ~ 2026-02-27",
       "org": "한국전파진흥협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600001A"
     },
     {
       "id": "g-202621000000010600002A",
@@ -1885,7 +2031,8 @@
       "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "한국전파진흥협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600002A"
     },
     {
       "id": "g-202632000000024100003A",
@@ -1896,7 +2043,8 @@
       "dday": 15,
       "period": "2026-02-12 ~ 2026-02-27",
       "org": "강원특별자치도 양양군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100003A"
     },
     {
       "id": "g-202632000000024100001A",
@@ -1907,7 +2055,8 @@
       "dday": 15,
       "period": "2026-02-12 ~ 2026-02-27",
       "org": "강원특별자치도 양양군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024100001A"
     },
     {
       "id": "g-202632000000017500001B",
@@ -1918,7 +2067,8 @@
       "dday": 15,
       "period": "2026-02-09 ~ 2026-02-27",
       "org": "경상남도 창녕군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017500001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000017500001B"
     },
     {
       "id": "g-202632000000024800001B",
@@ -1929,7 +2079,8 @@
       "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "경상남도 산청군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024800001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000024800001B"
     },
     {
       "id": "g-20260324838",
@@ -1940,7 +2091,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324838"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324838"
     },
     {
       "id": "g-20260324885",
@@ -1951,7 +2103,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324885"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324885"
     },
     {
       "id": "g-20250324797",
@@ -1962,7 +2115,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "이예빈",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250324797"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20250324797"
     },
     {
       "id": "g-20260324792",
@@ -1973,7 +2127,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "유미선",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324792"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324792"
     },
     {
       "id": "g-20260324820",
@@ -1984,7 +2139,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "이예빈",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324820"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324820"
     },
     {
       "id": "g-20260324794",
@@ -1995,7 +2151,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "유미선",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324794"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260324794"
     },
     {
       "id": "g-20260326437",
@@ -2006,7 +2163,8 @@
       "dday": 15,
       "period": "2026-01-05 ~ 2026-02-27",
       "org": "허유진",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326437"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326437"
     },
     {
       "id": "g-20260326051",
@@ -2017,7 +2175,8 @@
       "dday": 15,
       "period": "2026-02-02 ~ 2026-02-27",
       "org": "김경은",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326051"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260326051"
     },
     {
       "id": "g-20260353039",
@@ -2028,7 +2187,8 @@
       "dday": 15,
       "period": "2026-02-13 ~ 2026-02-27",
       "org": "양혜린",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353039"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260353039"
     },
     {
       "id": "g-20260354417",
@@ -2039,7 +2199,8 @@
       "dday": 15,
       "period": "2026-01-26 ~ 2026-02-27",
       "org": "민병수",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354417"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354417"
     },
     {
       "id": "g-20260356484",
@@ -2050,7 +2211,8 @@
       "dday": 15,
       "period": "2026-02-23 ~ 2026-02-27",
       "org": "김수연",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356484"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260356484"
     },
     {
       "id": "smt-018201",
@@ -2200,7 +2362,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "아동권리보장원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000014100002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000014100002A"
     },
     {
       "id": "g-202633000000008600015A",
@@ -2211,7 +2374,8 @@
       "dday": 19,
       "period": "2026-02-03 ~ 2026-03-03",
       "org": "(재)한국장애인개발원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600015A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000008600015A"
     },
     {
       "id": "g-202622000000039700002A",
@@ -2222,7 +2386,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국만화영상진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202622000000039700002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202622000000039700002A"
     },
     {
       "id": "g-202633000000033900017A",
@@ -2233,7 +2398,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900017A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900017A"
     },
     {
       "id": "g-202633000000033900022A",
@@ -2244,7 +2410,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900022A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900022A"
     },
     {
       "id": "g-202633000000033900023A",
@@ -2255,7 +2422,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900023A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900023A"
     },
     {
       "id": "g-202633000000033900002A",
@@ -2266,7 +2434,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900002A"
     },
     {
       "id": "g-202633000000033900024A",
@@ -2277,7 +2446,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900024A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900024A"
     },
     {
       "id": "g-202633000000033900026A",
@@ -2288,7 +2458,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900026A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900026A"
     },
     {
       "id": "g-202633000000033900027A",
@@ -2299,7 +2470,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900027A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900027A"
     },
     {
       "id": "g-202633000000033900012A",
@@ -2310,7 +2482,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900012A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900012A"
     },
     {
       "id": "g-202633000000033900014A",
@@ -2321,7 +2494,8 @@
       "dday": 19,
       "period": "2026-02-13 ~ 2026-03-03",
       "org": "한국산업기술진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900014A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000033900014A"
     },
     {
       "id": "g-202633000000000500029A",
@@ -2332,7 +2506,8 @@
       "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500029A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500029A"
     },
     {
       "id": "g-202633000000000500028A",
@@ -2343,7 +2518,8 @@
       "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500028A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500028A"
     },
     {
       "id": "g-202633000000000500027A",
@@ -2354,7 +2530,8 @@
       "dday": 19,
       "period": "2026-02-10 ~ 2026-03-03",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500027A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500027A"
     },
     {
       "id": "smt-S02843",
@@ -2431,7 +2608,8 @@
       "dday": 20,
       "period": "2026-02-05 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500004A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500004A"
     },
     {
       "id": "g-202633000000000500002A",
@@ -2442,7 +2620,8 @@
       "dday": 20,
       "period": "2026-02-12 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500002A"
     },
     {
       "id": "g-202633000000000500013A",
@@ -2453,7 +2632,8 @@
       "dday": 20,
       "period": "2026-02-05 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500013A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500013A"
     },
     {
       "id": "g-202633000000000500030A",
@@ -2464,7 +2644,8 @@
       "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500030A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500030A"
     },
     {
       "id": "g-202633000000015400013A",
@@ -2475,7 +2656,8 @@
       "dday": 20,
       "period": "2026-02-04 ~ 2026-03-04",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400013A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400013A"
     },
     {
       "id": "g-202633000000000500007A",
@@ -2486,7 +2668,8 @@
       "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500007A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500007A"
     },
     {
       "id": "g-202633000000000500008A",
@@ -2497,7 +2680,8 @@
       "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500008A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500008A"
     },
     {
       "id": "g-202633000000000500009A",
@@ -2508,7 +2692,8 @@
       "dday": 20,
       "period": "2026-02-10 ~ 2026-03-04",
       "org": "한국콘텐츠진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500009A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000500009A"
     },
     {
       "id": "smt-S02848",
@@ -2602,7 +2787,8 @@
       "dday": 21,
       "period": "2026-02-02 ~ 2026-03-05",
       "org": "해양수산부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900003A"
     },
     {
       "id": "g-202600008001086900004A",
@@ -2613,7 +2799,8 @@
       "dday": 21,
       "period": "2026-02-02 ~ 2026-03-05",
       "org": "해양수산부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900004A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008001086900004A"
     },
     {
       "id": "g-202641000000897700005B",
@@ -2624,7 +2811,8 @@
       "dday": 21,
       "period": "2026-02-16 ~ 2026-03-05",
       "org": "한국환경산업협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000897700005B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202641000000897700005B"
     },
     {
       "id": "smt-S02845",
@@ -2658,7 +2846,8 @@
       "dday": 22,
       "period": "2026-02-09 ~ 2026-03-06",
       "org": "재외동포청",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002600019500001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600002600019500001B"
     },
     {
       "id": "g-20260354223",
@@ -2669,7 +2858,8 @@
       "dday": 22,
       "period": "2026-01-28 ~ 2026-03-06",
       "org": "정태희",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354223"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260354223"
     },
     {
       "id": "smt-S02833",
@@ -2710,7 +2900,8 @@
       "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400020A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400020A"
     },
     {
       "id": "g-202633000000015400019A",
@@ -2721,7 +2912,8 @@
       "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400019A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400019A"
     },
     {
       "id": "g-202633000000015400021A",
@@ -2732,7 +2924,8 @@
       "dday": 25,
       "period": "2026-02-10 ~ 2026-03-09",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400021A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400021A"
     },
     {
       "id": "g-202621000000010100002A",
@@ -2743,7 +2936,8 @@
       "dday": 25,
       "period": "2026-01-23 ~ 2026-03-09",
       "org": "사단법인 한국박물관협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010100002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010100002A"
     },
     {
       "id": "b-PBLN_000000000118434",
@@ -2787,7 +2981,8 @@
       "dday": 26,
       "period": "2026-02-09 ~ 2026-03-10",
       "org": "한국방송통신전파진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800001A"
     },
     {
       "id": "g-202633000000000800003A",
@@ -2798,7 +2993,8 @@
       "dday": 26,
       "period": "2026-02-09 ~ 2026-03-10",
       "org": "한국방송통신전파진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000800003A"
     },
     {
       "id": "s24-PBLN_000000000118378",
@@ -2837,7 +3033,8 @@
       "dday": 28,
       "period": "2026-02-11 ~ 2026-03-12",
       "org": "한국전파진흥협회",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000010600003A"
     },
     {
       "id": "k-176282",
@@ -2882,7 +3079,8 @@
       "dday": 29,
       "period": "2026-02-09 ~ 2026-03-13",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400001A"
     },
     {
       "id": "g-202633000000006500003A",
@@ -2893,7 +3091,8 @@
       "dday": 29,
       "period": "2026-02-11 ~ 2026-03-13",
       "org": "한국환경공단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000006500003A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000006500003A"
     },
     {
       "id": "g-202632000000016900002A",
@@ -2904,7 +3103,8 @@
       "dday": 36,
       "period": "2026-02-09 ~ 2026-03-20",
       "org": "대구광역시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016900002A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016900002A"
     },
     {
       "id": "g-202633000000028200001A",
@@ -2915,7 +3115,8 @@
       "dday": 36,
       "period": "2026-01-30 ~ 2026-03-20",
       "org": "한국생산기술연구원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028200001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000028200001A"
     },
     {
       "id": "b-PBLN_000000000118428",
@@ -2960,7 +3161,8 @@
       "dday": 41,
       "period": "2026-02-04 ~ 2026-03-25",
       "org": "예술경영지원센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400012A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000015400012A"
     },
     {
       "id": "g-20260352606",
@@ -2971,7 +3173,8 @@
       "dday": 42,
       "period": "2026-01-28 ~ 2026-03-26",
       "org": "김밝음",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260352606"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=20260352606"
     },
     {
       "id": "g-202633000000000100001A",
@@ -2982,7 +3185,8 @@
       "dday": 46,
       "period": "2026-03-02 ~ 2026-03-30",
       "org": "한국임업진흥원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000100001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000000100001A"
     },
     {
       "id": "g-202633000000012600001A",
@@ -2993,7 +3197,8 @@
       "dday": 47,
       "period": "2026-02-11 ~ 2026-03-31",
       "org": "한국산업단지공단",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000012600001A"
+      "url": "https://www.bojo.go.kr/bojo.do",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202633000000012600001A"
     },
     {
       "id": "g-202632000000016800002B",
@@ -3004,7 +3209,8 @@
       "dday": 47,
       "period": "2026-03-01 ~ 2026-03-31",
       "org": "강원특별자치도 고성군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800002B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800002B"
     },
     {
       "id": "b-PBLN_000000000118440",
@@ -3047,7 +3253,8 @@
       "dday": 67,
       "period": "2026-04-06 ~ 2026-04-20",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200010B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200010B"
     },
     {
       "id": "g-202621000078622900002B",
@@ -3058,7 +3265,8 @@
       "dday": 260,
       "period": "2026-01-26 ~ 2026-10-30",
       "org": "한국환경산업기술원",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900002B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000078622900002B"
     },
     {
       "id": "g-202632000000016800001B",
@@ -3069,7 +3277,8 @@
       "dday": 301,
       "period": "2026-01-05 ~ 2026-12-10",
       "org": "강원특별자치도 고성군",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000016800001B"
     },
     {
       "id": "k-171419",
@@ -3089,7 +3298,8 @@
       "dday": 322,
       "period": "2026-02-02 ~ 2026-12-31",
       "org": "문화체육관광부",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200011B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202600008000041200011B"
     },
     {
       "id": "g-202632000000009800005B",
@@ -3100,7 +3310,8 @@
       "dday": 322,
       "period": "2026-02-09 ~ 2026-12-31",
       "org": "경상남도 거제시",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800005B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202632000000009800005B"
     },
     {
       "id": "g-202621000000017900001B",
@@ -3111,7 +3322,8 @@
       "dday": 322,
       "period": "2026-01-13 ~ 2026-12-31",
       "org": "(재)한경협중소기업협력센터",
-      "url": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000017900001B"
+      "url": "https://www.losims.go.kr/sp",
+      "originUrl": "https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId=202621000000017900001B"
     },
     {
       "id": "k-176104",

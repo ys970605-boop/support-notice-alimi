@@ -105,13 +105,20 @@ const BOOKMARK_KEY='support_notice_bookmarks_v1';
 let bookmarks=new Set();
 let profile={region:'all',stage:'all',field:'all',goal:'all'};
 
+
+const SOURCE_LABELS={
+  kstartup:'K-Startup',
+  bizinfo:'기업마당',
+};
+function sourceLabel(v){ return SOURCE_LABELS[v]||v||'-'; }
+
 function initData(){
   if(window.GOV_DATA && Array.isArray(window.GOV_DATA.notices)){
     RAW = window.GOV_DATA.notices;
     const updated = window.GOV_DATA.updatedAt || '-';
     document.getElementById('updatedAt').textContent = '최근 업데이트: ' + updated;
     const srcs = [...new Set((window.GOV_DATA.notices||[]).map(n=>n.source))];
-    document.getElementById('dataSource').textContent = '데이터 출처: ' + (srcs.length ? srcs.join(' + ') : '-');
+    document.getElementById('dataSource').textContent = '데이터 출처: ' + (srcs.length ? srcs.map(sourceLabel).join(' + ') : '-');
   } else {
     RAW = [];
     document.getElementById('dataSource').textContent = '데이터 출처: 로드 실패';
@@ -148,7 +155,7 @@ function saveBookmarks(){
   localStorage.setItem(BOOKMARK_KEY, JSON.stringify([...bookmarks]));
 }
 
-function noticeKey(n){ return n.id || n.url || `${n.source}-${n.title}`; }
+function noticeKey(n){ return n.id || n.url || `${sourceLabel(n.source)}-${n.title}`; }
 
 function toggleBookmark(key){
   if(bookmarks.has(key)) bookmarks.delete(key); else bookmarks.add(key);
@@ -261,7 +268,7 @@ function render(){
   document.getElementById('cards').innerHTML = list.slice(0,60).map(n=>`
     <article class="card">
       <div class="row">
-        <span class="tag">${n.source}</span>
+        <span class="tag">${sourceLabel(n.source)}</span>
         <span class="tag ${dtag(n.dday)}">${dlabel(n.dday)}</span>
       </div>
       <h3 style="font-size:16px;line-height:1.4;margin:8px 0">${n.title}</h3>

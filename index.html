@@ -67,6 +67,7 @@
       <div id="updatedAt" class="small">최근 업데이트: -</div>
       <div id="dataSource" class="small">데이터 출처: -</div>
       <div class="small">확장 소스: IRIS · SMTECH · e나라도움 · 이지비즈 · 중소벤처24 (연동 완료)</div>
+      <div class="small">※ 마감시간은 원문에 표기된 경우만 노출, 미표기 공고는 ‘시간 미공개’로 표시</div>
     </div>
   </section>
 
@@ -161,12 +162,31 @@ function dtag(d){ if(d<=1)return 'd1'; if(d<=3)return 'd3'; if(d<=7)return 'd7';
 function dlabel(d){ if(d==null)return '마감정보없음'; if(d<0)return '마감지남'; return `D-${d}`; }
 function fitClass(v){ if(v>=80) return 'fit-hi'; if(v>=60) return 'fit-mid'; return 'fit-low'; }
 function fitLabel(v){ if(v>=80) return '지금 신청'; if(v>=60) return '준비 후 신청'; return '보류'; }
-function deadlineWithTime(v){
-  const s=(v||'').toString().trim();
-  if(!s) return '-';
-  if(/\d{1,2}:\d{2}/.test(s)) return s;
-  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s} 23:59`;
-  return s;
+function extractDeadlineTime(n){
+  const cand=[n.deadlineTime,n.deadlineText,n.period,n.title]
+    .map(v=>(v||'').toString())
+    .join(' | ');
+
+  // 18:00 / 9:30
+  let m=cand.match(/(?:^|\D)([01]?\d|2[0-3]):([0-5]\d)(?:\D|$)/);
+  if(m) return `${m[1].padStart(2,'0')}:${m[2]}`;
+
+  // 18시 00분 / 18시
+  m=cand.match(/(?:^|\D)([01]?\d|2[0-3])\s*시(?:\s*([0-5]?\d)\s*분)?/);
+  if(m){
+    const hh=m[1].padStart(2,'0');
+    const mm=(m[2]||'00').padStart(2,'0');
+    return `${hh}:${mm}`;
+  }
+  return '';
+}
+
+function deadlineWithTime(n){
+  const d=(n.deadline||'').toString().trim();
+  if(!d) return '-';
+  const t=extractDeadlineTime(n);
+  if(t) return `${d} ${t}`;
+  return `${d} (시간 미공개)`;
 }
 
 function calcScore(n,q){
@@ -247,7 +267,7 @@ function render(){
         <span class="tag ${dtag(n.dday)}">${dlabel(n.dday)}</span>
       </div>
       <h3 style="font-size:16px;line-height:1.4;margin:8px 0">${n.title}</h3>
-      <div class="small">분류: ${n.category||'-'} · 마감: ${deadlineWithTime(n.deadline)}</div>
+      <div class="small">분류: ${n.category||'-'} · 마감: ${deadlineWithTime(n)}</div>
       <div class="reasons">${(n.reasons||[]).map(r=>`<span class='reason'>${r}</span>`).join('')}</div>
       <div class="row" style="margin-top:8px">
         <span class="tag ${fitClass(n.fit)}">맞춤점수 ${n.fit} · ${fitLabel(n.fit)}</span>

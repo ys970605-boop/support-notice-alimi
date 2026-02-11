@@ -399,6 +399,13 @@ def parse_gosims() -> list:
             bsns_se = (item.get("bsnsSe") or "").strip()
             biz_type = "국고" if bsns_se == "1" else ("지방" if bsns_se == "2" else "기타")
 
+            # bojo 팝업 URL은 일부 브라우저에서 단독 오픈 시 레이아웃이 깨져 보일 수 있어
+            # 소스 유형별로 안정적인 공식 포털 랜딩 URL 사용
+            if pblanc_type == "B":
+                stable_url = "https://www.losims.go.kr/sp"  # 보탬e
+            else:
+                stable_url = "https://www.bojo.go.kr/bojo.do"  # e나라도움/통합포털
+
             out.append(
                 {
                     "id": f"g-{ntt_id}",
@@ -409,7 +416,8 @@ def parse_gosims() -> list:
                     "dday": days_until(deadline),
                     "period": f"{start} ~ {end}" if start and end else "",
                     "org": org,
-                    "url": f"https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId={ntt_id}",
+                    "url": stable_url,
+                    "originUrl": f"https://www.bojo.go.kr/ia/getIA005100Popup.do?nttId={ntt_id}",
                 }
             )
 
@@ -421,13 +429,8 @@ def parse_gosims() -> list:
 
 
 SOURCE_PRIORITY = {
-    "gosims": 100,
-    "smtech": 95,
-    "kstartup": 90,
-    "bizinfo": 85,
-    "egbiz": 80,
-    "smes24": 75,
-    "iris": 70,
+    "kstartup": 100,
+    "bizinfo": 95,
 }
 
 
@@ -506,11 +509,6 @@ def main():
     for name, fn in [
         ("kstartup", parse_kstartup),
         ("bizinfo", parse_bizinfo),
-        ("iris", parse_iris),
-        ("egbiz", parse_egbiz),
-        ("smtech", parse_smtech),
-        ("smes24", parse_smes24),
-        ("gosims", parse_gosims),
     ]:
         try:
             data = fn()

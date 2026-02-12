@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-02-12 12:07:45",
-  "count": 33,
-  "beforeDedupeCount": 34,
+  "updatedAt": "2026-02-12 15:39:22",
+  "count": 28,
+  "beforeDedupeCount": 29,
   "dedupRemoved": 1,
   "noDeadlineCount": 3,
   "sourceStats": {
-    "kstartup": 18,
+    "kstartup": 13,
     "bizinfo": 15
   },
   "errors": [
@@ -13,72 +13,12 @@
   ],
   "notices": [
     {
-      "id": "k-176102",
-      "source": "kstartup",
-      "title": "2026년 창업성공패키지[글로벌창업사관학교] 창업기업 모집공고",
-      "category": "사업화",
-      "deadline": "2026-02-13",
-      "dday": 1,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176102"
-    },
-    {
-      "id": "k-176124",
-      "source": "kstartup",
-      "title": "2026년도 창업성공패키지[딥테크창업사관학교] 입교기업 모집공고",
-      "category": "사업화",
-      "deadline": "2026-02-13",
-      "dday": 1,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176124"
-    },
-    {
-      "id": "k-176107",
-      "source": "kstartup",
-      "title": "2026년 창업성공패키지 [청년창업사관학교] 기본과정 입교생 모집 공고",
-      "category": "사업화",
-      "deadline": "2026-02-13",
-      "dday": 1,
-      "supportAmount": "최대 1억원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176107"
-    },
-    {
-      "id": "k-176019",
-      "source": "kstartup",
-      "title": "2026년도 초기창업패키지(일반형) 창업기업 모집공고",
-      "category": "사업화",
-      "deadline": "2026-02-13",
-      "dday": 1,
-      "supportAmount": "최대 1억원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176019"
-    },
-    {
-      "id": "k-176065",
-      "source": "kstartup",
-      "title": "2026년도 창업도약패키지(일반형) 창업기업 모집공고",
-      "category": "사업화",
-      "deadline": "2026-02-13",
-      "dday": 1,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176065"
-    },
-    {
-      "id": "k-176290",
-      "source": "kstartup",
-      "title": "[서울핀테크랩] Web3·블록체인·디지털자산 스타트업 교류 네트워킹 모집",
-      "category": "멘토링ㆍ컨설팅ㆍ교육",
-      "deadline": "2026-02-22",
-      "dday": 10,
-      "supportAmount": "최대 5억원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176290"
-    },
-    {
       "id": "k-176066",
       "source": "kstartup",
       "title": "초격차 스타트업 프로젝트(DIPS) Link-up(링크업) - 4대 도메인 AX 프로그램 수요기업(기관) 모집공고",
       "category": "사업화",
       "deadline": "2026-02-24",
-      "dday": 12,
+      "dday": 11,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176066"
     },
@@ -112,7 +52,7 @@
       "title": "2026년 경기스타트업캠퍼스(판교) 보육공간 입주기업 모집",
       "category": "행사ㆍ네트워크",
       "deadline": "2026-02-25",
-      "dday": 13,
+      "dday": 12,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176300"
     },
@@ -127,16 +67,6 @@
       "regDate": "2026-02-12",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118490"
-    },
-    {
-      "id": "k-176271",
-      "source": "kstartup",
-      "title": "2026년 전북 IP창업존 54기(26년 1기) 교육생 모집 공고",
-      "category": "멘토링ㆍ컨설팅ㆍ교육",
-      "deadline": "2026-02-27",
-      "dday": 15,
-      "supportAmount": "20만원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176271"
     },
     {
       "id": "b-PBLN_000000000118495",
@@ -175,12 +105,32 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118489"
     },
     {
+      "id": "k-176250",
+      "source": "kstartup",
+      "title": "[인천] 2026년 IP창업존 48기 교육생 모집 공고",
+      "category": "시설ㆍ공간ㆍ보육",
+      "deadline": "2026-02-28",
+      "dday": 15,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176250"
+    },
+    {
+      "id": "k-176303",
+      "source": "kstartup",
+      "title": "국내기업 글로벌 성장자본 유치지원 Invest KOREA Market Place 참가기업 모집 안내",
+      "category": "시설ㆍ공간ㆍ보육",
+      "deadline": "2026-03-02",
+      "dday": 17,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176303"
+    },
+    {
       "id": "k-176266",
       "source": "kstartup",
       "title": "2026년 청소년비즈쿨 운영기관 모집 공고(거점비즈쿨)새로운게시글",
       "category": "멘토링ㆍ컨설팅ㆍ교육",
       "deadline": "2026-03-03",
-      "dday": 19,
+      "dday": 18,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176266"
     },
@@ -190,29 +140,39 @@
       "title": "2026년 재도전성공패키지 예비재창업자 및 재창업기업 모집공고새로운게시글",
       "category": "사업화",
       "deadline": "2026-03-04",
-      "dday": 20,
+      "dday": 19,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
     {
-      "id": "k-176114",
+      "id": "k-176285",
       "source": "kstartup",
-      "title": "[창업진흥원] 2026년도 K-StartHub 입주기업 모집공고새로운게시글",
-      "category": "시설ㆍ공간ㆍ보육",
-      "deadline": "2026-03-06",
-      "dday": 22,
-      "supportAmount": "121만원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
+      "title": "2025년 초기창업패키지(딥테크 분야) Bordless IR & Biz Talk 모집공고",
+      "category": "사업화",
+      "deadline": "2026-03-05",
+      "dday": 20,
+      "supportAmount": "지원금 50만원",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176285"
     },
     {
-      "id": "k-176231",
+      "id": "k-176288",
       "source": "kstartup",
-      "title": "2026년 일본 스시테크 도쿄 서울관 운영 참가기업 모집",
-      "category": "멘토링ㆍ컨설팅ㆍ교육",
-      "deadline": "2026-03-06",
-      "dday": 22,
+      "title": "2026 농촌융복합산업 민간투자기반 스케일업 지원사업 참여 기업 모집공고",
+      "category": "사업화",
+      "deadline": "2026-03-05",
+      "dday": 20,
       "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176231"
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176288"
+    },
+    {
+      "id": "k-176114",
+      "source": "kstartup",
+      "title": "[창업진흥원] 2026년도 K-StartHub 입주기업 모집공고",
+      "category": "시설ㆍ공간ㆍ보육",
+      "deadline": "2026-03-06",
+      "dday": 21,
+      "supportAmount": "121만원",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
     },
     {
       "id": "b-PBLN_000000000118498",
@@ -263,16 +223,6 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118499"
     },
     {
-      "id": "k-176287",
-      "source": "kstartup",
-      "title": "2026 농촌융복합산업 액셀러레이터 육성지원 참여 액셀러레이터 모집공고",
-      "category": "사업화",
-      "deadline": "2026-03-30",
-      "dday": 46,
-      "supportAmount": "최대 3,500만원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176287"
-    },
-    {
       "id": "b-PBLN_000000000118492",
       "source": "bizinfo",
       "title": "2026년 청년 산림창업 마중물 지원 청년창업자 모집 공고",
@@ -302,29 +252,29 @@
       "title": "[Startup Korea Special Visa] Announcement on Application for Recommendations for the “Startup Korea Special Visa”",
       "category": "인력",
       "deadline": "2026-12-30",
-      "dday": 321,
+      "dday": 320,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=171419"
     },
     {
-      "id": "k-176076",
+      "id": "k-176102",
       "source": "kstartup",
       "title": "2026년 팁스(TIPS) 창업기업 지원계획 공고",
       "category": "사업화",
       "deadline": "2026-12-31",
-      "dday": 322,
-      "supportAmount": "지원규모 1,624억원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176076"
+      "dday": 321,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176102"
     },
     {
-      "id": "k-175783",
+      "id": "k-176019",
       "source": "kstartup",
       "title": "2026년 중앙부처 및 지자체 창업지원사업 통합공고",
       "category": "사업화",
       "deadline": "2026-12-31",
-      "dday": 322,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175783"
+      "dday": 321,
+      "supportAmount": "최대 1억원",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176019"
     },
     {
       "id": "k-176286",
@@ -332,7 +282,7 @@
       "title": "민간기업 분야 우수인재 특별귀화 추천 신청 모집 공고 (Announcement on the Call for Applications for Recommendation for Special Naturalization of Outstanding Private-Sector Talent)새로운게시글",
       "category": "사업화",
       "deadline": "2030-12-31",
-      "dday": 1783,
+      "dday": 1782,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176286"
     },

@@ -67,7 +67,7 @@
     <div class="box">
       <div id="updatedAt" class="small">최근 업데이트: -</div>
       <div id="dataSource" class="small">데이터 출처: -</div>
-      <div class="small">운영 소스: K-Startup · 기업마당</div>
+      <div id="opSource" class="small">운영 소스: -</div>
     </div>
   </section>
 
@@ -120,7 +120,9 @@ function initData(){
     const updated = window.GOV_DATA.updatedAt || '-';
     document.getElementById('updatedAt').textContent = '최근 업데이트: ' + updated;
     const srcs = [...new Set((window.GOV_DATA.notices||[]).map(n=>n.source))];
-    document.getElementById('dataSource').textContent = '데이터 출처: ' + (srcs.length ? srcs.map(sourceLabel).join(' + ') : '-');
+    const srcLabel = (srcs.length ? srcs.map(sourceLabel).join(' + ') : '-');
+    document.getElementById('dataSource').textContent = '데이터 출처: ' + srcLabel;
+    document.getElementById('opSource').textContent = '운영 소스: ' + srcLabel;
   } else {
     RAW = [];
     document.getElementById('dataSource').textContent = '데이터 출처: 로드 실패';

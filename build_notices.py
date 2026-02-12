@@ -212,41 +212,75 @@ def parse_bizinfo() -> list:
 
 
 def parse_iris() -> list:
-    url = "https://www.iris.go.kr/contents/retrieveBsnsAncmBtinSituListView.do"
-    txt = get(url)
-
-    # ancmId, title, category(institution), date
-    pat = re.compile(
-        r"f_bsnsAncmBtinSituListForm_view\('(\d+)'\s*,\s*'([^']+)'\).*?"
-        r"<span class=\"inst_title\">(.*?)</span>.*?"
-        r"<strong class=\"title\"><a [^>]*>(.*?)</a></strong>.*?"
-        r"<span class=\"ancmDe\"><em>공고일자\s*:</em>\s*([0-9\-]{10})</span>",
-        re.S,
-    )
-
+    # IRIS 메인에서 사용하는 JSON API (접수중 사업공고)
+    api = "https://www.iris.go.kr/contents/retrieveMainPageBsnsAncmList.do"
     out = []
     seen = set()
-    for m in pat.finditer(txt):
-        ancm_id, ancm_prg, inst_title, title, reg_date = m.groups()
-        if ancm_id in seen:
-            continue
-        seen.add(ancm_id)
-        title = clean(title)
-        inst_title = clean(inst_title)
 
-        out.append(
+    for page in range(1, 40):
+        raw = post_text(
+            api,
             {
-                "id": f"i-{ancm_id}",
-                "source": "iris",
-                "title": title,
-                "category": inst_title,
-                "deadline": "",  # 페이지에 마감일이 리스트에서 바로 안 보임
-                "dday": None,
-                "regDate": reg_date,
-                "url": f"https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId={ancm_id}&ancmPrg={ancm_prg}",
-            }
+                "bsnsAncmTap": "rcve_prg",
+                "ancmPrg": "ancmIng",
+                "pageIndex": str(page),
+                "sorgnIdArr": "",
+            },
+            {
+                "Origin": "https://www.iris.go.kr",
+                "Referer": "https://www.iris.go.kr/main.do",
+            },
         )
-    return out[:120]
+        obj = json.loads(raw)
+        rows = obj.get("listBsnsAncm", []) or []
+        if not rows:
+            break
+
+        for item in rows:
+            ancm_id = (item.get("ancmId") or "").strip()
+            if not ancm_id or ancm_id in seen:
+                continue
+            seen.add(ancm_id)
+
+            title = clean(item.get("ancmTl") or "")
+            if not title:
+                continue
+
+            start = normalize_date(item.get("rcveStrDe") or "")
+            end = normalize_date(item.get("rcveEndDe") or "")
+            deadline = end
+
+            dday = item.get("dDay")
+            try:
+                dday = int(dday)
+            except Exception:
+                dday = days_until(deadline)
+
+            ancm_prg = (item.get("rcveStt") or "진행중").strip()
+            ancm_prg = "ancmPre" if ancm_prg == "예정" else "ancmIng"
+
+            out.append(
+                {
+                    "id": f"i-{ancm_id}",
+                    "source": "iris",
+                    "title": title,
+                    "category": clean(item.get("blngGovdSe") or "국가R&D"),
+                    "deadline": deadline,
+                    "dday": dday,
+                    "period": f"{start} ~ {end}" if start and end else "",
+                    "org": clean(item.get("sorgnNm") or ""),
+                    "regDate": normalize_date(item.get("ancmDe") or ""),
+                    "url": f"https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId={ancm_id}&ancmPrg={ancm_prg}",
+                }
+            )
+
+        # 페이지네이션 끝 감지
+        p = obj.get("bsnsAncmPaginationInfo", {}) or {}
+        total_pages = int(p.get("totalPageCount") or 1)
+        if page >= total_pages:
+            break
+
+    return out[:260]
 
 
 def parse_egbiz() -> list:
@@ -566,6 +600,7 @@ def main():
     for name, fn in [
         ("kstartup", parse_kstartup),
         ("bizinfo", parse_bizinfo),
+        ("iris", parse_iris),
     ]:
         try:
             data = fn()

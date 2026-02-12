@@ -1,15 +1,40 @@
 {
-  "updatedAt": "2026-02-11 23:57:54",
-  "count": 33,
-  "beforeDedupeCount": 34,
+  "updatedAt": "2026-02-12 09:55:58",
+  "count": 78,
+  "beforeDedupeCount": 78,
   "dedupRemoved": 1,
   "noDeadlineCount": 2,
   "sourceStats": {
+    "iris": 45,
     "kstartup": 18,
     "bizinfo": 15
   },
   "errors": [],
   "notices": [
+    {
+      "id": "i-018894",
+      "source": "iris",
+      "title": "2026년도 첨단정밀육종활용고부가산업화기술개발사업 시행계획 재공고",
+      "category": "농림축산식품부",
+      "deadline": "2026-02-12",
+      "dday": 0,
+      "period": "2026-02-09 ~ 2026-02-12",
+      "org": "농림식품기술기획평가원",
+      "regDate": "2026-02-06",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018894&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018734",
+      "source": "iris",
+      "title": "2026년도 암정복추진연구개발사업 신규과제 재공모",
+      "category": "보건복지부",
+      "deadline": "2026-02-12",
+      "dday": 0,
+      "period": "2026-02-03 ~ 2026-02-12",
+      "org": "국립암센터",
+      "regDate": "2026-02-03",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018734&ancmPrg=ancmIng"
+    },
     {
       "id": "k-176102",
       "source": "kstartup",
@@ -61,6 +86,30 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176065"
     },
     {
+      "id": "i-018949",
+      "source": "iris",
+      "title": "나로우주센터 인근 해상풍력 영향성 평가 연구 정책지정 공고 (신규프로젝트 탐색연구)",
+      "category": "우주항공청",
+      "deadline": "2026-02-13",
+      "dday": 1,
+      "period": "2026-02-11 ~ 2026-02-13",
+      "org": "우주항공청",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018949&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018395",
+      "source": "iris",
+      "title": "2026년도 소재부품장비 융합혁신지원단 기술지원사업 공고(참여기관용)",
+      "category": "산업통상부",
+      "deadline": "2026-02-13",
+      "dday": 1,
+      "period": "2026-02-02 ~ 2026-02-13",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-03",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018395&ancmPrg=ancmIng"
+    },
+    {
       "id": "b-PBLN_000000000118438",
       "source": "bizinfo",
       "title": "[강원] 제41회 국제의료기기병원설비전시회(KIMES 2026) 디지털헬스케어 산업 확산을 위한 부스 참가기업 모집 공고",
@@ -73,6 +122,18 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118438"
     },
     {
+      "id": "i-018915",
+      "source": "iris",
+      "title": "2026년도 지속가능한저탄소축산확산을위한기술개발사업 시행계획 재공고",
+      "category": "농림축산식품부",
+      "deadline": "2026-02-15",
+      "dday": 3,
+      "period": "2026-02-09 ~ 2026-02-15",
+      "org": "농림식품기술기획평가원",
+      "regDate": "2026-02-09",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018915&ancmPrg=ancmIng"
+    },
+    {
       "id": "k-176278",
       "source": "kstartup",
       "title": "2026년 제10회 서울혁신챌린지 공고",
@@ -83,6 +144,126 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176278"
     },
     {
+      "id": "i-019116",
+      "source": "iris",
+      "title": "2026년 과학기술외교사업 신규과제 접수",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-19",
+      "dday": 7,
+      "period": "2026-02-11 ~ 2026-02-19",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019116&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019015",
+      "source": "iris",
+      "title": "2026년도 제1차 식품의약품안전처 출연연구개발사업 신규지원 대상과제 통합 재공고(정정, 2026.2.11.)",
+      "category": "식품의약품안전처",
+      "deadline": "2026-02-19",
+      "dday": 7,
+      "period": "2026-02-10 ~ 2026-02-19",
+      "org": "한국보건산업진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019015&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018954",
+      "source": "iris",
+      "title": "2026년도 제1차 식품의약품안전처 출연연구개발사업 신규지원 대상과제 통합 재공고(RFP 5-1,5-2 관련 FAQ 반영)",
+      "category": "식품의약품안전처",
+      "deadline": "2026-02-19",
+      "dday": 7,
+      "period": "2026-02-10 ~ 2026-02-19",
+      "org": "한국보건산업진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018954&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019016",
+      "source": "iris",
+      "title": "2026년 생체노화 리프로그래밍 원천기술개발사업 신규과제 재공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-20",
+      "dday": 8,
+      "period": "2026-02-11 ~ 2026-02-20",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019016&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019034",
+      "source": "iris",
+      "title": "(재공고-국-제05호) 2026년 초고속 하이퍼튜브 아진공 핵심기술 개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019034&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019018",
+      "source": "iris",
+      "title": "(재공고-국-제07호) 2026년 고속철도 자갈궤도 구간 사전제작형 급속개량 콘크리트 궤도 및 시공장비 개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019018&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019017",
+      "source": "iris",
+      "title": "(재공고-국-제06호) 2026년 스마트 철도물류 혁신기술 개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019017&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018943",
+      "source": "iris",
+      "title": "(재공고-국-제10호) 2026년 항공기 이탈방지용 긴급제동 활주로 시스템(EMAS) 개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018943&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018941",
+      "source": "iris",
+      "title": "(재공고-국-제09호) 2026년 빅데이터 기반 철도 네트워크 설계 및 운영기술 개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018941&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018940",
+      "source": "iris",
+      "title": "(재공고-국-제08호) 2026년 철도차량 차륜 자동검사시스템 기술개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-23",
+      "dday": 11,
+      "period": "2026-02-11 ~ 2026-02-23",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018940&ancmPrg=ancmIng"
+    },
+    {
       "id": "k-176066",
       "source": "kstartup",
       "title": "초격차 스타트업 프로젝트(DIPS) Link-up(링크업) - 4대 도메인 AX 프로그램 수요기업(기관) 모집공고",
@@ -91,6 +272,150 @@
       "dday": 12,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176066"
+    },
+    {
+      "id": "i-018952",
+      "source": "iris",
+      "title": "2026년도 AI-네이티브 첨단바이오 자율실험실 사업 신규과제 재공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-02-11 ~ 2026-02-24",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018952&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018947",
+      "source": "iris",
+      "title": "2026년도 바이오·의료기술개발 사업 신규과제 제1차 재공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-02-11 ~ 2026-02-24",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018947&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018938",
+      "source": "iris",
+      "title": "(재공고-국-제19호) 2026년 액체수소 저장탱크 및 적하역 시스템 기술개발 사업 시행 재공고",
+      "category": "국토교통부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-02-12 ~ 2026-02-24",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018938&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017426",
+      "source": "iris",
+      "title": "(연장공고) (사이버보안 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017426&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017402",
+      "source": "iris",
+      "title": "(연장공고) (표준화 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017402&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017400",
+      "source": "iris",
+      "title": "(연장공고) (방송콘텐츠 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017400&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017399",
+      "source": "iris",
+      "title": "(연장공고) (SW자율주행 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017399&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017398",
+      "source": "iris",
+      "title": "(연장공고) (디지털융합 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017398&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017397",
+      "source": "iris",
+      "title": "(연장공고) (통신네트워크,전파위성 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017397&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017396",
+      "source": "iris",
+      "title": "(연장공고) (양자 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017396&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017395",
+      "source": "iris",
+      "title": "(연장공고) (AI반도체 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017395&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-017394",
+      "source": "iris",
+      "title": "(연장공고) (인공지능 부문) 2026년도 제1차 정보통신·방송 기술개발사업 및 표준개발지원사업 신규지원 대상과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-02-24",
+      "dday": 12,
+      "period": "2026-01-19 ~ 2026-02-24",
+      "org": "정보통신기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=017394&ancmPrg=ancmIng"
     },
     {
       "id": "k-176275",
@@ -113,6 +438,18 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118427"
+    },
+    {
+      "id": "i-018694",
+      "source": "iris",
+      "title": "2026년도 제1차 보건의료기술 연구개발사업 신규지원 대상과제 통합 재공고",
+      "category": "보건복지부",
+      "deadline": "2026-02-26",
+      "dday": 14,
+      "period": "2026-02-10 ~ 2026-02-26",
+      "org": "한국보건산업진흥원",
+      "regDate": "2026-02-09",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018694&ancmPrg=ancmIng"
     },
     {
       "id": "b-PBLN_000000000118439",
@@ -171,6 +508,54 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
     {
+      "id": "i-018413",
+      "source": "iris",
+      "title": "2026년도 중견기업-공공연구기관 기술혁신챌린지(R&D)사업 신규지원 공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-04",
+      "dday": 20,
+      "period": "2026-02-03 ~ 2026-03-04",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-03",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018413&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018274",
+      "source": "iris",
+      "title": "2026년도 중견중소기업상생형혁신도약사업 신규지원 공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-04",
+      "dday": 20,
+      "period": "2026-02-03 ~ 2026-03-04",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-03",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018274&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018614",
+      "source": "iris",
+      "title": "2026년도 1차 에너지인력양성사업 및 에너지차세대리더 육성사업 신규지원대상 연구개발과제 공고",
+      "category": "기후에너지환경부",
+      "deadline": "2026-03-04",
+      "dday": 20,
+      "period": "2026-02-06 ~ 2026-03-04",
+      "org": "한국에너지기술평가원",
+      "regDate": "2026-02-02",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018614&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018595",
+      "source": "iris",
+      "title": "(공고-국-제20호) 2026년 공동주택 건설생산성 혁신을 위한 다용도-건설작업로봇 설계 및 통합관리 기술개발 사업 시행 공고",
+      "category": "국토교통부",
+      "deadline": "2026-03-04",
+      "dday": 20,
+      "period": "2026-02-09 ~ 2026-03-04",
+      "org": "국토교통과학기술진흥원",
+      "regDate": "2026-02-02",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018595&ancmPrg=ancmIng"
+    },
+    {
       "id": "b-PBLN_000000000118432",
       "source": "bizinfo",
       "title": "2026년 국제방송문화교류지원사업 공고(국제공동제작 콘텐츠 제작지원)",
@@ -183,6 +568,18 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118432"
     },
     {
+      "id": "i-018407",
+      "source": "iris",
+      "title": "2026년도 에너지기술정책수립사업 신규지원대상 연구개발과제 공고",
+      "category": "기후에너지환경부",
+      "deadline": "2026-03-05",
+      "dday": 21,
+      "period": "2026-02-11 ~ 2026-03-05",
+      "org": "한국에너지기술평가원",
+      "regDate": "2026-02-04",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018407&ancmPrg=ancmIng"
+    },
+    {
       "id": "k-176114",
       "source": "kstartup",
       "title": "[창업진흥원] 2026년도 K-StartHub 입주기업 모집공고새로운게시글",
@@ -191,6 +588,30 @@
       "dday": 22,
       "supportAmount": "121만원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
+    },
+    {
+      "id": "i-018397",
+      "source": "iris",
+      "title": "2026년도 소재부품장비 융합혁신지원단 기술지원사업(심화기술지원) 시행계획 공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-06",
+      "dday": 22,
+      "period": "2026-02-05 ~ 2026-03-06",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-05",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018397&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018004",
+      "source": "iris",
+      "title": "2026년도「소재·부품·장비 양산성능평가 지원사업」시행계획 공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-06",
+      "dday": 22,
+      "period": "2026-02-05 ~ 2026-03-06",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-05",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018004&ancmPrg=ancmIng"
     },
     {
       "id": "k-176293",
@@ -239,6 +660,30 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118429"
     },
     {
+      "id": "i-018095",
+      "source": "iris",
+      "title": "2026년도 제1차 첨단재생의료 임상연구 활성화 지원 사업 신규과제 공고",
+      "category": "보건복지부",
+      "deadline": "2026-03-11",
+      "dday": 27,
+      "period": "2026-02-10 ~ 2026-03-11",
+      "org": "한국보건산업진흥원",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018095&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-019095",
+      "source": "iris",
+      "title": "2026년도 환태평양 연구협력 이니셔티브 지원사업 신규과제 공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-03-12",
+      "dday": 28,
+      "period": "2026-02-11 ~ 2026-03-12",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019095&ancmPrg=ancmIng"
+    },
+    {
       "id": "b-PBLN_000000000118433",
       "source": "bizinfo",
       "title": "2026년 지역앵커기업-지역대학 전략기술 공동개발사업 신규지원 공고",
@@ -249,6 +694,42 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118433"
+    },
+    {
+      "id": "i-019074",
+      "source": "iris",
+      "title": "2026년도 국가전략기술 핵심역량 확보를 위한 중성자 활용 기술 고도화사업 신규과제 공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-03-13",
+      "dday": 29,
+      "period": "2026-02-11 ~ 2026-03-13",
+      "org": "한국연구재단",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=019074&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018454",
+      "source": "iris",
+      "title": "2026년도 스케일업 기술사업화 프로그램 사업공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-13",
+      "dday": 29,
+      "period": "2026-02-11 ~ 2026-03-13",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018454&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018535",
+      "source": "iris",
+      "title": "2026년도 월드클래스플러스사업 월드클래스 기업(R&D 지원) 신규공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-13",
+      "dday": 29,
+      "period": "2026-02-03 ~ 2026-03-13",
+      "org": "한국산업기술진흥원",
+      "regDate": "2026-02-03",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018535&ancmPrg=ancmIng"
     },
     {
       "id": "b-PBLN_000000000118428",
@@ -285,6 +766,18 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176265"
     },
     {
+      "id": "i-018874",
+      "source": "iris",
+      "title": "2026년도 소재부품기술개발사업(2차) 신규지원 대상과제 공고",
+      "category": "산업통상부",
+      "deadline": "2026-03-26",
+      "dday": 42,
+      "period": "2026-02-11 ~ 2026-03-26",
+      "org": "한국산업기술기획평가원",
+      "regDate": "2026-02-11",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018874&ancmPrg=ancmIng"
+    },
+    {
       "id": "b-PBLN_000000000118440",
       "source": "bizinfo",
       "title": "[강원] 2026년 제조DX멘토단 활용지원(사후관리) 모집 공고",
@@ -295,6 +788,54 @@
       "regDate": "2026-02-11",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118440"
+    },
+    {
+      "id": "i-018835",
+      "source": "iris",
+      "title": "2026년도 자동차산업기술개발사업(1차) 신규지원 대상과제 공고",
+      "category": "산업통상부",
+      "deadline": "2026-04-08",
+      "dday": 55,
+      "period": "2026-02-06 ~ 2026-04-08",
+      "org": "한국산업기술기획평가원",
+      "regDate": "2026-02-06",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018835&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018946",
+      "source": "iris",
+      "title": "2026년도 해외우수과학자유치사업(BP/BP+) 신규과제 공고",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-04-16",
+      "dday": 63,
+      "period": "2026-02-12 ~ 2026-04-16",
+      "org": "한국연구재단",
+      "regDate": "2026-02-12",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018946&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018937",
+      "source": "iris",
+      "title": "2026년도 해외우수연구기관 협력허브(글로벌 연구네트워크 확산) 구축사업 신규과제 공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-04-22",
+      "dday": 69,
+      "period": "2026-02-10 ~ 2026-04-22",
+      "org": "한국연구재단",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018937&ancmPrg=ancmIng"
+    },
+    {
+      "id": "i-018935",
+      "source": "iris",
+      "title": "2026년도 해외우수연구기관 협력허브구축사업 「탑-티어 연구기관 간 협력 플랫폼 구축 및 공동연구 지원사업」 신규과제 공모",
+      "category": "과학기술정보통신부",
+      "deadline": "2026-04-22",
+      "dday": 69,
+      "period": "2026-02-10 ~ 2026-04-22",
+      "org": "한국연구재단",
+      "regDate": "2026-02-10",
+      "url": "https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=018935&ancmPrg=ancmIng"
     },
     {
       "id": "k-176283",

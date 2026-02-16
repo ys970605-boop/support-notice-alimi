@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16 14:33:53",
+  "updatedAt": "2026-02-16 17:26:40",
   "count": 29,
   "beforeDedupeCount": 30,
   "dedupRemoved": 1,
@@ -15,20 +15,20 @@
     {
       "id": "k-176334",
       "source": "kstartup",
-      "title": "2026년 창업성공패키지(청년창업사관학교 딥테크 심화과정) 지원사업 딥테크 5D 프로그램 운영사 모집 공고[연장]새로운게시글",
+      "title": "2026년 창업성공패키지(청년창업사관학교 딥테크 심화과정) 지원사업 딥테크 5D 프로그램 운영사 모집 공고[연장]",
       "category": "사업화",
       "deadline": "2026-02-20",
-      "dday": 4,
+      "dday": 3,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176334"
     },
     {
       "id": "k-176326",
       "source": "kstartup",
-      "title": "2026년 창업성공패키지(청년창업사관학교 글로벌 심화과정) 지원사업 글로벌 5G 프로그램 운영사 모집 공고_기간변경새로운게시글",
+      "title": "2026년 창업성공패키지(청년창업사관학교 글로벌 심화과정) 지원사업 글로벌 5G 프로그램 운영사 모집 공고_기간변경",
       "category": "사업화",
       "deadline": "2026-02-20",
-      "dday": 4,
+      "dday": 3,
       "supportAmount": "1,500만원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176326"
     },
@@ -62,7 +62,7 @@
       "title": "초격차 스타트업 프로젝트(DIPS) Link-up(링크업) - 4대 도메인 AX 프로그램 수요기업(기관) 모집공고",
       "category": "사업화",
       "deadline": "2026-02-24",
-      "dday": 8,
+      "dday": 7,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176066"
     },
@@ -96,7 +96,7 @@
       "title": "2026년 1차 28청춘창업소 신규 입주기업 모집",
       "category": "사업화",
       "deadline": "2026-02-27",
-      "dday": 11,
+      "dday": 10,
       "supportAmount": "300만원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176178"
     },
@@ -106,7 +106,7 @@
       "title": "2026 수원기업IR데이 수원. 판(PANN) 참여 기업 모집",
       "category": "사업화",
       "deadline": "2026-02-27",
-      "dday": 11,
+      "dday": 10,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176313"
     },
@@ -140,17 +140,17 @@
       "title": "2026년 청소년비즈쿨 운영기관 모집 공고(거점비즈쿨)",
       "category": "멘토링ㆍ컨설팅ㆍ교육",
       "deadline": "2026-03-03",
-      "dday": 15,
+      "dday": 14,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176266"
     },
     {
       "id": "k-176317",
       "source": "kstartup",
-      "title": "2026년 투자연계형 GMEP 주관기관 모집 공고새로운게시글",
+      "title": "2026년 투자연계형 GMEP 주관기관 모집 공고",
       "category": "글로벌",
       "deadline": "2026-03-04",
-      "dday": 16,
+      "dday": 15,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176317"
     },
@@ -160,7 +160,7 @@
       "title": "2026년 재도전성공패키지 예비재창업자 및 재창업기업 모집공고",
       "category": "사업화",
       "deadline": "2026-03-04",
-      "dday": 16,
+      "dday": 15,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
@@ -194,7 +194,7 @@
       "title": "[창업진흥원] 2026년도 K-StartHub 입주기업 모집공고",
       "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-03-06",
-      "dday": 18,
+      "dday": 17,
       "supportAmount": "121만원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
     },
@@ -204,7 +204,7 @@
       "title": "2026년 창업·벤처 녹색융합클러스터 그린아이디어랩 비상주오피스 이용자 모집",
       "category": "행사ㆍ네트워크",
       "deadline": "2026-03-09",
-      "dday": 21,
+      "dday": 20,
       "supportAmount": "지원금 720만원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176224"
     },
@@ -286,7 +286,7 @@
       "title": "[Startup Korea Special Visa] Announcement on Application for Recommendations for the “Startup Korea Special Visa”",
       "category": "인력",
       "deadline": "2026-12-30",
-      "dday": 317,
+      "dday": 316,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=171419"
     },
@@ -296,7 +296,7 @@
       "title": "2026년 팁스(TIPS) 창업기업 지원계획 공고",
       "category": "사업화",
       "deadline": "2026-12-31",
-      "dday": 318,
+      "dday": 317,
       "supportAmount": "지원규모 1,624억원",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176076"
     },
@@ -306,7 +306,7 @@
       "title": "2026년 중앙부처 및 지자체 창업지원사업 통합공고",
       "category": "사업화",
       "deadline": "2026-12-31",
-      "dday": 318,
+      "dday": 317,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175783"
     },
@@ -328,7 +328,7 @@
       "title": "민간기업 분야 우수인재 특별귀화 추천 신청 모집 공고 (Announcement on the Call for Applications for Recommendation for Special Naturalization of Outstanding Private-Sector Talent)",
       "category": "사업화",
       "deadline": "2030-12-31",
-      "dday": 1779,
+      "dday": 1778,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176286"
     }

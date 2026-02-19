@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-02-19 23:05:54",
-  "count": 29,
-  "beforeDedupeCount": 30,
+  "updatedAt": "2026-02-19 23:58:58",
+  "count": 27,
+  "beforeDedupeCount": 28,
   "dedupRemoved": 1,
   "noDeadlineCount": 1,
   "sourceStats": {
     "bizinfo": 15,
-    "kstartup": 14
+    "kstartup": 12
   },
   "errors": [
     "iris: <urlopen error timed out>"
@@ -173,24 +173,14 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
     {
-      "id": "k-176321",
+      "id": "k-176324",
       "source": "kstartup",
-      "title": "2026년 삼육대학교 창업보육센터 입주기업 모집 공고",
-      "category": "글로벌",
-      "deadline": "2026-03-04",
-      "dday": 12,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176321"
-    },
-    {
-      "id": "k-176281",
-      "source": "kstartup",
-      "title": "2026년 창업성공패키지(청년창업사관학교 딥테크 심화과정) 지원사업 딥테크 5D 프로그램 운영사 모집 공고[연장]",
-      "category": "멘토링ㆍ컨설팅ㆍ교육",
+      "title": "[부산] 2026년 제1기「IP디딤돌 프로그램」IP창업존 예비창업자 교육생 모집 공고(특허 출원 지원)",
+      "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-03-05",
       "dday": 13,
-      "supportAmount": "총 1,200,000원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176281"
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176324"
     },
     {
       "id": "b-PBLN_000000000118624",
@@ -215,6 +205,16 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176114"
     },
     {
+      "id": "k-176330",
+      "source": "kstartup",
+      "title": "2026 예술분야 성장도약(스케일업) 지원사업 공모",
+      "category": "사업화",
+      "deadline": "2026-03-09",
+      "dday": 17,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176330"
+    },
+    {
       "id": "b-PBLN_000000000118626",
       "source": "bizinfo",
       "title": "[서울] 2026년 상반기 10기 프렙 아카데미 교육생 모집 공고",
@@ -227,14 +227,14 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118626"
     },
     {
-      "id": "k-176301",
+      "id": "k-176318",
       "source": "kstartup",
-      "title": "2026 액셀러레이터 연계지원-콘텐츠 액셀러레이터 모집 공고",
+      "title": "2026 농식품 기술창업 액셀러레이터 육성지원 시업 \"SMART AGRITECH\" 프로그램 참가 기업 모집 공고",
       "category": "시설ㆍ공간ㆍ보육",
       "deadline": "2026-03-13",
       "dday": 21,
       "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176301"
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176318"
     },
     {
       "id": "b-PBLN_000000000118631",
@@ -259,16 +259,6 @@
       "regDate": "2026-02-19",
       "supportAmount": "",
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118627"
-    },
-    {
-      "id": "k-176316",
-      "source": "kstartup",
-      "title": "K-Startup 사업공고 및 정부의 창업뉴스를 메일로 받아보세요.",
-      "category": "시설ㆍ공간ㆍ보육",
-      "deadline": "2026-03-31",
-      "dday": 39,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176316"
     },
     {
       "id": "k-171419",
@@ -299,16 +289,6 @@
       "dday": 314,
       "supportAmount": "",
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175783"
-    },
-    {
-      "id": "k-176323",
-      "source": "kstartup",
-      "title": "2026 서울 오픈이노베이션 파트너스 데이",
-      "category": "사업화",
-      "deadline": "2026-12-31",
-      "dday": 314,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176323"
     },
     {
       "id": "k-176334",

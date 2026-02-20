@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-20 08:01:46",
+  "updatedAt": "2026-02-20 10:05:34",
   "count": 28,
   "beforeDedupeCount": 30,
   "dedupRemoved": 2,
@@ -35,14 +35,14 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118672"
     },
     {
-      "id": "k-176349",
+      "id": "k-176353",
       "source": "kstartup",
-      "title": "(연장공고)(충남서부) 2026년 글로벌 IP 스타기업 육성(IP기반 해외진출지원) 모집 공고 (연장)",
-      "category": "글로벌",
+      "title": "2026년 서울시 프렙 아카데미 하반기(10기) 교육생 모집 (2/20~3/9)",
+      "category": "기술개발(R&D)",
       "deadline": "2026-03-02",
       "dday": 10,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176349"
+      "supportAmount": "1,429만원",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176353"
     },
     {
       "id": "b-PBLN_000000000118671",
@@ -87,14 +87,14 @@
       "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=175869"
     },
     {
-      "id": "k-176350",
+      "id": "k-176343",
       "source": "kstartup",
-      "title": "2026년 핀테크 특화 해외진출 프로그램(미국) 참가기업 모집 공고",
+      "title": "[경남]글로벌IP스타기업 육성 모집 공고",
       "category": "사업화",
       "deadline": "2026-03-04",
       "dday": 12,
       "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176350"
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176343"
     },
     {
       "id": "k-176114",
@@ -179,34 +179,34 @@
       "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?hashCode=&rowsSel=&rows=15&cpage=&cat=&schPblancDiv=&schJrsdCodeTy=&schWntyAt=&schAreaDetailCodes=&schEndAt=N&orderGb=&sort=&preKeywords=&condition=&condition1=&keyword=&pblancId=PBLN_000000000118670"
     },
     {
-      "id": "k-176357",
+      "id": "k-176356",
       "source": "kstartup",
-      "title": "[메이커스쿨 도봉] (예비)창업자를 위한 정부지원사업 교육",
+      "title": "[공고] 충남 천안 복합형 스타트업파크 입주기업(입주호실) 모집공고",
+      "category": "행사ㆍ네트워크",
+      "deadline": "2026-03-11",
+      "dday": 19,
+      "supportAmount": "",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176356"
+    },
+    {
+      "id": "k-176361",
+      "source": "kstartup",
+      "title": "2026 농식품 기술창업 액셀러레이터 육성지원 사업 (MYSC)",
       "category": "시설ㆍ공간ㆍ보육",
-      "deadline": "2026-03-09",
-      "dday": 17,
+      "deadline": "2026-03-16",
+      "dday": 24,
       "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176357"
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176361"
     },
     {
-      "id": "k-176355",
+      "id": "k-176341",
       "source": "kstartup",
-      "title": "2026 관광오픈이노베이션 사업 참여기업 모집",
-      "category": "창업교육",
-      "deadline": "2026-03-09",
-      "dday": 17,
-      "supportAmount": "5천만원",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176355"
-    },
-    {
-      "id": "k-176330",
-      "source": "kstartup",
-      "title": "2026 예술분야 성장도약(스케일업) 지원사업 공모",
-      "category": "사업화",
-      "deadline": "2026-03-09",
-      "dday": 17,
-      "supportAmount": "",
-      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176330"
+      "title": "2026년 「민관협력 오픈이노베이션 지원」전략과제 해결형(Top-Down) 스타트업 모집공고새로운게시글",
+      "category": "행사ㆍ네트워크",
+      "deadline": "2026-03-19",
+      "dday": 27,
+      "supportAmount": "지원금 1.4억원",
+      "url": "https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?schM=view&pbancSn=176341"
     },
     {
       "id": "b-PBLN_000000000118683",

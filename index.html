@@ -3,101 +3,483 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>지원공고알리미 MVP</title>
-  <script src="./notices.js?v=20260212-0059"></script>
+  <title>로또 번호 추천</title>
   <style>
-    :root{--bg:#f4f7fb;--card:#fff;--line:#dce4ee;--text:#1f2d3d;--sub:#62758b;--brand:#2d7ff9}
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{max-width:1200px;margin:0 auto;padding:20px}
-    h1{margin:0 0 4px;color:#16314f}
-    .small{font-size:12px;color:var(--sub)}
-
-    .stats,.profile,.filters,.todo,.cards{display:grid;gap:10px}
-    .stats{grid-template-columns:1fr;margin-bottom:10px}
-    .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
-
-    .profile{grid-template-columns:repeat(4,1fr) auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
-    .filters{grid-template-columns:1.2fr .8fr .8fr .8fr .8fr auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
-    input,select,button{padding:10px;border:1px solid #c8d5e4;border-radius:10px;background:#fff}
-    button{cursor:pointer}.btn{background:var(--brand);color:#fff;border:none;font-weight:700}
-    .btn-lite{background:#fff;color:#2f5b95;border:1px solid #cfe0f3;font-weight:700}
-    .btn-lite.on{background:#eef4ff}
-
-    .todo{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
-    .todo ul{margin:8px 0 0 18px;padding:0}
-    .bookbtn{font-size:12px;padding:6px 10px}
-
-    .cards{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));padding-bottom:80px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
-    .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-    .tag{font-size:12px;padding:3px 8px;border-radius:999px;background:#eef4ff;border:1px solid #d2e1ff;color:#2f5b95;white-space:nowrap}
-    .d1{background:#fff2f2;border-color:#ffcaca;color:#b42318}.d3{background:#fff8eb;border-color:#ffd9ab;color:#ad5b00}.d7{background:#f2fbf7;border-color:#c9efdf;color:#0a7a52}
-    .fit-hi{background:#effcf6;border-color:#b8ebd4;color:#0a7a52}.fit-mid{background:#fff8eb;border-color:#ffd9ab;color:#ad5b00}.fit-low{background:#f4f7fb;border-color:#d7e1ed;color:#5f7186}
-    .reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .reason{font-size:11px;padding:2px 8px;border-radius:999px;background:#f7f9fd;border:1px solid #e1e8f2;color:#4f6479}
-    a{color:#1b73e8;text-decoration:none;font-weight:600}
-    .openchat-wrap{margin:0 0 10px;display:flex;gap:8px;flex-wrap:wrap}
-    .openchat-btn{display:inline-block;background:#FEE500;color:#1f1f1f !important;border:1px solid #e8d200;padding:10px 14px;border-radius:10px;font-weight:800}
-    .docshunt-btn{display:inline-block;background:var(--brand);color:#fff !important;border:1px solid #1f6fe7;padding:10px 14px;border-radius:10px;font-weight:800}
-    .sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex;justify-content:center;pointer-events:none}
-    .sticky-cta a{pointer-events:auto;display:inline-block;background:#FEE500;color:#1f1f1f !important;border:1px solid #e8d200;padding:12px 18px;border-radius:999px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.15)}
-
-    @media (max-width:1050px){
-      .stats{grid-template-columns:1fr 1fr}
-      .profile{grid-template-columns:1fr 1fr 1fr}
-      .filters{grid-template-columns:1fr 1fr}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    @media (max-width:640px){
-      .cards{grid-template-columns:1fr}
-      .profile{grid-template-columns:1fr 1fr}
-      .sticky-cta{left:8px;right:8px;bottom:8px}
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: background 0.3s;
+    }
+    
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+    }
+    
+    body.dark-mode .container {
+      background: #2d2d44;
+      color: #e0e0e0;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .theme-toggle:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    body.dark-mode .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 32px;
+      transition: color 0.3s;
+    }
+    
+    body.dark-mode h1 {
+      color: #e0e0e0;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #999;
+      margin-bottom: 30px;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+    
+    body.dark-mode .subtitle {
+      color: #a0a0a0;
+    }
+    
+    .lotto-section {
+      margin-bottom: 30px;
+    }
+    
+    .lotto-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: center;
+      transition: color 0.3s;
+    }
+    
+    body.dark-mode .lotto-title {
+      color: #e0e0e0;
+    }
+    
+    .numbers-display {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .number-ball {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: transform 0.2s;
+    }
+    
+    .number-ball:not(.empty):hover {
+      transform: scale(1.1);
+    }
+    
+    .number-ball.empty {
+      background: #f0f0f0;
+      color: #999;
+    }
+    
+    body.dark-mode .number-ball.empty {
+      background: #404050;
+      color: #606070;
+    }
+    
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+    }
+    
+    .btn-generate {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      grid-column: span 2;
+    }
+    
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-generate:active {
+      transform: translateY(0);
+    }
+    
+    .btn-save {
+      background: #f0f0f0;
+      color: #333;
+      flex: 1;
+    }
+    
+    .btn-save:hover {
+      background: #e0e0e0;
+    }
+    
+    .btn-copy {
+      background: #667eea;
+      color: white;
+      flex: 1;
+    }
+    
+    .btn-copy:hover {
+      background: #5568d3;
+    }
+    
+    .history {
+      margin-top: 30px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 20px;
+    }
+    
+    .history-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .history-item {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    
+    .history-numbers {
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .history-time {
+      color: #999;
+      font-size: 12px;
+    }
+    
+    .btn-delete {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 0;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    
+    .btn-delete:hover {
+      color: #ff6b6b;
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+    
+    .copy-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    
+    .copy-notification.show {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>지원공고알리미</h1>
-
-  <div class="openchat-wrap">
-    <a class="openchat-btn" href="https://open.kakao.com/o/g8G5kWfi" target="_blank" rel="noopener noreferrer">카톡 오픈채팅 바로가기</a>
-    <a class="docshunt-btn" href="https://app.docshunt.ai/" target="_blank" rel="noopener noreferrer">사업계획서 쓰러가기</a>
-  </div>
-
-  <section class="stats">
-    <div class="box">
-      <div id="updatedAt" class="small">최근 업데이트: -</div>
-      <div id="dataSource" class="small">데이터 출처: -</div>
-      <div id="opSource" class="small">운영 소스: -</div>
+<div class="container">
+  <h1>🍀 로또 번호</h1>
+  <p class="subtitle">행운의 번호를 추천받으세요</p>
+  
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-value" id="totalCount">0</div>
+      <div class="stat-label">생성 횟수</div>
     </div>
-  </section>
-
-  <section class="profile">
-    <select id="p_region"><option value="all">내 지역</option><option>서울</option><option>경기</option><option>부산</option><option>전북</option><option>강원</option></select>
-    <select id="p_stage"><option value="all">업력</option><option value="예비">예비창업</option><option value="초기">3년 미만</option><option value="도약">7년 미만</option></select>
-    <select id="p_field"><option value="all">관심분야</option><option value="창업">창업</option><option value="수출">수출</option><option value="기술">기술</option><option value="금융">금융</option></select>
-    <select id="p_goal"><option value="all">목표</option><option value="지원금">지원금</option><option value="판로">판로</option><option value="투자">투자</option></select>
-    <button class="btn" onclick="saveProfile()">프로필 저장</button>
-  </section>
-
-  <section class="filters">
-    <input id="q" placeholder="키워드 (예: 예비창업패키지, 수출, R&D)"/>
-    <select id="source"><option value="all">전체 출처</option><option value="kstartup">K-Startup</option><option value="bizinfo">기업마당</option></select>
-    <select id="region"><option value="all">지역 전체</option><option>서울</option><option>경기</option><option>부산</option><option>전북</option><option>강원</option></select>
-    <select id="dd"><option value="all">마감 전체</option><option value="1">D-1</option><option value="3">D-3</option><option value="7">D-7</option></select>
-    <select id="viewMode"><option value="all">전체 보기</option><option value="bookmarked">북마크만</option></select>
-    <button class="btn" onclick="render()">적용</button>
-  </section>
-
-  <section class="todo">
-    <b>오늘의 실행 플랜</b>
-    <ul id="todoList"></ul>
-  </section>
-
-  <section id="cards" class="cards"></section>
+    <div class="stat-box">
+      <div class="stat-value" id="savedCount">0</div>
+      <div class="stat-label">저장된 번호</div>
+    </div>
+  </div>
+  
+  <div class="lotto-section">
+    <div class="lotto-title">추천 번호</div>
+    <div class="numbers-display" id="numbersDisplay">
+      <div class="number-ball empty">-</div>
+      <div class="number-ball empty">-</div>
+      <div class="number-ball empty">-</div>
+      <div class="number-ball empty">-</div>
+      <div class="number-ball empty">-</div>
+      <div class="number-ball empty">-</div>
+    </div>
+    
+    <div class="button-group">
+      <button class="btn btn-generate" onclick="generateLottoNumbers()">🎲 번호 생성</button>
+    </div>
+    
+    <div class="button-group" style="margin-top: 10px;">
+      <button class="btn btn-save" onclick="saveLottoNumbers()">💾 저장</button>
+      <button class="btn btn-copy" onclick="copyLottoNumbers()">📋 복사</button>
+    </div>
+  </div>
+  
+  <div class="history">
+    <div class="history-title">저장된 번호 목록</div>
+    <div id="historyContainer"></div>
+    <div id="emptyMessage" style="text-align: center; color: #999; font-size: 14px; padding: 20px;">
+      저장된 번호가 없습니다
+    </div>
+  </div>
 </div>
 
-<div class="sticky-cta">
-  <a href="https://open.kakao.com/o/g8G5kWfi" target="_blank" rel="noopener noreferrer">카톡 오픈채팅 바로가기</a>
+<div class="copy-notification" id="notification"></div>
+
+<script>
+  let currentNumbers = [];
+  let savedNumbers = [];
+  const STORAGE_KEY = 'lottoSavedNumbers';
+  const STATS_KEY = 'lottoStats';
+  
+  // 페이지 로드 시 저장된 데이터 불러오기
+  function init() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      savedNumbers = JSON.parse(saved);
+    }
+    const stats = localStorage.getItem(STATS_KEY);
+    if (stats) {
+      const statData = JSON.parse(stats);
+      document.getElementById('totalCount').textContent = statData.totalCount || 0;
+    }
+    updateHistoryDisplay();
+  }
+  
+  // 로또 번호 생성 (1-45 범위에서 중복 없이 6개 선택)
+  function generateLottoNumbers() {
+    currentNumbers = [];
+    while (currentNumbers.length < 6) {
+      const num = Math.floor(Math.random() * 45) + 1;
+      if (!currentNumbers.includes(num)) {
+        currentNumbers.push(num);
+      }
+    }
+    currentNumbers.sort((a, b) => a - b);
+    displayNumbers();
+    updateStats('totalCount', 1);
+  }
+  
+  // 번호 화면에 표시
+  function displayNumbers() {
+    const display = document.getElementById('numbersDisplay');
+    display.innerHTML = '';
+    currentNumbers.forEach(num => {
+      const ball = document.createElement('div');
+      ball.className = 'number-ball';
+      ball.textContent = String(num).padStart(2, '0');
+      display.appendChild(ball);
+    });
+  }
+  
+  // 번호 저장
+  function saveLottoNumbers() {
+    if (currentNumbers.length !== 6) {
+      showNotification('먼저 번호를 생성해주세요');
+      return;
+    }
+    
+    const entry = {
+      numbers: currentNumbers.join(', '),
+      time: new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    savedNumbers.unshift(entry);
+    if (savedNumbers.length > 10) {
+      savedNumbers.pop();
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedNumbers));
+    updateHistoryDisplay();
+    updateStats('savedCount', 1);
+    showNotification('번호가 저장되었습니다');
+  }
+  
+  // 번호 복사
+  function copyLottoNumbers() {
+    if (currentNumbers.length !== 6) {
+      showNotification('먼저 번호를 생성해주세요');
+      return;
+    }
+    
+    const text = currentNumbers.join(', ');
+    navigator.clipboard.writeText(text).then(() => {
+      showNotification('번호가 복사되었습니다');
+    }).catch(() => {
+      showNotification('복사 실패');
+    });
+  }
+  
+  // 저장 목록 업데이트
+  function updateHistoryDisplay() {
+    const container = document.getElementById('historyContainer');
+    const emptyMsg = document.getElementById('emptyMessage');
+    
+    container.innerHTML = '';
+    
+    if (savedNumbers.length === 0) {
+      emptyMsg.style.display = 'block';
+      return;
+    }
+    
+    emptyMsg.style.display = 'none';
+    
+    savedNumbers.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'history-item';
+      div.innerHTML = `
+        <div>
+          <div class="history-numbers">${item.numbers}</div>
+          <div class="history-time">${item.time}</div>
+        </div>
+        <button class="btn-delete" onclick="deleteHistory(${index})">✕</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+  
+  // 저장된 항목 삭제
+  function deleteHistory(index) {
+    savedNumbers.splice(index, 1);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedNumbers));
+    updateHistoryDisplay();
+  }
+  
+  // 통계 업데이트
+  function updateStats(key, value) {
+    let stats = JSON.parse(localStorage.getItem(STATS_KEY) || '{}');
+    stats[key] = (stats[key] || 0) + value;
+    localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    document.getElementById(key).textContent = stats[key];
+  }
+  
+  // 알림 표시
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 2000);
+  }
+  
+  // 초기화
+  init();
+</script>
+</body>
+</html>
 </div>
 
 <script>

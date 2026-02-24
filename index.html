@@ -3,272 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Food Conquest | 맛집 영토 전쟁</title>
-    
-    <!-- 카톡/공유 시 미리보기 설정 (Open Graph) -->
-    <meta property="og:title" content="K-Food Conquest: 맛집 영토 전쟁" />
-    <meta property="og:description" content="한국 맛집에 내 조국의 깃발을 꽂으세요! 전 세계 미식가들과 벌이는 실시간 영토 전쟁" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ys970605-boop.github.io/support-notice-alimi/" />
-
-    <!-- 지도 라이브러리 Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <title>K-Food Conquest .io | 맛집 영토 전쟁</title>
+    <meta property="og:title" content="K-Food Conquest .io" />
+    <meta property="og:description" content="전 세계 유저들과 실시간으로 벌이는 한국 맛집 땅따먹기 게임!" />
     <style>
-        :root {
-            --china: #ff4d4f;
-            --taiwan: #1890ff;
-            --japan: #ffffff;
-            --korea: #52c41a;
-            --dark: #1a1a2e;
-            --gold: #fadb14;
-            --accent: #ff4d4f;
-        }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Apple SD Gothic Neo', sans-serif; background: var(--dark); overflow: hidden; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #111; overflow: hidden; font-family: 'Apple SD Gothic Neo', sans-serif; touch-action: none; }
         
-        /* 상단 전황판 */
+        #ui-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;
+        }
+
         #scoreboard {
-            position: absolute; top: 10px; left: 10px; right: 10px; z-index: 1000;
-            background: rgba(26, 26, 46, 0.9); border: 2px solid var(--gold);
-            border-radius: 15px; padding: 10px; display: flex; justify-content: space-around;
-            color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); border-radius: 10px; padding: 15px; width: 180px; color: #fff; pointer-events: auto;
         }
-        .score-item { text-align: center; }
-        .score-item .flag { font-size: 20px; display: block; }
-        .score-item .val { font-weight: bold; font-size: 14px; color: var(--gold); }
-        .score-item .label { font-size: 10px; opacity: 0.8; }
-
-        /* 내 지갑 (Wallet) */
-        #wallet {
-            position: absolute; top: 85px; right: 10px; z-index: 1000;
-            background: rgba(82, 196, 26, 0.9); color: white; padding: 5px 15px;
-            border-radius: 20px; font-weight: bold; font-size: 13px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            display: flex; align-items: center; gap: 8px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* 지도 영역 */
-        #map { width: 100%; height: 100%; z-index: 1; }
-
-        /* 하단 점령 패널 (Bottom Sheet) */
-        #capture-panel {
-            position: absolute; bottom: -100%; left: 0; right: 0; z-index: 2000;
-            background: white; border-top-left-radius: 25px; border-top-right-radius: 25px;
-            padding: 20px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
-            max-height: 80vh; overflow-y: auto;
-        }
-        #capture-panel.open { bottom: 0; }
-        .panel-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .res-name { font-size: 22px; font-weight: 900; color: var(--dark); margin: 0; }
-        .res-addr { font-size: 13px; color: #666; margin: 4px 0; }
+        .score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: bold; }
+        .score-row.me { color: #fadb14; }
+        .score-flag { font-size: 18px; margin-right: 8px; }
+        .score-bar-bg { flex-grow: 1; height: 8px; background: #333; border-radius: 4px; margin: 0 10px; overflow: hidden; }
+        .score-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
         
-        /* 영수증 업로드 시뮬레이션 */
-        .upload-zone {
-            border: 2px dashed #ddd; border-radius: 12px; padding: 20px;
-            text-align: center; color: #999; font-size: 13px; margin-bottom: 15px;
-            background: #fafafa;
+        #title-box {
+            position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); padding: 10px 20px; border-radius: 10px; color: white;
         }
-        .upload-zone b { color: var(--dark); display: block; margin-bottom: 5px; }
+        #title-box h1 { margin: 0; font-size: 18px; color: #fadb14; }
+        #title-box p { margin: 5px 0 0 0; font-size: 12px; color: #aaa; }
 
-        /* 별점 시스템 */
-        .rating-box { margin: 15px 0; border-top: 1px solid #eee; padding-top: 15px; }
-        .rating-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .rating-label { font-weight: bold; font-size: 15px; color: var(--dark); }
-        .stars { color: #ddd; font-size: 20px; letter-spacing: 5px; cursor: pointer; }
-        .stars.active { color: var(--gold); }
-
-        /* 점령 버튼 */
-        .btn-capture {
-            width: 100%; padding: 15px; border: none; border-radius: 12px;
-            background: var(--dark); color: white; font-size: 18px; font-weight: bold;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        #game-over {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9); padding: 40px; border-radius: 20px; text-align: center;
+            color: white; display: none; pointer-events: auto; border: 2px solid #ff4d4f;
         }
-        .btn-capture:active { transform: scale(0.98); }
-        .reward-info { text-align: center; margin-top: 10px; font-size: 12px; color: #ff4d4f; font-weight: bold; }
+        #game-over h2 { color: #ff4d4f; font-size: 32px; margin-top: 0; }
+        #game-over button {
+            background: #fadb14; color: #000; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold;
+            border-radius: 30px; cursor: pointer; margin-top: 20px;
+        }
 
-        /* 깃발 아이콘 스타일 */
-        .flag-icon {
-            background: white; border: 2px solid var(--dark); border-radius: 50%;
-            width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-            font-size: 18px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        canvas { display: block; width: 100%; height: 100%; }
+
+        /* 모바일 조작 안내 */
+        #controls-hint {
+            position: absolute; bottom: 30px; width: 100%; text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div id="scoreboard">
-        <div class="score-item">
-            <span class="flag">🇨🇳</span>
-            <span class="val" id="score-cn">42%</span>
-            <span class="label">중국</span>
+    <div id="ui-layer">
+        <div id="title-box">
+            <h1>K-Food Conquest .io</h1>
+            <p>내 조국의 깃발로 영토를 넓혀라!</p>
         </div>
-        <div class="score-item" style="border-left: 1px solid #444; border-right: 1px solid #444; padding: 0 20px;">
-            <span class="flag">🇰🇷</span>
-            <span class="val" id="score-kr">28%</span>
-            <span class="label">대한민국</span>
+        
+        <div id="scoreboard">
+            <!-- JS로 채워짐 -->
         </div>
-        <div class="score-item">
-            <span class="flag">🇹🇼</span>
-            <span class="val" id="score-tw">15%</span>
-            <span class="label">대만</span>
-        </div>
-        <div class="score-item">
-            <span class="flag">🇯🇵</span>
-            <span class="val" id="score-jp">15%</span>
-            <span class="label">일본</span>
+
+        <div id="controls-hint">화면을 스와이프하거나 방향키를 눌러 이동하세요</div>
+
+        <div id="game-over">
+            <h2>영토를 빼앗겼습니다!</h2>
+            <p>적에게 꼬리를 밟혔거나 벽에 부딪혔습니다.</p>
+            <p style="color:#fadb14; font-size: 20px; font-weight: bold;">최종 점유율: <span id="final-score">0</span>%</p>
+            <button onclick="startGame()">다시 도전하기</button>
         </div>
     </div>
 
-    <div id="wallet">
-        <span>💰 My Reward:</span>
-        <span id="my-cash">₩ 1,500</span>
-    </div>
-
-    <div id="map"></div>
-
-    <div id="capture-panel">
-        <div class="panel-header">
-            <div>
-                <h2 id="p-name" class="res-name">식당 이름</h2>
-                <p id="p-addr" class="res-addr">주소 정보 로딩 중...</p>
-                <span id="p-owner" style="font-size: 11px; background: #eee; padding: 2px 6px; border-radius: 4px;">현재 점령국: 🇨🇳 중국 사령부</span>
-            </div>
-            <button onclick="closePanel()" style="background:none; border:none; font-size:24px;">×</button>
-        </div>
-
-        <div class="upload-zone" onclick="alert('카메라 앱을 실행합니다 (인증 모드)')">
-            <b>📸 영수증 인증 (필수)</b>
-            점령을 위해 영수증 사진을 업로드하세요
-        </div>
-
-        <div class="rating-box">
-            <div class="rating-row">
-                <span class="rating-label">맛 (Taste)</span>
-                <div class="stars" onclick="setStar(this)">★★★★★</div>
-            </div>
-            <div class="rating-row">
-                <span class="rating-label">위생 (Hygiene)</span>
-                <div class="stars" onclick="setStar(this)">★★★★★</div>
-            </div>
-            <div class="rating-row">
-                <span class="rating-label">서비스 (Service)</span>
-                <div class="stars" onclick="setStar(this)">★★★★★</div>
-            </div>
-        </div>
-
-        <button class="btn-capture" id="capture-btn" onclick="captureAction()">
-            🚩 내 조국의 깃발 꽂기
-        </button>
-        <p class="reward-info">💸 정복 성공 시 500원 즉시 지갑 적립</p>
-    </div>
+    <canvas id="gameCanvas"></canvas>
 
     <script>
-        let myCash = 1500;
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
         
-        // 지도 초기화 (서울 성수동 중심)
-        const map = L.map('map', { zoomControl: false }).setView([37.5445, 127.0560], 16);
-        
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+        // 게임 설정
+        const W = 60; // 그리드 너비
+        const H = 60; // 그리드 높이
+        let TILE = 20; // 타일 크기 (반응형)
+        let offsetX = 0, offsetY = 0;
 
-        // 테스트 데이터 (성수동 맛집 거점)
-        const spots = [
-            { id: 1, name: "성수족발", addr: "성수동2가 302-1", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", color: "#ff4d4f" },
-            { id: 2, name: "어니언 성수", addr: "성수동2가 277-7", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", color: "#ffffff" },
-            { id: 3, name: "소문난성수감자탕", addr: "성수동2가 315-100", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", color: "#52c41a" },
-            { id: 4, name: "대성갈비", addr: "성수동1가 668-21", lat: 37.5470, lng: 127.0430, owner: "🇹🇼", color: "#1890ff" },
-            { id: 5, name: "블루보틀 성수", addr: "성수동1가 656-302", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", color: "#ff4d4f" }
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // 화면에 맞게 타일 크기 계산 (그리드가 화면에 꽉 차거나 넘치게)
+            TILE = Math.max(window.innerWidth / 40, window.innerHeight / 40);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // 플레이어 및 봇 정보
+        const TEAMS = [
+            { id: 1, name: "한국", flag: "🇰🇷", color: "#52c41a", trailColor: "rgba(82, 196, 26, 0.5)" }, // 플레이어
+            { id: 2, name: "중국", flag: "🇨🇳", color: "#ff4d4f", trailColor: "rgba(255, 77, 79, 0.5)" },
+            { id: 3, name: "일본", flag: "🇯🇵", color: "#d9d9d9", trailColor: "rgba(217, 217, 217, 0.5)" },
+            { id: 4, name: "대만", flag: "🇹🇼", color: "#1890ff", trailColor: "rgba(24, 144, 255, 0.5)" }
         ];
 
-        let selectedSpot = null;
-        const markers = {};
+        let gridOwner = [];
+        let gridTrail = [];
+        let players = [];
+        let gameLoop;
+        let isGameOver = false;
 
-        // 마커 생성 및 맵 표시
-        spots.forEach(spot => {
-            const icon = L.divIcon({
-                className: 'custom-div-icon',
-                html: `<div class="flag-icon" style="border-color:${spot.color}">${spot.owner}</div>`,
-                iconSize: [30, 30],
-                iconAnchor: [15, 15]
+        function initGrid() {
+            gridOwner = Array(W).fill().map(() => Array(H).fill(0));
+            gridTrail = Array(W).fill().map(() => Array(H).fill(0));
+        }
+
+        function createPlayer(id, startX, startY) {
+            // 초기 3x3 영토
+            for(let i=-1; i<=1; i++) {
+                for(let j=-1; j<=1; j++) {
+                    if(startX+i >= 0 && startX+i < W && startY+j >= 0 && startY+j < H) {
+                        gridOwner[startX+i][startY+j] = id;
+                    }
+                }
+            }
+            return {
+                id: id,
+                x: startX, y: startY,
+                dx: 0, dy: -1, // 초기 이동 방향 (위)
+                nextDx: 0, nextDy: -1,
+                trail: [],
+                alive: true,
+                score: 9
+            };
+        }
+
+        function startGame() {
+            document.getElementById('game-over').style.display = 'none';
+            isGameOver = false;
+            initGrid();
+            
+            // 플레이어 및 봇 배치 (모서리 근처)
+            players = [
+                createPlayer(1, Math.floor(W*0.2), Math.floor(H*0.8)), // P1 (하단 좌측)
+                createPlayer(2, Math.floor(W*0.8), Math.floor(H*0.2)), // B1
+                createPlayer(3, Math.floor(W*0.2), Math.floor(H*0.2)), // B2
+                createPlayer(4, Math.floor(W*0.8), Math.floor(H*0.8))  // B3
+            ];
+
+            if(gameLoop) clearInterval(gameLoop);
+            gameLoop = setInterval(update, 100); // 속도 (100ms 마다 1칸)
+            window.requestAnimationFrame(draw);
+        }
+
+        // 영역 채우기 알고리즘 (Flood Fill 방식을 이용한 외곽 판별)
+        function captureTerritory(pId) {
+            // 1. 트레일을 내 영토로 변환
+            let p = players.find(x => x.id === pId);
+            p.trail.forEach(t => {
+                gridOwner[t.x][t.y] = pId;
+                gridTrail[t.x][t.y] = 0;
+            });
+            p.trail = [];
+
+            // 2. 외곽선(Edge)에서 시작하여 내 영토가 아닌 곳을 모두 탐색 (Flood Fill)
+            let visited = Array(W).fill().map(() => Array(H).fill(false));
+            let queue = [];
+
+            // 외곽 픽셀 큐에 삽입
+            for(let x=0; x<W; x++) {
+                if(gridOwner[x][0] !== pId) { queue.push({x:x, y:0}); visited[x][0] = true; }
+                if(gridOwner[x][H-1] !== pId) { queue.push({x:x, y:H-1}); visited[x][H-1] = true; }
+            }
+            for(let y=0; y<H; y++) {
+                if(gridOwner[0][y] !== pId) { queue.push({x:0, y:y}); visited[0][y] = true; }
+                if(gridOwner[W-1][y] !== pId) { queue.push({x:W-1, y:y}); visited[W-1][y] = true; }
+            }
+
+            // BFS
+            let dirs = [[0,1],[0,-1],[1,0],[-1,0]];
+            let head = 0;
+            while(head < queue.length) {
+                let curr = queue[head++];
+                for(let d of dirs) {
+                    let nx = curr.x + d[0];
+                    let ny = curr.y + d[1];
+                    if(nx>=0 && nx<W && ny>=0 && ny<H) {
+                        if(!visited[nx][ny] && gridOwner[nx][ny] !== pId) {
+                            visited[nx][ny] = true;
+                            queue.push({x:nx, y:ny});
+                        }
+                    }
+                }
+            }
+
+            // 3. 방문하지 않은 영역(갇힌 영역)은 내 영토로 편입
+            for(let x=0; x<W; x++) {
+                for(let y=0; y<H; y++) {
+                    if(!visited[x][y] && gridOwner[x][y] !== pId) {
+                        gridOwner[x][y] = pId;
+                        gridTrail[x][y] = 0; // 남의 트레일 지우기
+                    }
+                }
+            }
+        }
+
+        function killPlayer(p) {
+            p.alive = false;
+            // 영토 및 트레일 지우기
+            for(let x=0; x<W; x++) {
+                for(let y=0; y<H; y++) {
+                    if(gridOwner[x][y] === p.id) gridOwner[x][y] = 0;
+                    if(gridTrail[x][y] === p.id) gridTrail[x][y] = 0;
+                }
+            }
+            if(p.id === 1) { // 내가 죽음
+                isGameOver = true;
+                clearInterval(gameLoop);
+                document.getElementById('final-score').innerText = ((p.score / (W*H)) * 100).toFixed(1);
+                document.getElementById('game-over').style.display = 'block';
+            }
+        }
+
+        // 아주 단순한 봇 AI
+        function updateBots() {
+            players.forEach(p => {
+                if(p.id === 1 || !p.alive) return; // 나(1) 제외
+                
+                let possibleMoves = [[0,-1],[0,1],[-1,0],[1,0]].filter(d => {
+                    if(d[0] === -p.dx && d[1] === -p.dy) return false; // 후진 금지
+                    let nx = p.x + d[0], ny = p.y + d[1];
+                    if(nx < 0 || nx >= W || ny < 0 || ny >= H) return false; // 벽 피하기
+                    if(gridTrail[nx][ny] === p.id) return false; // 자기 꼬리 피하기
+                    return true;
+                });
+
+                if(possibleMoves.length > 0) {
+                    // 직진을 선호하되 가끔 방향 전환
+                    let goStraight = possibleMoves.find(d => d[0] === p.dx && d[1] === p.dy);
+                    if(goStraight && Math.random() > 0.1) {
+                        p.nextDx = goStraight[0]; p.nextDy = goStraight[1];
+                    } else {
+                        let randMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                        p.nextDx = randMove[0]; p.nextDy = randMove[1];
+                    }
+                }
+            });
+        }
+
+        function update() {
+            if(isGameOver) return;
+
+            updateBots();
+
+            // 점수 계산용
+            let scores = {1:0, 2:0, 3:0, 4:0};
+
+            players.forEach(p => {
+                if(!p.alive) return;
+
+                p.dx = p.nextDx;
+                p.dy = p.nextDy;
+                let nx = p.x + p.dx;
+                let ny = p.y + p.dy;
+
+                // 벽 충돌 체크
+                if(nx < 0 || nx >= W || ny < 0 || ny >= H) {
+                    killPlayer(p);
+                    return;
+                }
+
+                // 다른 사람이나 내 꼬리 밟음 체크
+                if(gridTrail[nx][ny] !== 0) {
+                    let victimId = gridTrail[nx][ny];
+                    let victim = players.find(x => x.id === victimId);
+                    if(victim) killPlayer(victim);
+                    
+                    if(victimId === p.id) return; // 내가 내 꼬리 밟고 죽었으면 여기서 종료
+                }
+
+                // 이동 처리
+                if(gridOwner[nx][ny] === p.id) {
+                    // 내 영토로 돌아옴
+                    if(p.trail.length > 0) {
+                        p.trail.push({x:nx, y:ny}); // 일단 트레일에 추가
+                        captureTerritory(p.id);
+                    }
+                } else {
+                    // 남의 영토나 빈 땅 탐험 중 -> 트레일 남김
+                    p.trail.push({x:nx, y:ny});
+                    gridTrail[nx][ny] = p.id;
+                }
+
+                p.x = nx;
+                p.y = ny;
             });
 
-            const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
-            markers[spot.id] = marker;
+            // 점수 집계
+            for(let x=0; x<W; x++) {
+                for(let y=0; y<H; y++) {
+                    if(gridOwner[x][y] !== 0) {
+                        scores[gridOwner[x][y]]++;
+                    }
+                }
+            }
+            players.forEach(p => p.score = scores[p.id] || 0);
 
-            marker.on('click', () => {
-                selectedSpot = spot;
-                openPanel(spot);
+            updateScoreboard();
+        }
+
+        function updateScoreboard() {
+            let sorted = [...players].filter(p => p.alive).sort((a,b) => b.score - a.score);
+            let html = '';
+            sorted.forEach((p, idx) => {
+                let team = TEAMS.find(t => t.id === p.id);
+                let percent = ((p.score / (W*H)) * 100).toFixed(1);
+                html += `
+                    <div class="score-row ${p.id === 1 ? 'me' : ''}">
+                        <span class="score-flag">${team.flag}</span>
+                        <div class="score-bar-bg">
+                            <div class="score-bar" style="width:${percent}%; background-color:${team.color}"></div>
+                        </div>
+                        <span>${percent}%</span>
+                    </div>
+                `;
             });
+            document.getElementById('scoreboard').innerHTML = html;
+        }
+
+        function draw() {
+            if(isGameOver) return;
+
+            ctx.fillStyle = '#222';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 카메라 중심을 플레이어에 맞춤
+            let myPlayer = players.find(p => p.id === 1);
+            if(myPlayer) {
+                offsetX = canvas.width/2 - myPlayer.x * TILE;
+                offsetY = canvas.height/2 - myPlayer.y * TILE;
+            }
+
+            ctx.save();
+            ctx.translate(offsetX, offsetY);
+
+            // 그리드 배경
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            for(let x=0; x<=W; x++) {
+                ctx.beginPath(); ctx.moveTo(x*TILE, 0); ctx.lineTo(x*TILE, H*TILE); ctx.stroke();
+            }
+            for(let y=0; y<=H; y++) {
+                ctx.beginPath(); ctx.moveTo(0, y*TILE); ctx.lineTo(W*TILE, y*TILE); ctx.stroke();
+            }
+
+            // 영토 및 꼬리 그리기
+            for(let x=0; x<W; x++) {
+                for(let y=0; y<H; y++) {
+                    if(gridOwner[x][y] !== 0) {
+                        let t = TEAMS.find(team => team.id === gridOwner[x][y]);
+                        ctx.fillStyle = t.color;
+                        ctx.fillRect(x*TILE, y*TILE, TILE, TILE);
+                    }
+                    if(gridTrail[x][y] !== 0) {
+                        let t = TEAMS.find(team => team.id === gridTrail[x][y]);
+                        ctx.fillStyle = t.trailColor;
+                        ctx.fillRect(x*TILE + 2, y*TILE + 2, TILE - 4, TILE - 4);
+                    }
+                }
+            }
+
+            // 플레이어(헤드) 및 국기 그리기
+            players.forEach(p => {
+                if(!p.alive) return;
+                let t = TEAMS.find(team => team.id === p.id);
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.arc(p.x*TILE + TILE/2, p.y*TILE + TILE/2, TILE/2, 0, Math.PI*2);
+                ctx.fill();
+                
+                // 이모지 국기 그리기
+                ctx.font = `${TILE*0.8}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(t.flag, p.x*TILE + TILE/2, p.y*TILE + TILE/2 + 2);
+            });
+
+            ctx.restore();
+
+            window.requestAnimationFrame(draw);
+        }
+
+        // 조작 (PC 방향키)
+        window.addEventListener('keydown', e => {
+            let myPlayer = players.find(p => p.id === 1);
+            if(!myPlayer || !myPlayer.alive) return;
+
+            if(e.key === 'ArrowUp' && myPlayer.dy !== 1) { myPlayer.nextDx = 0; myPlayer.nextDy = -1; }
+            if(e.key === 'ArrowDown' && myPlayer.dy !== -1) { myPlayer.nextDx = 0; myPlayer.nextDy = 1; }
+            if(e.key === 'ArrowLeft' && myPlayer.dx !== 1) { myPlayer.nextDx = -1; myPlayer.nextDy = 0; }
+            if(e.key === 'ArrowRight' && myPlayer.dx !== -1) { myPlayer.nextDx = 1; myPlayer.nextDy = 0; }
         });
 
-        function openPanel(spot) {
-            document.getElementById('p-name').innerText = spot.name;
-            document.getElementById('p-addr').innerText = spot.addr;
-            document.getElementById('p-owner').innerText = `현재 점령국: ${spot.owner} 사령부`;
-            document.getElementById('capture-panel').classList.add('open');
+        // 조작 (모바일 스와이프)
+        let touchStartX = 0, touchStartY = 0;
+        window.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, {passive: false});
+
+        window.addEventListener('touchmove', e => e.preventDefault(), {passive: false});
+
+        window.addEventListener('touchend', e => {
+            let myPlayer = players.find(p => p.id === 1);
+            if(!myPlayer || !myPlayer.alive) return;
+
+            let touchEndX = e.changedTouches[0].screenX;
+            let touchEndY = e.changedTouches[0].screenY;
             
-            // 별점 초기화
-            document.querySelectorAll('.stars').forEach(s => {
-                s.classList.remove('active');
-                s.innerText = "★★★★★";
-            });
-        }
-
-        function closePanel() {
-            document.getElementById('capture-panel').classList.remove('open');
-        }
-
-        function setStar(el) {
-            el.classList.add('active');
-            // 시각적 피드백
-        }
-
-        function captureAction() {
-            if(!selectedSpot) return;
+            let dx = touchEndX - touchStartX;
+            let dy = touchEndY - touchStartY;
             
-            const btn = document.getElementById('capture-btn');
-            btn.innerHTML = "⌛ 영수증 AI 분석 중...";
-            btn.style.background = "#52c41a";
+            if(Math.abs(dx) > Math.abs(dy)) {
+                // 좌우 스와이프
+                if(dx > 30 && myPlayer.dx !== -1) { myPlayer.nextDx = 1; myPlayer.nextDy = 0; }
+                else if(dx < -30 && myPlayer.dx !== 1) { myPlayer.nextDx = -1; myPlayer.nextDy = 0; }
+            } else {
+                // 상하 스와이프
+                if(dy > 30 && myPlayer.dy !== -1) { myPlayer.nextDx = 0; myPlayer.nextDy = 1; }
+                else if(dy < -30 && myPlayer.dy !== 1) { myPlayer.nextDx = 0; myPlayer.nextDy = -1; }
+            }
+        });
 
-            setTimeout(() => {
-                // 1. 수익 애니메이션
-                myCash += 500;
-                document.getElementById('my-cash').innerText = `₩ ${myCash.toLocaleString()}`;
-                document.getElementById('my-cash').style.color = "#fadb14";
-                
-                alert(`🎯 정복 성공! [${selectedSpot.name}]을(를) 탈환했습니다.\n보상 500원이 지갑에 적립되었습니다.`);
-                
-                // 2. 지도 국기 변경 (한국군 🇰🇷으로 고정 시뮬레이션)
-                selectedSpot.owner = "🇰🇷";
-                selectedSpot.color = "#52c41a";
-                
-                const newIcon = L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div class="flag-icon" style="border-color:${selectedSpot.color}">${selectedSpot.owner}</div>`,
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15]
-                });
-                
-                markers[selectedSpot.id].setIcon(newIcon);
-                
-                // 3. 전황판 업데이트 시뮬레이션
-                document.getElementById('score-kr').innerText = "32%";
-                document.getElementById('score-cn').innerText = "40%";
-                
-                btn.innerHTML = "🚩 내 조국의 깃발 꽂기";
-                btn.style.background = "#1a1a2e";
-                closePanel();
-            }, 2000);
-        }
+        // 게임 시작
+        startGame();
+
     </script>
 </body>
 </html>

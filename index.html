@@ -279,6 +279,7 @@
 
         // 모든 패널에 드래그 적용
         document.addEventListener('DOMContentLoaded', () => {
+            startGPSTracking();
             ['ranking-board', 'shop-panel', 'chat-panel', 'wallet', 'music-player'].forEach(id => {
                 const el = document.getElementById(id);
                 if(el) makeDraggable(el);
@@ -317,9 +318,34 @@
         let myCash = 1500;
         let topNation = "🇨🇳";
         let isFrozen = false;
+        let userMarker = null;
         const markers = {};
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([36.2, 127.8], 7);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
+
+        // --- GPS 실시간 추적 및 근접 감지 ---
+        function startGPSTracking() {
+            if (!navigator.geolocation) return;
+            navigator.geolocation.watchPosition((pos) => {
+                const { latitude: lat, longitude: lng } = pos.coords;
+                if (!userMarker) {
+                    userMarker = L.circleMarker([lat, lng], { radius: 10, color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.8 }).addTo(map);
+                } else {
+                    userMarker.setLatLng([lat, lng]);
+                }
+                
+                // 100m 이내 근접 체크
+                spots.forEach(spot => {
+                    const dist = map.distance([lat, lng], [spot.lat, spot.lng]);
+                    if (dist < 100) {
+                        const alertBox = document.getElementById('mission-alert');
+                        alertBox.innerHTML = `📍 [${spot.name}] 근접! 즉시 점령 가능 (거리: ${Math.round(dist)}m)`;
+                        alertBox.style.display = 'block';
+                        alertBox.onclick = () => { selectedSpot = spot; openPanel(spot); };
+                    }
+                });
+            }, null, { enableHighAccuracy: true });
+        }
 
         map.on('click', () => {
             document.getElementById('capture-panel').classList.remove('open');

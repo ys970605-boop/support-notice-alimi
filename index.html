@@ -63,7 +63,18 @@
         }
         .marker-pin span { transform: rotate(45deg); font-size: 24px; }
         .marker-pin.bounty { background: var(--gold); border-color: white; animation: pulseGold 1s infinite; }
+        .marker-pin.top-rank::after {
+            content: '👑'; position: absolute; top: -25px; left: 5px; transform: rotate(45deg);
+            font-size: 25px; filter: drop-shadow(0 0 5px gold); animation: float 1s infinite alternate;
+        }
+        @keyframes float { from { top: -25px; } to { top: -35px; } }
         @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(251,191,36,0.7); } 70% { box-shadow: 0 0 0 15px rgba(251,191,36,0); } 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); } }
+
+        /* 음식 사진 스타일 */
+        .res-photo {
+            width: 100%; height: 150px; border-radius: 15px; object-fit: cover;
+            margin-bottom: 15px; border: 2px solid #eee;
+        }
         .bounty-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 5px; font-weight: 900; font-size: 12px; margin-bottom: 10px; display: inline-block; }
         .res-name { font-size: 26px; font-weight: 900; margin: 0; color: white; }
         .owner-msg { font-style: italic; color: #94a3b8; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
@@ -99,6 +110,7 @@
     <div id="map"></div>
 
     <div id="capture-panel">
+        <img id="p-photo" class="res-photo" src="" alt="음식 사진">
         <div id="bounty-info" class="bounty-badge">💰 사장님의 현상금: +₩ 1,000</div>
         <h2 id="p-name" class="res-name">식당 이름</h2>
         <p id="p-owner-msg" class="owner-msg">"적군에게 뺏긴 우리 식당을 찾아주세요!"</p>
@@ -121,13 +133,14 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         const spots = [
-            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!" },
-            { id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!" },
-            { id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, msg: "" },
-            { id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, msg: "글로벌 브랜드의 자존심을 찾아주세요!" }
+            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, msg: "", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" },
+            { id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, msg: "글로벌 브랜드의 자존심을 찾아주세요!", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" }
         ];
 
         let selectedSpot = null;
+        let topNation = "🇨🇳"; // 현재 1위 (시뮬레이션)
         const markers = {};
 
         spots.forEach(spot => {
@@ -136,9 +149,10 @@
 
         function updateMarker(spot) {
             const isBounty = spot.bounty > 0;
+            const isTop = spot.owner === topNation;
             const icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''}"><span>${isBounty ? '💰' : spot.owner}</span></div>`,
+                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''} ${isTop ? 'top-rank' : ''}"><span>${isBounty ? '💰' : spot.owner}</span></div>`,
                 iconSize: [45, 45],
                 iconAnchor: [22, 45]
             });
@@ -157,6 +171,7 @@
 
         function openPanel(spot) {
             document.getElementById('p-name').innerText = spot.name;
+            document.getElementById('p-photo').src = spot.img;
             document.getElementById('p-owner-msg').innerText = spot.msg || "이 지역을 점령하여 조국의 영광을 높이세요!";
             document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
             

@@ -3,50 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Conquest RTS | 문명 전쟁</title>
+    <title>K-Conquest RTS | 4인 대항전</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; overflow: hidden; font-family: 'Courier New', Courier, monospace; color: #00ff00; touch-action: none; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Courier New', Courier, monospace; color: #0f0; touch-action: none; }
         #game-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
         
-        /* 자원창 */
-        #res-panel { position: absolute; top: 15px; right: 15px; background: rgba(0,20,0,0.8); border: 2px solid #00ff00; padding: 10px 20px; border-radius: 5px; font-weight: bold; pointer-events: auto; }
+        #res-panel { position: absolute; top: 15px; right: 15px; background: rgba(0,30,0,0.8); border: 2px solid #0f0; padding: 10px 20px; border-radius: 5px; font-weight: bold; pointer-events: auto; }
         .res-val { color: #fadb14; font-size: 20px; }
 
-        /* 생산 컨트롤 패널 */
         #build-panel { 
             position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); 
-            background: rgba(0,20,0,0.9); border: 2px solid #00ff00; padding: 15px; border-radius: 10px; 
+            background: rgba(0,30,0,0.9); border: 2px solid #0f0; padding: 15px; border-radius: 10px; 
             display: none; pointer-events: auto; gap: 15px;
         }
         .build-btn { 
-            background: #004400; color: #00ff00; border: 1px solid #00ff00; padding: 10px; 
-            cursor: pointer; text-align: center; font-size: 12px; min-width: 80px;
+            background: #020; color: #0f0; border: 1px solid #0f0; padding: 10px; 
+            cursor: pointer; text-align: center; font-size: 12px; min-width: 90px;
         }
-        .build-btn:active { background: #008800; }
-        .build-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .build-btn:hover { background: #040; }
+        .build-btn:active { background: #080; }
 
-        /* 메시지 로그 */
-        #msg-log { position: absolute; bottom: 20px; left: 20px; color: #00ff00; font-size: 14px; text-shadow: 1px 1px 2px #000; }
-
-        #game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; border: 3px solid #ff0000; padding: 40px; text-align: center; display: none; pointer-events: auto; }
+        #msg-log { position: absolute; bottom: 20px; left: 20px; color: #0f0; font-size: 14px; text-shadow: 1px 1px 2px #000; }
+        #game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; border: 3px solid #f00; padding: 40px; text-align: center; display: none; pointer-events: auto; }
         
         canvas { display: block; }
     </style>
 </head>
 <body>
     <div id="game-ui">
-        <div id="res-panel">GOLD: <span id="gold-val" class="res-val">500</span></div>
-        <div id="msg-log">전투 준비 완료... 기지를 선택하여 유닛을 생산하세요.</div>
+        <div id="res-panel">RESOURCES: <span id="gold-val" class="res-val">500</span></div>
+        <div id="msg-log">전장 진입... 7시 방향이 당신의 본부입니다.</div>
         
         <div id="build-panel">
-            <button class="build-btn" onclick="produceUnit('worker')">일꾼 (⛏️)<br>Cost: 50</button>
-            <button class="build-btn" onclick="produceUnit('soldier')">전투병 (⚔️)<br>Cost: 100</button>
+            <button class="build-btn" onclick="produceUnit('worker')">SCV (⛏️)<br>50G</button>
+            <button class="build-btn" onclick="produceUnit('soldier')">MARINE (⚔️)<br>100G</button>
         </div>
 
         <div id="game-over">
-            <h1 style="color:#ff0000">MISSION FAILED</h1>
-            <p>본부가 파괴되었습니다.</p>
-            <button onclick="location.reload()" style="background:#00ff00; color:#000; border:none; padding:10px 20px; cursor:pointer;">RESTART</button>
+            <h1 id="over-title" style="color:#f00">MISSION FAILED</h1>
+            <p id="over-msg">본부가 파괴되었습니다.</p>
+            <button onclick="location.reload()" style="background:#0f0; color:#000; border:none; padding:10px 20px; cursor:pointer; font-weight:bold;">RESTART</button>
         </div>
     </div>
     <canvas id="gameCanvas"></canvas>
@@ -54,37 +50,42 @@
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const W = 2000, H = 2000; // 월드 크기
+        const W = 2000, H = 2000;
         let camX = 0, camY = 0;
         let gold = 500;
-        let selectedId = null;
 
         const TEAMS = [
-            { id: 1, name: "한국", color: "#52c41a", flag: "🇰🇷" },
-            { id: 2, name: "중국", color: "#ff4d4f", flag: "🇨🇳" },
-            { id: 3, name: "일본", color: "#d9d9d9", flag: "🇯🇵" },
-            { id: 4, name: "미국", color: "#1890ff", flag: "🇺🇸" }
+            { id: 1, name: "한국", color: "#52c41a", flag: "🇰🇷", start: {x: 200, y: 1800} }, // 7시
+            { id: 2, name: "중국", color: "#ff4d4f", flag: "🇨🇳", start: {x: 1800, y: 200} },  // 1시
+            { id: 3, name: "일본", color: "#d9d9d9", flag: "🇯🇵", start: {x: 200, y: 200} },   // 11시
+            { id: 4, name: "미국", color: "#1890ff", flag: "🇺🇸", start: {x: 1800, y: 1800} } // 5시
         ];
 
-        let entities = []; // {id, type, team, x, y, hp, maxHp, target}
+        let entities = [];
         let minerals = [];
 
         function initGame() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
-            // 미네랄 배치
-            for(let i=0; i<40; i++) {
-                minerals.push({x: Math.random()*W, y: Math.random()*H, amount: 1000});
+            // 미네랄 배치 (각 스타팅 포인트 근처에 5개씩 + 중앙에 20개)
+            TEAMS.forEach(team => {
+                for(let i=0; i<5; i++) {
+                    minerals.push({
+                        x: team.start.x + (Math.random()-0.5)*300,
+                        y: team.start.y + (Math.random()-0.5)*300,
+                        amount: 1000
+                    });
+                }
+            });
+            for(let i=0; i<20; i++) {
+                minerals.push({x: 800 + Math.random()*400, y: 800 + Math.random()*400, amount: 2000});
             }
 
-            // 각 팀 본부 배치
-            spawnHQ(1, 200, 1800); // 플레이어 (하단 좌측)
-            spawnHQ(2, 1800, 200);  // 적1 (상단 우측)
-            spawnHQ(3, 200, 200);   // 적2 (상단 좌측)
-            spawnHQ(4, 1800, 1800); // 적3 (하단 우측)
+            // 본부 배치
+            TEAMS.forEach(team => spawnHQ(team.id, team.start.x, team.start.y));
 
-            // 초기 카메라 위치
+            // 카메라를 플레이어 기지(7시)로 이동
             camX = 0; camY = H - canvas.height;
 
             setInterval(gameLoop, 50);
@@ -93,70 +94,65 @@
 
         function spawnHQ(teamId, x, y) {
             entities.push({
-                id: Math.random(), type: 'hq', team: teamId, x: x, y: y, hp: 2000, maxHp: 2000, size: 60
+                id: Math.random(), type: 'hq', team: teamId, x: x, y: y, hp: 2500, maxHp: 2500, size: 80
             });
         }
 
         function produceUnit(type) {
             const cost = type === 'worker' ? 50 : 100;
-            if(gold < cost) return;
+            if(gold < cost) {
+                document.getElementById('msg-log').innerText = "자원이 부족합니다!";
+                return;
+            }
             gold -= cost;
             updateUI();
 
             const hq = entities.find(e => e.team === 1 && e.type === 'hq');
+            if(!hq) return;
+
             entities.push({
-                id: Math.random(),
-                type: type,
-                team: 1,
-                x: hq.x + (Math.random()-0.5)*100,
-                y: hq.y + (Math.random()-0.5)*100,
-                hp: type === 'worker' ? 100 : 200,
-                maxHp: type === 'worker' ? 100 : 200,
-                size: 15,
-                speed: type === 'worker' ? 3 : 4,
-                range: type === 'worker' ? 30 : 100,
-                damage: type === 'worker' ? 0 : 10,
+                id: Math.random(), type: type, team: 1,
+                x: hq.x + (Math.random()-0.5)*150,
+                y: hq.y + (Math.random()-0.5)*150,
+                hp: type === 'worker' ? 100 : 250,
+                maxHp: type === 'worker' ? 100 : 250,
+                size: 18,
+                speed: type === 'worker' ? 3 : 4.5,
+                range: type === 'worker' ? 40 : 120,
+                damage: type === 'worker' ? 0 : 15,
                 state: 'idle'
             });
         }
 
         function gameLoop() {
-            // 자원 업데이트 및 AI 동작
             entities.forEach(e => {
                 if(e.type === 'worker') {
-                    // 일꾼 로직: 가장 가까운 미네랄 찾기
                     if(e.state === 'idle') {
-                        let nearest = minerals[0];
-                        let minDist = Infinity;
+                        let nearest = null, minDist = Infinity;
                         minerals.forEach(m => {
                             let d = Math.hypot(m.x - e.x, m.y - e.y);
                             if(d < minDist) { minDist = d; nearest = m; }
                         });
-                        e.target = nearest;
-                        e.state = 'moving_to_mineral';
+                        e.target = nearest; e.state = 'moving_to_mineral';
                     }
-                    
                     if(e.state === 'moving_to_mineral' && e.target) {
                         let d = Math.hypot(e.target.x - e.x, e.target.y - e.y);
-                        if(d < 10) {
+                        if(d < 15) {
                             e.state = 'mining';
                             setTimeout(() => { 
                                 e.state = 'returning'; 
-                                let hq = entities.find(ent => ent.team === e.team && ent.type === 'hq');
-                                e.target = hq;
-                            }, 2000);
+                                e.target = entities.find(ent => ent.team === e.team && ent.type === 'hq');
+                            }, 1500);
                         } else {
                             e.x += (e.target.x - e.x)/d * e.speed;
                             e.y += (e.target.y - e.y)/d * e.speed;
                         }
                     }
-
                     if(e.state === 'returning' && e.target) {
                         let d = Math.hypot(e.target.x - e.x, e.target.y - e.y);
-                        if(d < 40) {
-                            if(e.team === 1) gold += 10;
-                            updateUI();
-                            e.state = 'idle';
+                        if(d < 50) {
+                            if(e.team === 1) gold += 15;
+                            updateUI(); e.state = 'idle';
                         } else {
                             e.x += (e.target.x - e.x)/d * e.speed;
                             e.y += (e.target.y - e.y)/d * e.speed;
@@ -165,15 +161,12 @@
                 }
 
                 if(e.type === 'soldier') {
-                    // 전투병 로직: 가장 가까운 적 찾기
                     let nearestEnemy = entities.find(ent => ent.team !== e.team && ent.hp > 0);
                     if(nearestEnemy) {
                         let d = Math.hypot(nearestEnemy.x - e.x, nearestEnemy.y - e.y);
                         if(d < e.range) {
-                            // 공격
-                            nearestEnemy.hp -= e.damage / 10;
+                            nearestEnemy.hp -= e.damage / 15;
                         } else {
-                            // 이동
                             e.x += (nearestEnemy.x - e.x)/d * e.speed;
                             e.y += (nearestEnemy.y - e.y)/d * e.speed;
                         }
@@ -181,27 +174,39 @@
                 }
             });
 
-            // 사망 처리
-            entities = entities.filter(e => {
-                if(e.hp <= 0) {
-                    if(e.type === 'hq' && e.team === 1) document.getElementById('game-over').style.display='block';
-                    return false;
-                }
-                return true;
-            });
+            // 승리/패배 조건
+            const hqs = entities.filter(e => e.type === 'hq');
+            const myHq = hqs.find(h => h.team === 1);
+            if(!myHq) {
+                showEndScreen("MISSION FAILED", "당신의 본부가 파괴되었습니다.");
+            } else if(hqs.length === 1 && hqs[0].team === 1) {
+                showEndScreen("VICTORY!", "모든 적국을 정복했습니다!");
+            }
 
-            // 간단한 AI 본부 (10초마다 병력 생산)
-            if(Math.random() < 0.01) {
+            entities = entities.filter(e => e.hp > 0);
+
+            // AI (봇) 생산 로직
+            if(Math.random() < 0.02) {
                 [2,3,4].forEach(tId => {
                     let hq = entities.find(ent => ent.team === tId && ent.type === 'hq');
                     if(hq) {
+                        const unitType = Math.random() < 0.3 ? 'worker' : 'soldier';
                         entities.push({
-                            id: Math.random(), type: 'soldier', team: tId, x: hq.x, y: hq.y,
-                            hp: 200, maxHp: 200, size: 15, speed: 3, range: 100, damage: 10
+                            id: Math.random(), type: unitType, team: tId, x: hq.x, y: hq.y,
+                            hp: unitType==='worker'?100:250, maxHp: unitType==='worker'?100:250, 
+                            size: 18, speed: 3, range: 120, damage: 15, state: 'idle'
                         });
                     }
                 });
             }
+        }
+
+        function showEndScreen(title, msg) {
+            const screen = document.getElementById('game-over');
+            document.getElementById('over-title').innerText = title;
+            document.getElementById('over-title').style.color = title === "VICTORY!" ? "#0f0" : "#f00";
+            document.getElementById('over-msg').innerText = msg;
+            screen.style.display = 'block';
         }
 
         function updateUI() {
@@ -209,51 +214,56 @@
         }
 
         function draw() {
-            ctx.fillStyle = '#050505';
+            ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.save();
             ctx.translate(-camX, -camY);
 
-            // 그리드
-            ctx.strokeStyle = '#111';
+            // 배경 격자
+            ctx.strokeStyle = '#020';
             for(let i=0; i<=W; i+=100) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H); ctx.stroke(); }
             for(let i=0; i<=H; i+=100) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(W,i); ctx.stroke(); }
 
             // 미네랄
             minerals.forEach(m => {
-                ctx.fillStyle = '#00ffff';
-                ctx.beginPath(); ctx.arc(m.x, m.y, 10, 0, Math.PI*2); ctx.fill();
-                ctx.font = '10px Arial'; ctx.fillText('MINERAL', m.x - 20, m.y - 15);
+                ctx.fillStyle = '#0ff';
+                ctx.beginPath(); ctx.arc(m.x, m.y, 12, 0, Math.PI*2); ctx.fill();
+                ctx.shadowBlur = 10; ctx.shadowColor = '#0ff';
+                ctx.fillStyle = '#fff'; ctx.font = 'bold 10px Arial';
+                ctx.fillText('CRYSTAL', m.x - 22, m.y - 18);
+                ctx.shadowBlur = 0;
             });
 
-            // 엔티티
+            // 유닛 및 건물
             entities.forEach(e => {
                 const team = TEAMS.find(t => t.id === e.team);
                 ctx.fillStyle = team.color;
                 
                 if(e.type === 'hq') {
+                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+                    ctx.strokeRect(e.x - e.size/2, e.y - e.size/2, e.size, e.size);
                     ctx.fillRect(e.x - e.size/2, e.y - e.size/2, e.size, e.size);
-                    ctx.fillStyle = '#fff'; ctx.font = '20px Arial';
-                    ctx.fillText(team.flag, e.x-12, e.y+8);
+                    ctx.fillStyle = '#fff'; ctx.font = '30px Arial';
+                    ctx.fillText(team.flag, e.x-20, e.y+12);
                 } else {
                     ctx.beginPath(); ctx.arc(e.x, e.y, e.size, 0, Math.PI*2); ctx.fill();
-                    ctx.fillStyle = '#fff'; ctx.font = '12px Arial';
-                    ctx.fillText(e.type === 'worker' ? '⛏️' : '⚔️', e.x-8, e.y+5);
+                    ctx.fillStyle = '#fff'; ctx.font = 'bold 14px Arial';
+                    ctx.fillText(e.type === 'worker' ? '⛏️' : '⚔️', e.x-10, e.y+6);
                 }
 
-                // HP 바
-                ctx.fillStyle = '#ff0000';
-                ctx.fillRect(e.x - 20, e.y - e.size - 10, 40, 4);
-                ctx.fillStyle = '#00ff00';
-                ctx.fillRect(e.x - 20, e.y - e.size - 10, 40 * (e.hp/e.maxHp), 4);
+                // HP Bar
+                ctx.fillStyle = '#500';
+                ctx.fillRect(e.x - 30, e.y - e.size - 15, 60, 5);
+                ctx.fillStyle = '#0f0';
+                ctx.fillRect(e.x - 30, e.y - e.size - 15, 60 * (e.hp/e.maxHp), 5);
             });
 
             ctx.restore();
             requestAnimationFrame(draw);
         }
 
-        // 조작
+        // 조작: 본부 클릭 시 생산 메뉴
         canvas.addEventListener('mousedown', e => {
             const x = e.clientX + camX;
             const y = e.clientY + camY;
@@ -261,13 +271,13 @@
             
             if(clicked && clicked.team === 1 && clicked.type === 'hq') {
                 document.getElementById('build-panel').style.display = 'flex';
-                document.getElementById('msg-log').innerText = "본부 선택됨: 유닛 생산 명령을 내리십시오.";
+                document.getElementById('msg-log').innerText = "본부(HQ) 명령 대기 중...";
             } else {
                 document.getElementById('build-panel').style.display = 'none';
             }
         });
 
-        // 카메라 이동 (마우스 드래그)
+        // 카메라 드래그 이동
         let isDragging = false, lastX, lastY;
         canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
         window.addEventListener('mousemove', e => {

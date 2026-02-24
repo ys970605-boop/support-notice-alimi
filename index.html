@@ -13,6 +13,20 @@
         }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background: var(--dark); overflow: hidden; color: white; }
         
+        /* 랭킹 및 지휘부 보드 */
+        #ranking-board {
+            position: absolute; top: 15px; left: 15px; z-index: 1000;
+            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155;
+            border-radius: 12px; padding: 12px; width: 220px; pointer-events: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .rank-title { font-size: 10px; color: #94a3b8; letter-spacing: 1px; margin-bottom: 8px; }
+        .rank-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; font-weight: 900; }
+        .command-hierarchy { border-top: 1px solid #334155; margin-top: 10px; padding-top: 10px; }
+        .commander-item { font-size: 11px; display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+        .commander-item.gold { color: var(--gold); }
+        .commander-item.silver { color: #cbd5e1; }
+
         /* 상단 전황판 */
         #scoreboard {
             position: absolute; top: 10px; left: 10px; right: 10px; z-index: 1000;
@@ -96,6 +110,23 @@
     </style>
 </head>
 <body>
+
+    <div id="ranking-board">
+        <div class="rank-title">NATION RANKING & COMMAND</div>
+        <div id="ranks">
+            <div class="rank-row"><span>🇨🇳 중국</span><span>42%</span></div>
+            <div class="rank-row" style="color:var(--gold)"><span>🇰🇷 한국</span><span>28%</span></div>
+            <div class="rank-row"><span>🇯🇵 일본</span><span>30%</span></div>
+        </div>
+        <div class="command-hierarchy">
+            <div class="rank-title">🇰🇷 한국 지휘부</div>
+            <div class="commander-item gold">⭐ 사령관: 미식대장</div>
+            <div class="commander-item silver">🎖️ 부사령관: 성수정복자</div>
+            <div class="rank-title" style="margin-top:8px;">🇨🇳 중국 지휘부</div>
+            <div class="commander-item gold">⭐ 사령관: 龙之子(Yong)</div>
+            <div class="commander-item silver">🎖️ 부사령관: 红色风暴</div>
+        </div>
+    </div>
 
     <div id="scoreboard">
         <div class="score-item"><span class="flag">🇨🇳</span><span class="val">42%</span></div>

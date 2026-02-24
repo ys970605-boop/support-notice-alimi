@@ -10,177 +10,201 @@
         :root {
             --china: #ff4d4f; --korea: #52c41a; --japan: #ffffff;
             --dark: #000000; --gold: #fbbf24; --accent: #f43f5e;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
         body, html { margin: 0; padding: 0; height: 100%; background: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; color: white; }
         
+        /* 상단 뉴스 바 */
+        #news-bar {
+            position: fixed; top: 0; width: 100%; background: var(--insta-gradient);
+            padding: 8px; font-size: 11px; font-weight: bold; z-index: 1000; text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* 스토리 상단 바 */
+        #story-bar {
+            position: fixed; top: 35px; width: 100%; height: 100px; 
+            display: flex; gap: 15px; padding: 10px 15px; overflow-x: auto;
+            background: rgba(0,0,0,0.8); z-index: 100; scrollbar-width: none;
+            border-bottom: 0.5px solid #333;
+        }
+        #story-bar::-webkit-scrollbar { display: none; }
+        .story-item { display: flex; flex-direction: column; align-items: center; min-width: 65px; }
+        .story-ring {
+            width: 60px; height: 60px; border-radius: 50%; padding: 2px;
+            background: var(--insta-gradient); margin-bottom: 5px;
+        }
+        .story-ring img { width: 100%; height: 100%; border-radius: 50%; border: 2px solid black; object-fit: cover; }
+        .story-name { font-size: 10px; color: #ccc; }
+
         /* 인스타그램 스타일 피드 */
         #feed-container {
             height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
-            scrollbar-width: none;
+            scrollbar-width: none; padding-top: 135px; box-sizing: border-box;
         }
         #feed-container::-webkit-scrollbar { display: none; }
         
         .feed-item {
-            height: 100vh; width: 100%; scroll-snap-align: start;
-            position: relative; background: #000;
+            height: calc(100vh - 135px); width: 100%; scroll-snap-align: start;
+            position: relative; background: #000; border-bottom: 1px solid #222;
         }
         
-        /* 상단 프로필 헤더 */
         .feed-header {
-            position: absolute; top: 50px; left: 0; width: 100%; padding: 10px 15px;
+            position: absolute; top: 15px; left: 0; width: 100%; padding: 10px 15px;
             display: flex; align-items: center; gap: 10px; z-index: 20;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
-        .profile-pic { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--accent); padding: 2px; background: white; object-fit: cover; }
+        .profile-pic { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #333; }
         .user-info { display: flex; flex-direction: column; }
-        .username { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-        .username::after { content: '✔'; background: #38bdf8; color: white; font-size: 8px; width: 12px; height: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .location { font-size: 11px; color: #eee; cursor: pointer; }
+        .username { font-size: 13px; font-weight: 700; }
+        .location { font-size: 11px; color: #bbb; cursor: pointer; }
 
-        .feed-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-        }
+        .feed-bg { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 하단 텍스트 오버레이 */
         .feed-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 120px 20px 100px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px 20px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
             pointer-events: none; z-index: 10;
         }
-        .conquest-status {
-            display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
-        }
-        .status-badge {
-            padding: 4px 10px; border-radius: 4px; font-weight: 900; font-size: 12px;
-        }
-        .res-title { font-size: 24px; font-weight: 800; margin: 0; }
-        .feed-caption { font-size: 14px; color: #efefef; margin-top: 8px; line-height: 1.4; }
+        .status-badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-weight: 900; font-size: 11px; margin-bottom: 8px; }
+        .res-title { font-size: 22px; font-weight: 800; margin: 0; }
+        .feed-caption { font-size: 13px; color: #eee; margin-top: 5px; line-height: 1.4; opacity: 0.9; }
 
-        /* 인스타 액션 바 (우측) */
         .side-actions {
-            position: absolute; right: 10px; bottom: 120px; display: flex; flex-direction: column; align-items: center; gap: 18px; z-index: 20;
+            position: absolute; right: 10px; bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 20;
         }
         .action-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; pointer-events: auto; }
-        .action-item span { font-size: 28px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
-        .action-item label { font-size: 12px; font-weight: 600; margin-top: 2px; }
+        .action-item span { font-size: 26px; }
+        .action-item label { font-size: 11px; font-weight: 600; margin-top: 2px; }
 
         /* 하단 탭 바 */
         #nav-bar {
-            position: fixed; bottom: 0; width: 100%; height: 70px; background: rgba(15, 23, 42, 0.95);
+            position: fixed; bottom: 0; width: 100%; height: 60px; background: #000;
             display: flex; justify-content: space-around; align-items: center; z-index: 100;
-            border-top: 1px solid #334155;
+            border-top: 0.5px solid #333;
         }
-        .nav-item { text-align: center; color: #94a3b8; font-size: 11px; flex: 1; cursor: pointer; }
+        .nav-item { text-align: center; color: #8e8e8e; font-size: 10px; flex: 1; cursor: pointer; }
         .nav-item.active { color: white; }
-        .nav-item span { font-size: 24px; display: block; }
+        .nav-item span { font-size: 22px; display: block; }
 
         /* 팝업 지도 */
-        #map-popup {
-            position: fixed; top: 50px; left: 10px; right: 10px; bottom: 80px;
-            background: white; border-radius: 20px; z-index: 500; display: none;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;
-        }
+        #map-popup { position: fixed; top: 50px; left: 10px; right: 10px; bottom: 80px; background: white; border-radius: 20px; z-index: 500; display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; }
         #map { width: 100%; height: 100%; }
         .close-map { position: absolute; top: 15px; right: 15px; z-index: 600; background: rgba(0,0,0,0.5); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 20px; cursor: pointer; }
 
-        /* 긴급 뉴스 티커 */
-        #news-bar {
-            position: fixed; top: 0; width: 100%; background: var(--accent);
-            padding: 8px; font-size: 12px; font-weight: bold; z-index: 1000; text-align: center;
-        }
+        /* 전리품 카드 */
+        #loot-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; display: none; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+        .loot-card { background: #121212; border: 1px solid #333; border-radius: 12px; padding: 12px; text-align: center; position: relative; }
+        
+        /* 스토리 공유 오버레이 */
+        #story-share-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
 
-    <div id="news-bar">🚨 실시간 교전: 리치왕 사령관이 부산 이재모피자 탈환 작전 개시!</div>
+    <div id="news-bar">📡 #KFoodBattle 실시간 데이터 동기화 중... 신규 포스트 8개 발견</div>
+
+    <div id="story-bar">
+        <div class="story-item"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=1"></div><span class="story-name">나의작전</span></div>
+        <div class="story-item"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=12"></div><span class="story-name">미식대장</span></div>
+        <div class="story-item"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=33"></div><span class="story-name">서울정복자</span></div>
+        <div class="story-item"><div class="story-ring" style="background:#555;"><img src="https://i.pravatar.cc/100?img=5"></div><span class="story-name">중국군매복</span></div>
+        <div class="story-item"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=22"></div><span class="story-name">부산갈매기</span></div>
+    </div>
 
     <div id="feed-container">
-        <!-- 인스타 피드 1: 성수족발 -->
+        <!-- 인스타 피드 1 -->
         <div class="feed-item">
             <div class="feed-header">
                 <img class="profile-pic" src="https://i.pravatar.cc/100?img=32">
                 <div class="user-info">
                     <span class="username">미식탐험가_서울</span>
-                    <span class="location" onclick="openMapAt(37.5446, 127.0565)">📍 서울 성수동 성수족발</span>
+                    <span class="location" onclick="openMapAt(37.5446, 127.0565)">📍 성수동 성수족발</span>
                 </div>
             </div>
             <img class="feed-bg" src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=1000&q=80">
             <div class="feed-overlay">
-                <div class="conquest-status">
-                    <div class="status-badge" style="background: var(--china);">🇨🇳 중국 점령 중</div>
-                    <b style="color: var(--gold); font-size: 14px;">💰 +₩ 1,000</b>
-                </div>
+                <div class="status-badge" style="background: var(--china);">🇨🇳 중국 점령 중 | 💰 +₩ 1,000</div>
                 <h2 class="res-title">성수족발 (본점)</h2>
-                <p class="feed-caption">와... 여기 족발은 진짜 차원이 다르네요 🍖 껍데기가 젤리처럼 쫀득함! 현재 중국팀이 점령 중인데 한국군 사령관님들 어디계신가요?? #성수맛집 #KFoodBattle</p>
+                <p class="feed-caption">여기 족발은 진짜 예술.. 🍖 중국팀이 점령 중인데 한국군 소집합니다!! #성수맛집 #KFoodBattle</p>
             </div>
             <div class="side-actions">
                 <div class="action-item"><span>❤️</span><label>4.2k</label></div>
-                <div class="action-item"><span>💬</span><label>128</label></div>
-                <div class="action-item" onclick="triggerCamera()"><span>📸</span><label>탈환</label></div>
-                <div class="action-item"><span>✈️</span><label>공유</label></div>
-                <div class="action-item"><span>🔖</span><label>수집</label></div>
+                <div class="action-item" onclick="openMapAt(37.5446, 127.0565)"><span>📍</span><label>작전지</label></div>
+                <div class="action-item" onclick="alert('카메라 실행 중...')"><span>📸</span><label>탈환</label></div>
+                <div class="action-item" onclick="openStoryShare('성수족발', 'https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=1000&q=80')"><span>✈️</span><label>스토리</label></div>
             </div>
         </div>
 
-        <!-- 인스타 피드 2: 이재모피자 -->
+        <!-- 인스타 피드 2 -->
         <div class="feed-item">
             <div class="feed-header">
                 <img class="profile-pic" src="https://i.pravatar.cc/100?img=45">
                 <div class="user-info">
-                    <span class="username">Busan_Foodie</span>
-                    <span class="location" onclick="openMapAt(35.1021, 129.0315)">📍 부산 광복동 이재모피자</span>
+                    <span class="username">Busan_Hero</span>
+                    <span class="location" onclick="openMapAt(35.1021, 129.0315)">📍 부산 이재모피자</span>
                 </div>
             </div>
             <img class="feed-bg" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80">
             <div class="feed-overlay">
-                <div class="conquest-status">
-                    <div class="status-badge" style="background: var(--korea);">🇰🇷 한국군 수비 중</div>
-                    <b style="color: #10b981; font-size: 14px;">🛡️ 철통 보안</b>
-                </div>
+                <div class="status-badge" style="background: var(--korea);">🇰🇷 한국군 수비 중 | 🛡️ 철통보안</div>
                 <h2 class="res-title">이재모피자 본점</h2>
-                <p class="feed-caption">부산 오면 무조건 들러야 하는 곳 🍕 치즈 늘어나는 거 보이시나요? 우리 한국군이 굳건히 지키고 있습니다! #부산맛집 #이재모피자 #대한민국만세</p>
+                <p class="feed-caption">부산의 심장 이재모피자! 우리팀이 지켜내고 있습니다 🍕 #부산맛집 #KFoodBattle</p>
             </div>
             <div class="side-actions">
-                <div class="action-item"><span>❤️</span><label>8.5k</label></div>
-                <div class="action-item"><span>💬</span><label>256</label></div>
-                <div class="action-item" onclick="alert('이미 아군 영토입니다!')"><span>🏯</span><label>지원</label></div>
-                <div class="action-item"><span>✈️</span><label>공유</label></div>
-                <div class="action-item"><span>🔖</span><label>수집</label></div>
+                <div class="action-item"><span>❤️</span><label>8.1k</label></div>
+                <div class="action-item" onclick="openMapAt(35.1021, 129.0315)"><span>📍</span><label>작전지</label></div>
+                <div class="action-item"><span>🏰</span><label>수비</label></div>
+                <div class="action-item" onclick="openStoryShare('이재모피자', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80')"><span>✈️</span><label>스토리</label></div>
             </div>
         </div>
     </div>
 
     <!-- 팝업 지도 -->
-    <div id="map-popup">
-        <button class="close-map" onclick="closeMap()">×</button>
-        <div id="map"></div>
-    </div>
+    <div id="map-popup"><button class="close-map" onclick="closeMap()">×</button><div id="map"></div></div>
 
-    <!-- 전리품 카드 보관함 (기본 숨김) -->
-    <div id="loot-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 2000; display: none; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+    <!-- 전리품 보관함 -->
+    <div id="loot-container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 style="margin: 0; color: var(--gold);">🃏 내 전리품 카드</h2>
-            <button onclick="closeLoot()" style="background: none; border: none; color: white; font-size: 24px;">×</button>
+            <h2 style="margin: 0; color: var(--gold); font-size: 20px;">🃏 내 전리품 카드</h2>
+            <button onclick="showSection('feed')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
         </div>
         <div id="card-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-            <!-- 점령한 카드가 여기에 추가됨 -->
-            <div class="loot-card" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--gold); border-radius: 15px; padding: 10px; text-align: center; box-shadow: 0 0 15px rgba(251,191,36,0.3);">
-                <div style="font-size: 10px; color: var(--gold); margin-bottom: 5px;">LEGENDARY</div>
-                <img src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=150&q=80" style="width: 100%; height: 100px; object-fit: cover; border-radius: 10px;">
-                <b style="display: block; margin-top: 8px; font-size: 14px;">성수족발</b>
-                <div style="font-size: 10px; color: #94a3b8; margin-top: 5px;">매일 +₩ 100 세금 징수 중</div>
+            <div class="loot-card">
+                <div style="font-size: 9px; color: var(--gold); margin-bottom: 5px; font-weight: bold;">LEGENDARY</div>
+                <img src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=150&q=80" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px;">
+                <b style="display: block; margin-top: 8px; font-size: 13px;">성수족발</b>
+                <button onclick="openStoryShare('성수족발', 'https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=150&q=80')" style="width: 100%; background: var(--insta-gradient); border: none; border-radius: 5px; color: white; font-size: 10px; padding: 5px; margin-top: 8px; font-weight: bold;">스토리 공유</button>
             </div>
+        </div>
+    </div>
+
+    <!-- 스토리 공유 오버레이 -->
+    <div id="story-share-overlay">
+        <div style="width: 300px; height: 530px; background: var(--insta-gradient); border-radius: 20px; padding: 15px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <div style="background: white; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
+                <img id="story-img" src="" style="width: 100%; height: 65%; object-fit: cover;">
+                <div style="padding: 15px; text-align: center; color: #000;">
+                    <div style="font-size: 11px; font-weight: bold; color: var(--accent);">CONQUEST SUCCESS</div>
+                    <h2 id="story-title" style="margin: 5px 0; font-size: 22px;">점령 완료</h2>
+                    <p style="font-size: 13px; margin: 5px 0;">대한민국의 이름으로<br>이 땅을 수호합니다! 🇰🇷</p>
+                    <div style="margin-top: 15px; font-size: 9px; opacity: 0.4;">@KFoodBattle_Conquest</div>
+                </div>
+            </div>
+            <div style="position: absolute; top: 25px; right: -10px; background: #fbbf24; color: black; padding: 4px 12px; border-radius: 8px; font-weight: 900; transform: rotate(15deg); font-size: 14px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);">VICTORY!</div>
+        </div>
+        <div style="margin-top: 25px; display: flex; gap: 15px;">
+            <button onclick="closeStory()" style="background: #333; color: white; border: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; font-size: 14px;">닫기</button>
+            <button onclick="alert('인스타그램 앱으로 전송되었습니다!')" style="background: var(--insta-gradient); color: white; border: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; font-size: 14px;">공유하기</button>
         </div>
     </div>
 
     <!-- 하단 탭 바 -->
     <div id="nav-bar">
-        <div class="nav-item active" onclick="showSection('feed')"><span>🏠</span>전쟁피드</div>
-        <div class="nav-item" onclick="openMapAt(36.2, 127.8, 7)"><span>🗺️</span>월드맵</div>
-        <div class="nav-item" onclick="showSection('loot')"><span>🃏</span>전리품</div>
-        <div class="nav-item"><span>🛒</span>상점</div>
-        <div class="nav-item"><span>👤</span>내정보</div>
+        <div id="nav-feed" class="nav-item active" onclick="showSection('feed')"><span>🏠</span>홈</div>
+        <div id="nav-map" class="nav-item" onclick="openMapAt(36.2, 127.8, 7)"><span>🗺️</span>작전지도</div>
+        <div id="nav-loot" class="nav-item" onclick="showSection('loot')"><span>🃏</span>전리품</div>
+        <div id="nav-shop" class="nav-item"><span>🛒</span>상점</div>
+        <div id="nav-profile" class="nav-item"><span>👤</span>프로필</div>
     </div>
 
     <script>
@@ -188,20 +212,9 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         function showSection(id) {
-            if(id === 'loot') {
-                document.getElementById('loot-container').style.display = 'block';
-            } else {
-                document.getElementById('loot-container').style.display = 'none';
-            }
-            
-            // 네비게이션 활성화 표시
+            document.getElementById('loot-container').style.display = (id === 'loot' ? 'block' : 'none');
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
-
-        function closeLoot() {
-            document.getElementById('loot-container').style.display = 'none';
-            document.querySelector('.nav-item').classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
         }
 
         function openMapAt(lat, lng, zoom = 16) {
@@ -211,15 +224,21 @@
             L.marker([lat, lng]).addTo(map);
         }
 
-        function closeMap() {
-            document.getElementById('map-popup').style.display = 'none';
+        function closeMap() { document.getElementById('map-popup').style.display = 'none'; }
+
+        function openStoryShare(title, imgUrl) {
+            document.getElementById('story-title').innerText = title + " 점령";
+            document.getElementById('story-img').src = imgUrl;
+            document.getElementById('story-share-overlay').style.display = 'flex';
         }
 
-        // 스크롤 시 뉴스 티커 변경 시뮬레이션
-        document.getElementById('feed-container').addEventListener('scroll', () => {
-            const news = ["🚨 긴급: 리치왕 사령관 부산 출격!", "🔥 속보: 중국팀 명동 대규모 공세 중!", "💰 기회: 성심당 현상금 2배 이벤트 시작!"];
+        function closeStory() { document.getElementById('story-share-overlay').style.display = 'none'; }
+
+        // 주기적 뉴스 티커 변경 (인스타 스캔 시뮬레이션)
+        setInterval(() => {
+            const news = ["📡 #KFoodBattle 스캔: 성수동 신규 포스트 감지", "🔥 속보: 중국팀 명동 대규모 공세 중", "📸 알림: 방금 새로운 정복 스토리가 공유됨"];
             document.getElementById('news-bar').innerText = news[Math.floor(Math.random()*news.length)];
-        });
+        }, 5000);
     </script>
 </body>
 </html>

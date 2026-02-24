@@ -3,213 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Stone | 전설의 선술집</title>
+    <title>K-Food Conquest | 비즈니스 에디션</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         :root {
-            --mana: #3b82f6;
-            --hp: #ef4444;
-            --atk: #f59e0b;
-            --legendary: #fbbf24;
-            --epic: #a855f7;
-            --rare: #3b82f6;
-            --common: #94a3b8;
+            --china: #ff4d4f; --taiwan: #1890ff; --japan: #ffffff; --korea: #52c41a;
+            --dark: #0f172a; --gold: #fbbf24; --accent: #f43f5e;
         }
-        body, html { margin: 0; padding: 0; height: 100%; background: #0f172a; font-family: 'Pretendard', sans-serif; overflow: hidden; color: white; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background: var(--dark); overflow: hidden; color: white; }
         
-        #game-board {
-            display: flex; flex-direction: column; height: 100vh; max-width: 600px; margin: 0 auto;
-            background: radial-gradient(circle, #2d1b14 0%, #1a0f0a 100%);
-            border: 4px solid #3d2b1f; position: relative;
+        /* 상단 전황판 */
+        #scoreboard {
+            position: absolute; top: 10px; left: 10px; right: 10px; z-index: 1000;
+            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155;
+            border-radius: 15px; padding: 12px; display: flex; justify-content: space-around;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .score-item { text-align: center; }
+        .score-item .flag { font-size: 24px; display: block; }
+        .score-item .val { font-weight: 900; font-size: 16px; color: var(--gold); }
+
+        /* 긴급 미션 알림 */
+        #mission-alert {
+            position: absolute; top: 90px; left: 50%; transform: translateX(-50%); z-index: 1000;
+            background: var(--accent); color: white; padding: 8px 20px; border-radius: 30px;
+            font-size: 13px; font-weight: bold; box-shadow: 0 4px 15px rgba(244,63,94,0.4);
+            animation: slideDown 0.5s ease-out, pulse 1.5s infinite;
+            display: none; white-space: nowrap;
+        }
+        @keyframes slideDown { from { top: -50px; } to { top: 90px; } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+        /* 지갑 */
+        #wallet {
+            position: absolute; top: 140px; right: 15px; z-index: 1000;
+            background: #10b981; color: white; padding: 8px 15px; border-radius: 12px;
+            font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #34d399;
         }
 
-        /* 등급별 효과 */
-        .rarity-legendary { border-color: var(--legendary) !important; box-shadow: 0 0 15px var(--legendary); animation: gold-glow 2s infinite; }
-        @keyframes gold-glow { 0% { box-shadow: 0 0 5px var(--legendary); } 50% { box-shadow: 0 0 20px var(--legendary); } 100% { box-shadow: 0 0 5px var(--legendary); } }
-        .rarity-epic { border-color: var(--epic) !important; }
-        .rarity-rare { border-color: var(--rare) !important; }
+        #map { width: 100%; height: 100%; z-index: 1; filter: brightness(0.8) contrast(1.2); }
 
-        /* 필드 및 영웅 */
-        .hero-area { display: flex; justify-content: center; align-items: center; padding: 10px; gap: 15px; height: 90px; }
-        .hero-portrait { width: 60px; height: 80px; background: #334155; border: 3px solid #94a3b8; border-radius: 50% 50% 10% 10%; position: relative; display: flex; justify-content: center; align-items: center; font-size: 30px; }
-        .hero-hp { position: absolute; bottom: -5px; right: -5px; background: var(--hp); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; border: 2px solid white; }
-        .hero-power { width: 45px; height: 45px; border-radius: 50%; background: #1e293b; border: 2px solid #daa520; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        /* 바텀 시트 */
+        #capture-panel {
+            position: absolute; bottom: -100%; left: 0; right: 0; z-index: 2000;
+            background: #1e293b; border-top: 4px solid var(--gold); border-radius: 25px 25px 0 0;
+            padding: 25px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+        }
+        #capture-panel.open { bottom: 0; }
+        .bounty-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 5px; font-weight: 900; font-size: 12px; margin-bottom: 10px; display: inline-block; }
+        .res-name { font-size: 26px; font-weight: 900; margin: 0; color: white; }
+        .owner-msg { font-style: italic; color: #94a3b8; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
 
-        #field { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
-        .minion-row { display: flex; justify-content: center; gap: 6px; height: 100px; align-items: center; }
+        .btn-capture {
+            width: 100%; padding: 18px; border: none; border-radius: 15px;
+            background: var(--gold); color: #000; font-size: 20px; font-weight: 900;
+            cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(251,191,36,0.3);
+        }
+        .btn-capture:active { transform: scale(0.95); }
 
-        /* 하수인 */
-        .minion { width: 65px; height: 85px; background: #1e293b; border: 2px solid #475569; border-radius: 8px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; transition: transform 0.2s; }
-        .minion.taunt { border-width: 4px; border-style: double; }
-        .minion .cost { position: absolute; top: -6px; left: -6px; background: var(--mana); border-radius: 50%; width: 18px; height: 18px; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid white; }
-        .minion .stats { display: flex; justify-content: space-between; padding: 2px 4px; font-weight: 900; font-size: 12px; }
-        .minion .atk { color: var(--atk); }
-        .minion .hp { color: var(--hp); }
-        .minion .emoji { font-size: 28px; text-align: center; position: absolute; top: 15px; width: 100%; }
-
-        /* 핸드 */
-        #hand { height: 110px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: flex-start; padding-top: 10px; }
-        #hand .minion { cursor: pointer; margin: 0 -8px; box-shadow: 0 5px 10px black; }
-        #hand .minion:hover { transform: translateY(-25px) scale(1.3); z-index: 100; }
-
-        /* 턴 버튼 */
-        #end-turn-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #fbbf24; color: #451a03; border: 2px solid #451a03; padding: 8px 12px; font-weight: 900; cursor: pointer; border-radius: 4px; font-size: 12px; box-shadow: 0 3px 0 #92400e; }
-        #end-turn-btn:active { transform: translateY(-50%) translateY(2px); box-shadow: 0 1px 0 #92400e; }
-
-        /* 이펙트 */
-        #fx-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
-        .legend-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 50px; font-weight: 900; color: var(--legendary); text-shadow: 0 0 20px orange; animation: splash 1.5s forwards; }
-        @keyframes splash { 0% { scale: 0.5; opacity: 0; } 50% { scale: 1.2; opacity: 1; } 100% { scale: 1; opacity: 0; } }
-        
-        .mana-area { display: flex; justify-content: flex-end; padding: 5px 15px; gap: 3px; }
-        .mana-gem { width: 10px; height: 10px; background: var(--mana); transform: rotate(45deg); border: 1px solid white; }
-        .mana-gem.empty { background: #1e293b; border-color: #334155; }
+        /* 현상금 핀 이펙트 */
+        .bounty-marker {
+            background: var(--gold); border: 3px solid white; border-radius: 50%;
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 0 20px var(--gold); animation: markerPulse 1s infinite;
+        }
+        @keyframes markerPulse { 0% { transform: scale(1); box-shadow: 0 0 10px var(--gold); } 50% { transform: scale(1.2); box-shadow: 0 0 30px var(--gold); } 100% { transform: scale(1); box-shadow: 0 0 10px var(--gold); } }
     </style>
 </head>
 <body>
-    <div id="game-board">
-        <div class="hero-area">
-            <div class="hero-portrait" style="border-color: var(--hp);">👿<div class="hero-hp" id="enemy-hp">30</div></div>
-            <div class="hero-power">🔥</div>
+
+    <div id="scoreboard">
+        <div class="score-item"><span class="flag">🇨🇳</span><span class="val">42%</span></div>
+        <div class="score-item" style="border-left: 1px solid #334155; border-right: 1px solid #334155; padding: 0 30px;"><span class="flag">🇰🇷</span><span class="val">28%</span></div>
+        <div class="score-item"><span class="flag">🇯🇵</span><span class="val">30%</span></div>
+    </div>
+
+    <div id="mission-alert">🚨 긴급 탈환 현상금 발생: [성수족발] 사령부</div>
+
+    <div id="wallet">💳 ₩ <span id="cash-val">1,500</span></div>
+
+    <div id="map"></div>
+
+    <div id="capture-panel">
+        <div id="bounty-info" class="bounty-badge">💰 사장님의 현상금: +₩ 1,000</div>
+        <h2 id="p-name" class="res-name">식당 이름</h2>
+        <p id="p-owner-msg" class="owner-msg">"적군에게 뺏긴 우리 식당을 찾아주세요!"</p>
+        
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-top: 15px;">
+            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 5px;">현재 점유 국가</div>
+            <div id="p-current-owner" style="font-size: 18px; font-weight: bold;">🇨🇳 중국 사령부</div>
         </div>
 
-        <div id="field">
-            <div class="minion-row" id="enemy-minions"></div>
-            <div id="end-turn-btn" onclick="endTurn()">턴 종료</div>
-            <div class="minion-row" id="player-minions"></div>
-        </div>
-
-        <div class="mana-area" id="mana-bar"></div>
-
-        <div class="hero-area">
-            <div class="hero-portrait" style="border-color: var(--mana);">🧙<div class="hero-hp" id="player-hp">30</div></div>
-            <div class="hero-power" onclick="useHeroPower()">✨</div>
-        </div>
-
-        <div id="hand"></div>
-        <div id="fx-layer"></div>
+        <button class="btn-capture" onclick="startCapture()">
+            🚩 탈환 작전 개시
+        </button>
     </div>
 
     <script>
-        const CARDS = [
-            { name: "골드셔 보병", cost: 1, atk: 1, hp: 2, emoji: "🛡️", taunt: true, rarity: 'common' },
-            { name: "민물악어", cost: 2, atk: 2, hp: 3, emoji: "🐊", rarity: 'common' },
-            { name: "푸른색 용", cost: 4, atk: 4, hp: 4, emoji: "🐉", rarity: 'rare', battlecry: 'draw' },
-            { name: "센진 방패대가", cost: 4, atk: 3, hp: 5, emoji: "👹", taunt: true, rarity: 'rare' },
-            { name: "공성 전차", cost: 5, atk: 5, hp: 7, emoji: "🚜", rarity: 'epic' },
-            { name: "리치 왕", cost: 8, atk: 8, hp: 8, emoji: "💀", taunt: true, rarity: 'legendary' },
-            { name: "라그나로스", cost: 8, atk: 8, hp: 8, emoji: "🔥", rarity: 'legendary' }
+        let myCash = 1500;
+        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+        const spots = [
+            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!" },
+            { id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!" },
+            { id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, msg: "" },
+            { id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, msg: "글로벌 브랜드의 자존심을 찾아주세요!" }
         ];
 
-        let state = {
-            player: { hp: 30, mana: 1, maxMana: 1, hand: [], field: [] },
-            enemy: { hp: 30, mana: 1, maxMana: 1, field: [] },
-            turn: 'player'
-        };
+        let selectedSpot = null;
+        const markers = {};
 
-        function init() {
-            for(let i=0; i<3; i++) drawCard(state.player);
-            render();
-        }
-
-        function drawCard(p) {
-            if(p.hand.length < 10) {
-                const c = CARDS[Math.floor(Math.random()*CARDS.length)];
-                p.hand.push({ ...c, id: Math.random(), curAtk: c.atk, curHp: c.hp });
-            }
-        }
-
-        function playCard(card) {
-            if(state.turn !== 'player' || state.player.mana < card.cost || state.player.field.length >= 7) return;
-            state.player.mana -= card.cost;
-            state.player.hand = state.player.hand.filter(c => c.id !== card.id);
-            state.player.field.push(card);
-            
-            if(card.rarity === 'legendary') playLegendEffect();
-            if(card.battlecry === 'draw') drawCard(state.player);
-            render();
-        }
-
-        function playLegendEffect() {
-            const fx = document.getElementById('fx-layer');
-            const txt = document.createElement('div');
-            txt.className = 'legend-text';
-            txt.innerText = 'LEGENDARY!';
-            fx.appendChild(txt);
-            document.body.style.animation = 'shake 0.5s';
-            setTimeout(() => { txt.remove(); document.body.style.animation = ''; }, 1500);
-        }
-
-        function useHeroPower() {
-            if(state.turn !== 'player' || state.player.mana < 2) return;
-            state.player.mana -= 2;
-            state.enemy.hp -= 1;
-            render();
-        }
-
-        async function endTurn() {
-            if(state.turn !== 'player') return;
-            state.turn = 'enemy';
-            
-            // 단순 전투 로직
-            for(let m of state.player.field) {
-                const target = state.enemy.field.find(e => e.taunt) || state.enemy.field[0];
-                if(target) { target.curHp -= m.curAtk; m.curHp -= target.curAtk; }
-                else { state.enemy.hp -= m.curAtk; }
-                state.player.field = state.player.field.filter(x => x.curHp > 0);
-                state.enemy.field = state.enemy.field.filter(x => x.curHp > 0);
-                render(); await new Promise(r => setTimeout(r, 400));
-            }
-
-            // AI 턴
-            let em = state.enemy.maxMana;
-            while(em > 0 && state.enemy.field.length < 7) {
-                const c = CARDS.filter(x => x.cost <= em)[0];
-                if(!c) break;
-                state.enemy.field.push({ ...c, id: Math.random(), curAtk: c.atk, curHp: c.hp });
-                em -= c.cost;
-            }
-            state.enemy.maxMana = Math.min(state.enemy.maxMana + 1, 10);
-
-            state.player.maxMana = Math.min(state.player.maxMana + 1, 10);
-            state.player.mana = state.player.maxMana;
-            drawCard(state.player);
-            state.turn = 'player';
-            render();
-        }
-
-        function render() {
-            document.getElementById('player-hp').innerText = state.player.hp;
-            document.getElementById('enemy-hp').innerText = state.enemy.hp;
-            
-            const mb = document.getElementById('mana-bar'); mb.innerHTML = '';
-            for(let i=0; i<state.player.maxMana; i++) {
-                const gem = document.createElement('div');
-                gem.className = 'mana-gem' + (i >= state.player.mana ? ' empty' : '');
-                mb.appendChild(gem);
-            }
-
-            const handEl = document.getElementById('hand'); handEl.innerHTML = '';
-            state.player.hand.forEach(c => {
-                const el = createMinionEl(c);
-                el.onclick = () => playCard(c);
-                handEl.appendChild(el);
+        spots.forEach(spot => {
+            const isBounty = spot.bounty > 0;
+            const icon = L.divIcon({
+                className: 'custom-icon',
+                html: isBounty ? `<div class="bounty-marker">💰</div>` : `<div style="font-size:30px;">${spot.owner}</div>`,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
             });
 
-            document.getElementById('player-minions').innerHTML = '';
-            state.player.field.forEach(c => document.getElementById('player-minions').appendChild(createMinionEl(c)));
-            document.getElementById('enemy-minions').innerHTML = '';
-            state.enemy.field.forEach(c => document.getElementById('enemy-minions').appendChild(createMinionEl(c)));
+            const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
+            markers[spot.id] = marker;
+
+            marker.on('click', () => {
+                selectedSpot = spot;
+                openPanel(spot);
+            });
+        });
+
+        function openPanel(spot) {
+            document.getElementById('p-name').innerText = spot.name;
+            document.getElementById('p-owner-msg').innerText = spot.msg || "이 지역을 점령하여 조국의 영광을 높이세요!";
+            document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
+            
+            const bInfo = document.getElementById('bounty-info');
+            if(spot.bounty > 0) {
+                bInfo.style.display = 'inline-block';
+                bInfo.innerText = `💰 사장님의 특별 현상금: +₩ ${spot.bounty.toLocaleString()}`;
+            } else {
+                bInfo.style.display = 'none';
+            }
+
+            document.getElementById('capture-panel').classList.add('open');
         }
 
-        function createMinionEl(c) {
-            const div = document.createElement('div');
-            div.className = `minion rarity-${c.rarity} ${c.taunt ? 'taunt' : ''}`;
-            div.innerHTML = `<div class="cost">${c.cost}</div><div class="emoji">${c.emoji}</div><div class="stats"><span class="atk">${c.curAtk}</span><span class="hp">${c.curHp}</span></div>`;
-            return div;
+        function startCapture() {
+            if(!selectedSpot) return;
+            const btn = document.querySelector('.btn-capture');
+            btn.innerText = "⏳ 영수증 위치 데이터 매칭 중...";
+            btn.style.background = "#94a3b8";
+
+            setTimeout(() => {
+                const totalGain = 500 + selectedSpot.bounty;
+                myCash += totalGain;
+                document.getElementById('cash-val').innerText = myCash.toLocaleString();
+                
+                alert(`🎯 탈환 성공!\n[${selectedSpot.name}] 사장님이 약속한 현상금과 정복 보상 포함 총 ₩${totalGain.toLocaleString()}원이 지급되었습니다!`);
+                
+                // 핀 업데이트
+                selectedSpot.owner = "🇰🇷";
+                selectedSpot.bounty = 0;
+                const newIcon = L.divIcon({
+                    className: 'custom-icon',
+                    html: `<div style="font-size:30px;">🇰🇷</div>`,
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 20]
+                });
+                markers[selectedSpot.id].setIcon(newIcon);
+                
+                document.getElementById('capture-panel').classList.remove('open');
+                btn.innerText = "🚩 탈환 작전 개시";
+                btn.style.background = "var(--gold)";
+            }, 2000);
         }
 
-        init();
+        // 초기 알림 시뮬레이션
+        setTimeout(() => {
+            const alert = document.getElementById('mission-alert');
+            alert.style.display = 'block';
+            setTimeout(() => { alert.style.display = 'none'; }, 5000);
+        }, 3000);
     </script>
-    <style> @keyframes shake { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(-5px, 5px); } 50% { transform: translate(5px, -5px); } 75% { transform: translate(-5px, -5px); } } </style>
 </body>
 </html>

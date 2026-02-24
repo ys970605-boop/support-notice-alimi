@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Food Conquest | 비즈니스 에디션</title>
+    <title>K-Food Conquest | 전국 명물 정복기</title>
+    
+    <!-- 카톡/공유 시 미리보기 설정 (Open Graph) -->
+    <meta property="og:title" content="K-Food Conquest: 전국 맛집 영토 전쟁" />
+    <meta property="og:description" content="전국 각지의 명물 맛집에 내 조국의 깃발을 꽂으세요! 실시간 랭킹 전쟁" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ys970605-boop.github.io/support-notice-alimi/" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -29,11 +36,12 @@
 
         /* 상단 전황판 */
         #scoreboard {
-            position: absolute; top: 10px; left: 10px; right: 10px; z-index: 1000;
+            position: absolute; top: 10px; left: 250px; right: 10px; z-index: 1000;
             background: rgba(15, 23, 42, 0.9); border: 2px solid #334155;
             border-radius: 15px; padding: 12px; display: flex; justify-content: space-around;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
+        @media (max-width: 600px) { #scoreboard { left: 10px; top: 180px; } }
         .score-item { text-align: center; }
         .score-item .flag { font-size: 24px; display: block; }
         .score-item .val { font-weight: 900; font-size: 16px; color: var(--gold); }
@@ -64,7 +72,7 @@
             background: #ffffff; border-top: 6px solid var(--gold); border-radius: 30px 30px 0 0;
             padding: 25px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 -15px 50px rgba(0,0,0,0.2);
-            color: #1e293b;
+            color: #1e293b; max-height: 85vh; overflow-y: auto;
         }
         #capture-panel.open { bottom: 0; }
         
@@ -86,12 +94,12 @@
 
         /* 음식 사진 스타일 */
         .res-photo {
-            width: 100%; height: 150px; border-radius: 15px; object-fit: cover;
+            width: 100%; height: 180px; border-radius: 15px; object-fit: cover;
             margin-bottom: 15px; border: 2px solid #eee;
         }
         .bounty-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 5px; font-weight: 900; font-size: 12px; margin-bottom: 10px; display: inline-block; }
-        .res-name { font-size: 26px; font-weight: 900; margin: 0; color: white; }
-        .owner-msg { font-style: italic; color: #94a3b8; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
+        .res-name { font-size: 24px; font-weight: 900; margin: 0; color: #0f172a; line-height: 1.2; }
+        .owner-msg { font-style: italic; color: #64748b; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
 
         .btn-capture {
             width: 100%; padding: 18px; border: none; border-radius: 15px;
@@ -100,13 +108,22 @@
         }
         .btn-capture:active { transform: scale(0.95); }
 
-        /* 현상금 핀 이펙트 */
-        .bounty-marker {
-            background: var(--gold); border: 3px solid white; border-radius: 50%;
-            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 0 20px var(--gold); animation: markerPulse 1s infinite;
-        }
-        @keyframes markerPulse { 0% { transform: scale(1); box-shadow: 0 0 10px var(--gold); } 50% { transform: scale(1.2); box-shadow: 0 0 30px var(--gold); } 100% { transform: scale(1); box-shadow: 0 0 10px var(--gold); } }
+        /* 전술 상점 */
+        #shop-trigger, #chat-trigger { position: absolute; z-index: 1000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 20px; }
+        #shop-trigger { top: 190px; right: 15px; background: #3b82f6; color: white; }
+        #chat-trigger { top: 190px; left: 15px; background: var(--accent); color: white; }
+
+        /* 팝업 패널 */
+        .ui-panel { position: absolute; z-index: 1000; background: rgba(15, 23, 42, 0.95); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; overflow: hidden; }
+        #shop-panel { top: 240px; right: 15px; width: 180px; padding: 15px; border: 1px solid #3b82f6; }
+        #chat-panel { top: 240px; left: 15px; width: 220px; height: 350px; padding: 15px; flex-direction: column; border: 1px solid var(--accent); }
+
+        /* AI 스캔 */
+        #scan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; flex-direction: column; align-items: center; justify-content: center; color: #00ff00; font-family: monospace; }
+        @keyframes scanAnim { from { top: 0; } to { top: 350px; } }
+
+        /* 뮤직 플레이어 */
+        #music-player { position: absolute; bottom: 85px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 20px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--gold); }
     </style>
 </head>
 <body>
@@ -134,195 +151,122 @@
         <div class="score-item"><span class="flag">🇯🇵</span><span class="val">30%</span></div>
     </div>
 
-    <div id="mission-alert">🚨 긴급 탈환 현상금 발생: [성수족발] 사령부</div>
+    <div id="mission-alert">🚨 긴급 탈환 현상금 발생!</div>
 
     <div id="wallet">💳 ₩ <span id="cash-val">1,500</span></div>
 
-    <!-- 전술 상점 -->
-    <div id="shop-trigger" onclick="toggleShop()" style="position: absolute; top: 190px; right: 15px; z-index: 1000; background: #3b82f6; color: white; padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">🛒</div>
-    
-    <!-- 비밀 전략실 버튼 -->
-    <div id="chat-trigger" onclick="toggleChat()" style="position: absolute; top: 190px; left: 15px; z-index: 1000; background: var(--accent); color: white; padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">💬</div>
+    <div id="shop-trigger" onclick="toggleShop()">🛒</div>
+    <div id="chat-trigger" onclick="toggleChat()">💬</div>
 
-    <!-- AI 스캔 오버레이 -->
-    <div id="scan-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; flex-direction: column; align-items: center; justify-content: center; color: #00ff00; font-family: monospace;">
-        <div style="width: 250px; height: 350px; border: 2px solid #00ff00; position: relative; overflow: hidden; margin-bottom: 20px;">
-            <div id="scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00ff00; box-shadow: 0 0 15px #00ff00; animation: scanAnim 2s infinite;"></div>
-            <div id="scan-logs" style="padding: 10px; font-size: 10px; color: #00ff00;"></div>
-        </div>
-        <b style="font-size: 18px; letter-spacing: 2px;">AI RECEIPT ANALYZING...</b>
-        <div id="scan-progress" style="width: 200px; height: 4px; background: #111; margin-top: 15px; border-radius: 2px; overflow: hidden;">
-            <div id="scan-bar" style="width: 0%; height: 100%; background: #00ff00; transition: width 0.1s;"></div>
-        </div>
-    </div>
-
-    <!-- 비밀 전략실 (채팅창) -->
-    <div id="chat-panel" style="position: absolute; top: 240px; left: 15px; z-index: 1000; background: rgba(15, 23, 42, 0.95); padding: 15px; border-radius: 12px; width: 220px; height: 350px; display: none; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--accent);">
-        <b style="font-size: 14px; color: var(--accent); margin-bottom: 10px; display: block;">🇰🇷 한국군 비밀 전략실</b>
-        
-        <!-- 사령관 전용 작전 메뉴 -->
-        <div id="commander-menu" style="background: rgba(244,63,94,0.1); border: 1px dashed var(--accent); padding: 8px; border-radius: 8px; margin-bottom: 10px;">
-            <div style="font-size: 10px; color: var(--accent); font-weight: bold; margin-bottom: 5px;">🎖️ 사령관 전용: 작전 발령</div>
-            <select id="bounty-target" style="width: 100%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155; margin-bottom: 5px;">
-                <option value="">타겟 식당 선택...</option>
-                <option value="1">성수족발</option>
-                <option value="2">어니언 성수</option>
-                <option value="4">블루보틀 성수</option>
-            </select>
-            <div style="display: flex; gap: 3px;">
-                <input type="number" id="bounty-amount" placeholder="현상금(₩)" style="width: 60%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155;">
-                <button onclick="setCommanderBounty()" style="flex-grow: 1; font-size: 9px; background: var(--accent); color: white; border: none; border-radius: 3px; cursor: pointer;">발령</button>
-            </div>
-        </div>
-
-        <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px;">
-            <div style="color: #94a3b8; font-style: italic; margin-bottom: 5px;">[시스템] 전우들과 전략을 공유하세요.</div>
-            <div style="margin-bottom: 5px;"><b>미식대장:</b> 성수족발 탈환하러 갑니다!</div>
-            <div style="margin-bottom: 5px;"><b>서울정복자:</b> 2시 방향에 중국팀 집결 중 조심요</div>
-        </div>
-        <div style="display: flex; gap: 5px;">
-            <input type="text" id="chat-input" placeholder="메시지 입력..." style="flex-grow: 1; background: #1e293b; border: 1px solid #334155; color: white; padding: 5px; border-radius: 4px; font-size: 11px;">
-            <button onclick="sendChatMessage()" style="background: var(--accent); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">전송</button>
-        </div>
-    </div>
+    <div id="shop-panel" class="ui-panel">
         <b style="font-size: 14px; display: block; margin-bottom: 10px;">전술 상점</b>
-        <div style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
             <div style="font-size: 12px; font-weight: bold;">❄️ 얼음 폭풍</div>
-            <div style="font-size: 10px; color: #64748b;">10분간 타국 활동 중단</div>
+            <div style="font-size: 10px; color: #94a3b8;">10분간 타국 마비</div>
             <button onclick="buyItem('freeze')" style="width: 100%; margin-top: 5px; background: #3b82f6; color: white; border: none; border-radius: 4px; padding: 5px; font-size: 11px; cursor: pointer;">₩ 2,000 구매</button>
         </div>
         <button onclick="shareKakao()" style="width: 100%; background: #fee500; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">🤝 지원군 요청하기</button>
     </div>
 
-    <!-- 뮤직 플레이어 위젯 -->
-    <div id="music-player" style="position: absolute; bottom: 85px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 20px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--gold);">
-        <span id="music-icon">🎵</span>
-        <marquee id="music-title" style="width: 80px; font-size: 10px; color: var(--gold);">현재 1위: 🇨🇳 중국 국가 재생 중...</marquee>
-        <button onclick="toggleMusic()" style="background: none; border: none; color: white; cursor: pointer; font-size: 12px;">⏸</button>
+    <div id="chat-panel" class="ui-panel">
+        <b style="font-size: 14px; color: var(--accent); margin-bottom: 10px; display: block;">🇰🇷 한국군 비밀 전략실</b>
+        <div id="commander-menu" style="background: rgba(244,63,94,0.1); border: 1px dashed var(--accent); padding: 8px; border-radius: 8px; margin-bottom: 10px;">
+            <div style="font-size: 10px; color: var(--accent); font-weight: bold; margin-bottom: 5px;">🎖️ 사령관 전용: 작전 발령</div>
+            <select id="bounty-target" style="width: 100%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155; margin-bottom: 5px;">
+                <option value="">타겟 선택...</option>
+                <option value="1">성수족발</option>
+                <option value="5">이재모피자</option>
+                <option value="6">성심당</option>
+                <option value="7">연돈</option>
+            </select>
+            <div style="display: flex; gap: 3px;">
+                <input type="number" id="bounty-amount" placeholder="₩" style="width: 60%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155;">
+                <button onclick="setCommanderBounty()" style="flex-grow: 1; font-size: 9px; background: var(--accent); color: white; border: none; border-radius: 3px; cursor: pointer;">발령</button>
+            </div>
+        </div>
+        <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px;">
+            <div style="color: #94a3b8;">[시스템] 전우들과 전략을 공유하세요.</div>
+        </div>
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="chat-input" placeholder="메시지..." style="flex-grow: 1; background: #1e293b; border: 1px solid #334155; color: white; padding: 5px; border-radius: 4px; font-size: 11px;">
+            <button onclick="sendChatMessage()" style="background: var(--accent); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">전송</button>
+        </div>
     </div>
 
-    <!-- 숨겨진 오디오 및 카메라 입력 -->
+    <div id="scan-overlay">
+        <div style="width: 250px; height: 350px; border: 2px solid #00ff00; position: relative; overflow: hidden; margin-bottom: 20px;">
+            <div id="scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00ff00; box-shadow: 0 0 15px #00ff00; animation: scanAnim 2s infinite;"></div>
+            <div id="scan-logs" style="padding: 10px; font-size: 10px; color: #00ff00;"></div>
+        </div>
+        <b style="font-size: 18px; letter-spacing: 2px;">AI RECEIPT ANALYZING...</b>
+        <div id="scan-progress" style="width: 200px; height: 4px; background: #111; margin-top: 15px; border-radius: 2px; overflow: hidden;"><div id="scan-bar" style="width: 0%; height: 100%; background: #00ff00; transition: width 0.1s;"></div></div>
+    </div>
+
+    <div id="music-player">
+        <span>🎵</span>
+        <marquee id="music-title" style="width: 80px; font-size: 10px; color: var(--gold);">현재 1위 국가 연주 중...</marquee>
+        <button onclick="toggleMusic()" style="background: none; border: none; color: white; cursor: pointer;">⏸</button>
+    </div>
+
     <audio id="anthem-audio" loop></audio>
     <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" onchange="handleCameraCapture(this)">
 
     <div id="map"></div>
 
     <div id="capture-panel">
-        <img id="p-photo" class="res-photo" src="" alt="음식 사진">
-        <div id="bounty-info" class="bounty-badge">💰 사장님의 현상금: +₩ 1,000</div>
+        <img id="p-photo" class="res-photo" src="" alt="음식">
+        <div id="bounty-info" class="bounty-badge">💰 특별 현상금 발령</div>
         <h2 id="p-name" class="res-name">식당 이름</h2>
-        <p id="p-owner-msg" class="owner-msg">"적군에게 뺏긴 우리 식당을 찾아주세요!"</p>
-        
-        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-top: 15px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 5px;">현재 점유 국가</div>
-            <div id="p-current-owner" style="font-size: 18px; font-weight: bold;">🇨🇳 중국 사령부</div>
+        <p id="p-owner-msg" class="owner-msg"></p>
+        <div id="p-details"></div>
+        <div style="background: #f1f5f9; padding: 15px; border-radius: 12px; margin-top: 15px;">
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 5px;">현재 점유 국가</div>
+            <div id="p-current-owner" style="font-size: 18px; font-weight: bold; color:#0f172a;">🇨🇳 중국 사령부</div>
         </div>
-
-        <button class="btn-capture" onclick="triggerCamera()">
-            🚩 탈환 작전 개시 (카메라 촬영)
-        </button>
+        <button class="btn-capture" onclick="triggerCamera()">🚩 탈환 작전 개시 (카메라 촬영)</button>
     </div>
 
     <script>
-        // 주기적으로 국가(Anthem) 업데이트 확인
-        setInterval(updateAnthem, 5000);
+        const ANTHEMS = {
+            "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+        };
+
+        const spots = [
+            // 서울 TOP 5
+            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, rank: 1, region: "서울", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80", addr: "서울 성동구 아차산로7길 7", menu: "성수족발(대) 45,000원", info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00", tip: "서울 3대 족발! 포장이 빠릅니다." },
+            { id: 11, name: "명동교자 본점", lat: 37.5625, lng: 126.9856, owner: "🇰🇷", bounty: 0, rank: 2, region: "서울", img: "https://images.unsplash.com/photo-1569058242252-623df46b5025?auto=format&fit=crop&w=400&q=80", addr: "서울 중구 명동10길 29", menu: "칼국수 11,000원", info: "🅿️ 주차 불가 | 🕒 10:30 ~ 21:00", tip: "마늘 김치가 아주 중독적!" },
+            { id: 12, name: "우래옥", lat: 37.5682, lng: 126.9992, owner: "🇯🇵", bounty: 500, rank: 3, region: "서울", img: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80", addr: "서울 중구 창경궁로 62-29", menu: "평양냉면 16,000원", info: "🅿️ 전용 주차장 | 🕒 11:30 ~ 21:00", tip: "평양냉면의 정석, 육향이 진합니다." },
+            { id: 13, name: "토속촌 삼계탕", lat: 37.5766, lng: 126.9718, owner: "🇨🇳", bounty: 0, rank: 4, region: "서울", img: "https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?auto=format&fit=crop&w=400&q=80", addr: "서울 종로구 자하문로5길 5", menu: "토속촌 삼계탕 20,000원", info: "🅿️ 주차 가능 | 🕒 10:00 ~ 21:30", tip: "국물이 아주 진하고 고소합니다." },
+            { id: 14, name: "런던 베이글 뮤지엄", lat: 37.5793, lng: 126.9911, owner: "🇰🇷", bounty: 1500, rank: 5, region: "서울", img: "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?auto=format&fit=crop&w=400&q=80", addr: "서울 종로구 북촌로4길 20", menu: "포테이토 치즈 5,500원", info: "🅿️ 주차 불가 | 🕒 08:00 ~ 18:00", tip: "웨이팅 필수! 캐치테이블을 쓰세요." },
+
+            // 부산 TOP 5
+            { id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, rank: 1, region: "부산", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80", addr: "부산 중구 광복중앙로 31", menu: "이재모 크러스트 25,000원", info: "🅿️ 인근 주차 | 🕒 11:00 ~ 21:00", tip: "임실치즈 풍미가 예술입니다." },
+            { id: 15, name: "수변최고돼지국밥", lat: 35.1555, lng: 129.1255, owner: "🇨🇳", bounty: 0, rank: 2, region: "부산", img: "https://images.unsplash.com/photo-1624300629298-e9de39c13be5?auto=format&fit=crop&w=400&q=80", addr: "부산 수영구 민락수변로 235", menu: "항정국밥 12,000원", info: "🅿️ 공영주차 | 🕒 24시간 영업", tip: "항정국밥이 가장 맛있습니다." },
+            { id: 16, name: "해운대 암소갈비집", lat: 35.1633, lng: 129.1661, owner: "🇰🇷", bounty: 3000, rank: 3, region: "부산", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80", addr: "부산 해운대구 중동2로 10", menu: "생갈비 58,000원", info: "🅿️ 주차 가능 | 🕒 11:30 ~ 22:00", tip: "감자 사리 추가는 필수입니다!" },
+            { id: 17, name: "본전돼지국밥", lat: 35.1148, lng: 129.0395, owner: "🇯🇵", bounty: 0, rank: 4, region: "부산", img: "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=400&q=80", addr: "부산 동구 중앙대로214번길 3-8", menu: "돼지국밥 10,000원", info: "🅿️ 주차 불가 | 🕒 09:00 ~ 20:30", tip: "부산역 옆! 맑은 국물이 특징." },
+            { id: 18, name: "가야밀면", lat: 35.1512, lng: 129.0215, owner: "🇰🇷", bounty: 0, rank: 5, region: "부산", img: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=400&q=80", addr: "부산진구 가야대로 506", menu: "밀면 8,500원", info: "🅿️ 주차 가능 | 🕒 10:30 ~ 20:30", tip: "시원하고 달달한 원조 밀면!" },
+
+            // 대전 TOP 5
+            { id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, rank: 1, region: "대전", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 대종로480번길 15", menu: "튀김소보로 1,700원", info: "🅿️ 주차 가능 | 🕒 08:00 ~ 22:00", tip: "명란바게트도 꼭 드셔보세요." },
+            { id: 19, name: "오씨칼국수", lat: 36.3405, lng: 127.4215, owner: "🇰🇷", bounty: 0, rank: 2, region: "대전", img: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=400&q=80", addr: "대전 동구 옛신탄진로 13", menu: "물총(동죽) 14,000원", info: "🅿️ 주차 가능 | 🕒 11:00 ~ 21:00", tip: "물총 조개의 시원함이 예술!" },
+            { id: 20, name: "진로집", lat: 36.3282, lng: 127.4245, owner: "🇯🇵", bounty: 1000, rank: 3, region: "대전", img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 중교로 45-5", menu: "두부두루치기 12,000원", info: "🅿️ 주차 불가 | 🕒 11:30 ~ 22:00", tip: "칼칼한 두부와 사리의 조화!" },
+            { id: 21, name: "태평소국밥", lat: 36.3455, lng: 127.3415, owner: "🇨🇳", bounty: 0, rank: 4, region: "대전", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80", addr: "대전 유성구 온천동로 50", menu: "육사시미 11,000원", info: "🅿️ 주차 가능 | 🕒 24시간 영업", tip: "가성비 끝판왕 육사시미 추천!" },
+            { id: 22, name: "자매국수", lat: 33.5071, lng: 126.4915, owner: "🇰🇷", bounty: 0, rank: 5, region: "제주", img: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=400&q=80", addr: "제주시 탑동로 11", menu: "고기국수 9,000원", info: "🅿️ 주차 가능 | 🕒 09:00 ~ 18:00", tip: "공항 근처 첫 식사로 최고!" }
+        ];
+
         let myCash = 1500;
-        // 전국 지도가 다 보이도록 초기 뷰 설정 (대한민국 중심)
+        let topNation = "🇨🇳";
+        let isFrozen = false;
+        const markers = {};
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([36.2, 127.8], 7);
-        
-        // 지도 클릭 시 모든 열린 패널 닫기 (복귀 기능)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
+
         map.on('click', () => {
             document.getElementById('capture-panel').classList.remove('open');
             document.getElementById('shop-panel').style.display = 'none';
             document.getElementById('chat-panel').style.display = 'none';
-        });
-
-        // 밝고 선명한 주간 지도 (Voyager)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
-
-        const spots = [
-            // 서울 거점
-            { 
-                id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, 
-                img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80",
-                addr: "서울 성동구 아차산로7길 7",
-                menu: "성수족발(대) 45,000원",
-                info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00",
-                tip: "서울 3대 족발의 위엄! 포장이 훨씬 빠릅니다."
-            },
-            // 부산 거점
-            { 
-                id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, 
-                img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80",
-                addr: "부산 중구 광복중앙로 31",
-                menu: "이재모 크러스트 25,000원",
-                info: "🅿️ 인근 주차장 이용 | 🕒 11:00 ~ 21:00 (일요일 휴무)",
-                tip: "부산 현지인과 관광객 모두 줄 서는 인생 피자집!"
-            },
-            // 대전 거점
-            { 
-                id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, 
-                img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80",
-                addr: "대전 중구 대종로480번길 15",
-                menu: "튀김소보로 1,700원 | 부추빵 2,000원",
-                info: "🅿️ 전용 주차장 보유 | 🕒 08:00 ~ 22:00",
-                tip: "대전의 자존심! 튀소 세트는 선물용으로 최고입니다."
-            },
-            // 제주 거점
-            { 
-                id: 7, name: "연돈", lat: 33.2492, lng: 126.4075, owner: "🇰🇷", bounty: 0, 
-                img: "https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=400&q=80",
-                addr: "제주 서귀포시 일주서로 968-10",
-                menu: "등심까스 11,000원 | 치즈까스 13,000원",
-                info: "🅿️ 주차 가능 | 🕒 12:00 ~ 21:00",
-                tip: "테이블링 예약 전쟁 필수! 정돈된 맛의 정점입니다."
-            },
-            // 강원 거점
-            { 
-                id: 8, name: "엄지네포장마차", lat: 37.7635, lng: 128.9085, owner: "🇯🇵", bounty: 1500, 
-                img: "https://images.unsplash.com/photo-1534422298391-e4f8c170db06?auto=format&fit=crop&w=400&q=80",
-                addr: "강원 강릉시 경강로2255번길 21",
-                menu: "꼬막무침비빔밥 35,000원",
-                info: "🅿️ 전용 주차장 보유 | 🕒 11:00 ~ 23:00",
-                tip: "꼬막과 밥을 슥슥 비벼 먹는 맛이 일품입니다."
-            }
-        ];
-
-        let selectedSpot = null;
-        let topNation = "🇨🇳";
-        let isFrozen = false;
-        const markers = {};
-
-        function toggleShop() {
-            const panel = document.getElementById('shop-panel');
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function buyItem(type) {
-            if(myCash < 2000) { alert('자금이 부족합니다!'); return; }
-            myCash -= 2000;
-            document.getElementById('cash-val').innerText = myCash.toLocaleString();
-            
-            if(type === 'freeze') {
-                isFrozen = true;
-                document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)';
-                alert('❄️ 얼음 폭풍 발동! 10분간 타국의 활동이 중단됩니다.');
-                setTimeout(() => {
-                    isFrozen = false;
-                    document.getElementById('map').style.filter = 'brightness(1) saturate(1) hue-rotate(0deg)';
-                }, 10000); // 시뮬레이션상 10초 후 해제
-            }
-            toggleShop();
-        }
-
-        function shareKakao() {
-            // 실제 카카오 SDK 연동 전 시뮬레이션
-            const shareText = "🚨 긴급 상황! 성수동이 점령당하고 있다! 지금 바로 지원군으로 합류해 깃발을 꽂아줘! \n https://ys970605-boop.github.io/support-notice-alimi/";
-            prompt("카카오톡으로 공유할 메시지입니다. 복사해서 친구에게 보내세요!", shareText);
-        }
-
-        spots.forEach(spot => {
-            updateMarker(spot);
         });
 
         function updateMarker(spot) {
@@ -330,186 +274,46 @@
             const isTop = spot.owner === topNation;
             const icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''} ${isTop ? 'top-rank' : ''}"><span>${isBounty ? '💰' : spot.owner}</span></div>`,
+                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''} ${isTop ? 'top-rank' : ''}">
+                        <div style="position:absolute; top:-12px; font-size:10px; font-weight:900; background:white; padding:1px 4px; border-radius:10px; border:1px solid #334155;">#${spot.rank}</div>
+                        <span>${isBounty ? '💰' : spot.owner}</span>
+                       </div>`,
                 iconSize: [45, 45],
                 iconAnchor: [22, 45]
             });
-
-            if (markers[spot.id]) {
-                markers[spot.id].setIcon(icon);
-            } else {
+            if (markers[spot.id]) markers[spot.id].setIcon(icon);
+            else {
                 const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
                 markers[spot.id] = marker;
-                marker.on('click', () => {
-                    selectedSpot = spot;
-                    openPanel(spot);
-                });
+                marker.on('click', () => { selectedSpot = spot; openPanel(spot); });
             }
         }
 
         function openPanel(spot) {
-            document.getElementById('p-name').innerText = spot.name;
+            document.getElementById('p-name').innerHTML = `<span style="font-size:14px; color:var(--accent)">[${spot.region} 지역 ${spot.rank}위 명물]</span><br>${spot.name}`;
             document.getElementById('p-photo').src = spot.img;
-            document.getElementById('p-owner-msg').innerText = spot.msg || "이 지역을 점령하여 조국의 영광을 높이세요!";
+            document.getElementById('p-owner-msg').innerText = spot.msg || `${spot.region}의 명예를 걸고 수호하세요!`;
             document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
-            
-            // 상세 정보 업데이트
-            const detailHtml = `
-                <div style="margin-top: 15px; font-size: 13px; color: #1e293b; line-height: 1.6;">
-                    <div style="background: #f8fafc; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
-                        <b>📍 주소:</b> ${spot.addr}
-                    </div>
-                    <div style="margin-bottom: 8px;"><b>🍴 대표 메뉴:</b> ${spot.menu}</div>
-                    <div style="margin-bottom: 8px;"><b>ℹ️ 이용 정보:</b> ${spot.info}</div>
-                    <div style="color: #3b82f6; font-size: 12px;"><b>💡 꿀팁:</b> ${spot.tip}</div>
-                </div>
-            `;
-            
-            // 기존 owner-msg 뒤에 상세 정보 삽입
-            const existingDetails = document.getElementById('p-details');
-            if(existingDetails) existingDetails.innerHTML = detailHtml;
-            else {
-                const div = document.createElement('div');
-                div.id = 'p-details';
-                div.innerHTML = detailHtml;
-                document.getElementById('p-owner-msg').after(div);
-            }
-            
-            const bInfo = document.getElementById('bounty-info');
-            if(spot.bounty > 0) {
-                bInfo.style.display = 'inline-block';
-                bInfo.innerText = `💰 사장님의 특별 현상금: +₩ ${spot.bounty.toLocaleString()}`;
-            } else {
-                bInfo.style.display = 'none';
-            }
-
+            document.getElementById('p-details').innerHTML = `<div style="margin-top:15px; font-size:13px; color:#1e293b;"><div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div><div><b>🍴 메뉴:</b> ${spot.menu}</div><div><b>ℹ️ 정보:</b> ${spot.info}</div><div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div></div>`;
+            document.getElementById('bounty-info').style.display = spot.bounty > 0 ? 'inline-block' : 'none';
             document.getElementById('capture-panel').classList.add('open');
         }
 
-        function toggleChat() {
-            const panel = document.getElementById('chat-panel');
-            panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
-        }
+        let selectedSpot = null;
+        spots.forEach(updateMarker);
 
-        function sendChatMessage() {
-            const input = document.getElementById('chat-input');
-            if(!input.value) return;
-            const msgs = document.getElementById('chat-messages');
-            const div = document.createElement('div');
-            div.style.marginBottom = '5px';
-            div.innerHTML = `<b>나:</b> ${input.value}`;
-            msgs.appendChild(div);
-            msgs.scrollTop = msgs.scrollHeight;
-            input.value = '';
-        }
-
-        function setCommanderBounty() {
-            const targetId = document.getElementById('bounty-target').value;
-            const amount = parseInt(document.getElementById('bounty-amount').value);
-            
-            if(!targetId || isNaN(amount)) { alert('타겟과 금액을 정확히 입력하세요.'); return; }
-            if(myCash < amount) { alert('국가 공금(지갑 자금)이 부족합니다.'); return; }
-            
-            const spot = spots.find(s => s.id == targetId);
-            spot.bounty = amount;
-            myCash -= amount;
-            document.getElementById('cash-val').innerText = myCash.toLocaleString();
-            
-            updateMarker(spot);
-            
-            const alertBox = document.getElementById('mission-alert');
-            alertBox.innerText = `🎖️ 사령관 긴급 작전: [${spot.name}]에 ₩${amount.toLocaleString()} 현상금 발령!`;
-            alertBox.style.display = 'block';
-            setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
-            
-            alert('전군에게 작전 명령이 하달되었습니다!');
-        }
-
-        const ANTHEMS = {
-            "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, // 샘플 오디오
-            "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-            "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
-        };
-
-        function updateAnthem() {
-            const audio = document.getElementById('anthem-audio');
-            const title = document.getElementById('music-title');
-            const anthem = ANTHEMS[topNation] || ANTHEMS["🇰🇷"];
-            
-            if(audio.src !== anthem.url) {
-                audio.src = anthem.url;
-                title.innerText = `현재 1위: ${anthem.title} 재생 중...`;
-                audio.play().catch(e => console.log("자동 재생 대기 중..."));
-            }
-        }
-
-        function toggleMusic() {
-            const audio = document.getElementById('anthem-audio');
-            if(audio.paused) audio.play(); else audio.pause();
-        }
-
-        function triggerCamera() {
-            if(isFrozen) { alert('❄️ 영토가 얼어붙어 활동할 수 없습니다!'); return; }
-            document.getElementById('camera-input').click();
-        }
-
-        function handleCameraCapture(input) {
-            if(input.files && input.files[0]) {
-                startCapture(); // 촬영 완료 후 AI 스캔 시작
-            }
-        }
-
-        async function startCapture() {
-            if(!selectedSpot) return;
-            
-            // 1. AI 스캔 시작 (로그 추가)
-            document.getElementById('scan-overlay').style.display = 'flex';
-            const logs = document.getElementById('scan-logs');
-            const bar = document.getElementById('scan-bar');
-            const logSteps = [
-                "Camera Stream Captured...",
-                "Analyzing Image Lighting...",
-                "OCR Engine v4.2 Initialized...",
-                "Searching for Merchant: " + selectedSpot.name,
-                "Validating Receipt Metadata...",
-                "Anti-Fraud Check: Passed",
-                "Transaction Match Confirmed",
-                "Rewarding Patriot: ₩" + (500 + selectedSpot.bounty)
-            ];
-
-            for(let i=0; i<logSteps.length; i++) {
-                const log = document.createElement('div');
-                log.innerText = `> ${logSteps[i]}`;
-                logs.appendChild(log);
-                bar.style.width = ((i+1) / logSteps.length * 100) + '%';
-                await new Promise(r => setTimeout(r, 400));
-            }
-
-            // 2. 보상 지급 및 핀 업데이트
-            setTimeout(() => {
-                document.getElementById('scan-overlay').style.display = 'none';
-                document.getElementById('scan-logs').innerHTML = '';
-                
-                const totalGain = 500 + selectedSpot.bounty;
-                myCash += totalGain;
-                document.getElementById('cash-val').innerText = myCash.toLocaleString();
-                
-                alert(`🎯 탈환 성공!\nAI 정밀 분석 결과, 실제 방문이 확인되었습니다.\n₩${totalGain.toLocaleString()}원이 지급되었습니다.`);
-                
-                selectedSpot.owner = "🇰🇷";
-                selectedSpot.bounty = 0;
-                updateMarker(selectedSpot);
-                
-                document.getElementById('capture-panel').classList.remove('open');
-            }, 500);
-        }
-
-        // 초기 알림 시뮬레이션
-        setTimeout(() => {
-            const alert = document.getElementById('mission-alert');
-            alert.style.display = 'block';
-            setTimeout(() => { alert.style.display = 'none'; }, 5000);
-        }, 3000);
+        function toggleShop() { const p = document.getElementById('shop-panel'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
+        function toggleChat() { const p = document.getElementById('chat-panel'); p.style.display = p.style.display === 'none' ? 'flex' : 'none'; }
+        function buyItem(t) { if(myCash < 2000) { alert('자금 부족!'); return; } myCash -= 2000; document.getElementById('cash-val').innerText = myCash.toLocaleString(); if(t === 'freeze') { isFrozen = true; document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)'; alert('❄️ 얼음 폭풍 발동!'); setTimeout(() => { isFrozen = false; document.getElementById('map').style.filter = ''; }, 10000); } toggleShop(); }
+        function shareKakao() { const t = "🚨 긴급! 성수동 점령 중! 지원해줘! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("공유 메시지:", t); }
+        function sendChatMessage() { const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
+        function setCommanderBounty() { const t = document.getElementById('bounty-target').value, a = parseInt(document.getElementById('bounty-amount').value); if(!t || isNaN(a)) return; if(myCash < a) { alert('공금 부족!'); return; } const s = spots.find(x => x.id == t); s.bounty = a; myCash -= a; document.getElementById('cash-val').innerText = myCash.toLocaleString(); updateMarker(s); const al = document.getElementById('mission-alert'); al.innerText = `🎖️ 작전: [${s.name}] ₩${a.toLocaleString()} 현상금!`; al.style.display = 'block'; setTimeout(() => al.style.display = 'none', 5000); }
+        function triggerCamera() { if(isFrozen) { alert('❄️ 마비 상태!'); return; } document.getElementById('camera-input').click(); }
+        function handleCameraCapture(i) { if(i.files && i.files[0]) startCapture(); }
+        async function startCapture() { if(!selectedSpot) return; document.getElementById('scan-overlay').style.display = 'flex'; const l = document.getElementById('scan-logs'), b = document.getElementById('scan-bar'); const steps = ["Initializing...", "Scanning Receipt...", "Matching Merchant: " + selectedSpot.name, "GPS Validated", "Success"]; for(let i=0; i<steps.length; i++) { const d = document.createElement('div'); d.innerText = `> ${steps[i]}`; l.appendChild(d); b.style.width = ((i+1)/steps.length*100)+'%'; await new Promise(r => setTimeout(r, 500)); } setTimeout(() => { document.getElementById('scan-overlay').style.display = 'none'; l.innerHTML = ''; const gain = 500 + selectedSpot.bounty; myCash += gain; document.getElementById('cash-val').innerText = myCash.toLocaleString(); alert(`🎯 성공! ₩${gain.toLocaleString()} 지급.`); selectedSpot.owner = "🇰🇷"; selectedSpot.bounty = 0; updateMarker(selectedSpot); document.getElementById('capture-panel').classList.remove('open'); }, 500); }
+        function updateAnthem() { const a = document.getElementById('anthem-audio'), t = document.getElementById('music-title'), an = ANTHEMS[topNation] || ANTHEMS["🇰🇷"]; if(a.src !== an.url) { a.src = an.url; t.innerText = `1위: ${an.title}`; a.play().catch(e => {}); } }
+        function toggleMusic() { const a = document.getElementById('anthem-audio'); if(a.paused) a.play(); else a.pause(); }
+        setInterval(updateAnthem, 5000); init();
     </script>
 </body>
 </html>

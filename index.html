@@ -147,6 +147,17 @@
         <button onclick="shareKakao()" style="width: 100%; background: #fee500; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">🤝 지원군 요청하기</button>
     </div>
 
+    <!-- 뮤직 플레이어 위젯 -->
+    <div id="music-player" style="position: absolute; bottom: 85px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 20px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--gold);">
+        <span id="music-icon">🎵</span>
+        <marquee id="music-title" style="width: 80px; font-size: 10px; color: var(--gold);">현재 1위: 🇨🇳 중국 국가 재생 중...</marquee>
+        <button onclick="toggleMusic()" style="background: none; border: none; color: white; cursor: pointer; font-size: 12px;">⏸</button>
+    </div>
+
+    <!-- 숨겨진 오디오 및 카메라 입력 -->
+    <audio id="anthem-audio" loop></audio>
+    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" onchange="handleCameraCapture(this)">
+
     <div id="map"></div>
 
     <div id="capture-panel">
@@ -160,12 +171,14 @@
             <div id="p-current-owner" style="font-size: 18px; font-weight: bold;">🇨🇳 중국 사령부</div>
         </div>
 
-        <button class="btn-capture" onclick="startCapture()">
-            🚩 탈환 작전 개시
+        <button class="btn-capture" onclick="triggerCamera()">
+            🚩 탈환 작전 개시 (카메라 촬영)
         </button>
     </div>
 
     <script>
+        // 주기적으로 국가(Anthem) 업데이트 확인
+        setInterval(updateAnthem, 5000);
         let myCash = 1500;
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
         
@@ -272,23 +285,56 @@
             input.value = '';
         }
 
+        const ANTHEMS = {
+            "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, // 샘플 오디오
+            "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+        };
+
+        function updateAnthem() {
+            const audio = document.getElementById('anthem-audio');
+            const title = document.getElementById('music-title');
+            const anthem = ANTHEMS[topNation] || ANTHEMS["🇰🇷"];
+            
+            if(audio.src !== anthem.url) {
+                audio.src = anthem.url;
+                title.innerText = `현재 1위: ${anthem.title} 재생 중...`;
+                audio.play().catch(e => console.log("자동 재생 대기 중..."));
+            }
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('anthem-audio');
+            if(audio.paused) audio.play(); else audio.pause();
+        }
+
+        function triggerCamera() {
+            if(isFrozen) { alert('❄️ 영토가 얼어붙어 활동할 수 없습니다!'); return; }
+            document.getElementById('camera-input').click();
+        }
+
+        function handleCameraCapture(input) {
+            if(input.files && input.files[0]) {
+                startCapture(); // 촬영 완료 후 AI 스캔 시작
+            }
+        }
+
         async function startCapture() {
             if(!selectedSpot) return;
             
-            // 1. AI 스캔 시작
+            // 1. AI 스캔 시작 (로그 추가)
             document.getElementById('scan-overlay').style.display = 'flex';
             const logs = document.getElementById('scan-logs');
             const bar = document.getElementById('scan-bar');
             const logSteps = [
-                "Initializing Neural Network...",
-                "Loading OCR Engine v4.2...",
-                "Scanning Image Pixels...",
-                "Extracting Text Data...",
-                "Merchant: " + selectedSpot.name,
-                "Validating GPS Metadata...",
-                "Verifying Transaction Time...",
-                "Match Confirmed: 99.8%",
-                "Securing Reward Transaction..."
+                "Camera Stream Captured...",
+                "Analyzing Image Lighting...",
+                "OCR Engine v4.2 Initialized...",
+                "Searching for Merchant: " + selectedSpot.name,
+                "Validating Receipt Metadata...",
+                "Anti-Fraud Check: Passed",
+                "Transaction Match Confirmed",
+                "Rewarding Patriot: ₩" + (500 + selectedSpot.bounty)
             ];
 
             for(let i=0; i<logSteps.length; i++) {

@@ -41,7 +41,6 @@
 
         canvas { display: block; width: 100%; height: 100%; }
 
-        /* 모바일 조작 안내 */
         #controls-hint {
             position: absolute; bottom: 30px; width: 100%; text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; pointer-events: none;
         }
@@ -52,18 +51,15 @@
     <div id="ui-layer">
         <div id="title-box">
             <h1>K-Food Conquest .io</h1>
-            <p>내 조국의 깃발로 영토를 넓혀라!</p>
+            <p>⚡불닭, 🛡️뚝배기, 🌟비빔밥 아이템을 먹으세요!</p>
         </div>
         
-        <div id="scoreboard">
-            <!-- JS로 채워짐 -->
-        </div>
+        <div id="scoreboard"></div>
 
-        <div id="controls-hint">화면을 스와이프하거나 방향키를 눌러 이동하세요</div>
+        <div id="controls-hint">방향키 또는 스와이프로 조작하세요</div>
 
         <div id="game-over">
             <h2>영토를 빼앗겼습니다!</h2>
-            <p>적에게 꼬리를 밟혔거나 벽에 부딪혔습니다.</p>
             <p style="color:#fadb14; font-size: 20px; font-weight: bold;">최종 점유율: <span id="final-score">0</span>%</p>
             <button onclick="startGame()">다시 도전하기</button>
         </div>
@@ -75,42 +71,41 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         
-        // 게임 설정
-        const W = 60; // 그리드 너비
-        const H = 60; // 그리드 높이
-        let TILE = 20; // 타일 크기 (반응형)
+        const W = 60, H = 60;
+        let TILE = 20;
         let offsetX = 0, offsetY = 0;
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // 화면에 맞게 타일 크기 계산 (그리드가 화면에 꽉 차거나 넘치게)
             TILE = Math.max(window.innerWidth / 40, window.innerHeight / 40);
         }
         window.addEventListener('resize', resize);
         resize();
 
-        // 플레이어 및 봇 정보
         const TEAMS = [
-            { id: 1, name: "한국", flag: "🇰🇷", color: "#52c41a", trailColor: "rgba(82, 196, 26, 0.5)" }, // 플레이어
+            { id: 1, name: "한국", flag: "🇰🇷", color: "#52c41a", trailColor: "rgba(82, 196, 26, 0.5)" },
             { id: 2, name: "중국", flag: "🇨🇳", color: "#ff4d4f", trailColor: "rgba(255, 77, 79, 0.5)" },
             { id: 3, name: "일본", flag: "🇯🇵", color: "#d9d9d9", trailColor: "rgba(217, 217, 217, 0.5)" },
             { id: 4, name: "대만", flag: "🇹🇼", color: "#1890ff", trailColor: "rgba(24, 144, 255, 0.5)" }
         ];
 
-        let gridOwner = [];
-        let gridTrail = [];
-        let players = [];
-        let gameLoop;
-        let isGameOver = false;
+        const ITEM_TYPES = [
+            { id: 'speed', emoji: '⚡', color: '#ffeb3b', duration: 50 },
+            { id: 'shield', emoji: '🛡️', color: '#03a9f4', duration: 80 },
+            { id: 'area', emoji: '🌟', color: '#ff9800', duration: 0 }
+        ];
+
+        let gridOwner = [], gridTrail = [], players = [], items = [];
+        let gameLoop, isGameOver = false;
 
         function initGrid() {
             gridOwner = Array(W).fill().map(() => Array(H).fill(0));
             gridTrail = Array(W).fill().map(() => Array(H).fill(0));
+            items = [];
         }
 
         function createPlayer(id, startX, startY) {
-            // 초기 3x3 영토
             for(let i=-1; i<=1; i++) {
                 for(let j=-1; j<=1; j++) {
                     if(startX+i >= 0 && startX+i < W && startY+j >= 0 && startY+j < H) {
@@ -119,49 +114,38 @@
                 }
             }
             return {
-                id: id,
-                x: startX, y: startY,
-                dx: 0, dy: -1, // 초기 이동 방향 (위)
-                nextDx: 0, nextDy: -1,
-                trail: [],
-                alive: true,
-                score: 9
+                id: id, x: startX, y: startY, dx: 0, dy: -1, nextDx: 0, nextDy: -1,
+                trail: [], alive: true, score: 9, effects: { speed: 0, shield: 0 }
             };
+        }
+
+        function spawnItem() {
+            if (items.length < 8 && Math.random() < 0.05) {
+                const ix = Math.floor(Math.random() * W), iy = Math.floor(Math.random() * H);
+                if (gridOwner[ix][iy] === 0) {
+                    items.push({ x: ix, y: iy, type: ITEM_TYPES[Math.floor(Math.random() * ITEM_TYPES.length)] });
+                }
+            }
         }
 
         function startGame() {
             document.getElementById('game-over').style.display = 'none';
             isGameOver = false;
             initGrid();
-            
-            // 플레이어 및 봇 배치 (모서리 근처)
             players = [
-                createPlayer(1, Math.floor(W*0.2), Math.floor(H*0.8)), // P1 (하단 좌측)
-                createPlayer(2, Math.floor(W*0.8), Math.floor(H*0.2)), // B1
-                createPlayer(3, Math.floor(W*0.2), Math.floor(H*0.2)), // B2
-                createPlayer(4, Math.floor(W*0.8), Math.floor(H*0.8))  // B3
+                createPlayer(1, 10, 50), createPlayer(2, 50, 10),
+                createPlayer(3, 10, 10), createPlayer(4, 50, 50)
             ];
-
             if(gameLoop) clearInterval(gameLoop);
-            gameLoop = setInterval(update, 100); // 속도 (100ms 마다 1칸)
+            gameLoop = setInterval(update, 100);
             window.requestAnimationFrame(draw);
         }
 
-        // 영역 채우기 알고리즘 (Flood Fill 방식을 이용한 외곽 판별)
         function captureTerritory(pId) {
-            // 1. 트레일을 내 영토로 변환
             let p = players.find(x => x.id === pId);
-            p.trail.forEach(t => {
-                gridOwner[t.x][t.y] = pId;
-                gridTrail[t.x][t.y] = 0;
-            });
+            p.trail.forEach(t => { gridOwner[t.x][t.y] = pId; gridTrail[t.x][t.y] = 0; });
             p.trail = [];
-
-            // 2. 외곽선(Edge)에서 시작하여 내 영토가 아닌 곳을 모두 탐색 (Flood Fill)
-            let visited = Array(W).fill().map(() => Array(H).fill(false));
-            let queue = [];
-
-            // 외곽 픽셀 큐에 삽입
+            let visited = Array(W).fill().map(() => Array(H).fill(false)), queue = [];
             for(let x=0; x<W; x++) {
                 if(gridOwner[x][0] !== pId) { queue.push({x:x, y:0}); visited[x][0] = true; }
                 if(gridOwner[x][H-1] !== pId) { queue.push({x:x, y:H-1}); visited[x][H-1] = true; }
@@ -170,30 +154,20 @@
                 if(gridOwner[0][y] !== pId) { queue.push({x:0, y:y}); visited[0][y] = true; }
                 if(gridOwner[W-1][y] !== pId) { queue.push({x:W-1, y:y}); visited[W-1][y] = true; }
             }
-
-            // BFS
-            let dirs = [[0,1],[0,-1],[1,0],[-1,0]];
-            let head = 0;
+            let dirs = [[0,1],[0,-1],[1,0],[-1,0]], head = 0;
             while(head < queue.length) {
                 let curr = queue[head++];
                 for(let d of dirs) {
-                    let nx = curr.x + d[0];
-                    let ny = curr.y + d[1];
-                    if(nx>=0 && nx<W && ny>=0 && ny<H) {
-                        if(!visited[nx][ny] && gridOwner[nx][ny] !== pId) {
-                            visited[nx][ny] = true;
-                            queue.push({x:nx, y:ny});
-                        }
+                    let nx = curr.x + d[0], ny = curr.y + d[1];
+                    if(nx>=0 && nx<W && ny>=0 && ny<H && !visited[nx][ny] && gridOwner[nx][ny] !== pId) {
+                        visited[nx][ny] = true; queue.push({x:nx, y:ny});
                     }
                 }
             }
-
-            // 3. 방문하지 않은 영역(갇힌 영역)은 내 영토로 편입
             for(let x=0; x<W; x++) {
                 for(let y=0; y<H; y++) {
                     if(!visited[x][y] && gridOwner[x][y] !== pId) {
-                        gridOwner[x][y] = pId;
-                        gridTrail[x][y] = 0; // 남의 트레일 지우기
+                        gridOwner[x][y] = pId; gridTrail[x][y] = 0;
                     }
                 }
             }
@@ -201,234 +175,110 @@
 
         function killPlayer(p) {
             p.alive = false;
-            // 영토 및 트레일 지우기
             for(let x=0; x<W; x++) {
                 for(let y=0; y<H; y++) {
                     if(gridOwner[x][y] === p.id) gridOwner[x][y] = 0;
                     if(gridTrail[x][y] === p.id) gridTrail[x][y] = 0;
                 }
             }
-            if(p.id === 1) { // 내가 죽음
-                isGameOver = true;
-                clearInterval(gameLoop);
-                document.getElementById('final-score').innerText = ((p.score / (W*H)) * 100).toFixed(1);
-                document.getElementById('game-over').style.display = 'block';
-            }
-        }
-
-        // 아주 단순한 봇 AI
-        function updateBots() {
-            players.forEach(p => {
-                if(p.id === 1 || !p.alive) return; // 나(1) 제외
-                
-                let possibleMoves = [[0,-1],[0,1],[-1,0],[1,0]].filter(d => {
-                    if(d[0] === -p.dx && d[1] === -p.dy) return false; // 후진 금지
-                    let nx = p.x + d[0], ny = p.y + d[1];
-                    if(nx < 0 || nx >= W || ny < 0 || ny >= H) return false; // 벽 피하기
-                    if(gridTrail[nx][ny] === p.id) return false; // 자기 꼬리 피하기
-                    return true;
-                });
-
-                if(possibleMoves.length > 0) {
-                    // 직진을 선호하되 가끔 방향 전환
-                    let goStraight = possibleMoves.find(d => d[0] === p.dx && d[1] === p.dy);
-                    if(goStraight && Math.random() > 0.1) {
-                        p.nextDx = goStraight[0]; p.nextDy = goStraight[1];
-                    } else {
-                        let randMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-                        p.nextDx = randMove[0]; p.nextDy = randMove[1];
-                    }
-                }
-            });
+            if(p.id === 1) { isGameOver = true; clearInterval(gameLoop); document.getElementById('final-score').innerText = ((p.score / (W*H)) * 100).toFixed(1); document.getElementById('game-over').style.display = 'block'; }
         }
 
         function update() {
             if(isGameOver) return;
-
-            updateBots();
-
-            // 점수 계산용
-            let scores = {1:0, 2:0, 3:0, 4:0};
-
+            spawnItem();
             players.forEach(p => {
                 if(!p.alive) return;
-
-                p.dx = p.nextDx;
-                p.dy = p.nextDy;
-                let nx = p.x + p.dx;
-                let ny = p.y + p.dy;
-
-                // 벽 충돌 체크
-                if(nx < 0 || nx >= W || ny < 0 || ny >= H) {
-                    killPlayer(p);
-                    return;
-                }
-
-                // 다른 사람이나 내 꼬리 밟음 체크
-                if(gridTrail[nx][ny] !== 0) {
-                    let victimId = gridTrail[nx][ny];
-                    let victim = players.find(x => x.id === victimId);
-                    if(victim) killPlayer(victim);
-                    
-                    if(victimId === p.id) return; // 내가 내 꼬리 밟고 죽었으면 여기서 종료
-                }
-
-                // 이동 처리
-                if(gridOwner[nx][ny] === p.id) {
-                    // 내 영토로 돌아옴
-                    if(p.trail.length > 0) {
-                        p.trail.push({x:nx, y:ny}); // 일단 트레일에 추가
-                        captureTerritory(p.id);
+                if (p.effects.speed > 0) p.effects.speed--;
+                if (p.effects.shield > 0) p.effects.shield--;
+                const moveCount = (p.effects.speed > 0) ? 2 : 1;
+                for(let m=0; m < moveCount; m++) {
+                    p.dx = p.nextDx; p.dy = p.nextDy;
+                    let nx = p.x + p.dx, ny = p.y + p.dy;
+                    if(nx < 0 || nx >= W || ny < 0 || ny >= H) { killPlayer(p); break; }
+                    const itemIdx = items.findIndex(it => it.x === nx && it.y === ny);
+                    if (itemIdx !== -1) {
+                        const it = items[itemIdx];
+                        if (it.type.id === 'area') {
+                            for(let ix=-2; ix<=2; ix++) for(let iy=-2; iy<=2; iy++) if(nx+ix >= 0 && nx+ix < W && ny+iy >= 0 && ny+iy < H) gridOwner[nx+ix][ny+iy] = p.id;
+                        } else p.effects[it.type.id] = it.type.duration;
+                        items.splice(itemIdx, 1);
                     }
-                } else {
-                    // 남의 영토나 빈 땅 탐험 중 -> 트레일 남김
-                    p.trail.push({x:nx, y:ny});
-                    gridTrail[nx][ny] = p.id;
+                    if(gridTrail[nx][ny] !== 0) {
+                        let victimId = gridTrail[nx][ny], victim = players.find(x => x.id === victimId);
+                        if(victim) { if (victim.effects.shield > 0) victim.effects.shield = 0; else killPlayer(victim); }
+                        if(victimId === p.id && p.effects.shield <= 0) break;
+                    }
+                    if(gridOwner[nx][ny] === p.id) { if(p.trail.length > 0) { p.trail.push({x:nx, y:ny}); captureTerritory(p.id); } }
+                    else { p.trail.push({x:nx, y:ny}); gridTrail[nx][ny] = p.id; }
+                    p.x = nx; p.y = ny;
                 }
-
-                p.x = nx;
-                p.y = ny;
             });
-
-            // 점수 집계
-            for(let x=0; x<W; x++) {
-                for(let y=0; y<H; y++) {
-                    if(gridOwner[x][y] !== 0) {
-                        scores[gridOwner[x][y]]++;
-                    }
-                }
-            }
-            players.forEach(p => p.score = scores[p.id] || 0);
-
+            let sc = {1:0, 2:0, 3:0, 4:0};
+            for(let x=0; x<W; x++) for(let y=0; y<H; y++) if(gridOwner[x][y] !== 0) sc[gridOwner[x][y]]++;
+            players.forEach(p => p.score = sc[p.id] || 0);
             updateScoreboard();
         }
 
         function updateScoreboard() {
             let sorted = [...players].filter(p => p.alive).sort((a,b) => b.score - a.score);
             let html = '';
-            sorted.forEach((p, idx) => {
+            sorted.forEach(p => {
                 let team = TEAMS.find(t => t.id === p.id);
                 let percent = ((p.score / (W*H)) * 100).toFixed(1);
-                html += `
-                    <div class="score-row ${p.id === 1 ? 'me' : ''}">
-                        <span class="score-flag">${team.flag}</span>
-                        <div class="score-bar-bg">
-                            <div class="score-bar" style="width:${percent}%; background-color:${team.color}"></div>
-                        </div>
-                        <span>${percent}%</span>
-                    </div>
-                `;
+                html += `<div class="score-row ${p.id === 1 ? 'me' : ''}"><span class="score-flag">${team.flag}</span><div class="score-bar-bg"><div class="score-bar" style="width:${percent}%; background-color:${team.color}"></div></div><span>${percent}%</span></div>`;
             });
             document.getElementById('scoreboard').innerHTML = html;
         }
 
         function draw() {
             if(isGameOver) return;
-
-            ctx.fillStyle = '#222';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // 카메라 중심을 플레이어에 맞춤
+            ctx.fillStyle = '#222'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             let myPlayer = players.find(p => p.id === 1);
-            if(myPlayer) {
-                offsetX = canvas.width/2 - myPlayer.x * TILE;
-                offsetY = canvas.height/2 - myPlayer.y * TILE;
-            }
-
-            ctx.save();
-            ctx.translate(offsetX, offsetY);
-
-            // 그리드 배경
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
-            for(let x=0; x<=W; x++) {
-                ctx.beginPath(); ctx.moveTo(x*TILE, 0); ctx.lineTo(x*TILE, H*TILE); ctx.stroke();
-            }
-            for(let y=0; y<=H; y++) {
-                ctx.beginPath(); ctx.moveTo(0, y*TILE); ctx.lineTo(W*TILE, y*TILE); ctx.stroke();
-            }
-
-            // 영토 및 꼬리 그리기
+            if(myPlayer) { offsetX = canvas.width/2 - myPlayer.x * TILE; offsetY = canvas.height/2 - myPlayer.y * TILE; }
+            ctx.save(); ctx.translate(offsetX, offsetY);
+            ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
+            for(let x=0; x<=W; x++) { ctx.beginPath(); ctx.moveTo(x*TILE, 0); ctx.lineTo(x*TILE, H*TILE); ctx.stroke(); }
+            for(let y=0; y<=H; y++) { ctx.beginPath(); ctx.moveTo(0, y*TILE); ctx.lineTo(W*TILE, y*TILE); ctx.stroke(); }
             for(let x=0; x<W; x++) {
                 for(let y=0; y<H; y++) {
-                    if(gridOwner[x][y] !== 0) {
-                        let t = TEAMS.find(team => team.id === gridOwner[x][y]);
-                        ctx.fillStyle = t.color;
-                        ctx.fillRect(x*TILE, y*TILE, TILE, TILE);
-                    }
-                    if(gridTrail[x][y] !== 0) {
-                        let t = TEAMS.find(team => team.id === gridTrail[x][y]);
-                        ctx.fillStyle = t.trailColor;
-                        ctx.fillRect(x*TILE + 2, y*TILE + 2, TILE - 4, TILE - 4);
-                    }
+                    if(gridOwner[x][y] !== 0) { ctx.fillStyle = TEAMS.find(t => t.id === gridOwner[x][y]).color; ctx.fillRect(x*TILE, y*TILE, TILE, TILE); }
+                    if(gridTrail[x][y] !== 0) { ctx.fillStyle = TEAMS.find(t => t.id === gridTrail[x][y]).trailColor; ctx.fillRect(x*TILE + 2, y*TILE + 2, TILE - 4, TILE - 4); }
                 }
             }
-
-            // 플레이어(헤드) 및 국기 그리기
+            items.forEach(it => { ctx.font = `${TILE}px Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(it.type.emoji, it.x*TILE + TILE/2, it.y*TILE + TILE/2); });
             players.forEach(p => {
                 if(!p.alive) return;
                 let t = TEAMS.find(team => team.id === p.id);
-                ctx.fillStyle = '#fff';
-                ctx.beginPath();
-                ctx.arc(p.x*TILE + TILE/2, p.y*TILE + TILE/2, TILE/2, 0, Math.PI*2);
-                ctx.fill();
-                
-                // 이모지 국기 그리기
-                ctx.font = `${TILE*0.8}px Arial`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(t.flag, p.x*TILE + TILE/2, p.y*TILE + TILE/2 + 2);
+                if (p.effects.shield > 0) { ctx.strokeStyle = '#03a9f4'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(p.x*TILE + TILE/2, p.y*TILE + TILE/2, TILE*0.8, 0, Math.PI*2); ctx.stroke(); }
+                if (p.effects.speed > 0) { ctx.strokeStyle = '#ffeb3b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(p.x*TILE + TILE/2, p.y*TILE + TILE/2, TILE*0.6, 0, Math.PI*2); ctx.stroke(); }
+                ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(p.x*TILE + TILE/2, p.y*TILE + TILE/2, TILE/2, 0, Math.PI*2); ctx.fill();
+                ctx.font = `${TILE*0.8}px Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(t.flag, p.x*TILE + TILE/2, p.y*TILE + TILE/2 + 2);
             });
-
             ctx.restore();
-
             window.requestAnimationFrame(draw);
         }
 
-        // 조작 (PC 방향키)
         window.addEventListener('keydown', e => {
             let myPlayer = players.find(p => p.id === 1);
             if(!myPlayer || !myPlayer.alive) return;
-
             if(e.key === 'ArrowUp' && myPlayer.dy !== 1) { myPlayer.nextDx = 0; myPlayer.nextDy = -1; }
             if(e.key === 'ArrowDown' && myPlayer.dy !== -1) { myPlayer.nextDx = 0; myPlayer.nextDy = 1; }
             if(e.key === 'ArrowLeft' && myPlayer.dx !== 1) { myPlayer.nextDx = -1; myPlayer.nextDy = 0; }
             if(e.key === 'ArrowRight' && myPlayer.dx !== -1) { myPlayer.nextDx = 1; myPlayer.nextDy = 0; }
         });
 
-        // 조작 (모바일 스와이프)
         let touchStartX = 0, touchStartY = 0;
-        window.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, {passive: false});
-
+        window.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: false});
         window.addEventListener('touchmove', e => e.preventDefault(), {passive: false});
-
         window.addEventListener('touchend', e => {
-            let myPlayer = players.find(p => p.id === 1);
-            if(!myPlayer || !myPlayer.alive) return;
-
-            let touchEndX = e.changedTouches[0].screenX;
-            let touchEndY = e.changedTouches[0].screenY;
-            
-            let dx = touchEndX - touchStartX;
-            let dy = touchEndY - touchStartY;
-            
-            if(Math.abs(dx) > Math.abs(dy)) {
-                // 좌우 스와이프
-                if(dx > 30 && myPlayer.dx !== -1) { myPlayer.nextDx = 1; myPlayer.nextDy = 0; }
-                else if(dx < -30 && myPlayer.dx !== 1) { myPlayer.nextDx = -1; myPlayer.nextDy = 0; }
-            } else {
-                // 상하 스와이프
-                if(dy > 30 && myPlayer.dy !== -1) { myPlayer.nextDx = 0; myPlayer.nextDy = 1; }
-                else if(dy < -30 && myPlayer.dy !== 1) { myPlayer.nextDx = 0; myPlayer.nextDy = -1; }
-            }
+            let myPlayer = players.find(p => p.id === 1); if(!myPlayer || !myPlayer.alive) return;
+            let dx = e.changedTouches[0].screenX - touchStartX, dy = e.changedTouches[0].screenY - touchStartY;
+            if(Math.abs(dx) > Math.abs(dy)) { if(dx > 30 && myPlayer.dx !== -1) { myPlayer.nextDx = 1; myPlayer.nextDy = 0; } else if(dx < -30 && myPlayer.dx !== 1) { myPlayer.nextDx = -1; myPlayer.nextDy = 0; } }
+            else { if(dy > 30 && myPlayer.dy !== -1) { myPlayer.nextDx = 0; myPlayer.nextDy = 1; } else if(dy < -30 && myPlayer.dy !== 1) { myPlayer.nextDx = 0; myPlayer.nextDy = -1; } }
         });
 
-        // 게임 시작
         startGame();
-
     </script>
 </body>
 </html>

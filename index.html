@@ -3,217 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Infection .io | 테크니컬 월드 맵</title>
+    <title>K-Card Duel | 전략 카드 배틀</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; overflow: hidden; font-family: 'Segoe UI', sans-serif; color: #ff4d4f; touch-action: none; }
-        #game-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #38bdf8;
+            --accent: #f43f5e;
+            --energy: #ffb703;
+            --text: #f8fafc;
+        }
+        body, html { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: 'Pretendard', sans-serif; overflow: hidden; }
         
-        #news-ticker {
-            position: absolute; top: 0; left: 0; width: 100%; background: rgba(139, 0, 0, 0.9); color: white; padding: 10px; font-size: 14px; font-weight: bold; overflow: hidden; white-space: nowrap; border-bottom: 2px solid #ff0000;
+        #game-container {
+            display: flex; flex-direction: column; height: 100vh; max-width: 500px; margin: 0 auto; border: 1px solid #334155; position: relative;
         }
-        .ticker-move { display: inline-block; animation: ticker 30s linear infinite; }
-        @keyframes ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        #data-panel {
-            position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.9); border: 2px solid #ff4d4f; padding: 15px; border-radius: 10px; width: 260px; pointer-events: auto; box-shadow: 0 0 30px rgba(255,0,0,0.2);
+        /* 상태바 */
+        .status-bar {
+            display: flex; justify-content: space-between; padding: 15px; background: rgba(0,0,0,0.3); z-index: 10;
         }
-        .data-stat { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; font-weight: bold; }
-        .dna-val { color: #fadb14; }
+        .hp-bar { font-weight: 900; font-size: 20px; color: var(--accent); text-shadow: 0 0 10px rgba(244,63,94,0.5); }
+        .energy-bar { font-weight: 900; font-size: 20px; color: var(--energy); }
 
-        .evolve-btn {
-            width: 100%; padding: 12px; background: #8b0000; color: white; border: 1px solid #ff4d4f; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 8px;
+        /* 전장 (Field) */
+        #battlefield {
+            flex-grow: 1; display: flex; flex-direction: column; justify-content: space-around; padding: 20px; perspective: 1000px;
         }
-        .evolve-btn:hover { background: #ff0000; }
+        .field-row {
+            display: flex; justify-content: center; gap: 10px; height: 120px; border: 2px dashed rgba(255,255,255,0.05); border-radius: 15px; align-items: center;
+        }
+        .field-row.enemy { transform: rotateX(20deg); }
+        .field-row.player { transform: rotateX(-20deg); }
 
-        #ranking-board { position: absolute; top: 60px; left: 20px; background: rgba(0,0,0,0.8); border-left: 5px solid #ff4d4f; padding: 15px; min-width: 220px; border-radius: 0 10px 10px 0; }
-        .rank-row { font-size: 14px; margin-bottom: 8px; font-weight: 600; }
-
-        #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px; font-weight: bold; z-index: 1000; }
+        /* 카드 스타일 */
+        .card {
+            width: 80px; height: 110px; background: var(--card-bg); border: 2px solid #475569; border-radius: 8px;
+            position: relative; cursor: pointer; transition: all 0.2s; user-select: none;
+            display: flex; flex-direction: column; justify-content: space-between; padding: 5px; box-sizing: border-box;
+        }
+        .card:hover { transform: translateY(-10px) scale(1.1); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .card.played { width: 70px; height: 95px; cursor: default; }
+        .card.played:hover { transform: none; }
         
-        canvas { display: block; background: #000; }
+        .card-cost { position: absolute; top: -8px; left: -8px; background: var(--energy); color: #000; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 2px solid var(--card-bg); }
+        .card-name { font-size: 10px; font-weight: bold; text-align: center; margin-top: 10px; }
+        .card-stats { display: flex; justify-content: space-between; font-size: 12px; font-weight: 900; }
+        .atk { color: #facc15; }
+        .def { color: #4ade80; }
+
+        /* 핸드 (Hand) */
+        #player-hand {
+            height: 150px; display: flex; justify-content: center; align-items: center; gap: -20px; padding-bottom: 20px;
+        }
+        #player-hand .card { margin: 0 -10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        /* 하단 컨트롤 */
+        .controls { padding: 15px; display: flex; justify-content: center; }
+        #end-turn-btn {
+            background: var(--primary); color: var(--bg); border: none; padding: 12px 40px; border-radius: 30px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(56,189,248,0.4);
+        }
+        #end-turn-btn:disabled { background: #475569; cursor: not-allowed; box-shadow: none; }
+
+        /* 알림 효과 */
+        #toast {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8); padding: 15px 30px; border-radius: 50px; font-weight: 900;
+            display: none; z-index: 100; border: 2px solid var(--primary); pointer-events: none;
+        }
+
+        .damage-pop {
+            position: absolute; color: var(--accent); font-weight: 900; font-size: 24px; animation: floatUp 1s forwards; pointer-events: none;
+        }
+        @keyframes floatUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-50px); } }
     </style>
 </head>
 <body>
-    <div id="loading">지구 데이터 스캔 중...</div>
-    <div id="game-ui">
-        <div id="news-ticker"><div class="ticker-move" id="ticker-text">경고: 전 지구적 감염 사태 발생... 모든 국경 폐쇄 검토 중... 한국발 변종 바이러스 치명률 급상승...</div></div>
-        
-        <div id="ranking-board">
-            <div style="font-size: 11px; margin-bottom: 10px; color: #888; letter-spacing: 2px;">STRATEGIC MAP STATUS</div>
-            <div id="ranks"></div>
+
+    <div id="game-container">
+        <!-- 상대 상태 -->
+        <div class="status-bar">
+            <div class="hp-bar">HP: <span id="enemy-hp">30</span></div>
+            <div style="font-size: 12px; color: #64748b;">OPPONENT (AI)</div>
         </div>
 
-        <div id="data-panel">
-            <div class="data-stat">DNA: <span id="dna-val" class="dna-val">500</span></div>
-            <div class="data-stat" style="font-size: 14px;">감염률: <span id="infect-rate">0.1</span>%</div>
-            <button class="evolve-btn" onclick="spawnUnit('infector')">☣️ 감염체 파견</button>
-            <button class="evolve-btn" onclick="spawnUnit('mutant')">🧟 변종 괴수 생성</button>
+        <div id="battlefield">
+            <div class="field-row enemy" id="enemy-field">
+                <!-- AI가 낸 카드들 -->
+            </div>
+            
+            <div style="text-align: center; font-size: 10px; color: #334155; letter-spacing: 5px;">BATTLE FRONT</div>
+
+            <div class="field-row player" id="player-field">
+                <!-- 플레이어가 낸 카드들 -->
+            </div>
         </div>
+
+        <!-- 플레이어 상태 -->
+        <div class="status-bar">
+            <div class="hp-bar">HP: <span id="player-hp">30</span></div>
+            <div class="energy-bar">ENERGY: <span id="player-energy">1</span>/1</div>
+        </div>
+
+        <!-- 핸드 -->
+        <div id="player-hand"></div>
+
+        <div class="controls">
+            <button id="end-turn-btn" onclick="endTurn()">TURN END</button>
+        </div>
+
+        <div id="toast">YOUR TURN</div>
     </div>
-    <canvas id="gameCanvas"></canvas>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const W = 3000, H = 1800;
-        let camX = 1500, camY = 900, zoom = 0.4, dna = 500;
-        let entities = [], projectiles = [];
-        
-        // 더 안정적인 세계 지도 이미지 주소
-        const worldMap = new Image();
-        worldMap.crossOrigin = "anonymous";
-        worldMap.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Equirectangular_projection_SW.jpg/1280px-Equirectangular_projection_SW.jpg';
-        
-        worldMap.onload = () => {
-            document.getElementById('loading').style.display = 'none';
-        };
-
-        const TEAMS = [
-            { id: 1, name: "Virus(KR)", color: "#ff0000", flag: "☣️", start: {x: 2450, y: 1250}, alive: true },
-            { id: 2, name: "North America", color: "#1890ff", flag: "🛡️", start: {x: 600, y: 550}, alive: true },
-            { id: 3, name: "Europe", color: "#ffffff", flag: "🏥", start: {x: 1550, y: 500}, alive: true },
-            { id: 4, name: "South America", color: "#52c41a", flag: "🌳", start: {x: 900, y: 1350}, alive: true }
+        const CARD_DATA = [
+            { name: "전구 병사", cost: 1, atk: 2, hp: 2, emoji: "💡" },
+            { name: "방패 로봇", cost: 2, atk: 1, hp: 5, emoji: "🛡️" },
+            { name: "저격수", cost: 2, atk: 4, hp: 1, emoji: "🎯" },
+            { name: "전투 탱크", cost: 3, atk: 3, hp: 6, emoji: "🚜" },
+            { name: "화염술사", cost: 3, atk: 5, hp: 2, emoji: "🔥" },
+            { name: "드래곤", cost: 5, atk: 8, hp: 8, emoji: "🐲" }
         ];
 
+        let gameState = {
+            playerHp: 30,
+            enemyHp: 30,
+            playerEnergy: 1,
+            maxEnergy: 1,
+            turn: 'player',
+            playerHand: [],
+            playerField: [],
+            enemyField: []
+        };
+
         function initGame() {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            TEAMS.forEach(team => {
-                entities.push({ id: Math.random(), type: 'core', team: team.id, x: team.start.x, y: team.start.y, hp: 6000, maxHp: 6000, size: 140 });
-            });
+            // 초기 핸드 드로우
+            for(let i=0; i<4; i++) drawCard();
+            render();
+            showToast("GAME START");
+        }
+
+        function drawCard() {
+            if(gameState.playerHand.length >= 7) return;
+            const rand = CARD_DATA[Math.floor(Math.random() * CARD_DATA.length)];
+            gameState.playerHand.push({ ...rand, id: Math.random() });
+        }
+
+        function createCardElement(card, isHand = true) {
+            const el = document.createElement('div');
+            el.className = 'card' + (isHand ? '' : ' played');
+            el.innerHTML = `
+                <div class="card-cost">${card.cost}</div>
+                <div style="font-size: 30px; text-align: center; margin-top: 5px;">${card.emoji}</div>
+                <div class="card-name">${card.name}</div>
+                <div class="card-stats">
+                    <span class="atk">⚔️${card.atk}</span>
+                    <span class="def">❤️${card.hp}</span>
+                </div>
+            `;
+            if(isHand) {
+                el.onclick = () => playCard(card);
+            }
+            return el;
+        }
+
+        function playCard(card) {
+            if(gameState.turn !== 'player') return;
+            if(gameState.playerEnergy < card.cost) {
+                showToast("ENERGY SHORTAGE");
+                return;
+            }
+            if(gameState.playerField.length >= 5) return;
+
+            gameState.playerEnergy -= card.cost;
+            gameState.playerHand = gameState.playerHand.filter(c => c.id !== card.id);
+            gameState.playerField.push(card);
+            render();
+        }
+
+        function endTurn() {
+            if(gameState.turn !== 'player') return;
+            gameState.turn = 'enemy';
+            document.getElementById('end-turn-btn').disabled = true;
             
-            // 전 세계가 다 보이도록 초기 줌 설정
-            zoom = Math.min(canvas.width/W, canvas.height/H) * 0.9;
-            camX = W/2; camY = H/2;
-
-            setInterval(gameLoop, 50);
-            requestAnimationFrame(draw);
-        }
-
-        function spawnUnit(type) {
-            const cost = type === 'infector' ? 100 : 300;
-            if(dna < cost) return;
-            dna -= cost; updateUI();
-            const core = entities.find(e => e.team === 1 && e.type === 'core');
-            if(!core) return;
-            const u = { id: Math.random(), type: type, team: 1, x: core.x, y: core.y, state: 'idle', cooldown: 0, targetPos: null };
-            if(type === 'infector') { u.hp = 300; u.maxHp = 300; u.size = 25; u.speed = 8; u.range = 180; u.damage = 50; }
-            else { u.hp = 1500; u.maxHp = 1500; u.size = 50; u.speed = 4; u.range = 400; u.damage = 200; u.splash = 200; }
-            entities.push(u);
-        }
-
-        function gameLoop() {
-            projectiles.forEach((p, idx) => {
-                if(!p.target || p.target.hp <= 0) { projectiles.splice(idx, 1); return; }
-                const d = Math.hypot(p.target.x - p.x, p.target.y - p.y);
-                if(d < 20) {
-                    if(p.splash) entities.forEach(ent => { if(ent.team !== p.team && Math.hypot(ent.x - p.x, ent.y - p.y) < p.splash) ent.hp -= p.damage; });
-                    else p.target.hp -= p.damage;
-                    projectiles.splice(idx, 1);
-                } else { p.x += (p.target.x - p.x)/d * p.speed; p.y += (p.target.y - p.y)/d * p.speed; }
+            // 전투 페이즈 시뮬레이션
+            battlePhase().then(() => {
+                enemyTurn();
             });
-
-            entities.forEach(e => {
-                if(!e.targetPos && e.speed > 0) {
-                    let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0);
-                    if(enemy) e.targetPos = { x: enemy.x + (Math.random()-0.5)*400, y: enemy.y + (Math.random()-0.5)*400 };
-                }
-                if(e.targetPos && e.speed > 0) {
-                    const d = Math.hypot(e.targetPos.x - e.x, e.targetPos.y - e.y);
-                    if(d > 10) { e.x += (e.targetPos.x - e.x)/d * e.speed; e.y += (e.targetPos.y - e.y)/d * e.speed; }
-                    else e.targetPos = null;
-                }
-                if(e.type !== 'core') {
-                    if(e.cooldown > 0) e.cooldown--;
-                    let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0 && Math.hypot(ent.x - e.x, ent.y - e.y) < e.range);
-                    if(enemy && e.cooldown <= 0) {
-                        projectiles.push({ x: e.x, y: e.y, target: enemy, speed: 30, damage: e.damage, team: e.team, type: e.type, splash: e.splash });
-                        e.cooldown = e.type === 'mutant' ? 40 : 15;
-                    }
-                }
-            });
-
-            if(Math.random() < 0.1) dna += 5; updateUI();
-            entities = entities.filter(e => e.hp > 0);
-            document.getElementById('infect-rate').innerText = (entities.filter(e => e.team === 1).length / 10).toFixed(1);
-            updateRanking();
         }
 
-        function draw() {
-            ctx.fillStyle = '#050505'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.translate(canvas.width/2, canvas.height/2);
-            ctx.scale(zoom, zoom);
-            ctx.translate(-camX, -camY);
+        async function battlePhase() {
+            showToast("BATTLE PHASE");
+            await sleep(1000);
 
-            // 1. 배경 지도 드로잉
-            if (worldMap.complete) {
-                ctx.globalAlpha = 0.7;
-                ctx.drawImage(worldMap, 0, 0, W, H);
-                ctx.globalAlpha = 1.0;
+            // 플레이어 공격
+            for(let card of gameState.playerField) {
+                if(gameState.enemyField.length > 0) {
+                    const target = gameState.enemyField[0];
+                    target.hp -= card.atk;
+                    if(target.hp <= 0) gameState.enemyField.shift();
+                } else {
+                    gameState.enemyHp -= card.atk;
+                    popDamage(card.atk, 'enemy');
+                }
+                render();
+                await sleep(500);
             }
 
-            // 2. 테크니컬 그리드 레이어
-            ctx.strokeStyle = 'rgba(255, 0, 0, 0.2)'; ctx.lineWidth = 2;
-            for(let i=0; i<=W; i+=200) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H); ctx.stroke(); }
-            for(let i=0; i<=H; i+=200) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(W,i); ctx.stroke(); }
-
-            // 3. 감염 히트맵 (Glow)
-            entities.filter(e => e.team === 1).forEach(e => {
-                const grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, 350);
-                grad.addColorStop(0, 'rgba(255, 0, 0, 0.3)');
-                grad.addColorStop(1, 'rgba(255, 0, 0, 0)');
-                ctx.fillStyle = grad; ctx.fillRect(e.x-350, e.y-350, 700, 700);
-            });
-
-            // 4. 유닛 및 투사체
-            projectiles.forEach(p => {
-                ctx.fillStyle = '#ff0000'; ctx.beginPath(); ctx.arc(p.x, p.y, 12, 0, Math.PI*2); ctx.fill();
-                ctx.shadowBlur = 20; ctx.shadowColor = '#f00';
-            });
-            ctx.shadowBlur = 0;
-
-            entities.forEach(e => {
-                const team = TEAMS.find(t => t.id === e.team);
-                ctx.save();
-                ctx.shadowBlur = 25; ctx.shadowColor = team.color;
-                ctx.fillStyle = team.color;
-                if(e.type === 'core') {
-                    ctx.beginPath(); ctx.arc(e.x, e.y, e.size/2, 0, Math.PI*2); ctx.fill();
-                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 6; ctx.stroke();
-                    ctx.fillStyle = '#fff'; ctx.font = 'bold 70px Arial'; ctx.textAlign='center'; ctx.textBaseline='middle';
-                    ctx.fillText(team.flag, e.x, e.y+5);
+            // AI 공격
+            for(let card of gameState.enemyField) {
+                if(gameState.playerField.length > 0) {
+                    const target = gameState.playerField[0];
+                    target.hp -= card.atk;
+                    if(target.hp <= 0) gameState.playerField.shift();
                 } else {
-                    ctx.beginPath(); ctx.arc(e.x, e.y, e.size, 0, Math.PI*2); ctx.fill();
-                    ctx.fillStyle = '#000'; ctx.font = 'bold 24px Arial'; ctx.textAlign='center'; ctx.textBaseline='middle';
-                    ctx.fillText(e.type==='infector'?'☣️':'🧟', e.x, e.y+3);
+                    gameState.playerHp -= card.atk;
+                    popDamage(card.atk, 'player');
                 }
-                ctx.restore();
-                // HP Bar
-                ctx.fillStyle = 'rgba(255,0,0,0.4)'; ctx.fillRect(e.x - 70, e.y - e.size - 30, 140, 12);
-                ctx.fillStyle = team.color; ctx.fillRect(e.x - 70, e.y - e.size - 30, 140 * (e.hp/e.maxHp), 12);
-            });
-
-            ctx.restore(); requestAnimationFrame(draw);
+                render();
+                await sleep(500);
+            }
         }
 
-        function updateRanking() {
-            let html = '';
-            TEAMS.forEach(t => {
-                const alive = entities.some(e => e.team === t.id && e.type === 'core');
-                html += `<div class="rank-row" style="color:${t.color}; opacity:${alive?1:0.3}">
-                    <span>${t.flag} ${t.name}</span>: ${alive?'[THREAT]':'[EXTINCT]'}
-                </div>`;
-            });
-            document.getElementById('ranks').innerHTML = html;
+        async function enemyTurn() {
+            showToast("ENEMY TURN");
+            await sleep(1000);
+            
+            // AI 카드 플레이 (단순)
+            let enemyEnergy = Math.min(gameState.maxEnergy, 10);
+            while(enemyEnergy > 0 && gameState.enemyField.length < 5) {
+                const affordable = CARD_DATA.filter(c => c.cost <= enemyEnergy);
+                if(affordable.length === 0) break;
+                const card = affordable[Math.floor(Math.random() * affordable.length)];
+                gameState.enemyField.push({ ...card, id: Math.random() });
+                enemyEnergy -= card.cost;
+                render();
+                await sleep(500);
+            }
+
+            await sleep(1000);
+            startPlayerTurn();
         }
 
-        function updateUI() { document.getElementById('dna-val').innerText = Math.floor(dna); }
-        canvas.addEventListener('wheel', e => { zoom *= (e.deltaY > 0 ? 0.8 : 1.2); zoom = Math.max(0.1, Math.min(4.0, zoom)); });
-        let isD = false, lx, ly;
-        canvas.addEventListener('mousedown', e => { isD = true; lx = e.clientX; ly = e.clientY; });
-        window.addEventListener('mousemove', e => { if(isD) { camX -= (e.clientX - lx)/zoom; camY -= (e.clientY - ly)/zoom; lx = e.clientX; ly = e.clientY; } });
-        window.addEventListener('mouseup', () => isD = false);
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        function startPlayerTurn() {
+            gameState.turn = 'player';
+            gameState.maxEnergy = Math.min(gameState.maxEnergy + 1, 10);
+            gameState.playerEnergy = gameState.maxEnergy;
+            drawCard();
+            document.getElementById('end-turn-btn').disabled = false;
+            showToast("YOUR TURN");
+            render();
+        }
+
+        function render() {
+            document.getElementById('enemy-hp').innerText = gameState.enemyHp;
+            document.getElementById('player-hp').innerText = gameState.playerHp;
+            document.getElementById('player-energy').innerText = gameState.playerEnergy;
+            document.querySelector('.energy-bar').innerHTML = `ENERGY: <span id="player-energy">${gameState.playerEnergy}</span>/${gameState.maxEnergy}`;
+
+            const hand = document.getElementById('player-hand');
+            hand.innerHTML = '';
+            gameState.playerHand.forEach(c => hand.appendChild(createCardElement(c)));
+
+            const pField = document.getElementById('player-field');
+            pField.innerHTML = '';
+            gameState.playerField.forEach(c => pField.appendChild(createCardElement(c, false)));
+
+            const eField = document.getElementById('enemy-field');
+            eField.innerHTML = '';
+            gameState.enemyField.forEach(c => eField.appendChild(createCardElement(c, false)));
+
+            if(gameState.enemyHp <= 0) alert("VICTORY!");
+            if(gameState.playerHp <= 0) alert("DEFEAT...");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 1500);
+        }
+
+        function popDamage(amt, side) {
+            const el = document.createElement('div');
+            el.className = 'damage-pop';
+            el.innerText = `-${amt}`;
+            el.style.left = side === 'enemy' ? '50%' : '50%';
+            el.style.top = side === 'enemy' ? '15%' : '75%';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1000);
+        }
+
+        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
         initGame();
     </script>
 </body>

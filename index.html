@@ -126,8 +126,24 @@
     </div>
 
     <!-- 비밀 전략실 (채팅창) -->
-    <div id="chat-panel" style="position: absolute; top: 240px; left: 15px; z-index: 1000; background: rgba(15, 23, 42, 0.95); padding: 15px; border-radius: 12px; width: 220px; height: 300px; display: none; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--accent);">
+    <div id="chat-panel" style="position: absolute; top: 240px; left: 15px; z-index: 1000; background: rgba(15, 23, 42, 0.95); padding: 15px; border-radius: 12px; width: 220px; height: 350px; display: none; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--accent);">
         <b style="font-size: 14px; color: var(--accent); margin-bottom: 10px; display: block;">🇰🇷 한국군 비밀 전략실</b>
+        
+        <!-- 사령관 전용 작전 메뉴 -->
+        <div id="commander-menu" style="background: rgba(244,63,94,0.1); border: 1px dashed var(--accent); padding: 8px; border-radius: 8px; margin-bottom: 10px;">
+            <div style="font-size: 10px; color: var(--accent); font-weight: bold; margin-bottom: 5px;">🎖️ 사령관 전용: 작전 발령</div>
+            <select id="bounty-target" style="width: 100%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155; margin-bottom: 5px;">
+                <option value="">타겟 식당 선택...</option>
+                <option value="1">성수족발</option>
+                <option value="2">어니언 성수</option>
+                <option value="4">블루보틀 성수</option>
+            </select>
+            <div style="display: flex; gap: 3px;">
+                <input type="number" id="bounty-amount" placeholder="현상금(₩)" style="width: 60%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155;">
+                <button onclick="setCommanderBounty()" style="flex-grow: 1; font-size: 9px; background: var(--accent); color: white; border: none; border-radius: 3px; cursor: pointer;">발령</button>
+            </div>
+        </div>
+
         <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px;">
             <div style="color: #94a3b8; font-style: italic; margin-bottom: 5px;">[시스템] 전우들과 전략을 공유하세요.</div>
             <div style="margin-bottom: 5px;"><b>미식대장:</b> 성수족발 탈환하러 갑니다!</div>
@@ -344,6 +360,28 @@
             msgs.appendChild(div);
             msgs.scrollTop = msgs.scrollHeight;
             input.value = '';
+        }
+
+        function setCommanderBounty() {
+            const targetId = document.getElementById('bounty-target').value;
+            const amount = parseInt(document.getElementById('bounty-amount').value);
+            
+            if(!targetId || isNaN(amount)) { alert('타겟과 금액을 정확히 입력하세요.'); return; }
+            if(myCash < amount) { alert('국가 공금(지갑 자금)이 부족합니다.'); return; }
+            
+            const spot = spots.find(s => s.id == targetId);
+            spot.bounty = amount;
+            myCash -= amount;
+            document.getElementById('cash-val').innerText = myCash.toLocaleString();
+            
+            updateMarker(spot);
+            
+            const alertBox = document.getElementById('mission-alert');
+            alertBox.innerText = `🎖️ 사령관 긴급 작전: [${spot.name}]에 ₩${amount.toLocaleString()} 현상금 발령!`;
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+            
+            alert('전군에게 작전 명령이 하달되었습니다!');
         }
 
         const ANTHEMS = {

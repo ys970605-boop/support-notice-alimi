@@ -125,11 +125,28 @@
         <div id="map"></div>
     </div>
 
+    <!-- 전리품 카드 보관함 (기본 숨김) -->
+    <div id="loot-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 2000; display: none; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="margin: 0; color: var(--gold);">🃏 내 전리품 카드</h2>
+            <button onclick="closeLoot()" style="background: none; border: none; color: white; font-size: 24px;">×</button>
+        </div>
+        <div id="card-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            <!-- 점령한 카드가 여기에 추가됨 -->
+            <div class="loot-card" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--gold); border-radius: 15px; padding: 10px; text-align: center; box-shadow: 0 0 15px rgba(251,191,36,0.3);">
+                <div style="font-size: 10px; color: var(--gold); margin-bottom: 5px;">LEGENDARY</div>
+                <img src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=150&q=80" style="width: 100%; height: 100px; object-fit: cover; border-radius: 10px;">
+                <b style="display: block; margin-top: 8px; font-size: 14px;">성수족발</b>
+                <div style="font-size: 10px; color: #94a3b8; margin-top: 5px;">매일 +₩ 100 세금 징수 중</div>
+            </div>
+        </div>
+    </div>
+
     <!-- 하단 탭 바 -->
     <div id="nav-bar">
-        <div class="nav-item active"><span>🏠</span>전쟁피드</div>
+        <div class="nav-item active" onclick="showSection('feed')"><span>🏠</span>전쟁피드</div>
         <div class="nav-item" onclick="openMapAt(36.2, 127.8, 7)"><span>🗺️</span>월드맵</div>
-        <div class="nav-item"><span>🃏</span>전리품</div>
+        <div class="nav-item" onclick="showSection('loot')"><span>🃏</span>전리품</div>
         <div class="nav-item"><span>🛒</span>상점</div>
         <div class="nav-item"><span>👤</span>내정보</div>
     </div>
@@ -138,12 +155,27 @@
         const map = L.map('map', { zoomControl: false, attributionControl: false });
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
+        function showSection(id) {
+            if(id === 'loot') {
+                document.getElementById('loot-container').style.display = 'block';
+            } else {
+                document.getElementById('loot-container').style.display = 'none';
+            }
+            
+            // 네비게이션 활성화 표시
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function closeLoot() {
+            document.getElementById('loot-container').style.display = 'none';
+            document.querySelector('.nav-item').classList.add('active');
+        }
+
         function openMapAt(lat, lng, zoom = 16) {
             document.getElementById('map-popup').style.display = 'block';
             map.invalidateSize();
             map.setView([lat, lng], zoom);
-            
-            // 핀 추가 시뮬레이션
             L.marker([lat, lng]).addTo(map);
         }
 

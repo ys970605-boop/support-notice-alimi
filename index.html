@@ -49,6 +49,7 @@
         <div id="build-panel">
             <button class="build-btn" onclick="produceUnit('worker')">SCV (⛏️)<br>50G</button>
             <button class="build-btn" onclick="produceUnit('soldier')">MARINE (⚔️)<br>100G</button>
+            <button class="build-btn" onclick="produceUnit('tower')">TOWER (🛡️)<br>200G</button>
         </div>
 
         <div id="game-over">
@@ -107,7 +108,8 @@
         }
 
         function produceUnit(type) {
-            const cost = type === 'worker' ? 50 : 100;
+            const costs = { worker: 50, soldier: 100, tower: 200 };
+            const cost = costs[type];
             if(gold < cost) return;
             gold -= cost;
             updateUI();
@@ -115,17 +117,21 @@
             const hq = entities.find(e => e.team === 1 && e.type === 'hq');
             if(!hq) return;
 
-            entities.push({
+            const unit = {
                 id: Math.random(), type: type, team: 1,
-                x: hq.x + (Math.random()-0.5)*150,
-                y: hq.y + (Math.random()-0.5)*150,
-                hp: type === 'worker' ? 100 : 250,
-                maxHp: type === 'worker' ? 100 : 250,
-                size: 18, speed: type === 'worker' ? 3 : 4.5,
-                range: type === 'worker' ? 40 : 130,
-                damage: type === 'worker' ? 0 : 20,
+                x: hq.x + (Math.random()-0.5)*250,
+                y: hq.y + (Math.random()-0.5)*250,
                 state: 'idle'
-            });
+            };
+
+            if(type === 'worker') {
+                unit.hp = 100; unit.maxHp = 100; unit.size = 18; unit.speed = 3;
+            } else if(type === 'soldier') {
+                unit.hp = 250; unit.maxHp = 250; unit.size = 18; unit.speed = 4.5; unit.range = 130; unit.damage = 20;
+            } else if(type === 'tower') {
+                unit.hp = 800; unit.maxHp = 800; unit.size = 30; unit.speed = 0; unit.range = 250; unit.damage = 30;
+            }
+            entities.push(unit);
         }
 
         function gameLoop() {
@@ -134,6 +140,7 @@
                 if(!team.alive) return;
 
                 if(e.type === 'worker') {
+                    // (생략된 일꾼 로직은 동일)
                     if(e.state === 'idle') {
                         let nearest = null, minDist = Infinity;
                         minerals.forEach(m => {
@@ -159,7 +166,7 @@
                         let d = Math.hypot(e.target.x - e.x, e.target.y - e.y);
                         if(d < 50) {
                             if(e.team === 1) gold += 15;
-                            team.score += 1; // 자원 채취 +1점
+                            team.score += 1;
                             updateUI(); e.state = 'idle';
                         } else {
                             e.x += (e.target.x - e.x)/d * e.speed;
@@ -168,16 +175,16 @@
                     }
                 }
 
-                if(e.type === 'soldier') {
+                if(e.type === 'soldier' || e.type === 'tower') {
                     let nearestEnemy = entities.find(ent => ent.team !== e.team && ent.hp > 0);
                     if(nearestEnemy) {
                         let d = Math.hypot(nearestEnemy.x - e.x, nearestEnemy.y - e.y);
                         if(d < e.range) {
                             nearestEnemy.hp -= e.damage / 15;
                             if(nearestEnemy.hp <= 0) {
-                                team.score += nearestEnemy.type === 'hq' ? 100 : 10; // HQ 파괴 +100, 유닛 파괴 +10
+                                team.score += (nearestEnemy.type === 'hq' ? 100 : (nearestEnemy.type === 'tower' ? 50 : 10));
                             }
-                        } else {
+                        } else if(e.type === 'soldier') { // 타워는 이동 불가
                             e.x += (nearestEnemy.x - e.x)/d * e.speed;
                             e.y += (nearestEnemy.y - e.y)/d * e.speed;
                         }
@@ -191,7 +198,6 @@
                     const hasHQ = entities.some(ent => ent.team === team.id && ent.type === 'hq');
                     if(!hasHQ) {
                         team.alive = false;
-                        // 본진 파괴 시 해당 팀 유닛 전량 삭제
                         entities = entities.filter(ent => ent.team !== team.id);
                         if(team.id === 1) showEndScreen("MISSION FAILED", "본부가 파괴되었습니다.");
                     }
@@ -200,25 +206,23 @@
 
             entities = entities.filter(e => e.hp > 0);
 
-            // 승리 체크
-            const aliveTeams = TEAMS.filter(t => t.alive);
-            if(aliveTeams.length === 1 && aliveTeams[0].id === 1) {
-                showEndScreen("VICTORY!", "지구상의 모든 위협을 제거했습니다.");
-            }
-
-            // AI 생산
-            if(Math.random() < 0.03) {
+            // AI 생산 (타워 추가)
+            if(Math.random() < 0.04) {
                 [2,3,4].forEach(tId => {
                     const team = TEAMS.find(t => t.id === tId);
                     if(!team.alive) return;
                     let hq = entities.find(ent => ent.team === tId && ent.type === 'hq');
                     if(hq) {
-                        const unitType = Math.random() < 0.3 ? 'worker' : 'soldier';
-                        entities.push({
-                            id: Math.random(), type: unitType, team: tId, x: hq.x, y: hq.y,
-                            hp: unitType==='worker'?100:250, maxHp: unitType==='worker'?100:250, 
-                            size: 18, speed: 3, range: 120, damage: 20, state: 'idle'
-                        });
+                        const rand = Math.random();
+                        const type = rand < 0.2 ? 'worker' : (rand < 0.9 ? 'soldier' : 'tower');
+                        const unit = {
+                            id: Math.random(), type: type, team: tId, x: hq.x + (Math.random()-0.5)*200, y: hq.y + (Math.random()-0.5)*200,
+                            state: 'idle'
+                        };
+                        if(type==='worker'){ unit.hp=100; unit.maxHp=100; unit.size=18; unit.speed=3; }
+                        else if(type==='soldier'){ unit.hp=250; unit.maxHp=250; unit.size=18; unit.speed=3; unit.range=120; unit.damage=20; }
+                        else if(type==='tower'){ unit.hp=800; unit.maxHp=800; unit.size=30; unit.speed=0; unit.range=250; unit.damage=30; }
+                        entities.push(unit);
                     }
                 });
             }
@@ -264,6 +268,11 @@
                 if(e.type === 'hq') {
                     ctx.fillRect(e.x - e.size/2, e.y - e.size/2, e.size, e.size);
                     ctx.fillStyle = '#fff'; ctx.font = '30px Arial'; ctx.fillText(team.flag, e.x-20, e.y+12);
+                } else if(e.type === 'tower') {
+                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+                    ctx.strokeRect(e.x - e.size/2, e.y - e.size/2, e.size, e.size);
+                    ctx.fillRect(e.x - e.size/2, e.y - e.size/2, e.size, e.size);
+                    ctx.fillStyle = '#fff'; ctx.font = 'bold 16px Arial'; ctx.fillText('🛡️', e.x-10, e.y+8);
                 } else {
                     ctx.beginPath(); ctx.arc(e.x, e.y, e.size, 0, Math.PI*2); ctx.fill();
                     ctx.fillStyle = '#fff'; ctx.font = 'bold 14px Arial'; ctx.fillText(e.type === 'worker' ? '⛏️' : '⚔️', e.x-10, e.y+6);

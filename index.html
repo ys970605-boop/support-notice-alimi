@@ -64,7 +64,7 @@
             font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #34d399;
         }
 
-        #map { width: 100%; height: 100%; z-index: 1; }
+        #map { width: 100%; height: 100%; z-index: 1; transition: filter 0.5s; }
 
         /* 바텀 시트 */
         #capture-panel {
@@ -108,32 +108,27 @@
         }
         .btn-capture:active { transform: scale(0.95); }
 
-        /* 전술 상점 */
+        /* 전술 상점 및 채팅 트리거 */
         #shop-trigger, #chat-trigger { position: absolute; z-index: 1000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 20px; }
         #shop-trigger { top: 190px; right: 15px; background: #3b82f6; color: white; }
         #chat-trigger { top: 190px; left: 15px; background: var(--accent); color: white; }
 
         /* 팝업 패널 */
-        .ui-panel { 
-            position: absolute; z-index: 1000; background: rgba(15, 23, 42, 0.95); 
-            border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            display: none; overflow: hidden; cursor: move;
-        }
-        .panel-header {
-            background: rgba(255,255,255,0.05); padding: 8px 12px; font-size: 10px;
-            color: #94a3b8; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #334155;
-        }
-        #ranking-board { top: 15px; left: 15px; width: 220px; display: block; }
+        .ui-panel { position: absolute; z-index: 1000; background: rgba(15, 23, 42, 0.95); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; overflow: hidden; cursor: move; }
+        .panel-header { background: rgba(255,255,255,0.05); padding: 8px 12px; font-size: 10px; color: #94a3b8; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
         #shop-panel { top: 240px; right: 15px; width: 180px; border: 1px solid #3b82f6; }
         #chat-panel { top: 240px; left: 15px; width: 220px; height: 350px; flex-direction: column; border: 1px solid var(--accent); }
-        #music-player { bottom: 85px; left: 15px; width: auto; border: 1px solid var(--gold); }
-        #wallet { top: 140px; right: 15px; width: auto; }
+        #wallet { top: 140px; right: 15px; border: 1px solid #34d399; }
+        #music-player { bottom: 85px; left: 15px; border: 1px solid var(--gold); border-radius: 20px; }
+
+        /* AI 스캔 오버레이 */
+        #scan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; flex-direction: column; align-items: center; justify-content: center; color: #00ff00; font-family: monospace; }
+        @keyframes scanAnim { from { top: 0; } to { top: 350px; } }
     </style>
 </head>
 <body>
 
-    <div id="ranking-board" class="ui-panel">
+    <div id="ranking-board" class="ui-panel" style="display:block;">
         <div class="panel-header">🛰️ SYSTEM STATUS <span>:::</span></div>
         <div style="padding: 12px;">
             <div class="rank-title">NATION RANKING & COMMAND</div>
@@ -150,6 +145,22 @@
         </div>
     </div>
 
+    <div id="scoreboard">
+        <div class="score-item"><span class="flag">🇨🇳</span><span class="val">42%</span></div>
+        <div class="score-item" style="border-left: 1px solid #334155; border-right: 1px solid #334155; padding: 0 30px;"><span class="flag">🇰🇷</span><span class="val">28%</span></div>
+        <div class="score-item"><span class="flag">🇯🇵</span><span class="val">30%</span></div>
+    </div>
+
+    <div id="mission-alert">🚨 긴급 탈환 현상금 발생!</div>
+
+    <div id="wallet" class="ui-panel" style="display:block;">
+        <div class="panel-header">💳 WALLET <span>:::</span></div>
+        <div style="padding: 10px 15px; font-weight: bold; color:#10b981;">₩ <span id="cash-val">1,500</span></div>
+    </div>
+
+    <div id="shop-trigger" onclick="toggleShop()">🛒</div>
+    <div id="chat-trigger" onclick="toggleChat()">💬</div>
+
     <div id="shop-panel" class="ui-panel">
         <div class="panel-header">🛒 TACTICAL SHOP <span>:::</span></div>
         <div style="padding: 15px;">
@@ -164,7 +175,7 @@
 
     <div id="chat-panel" class="ui-panel">
         <div class="panel-header">💬 WAR ROOM <span>:::</span></div>
-        <div style="padding: 15px; display: flex; flex-direction: column; height: 100%;">
+        <div style="padding: 15px; display: flex; flex-direction: column; height: 300px;">
             <b style="font-size: 14px; color: var(--accent); margin-bottom: 10px; display: block;">🇰🇷 한국군 비밀 전략실</b>
             <div id="commander-menu" style="background: rgba(244,63,94,0.1); border: 1px dashed var(--accent); padding: 8px; border-radius: 8px; margin-bottom: 10px;">
                 <div style="font-size: 10px; color: var(--accent); font-weight: bold; margin-bottom: 5px;">🎖️ 사령관 전용: 작전 발령</div>
@@ -180,7 +191,7 @@
                     <button onclick="setCommanderBounty()" style="flex-grow: 1; font-size: 9px; background: var(--accent); color: white; border: none; border-radius: 3px; cursor: pointer;">발령</button>
                 </div>
             </div>
-            <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px;">
+            <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px; color:white;">
                 <div style="color: #94a3b8;">[시스템] 전우들과 전략을 공유하세요.</div>
             </div>
             <div style="display: flex; gap: 5px;">
@@ -190,13 +201,17 @@
         </div>
     </div>
 
-    <div id="wallet" class="ui-panel" style="display:block; cursor:move;">
-        <div class="panel-header">💳 WALLET</div>
-        <div style="padding: 10px 15px; font-weight: bold;">₩ <span id="cash-val">1,500</span></div>
+    <div id="scan-overlay">
+        <div style="width: 250px; height: 350px; border: 2px solid #00ff00; position: relative; overflow: hidden; margin-bottom: 20px;">
+            <div id="scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00ff00; box-shadow: 0 0 15px #00ff00; animation: scanAnim 2s infinite;"></div>
+            <div id="scan-logs" style="padding: 10px; font-size: 10px; color: #00ff00;"></div>
+        </div>
+        <b style="font-size: 18px; letter-spacing: 2px;">AI RECEIPT ANALYZING...</b>
+        <div id="scan-progress" style="width: 200px; height: 4px; background: #111; margin-top: 15px; border-radius: 2px; overflow: hidden;"><div id="scan-bar" style="width: 0%; height: 100%; background: #00ff00; transition: width 0.1s;"></div></div>
     </div>
 
-    <div id="music-player" class="ui-panel" style="display:flex; align-items:center; cursor:move;">
-        <div class="panel-header">🎵 ANTHEM</div>
+    <div id="music-player" class="ui-panel" style="display:flex;">
+        <div class="panel-header">🎵 ANTHEM <span>:::</span></div>
         <div style="padding: 8px 15px; display: flex; align-items: center; gap: 10px;">
             <marquee id="music-title" style="width: 80px; font-size: 10px; color: var(--gold);">현재 1위 국가 연주 중...</marquee>
             <button onclick="toggleMusic()" style="background: none; border: none; color: white; cursor: pointer;">⏸</button>
@@ -222,212 +237,94 @@
     </div>
 
     <script>
-        // --- 드래그 앤 드롭 UI 로직 ---
-        function makeDraggable(el) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            const header = el.querySelector(".panel-header") || el;
-            
-            // 저장된 위치 불러오기
-            const savedPos = JSON.parse(localStorage.getItem('ui_pos_' + el.id));
-            if (savedPos) {
-                el.style.top = savedPos.top;
-                el.style.left = savedPos.left;
-                el.style.bottom = 'auto'; // bottom 고정 해제
-                el.style.right = 'auto'; // right 고정 해제
-            }
-
-            header.onmousedown = dragMouseDown;
-            header.ontouchstart = dragMouseDown;
-
-            function dragMouseDown(e) {
-                e = e || window.event;
-                // e.preventDefault();
-                pos3 = e.clientX || e.touches[0].clientX;
-                pos4 = e.clientY || e.touches[0].clientY;
-                document.onmouseup = closeDragElement;
-                document.ontouchend = closeDragElement;
-                document.onmousemove = elementDrag;
-                document.ontouchmove = elementDrag;
-            }
-
-            function elementDrag(e) {
-                e = e || window.event;
-                const clientX = e.clientX || e.touches[0].clientX;
-                const clientY = e.clientY || e.touches[0].clientY;
-                pos1 = pos3 - clientX;
-                pos2 = pos4 - clientY;
-                pos3 = clientX;
-                pos4 = clientY;
-                el.style.top = (el.offsetTop - pos2) + "px";
-                el.style.left = (el.offsetLeft - pos1) + "px";
-                el.style.bottom = 'auto';
-                el.style.right = 'auto';
-            }
-
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-                document.ontouchend = null;
-                document.ontouchmove = null;
-                // 위치 저장
-                localStorage.setItem('ui_pos_' + el.id, JSON.stringify({
-                    top: el.style.top,
-                    left: el.style.left
-                }));
-            }
-        }
-
-        // 모든 패널에 드래그 적용
-        document.addEventListener('DOMContentLoaded', () => {
-            startGPSTracking();
-            ['ranking-board', 'shop-panel', 'chat-panel', 'wallet', 'music-player'].forEach(id => {
-                const el = document.getElementById(id);
-                if(el) makeDraggable(el);
-            });
-        });
-
-        const ANTHEMS = {
-            "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-            "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
-        };
-
-        const spots = [
-            // 서울 TOP 5
-            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, rank: 1, region: "서울", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80", addr: "서울 성동구 아차산로7길 7", menu: "성수족발(대) 45,000원", info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00", tip: "서울 3대 족발! 포장이 빠릅니다." },
-            { id: 11, name: "명동교자 본점", lat: 37.5625, lng: 126.9856, owner: "🇰🇷", bounty: 0, rank: 2, region: "서울", img: "https://images.unsplash.com/photo-1569058242252-623df46b5025?auto=format&fit=crop&w=400&q=80", addr: "서울 중구 명동10길 29", menu: "칼국수 11,000원", info: "🅿️ 주차 불가 | 🕒 10:30 ~ 21:00", tip: "마늘 김치가 아주 중독적!" },
-            { id: 12, name: "우래옥", lat: 37.5682, lng: 126.9992, owner: "🇯🇵", bounty: 500, rank: 3, region: "서울", img: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=400&q=80", addr: "서울 중구 창경궁로 62-29", menu: "평양냉면 16,000원", info: "🅿️ 전용 주차장 | 🕒 11:30 ~ 21:00", tip: "평양냉면의 정석, 육향이 진합니다." },
-            { id: 13, name: "토속촌 삼계탕", lat: 37.5766, lng: 126.9718, owner: "🇨🇳", bounty: 0, rank: 4, region: "서울", img: "https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?auto=format&fit=crop&w=400&q=80", addr: "서울 종로구 자하문로5길 5", menu: "토속촌 삼계탕 20,000원", info: "🅿️ 주차 가능 | 🕒 10:00 ~ 21:30", tip: "국물이 아주 진하고 고소합니다." },
-            { id: 14, name: "런던 베이글 뮤지엄", lat: 37.5793, lng: 126.9911, owner: "🇰🇷", bounty: 1500, rank: 5, region: "서울", img: "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?auto=format&fit=crop&w=400&q=80", addr: "서울 종로구 북촌로4길 20", menu: "포테이토 치즈 5,500원", info: "🅿️ 주차 불가 | 🕒 08:00 ~ 18:00", tip: "웨이팅 필수! 캐치테이블을 쓰세요." },
-
-            // 부산 TOP 5
-            { id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, rank: 1, region: "부산", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80", addr: "부산 중구 광복중앙로 31", menu: "이재모 크러스트 25,000원", info: "🅿️ 인근 주차 | 🕒 11:00 ~ 21:00", tip: "임실치즈 풍미가 예술입니다." },
-            { id: 15, name: "수변최고돼지국밥", lat: 35.1555, lng: 129.1255, owner: "🇨🇳", bounty: 0, rank: 2, region: "부산", img: "https://images.unsplash.com/photo-1624300629298-e9de39c13be5?auto=format&fit=crop&w=400&q=80", addr: "부산 수영구 민락수변로 235", menu: "항정국밥 12,000원", info: "🅿️ 공영주차 | 🕒 24시간 영업", tip: "항정국밥이 가장 맛있습니다." },
-            { id: 16, name: "해운대 암소갈비집", lat: 35.1633, lng: 129.1661, owner: "🇰🇷", bounty: 3000, rank: 3, region: "부산", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80", addr: "부산 해운대구 중동2로 10", menu: "생갈비 58,000원", info: "🅿️ 주차 가능 | 🕒 11:30 ~ 22:00", tip: "감자 사리 추가는 필수입니다!" },
-            { id: 17, name: "본전돼지국밥", lat: 35.1148, lng: 129.0395, owner: "🇯🇵", bounty: 0, rank: 4, region: "부산", img: "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=400&q=80", addr: "부산 동구 중앙대로214번길 3-8", menu: "돼지국밥 10,000원", info: "🅿️ 주차 불가 | 🕒 09:00 ~ 20:30", tip: "부산역 옆! 맑은 국물이 특징." },
-            { id: 18, name: "가야밀면", lat: 35.1512, lng: 129.0215, owner: "🇰🇷", bounty: 0, rank: 5, region: "부산", img: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=400&q=80", addr: "부산진구 가야대로 506", menu: "밀면 8,500원", info: "🅿️ 주차 가능 | 🕒 10:30 ~ 20:30", tip: "시원하고 달달한 원조 밀면!" },
-
-            // 대전 TOP 5
-            { id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, rank: 1, region: "대전", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 대종로480번길 15", menu: "튀김소보로 1,700원", info: "🅿️ 주차 가능 | 🕒 08:00 ~ 22:00", tip: "명란바게트도 꼭 드셔보세요." },
-            { id: 19, name: "오씨칼국수", lat: 36.3405, lng: 127.4215, owner: "🇰🇷", bounty: 0, rank: 2, region: "대전", img: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=400&q=80", addr: "대전 동구 옛신탄진로 13", menu: "물총(동죽) 14,000원", info: "🅿️ 주차 가능 | 🕒 11:00 ~ 21:00", tip: "물총 조개의 시원함이 예술!" },
-            { id: 20, name: "진로집", lat: 36.3282, lng: 127.4245, owner: "🇯🇵", bounty: 1000, rank: 3, region: "대전", img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 중교로 45-5", menu: "두부두루치기 12,000원", info: "🅿️ 주차 불가 | 🕒 11:30 ~ 22:00", tip: "칼칼한 두부와 사리의 조화!" },
-            { id: 21, name: "태평소국밥", lat: 36.3455, lng: 127.3415, owner: "🇨🇳", bounty: 0, rank: 4, region: "대전", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80", addr: "대전 유성구 온천동로 50", menu: "육사시미 11,000원", info: "🅿️ 주차 가능 | 🕒 24시간 영업", tip: "가성비 끝판왕 육사시미 추천!" },
-            { id: 22, name: "자매국수", lat: 33.5071, lng: 126.4915, owner: "🇰🇷", bounty: 0, rank: 5, region: "제주", img: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=400&q=80", addr: "제주시 탑동로 11", menu: "고기국수 9,000원", info: "🅿️ 주차 가능 | 🕒 09:00 ~ 18:00", tip: "공항 근처 첫 식사로 최고!" }
-        ];
-
+        // --- 1. 전역 상태 및 지도 초기화 ---
         let myCash = 1500;
         let topNation = "🇨🇳";
         let isFrozen = false;
+        let selectedSpot = null;
         let userMarker = null;
         const markers = {};
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([36.2, 127.8], 7);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
-        // --- GPS 실시간 추적 및 근접 감지 ---
+        // 시간대별 테마 전환
+        const isNight = new Date().getHours() >= 19 || new Date().getHours() < 7;
+        L.tileLayer(isNight ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
+
+        // --- 2. 데이터 세팅 (전국 TOP 5) ---
+        const spots = [
+            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, rank: 1, region: "서울", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80", addr: "서울 성동구 아차산로7길 7", menu: "성수족발(대) 45,000원", info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00", tip: "서울 3대 족발! 포장이 빠릅니다." },
+            { id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, rank: 1, region: "부산", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80", addr: "부산 중구 광복중앙로 31", menu: "이재모 크러스트 25,000원", info: "🅿️ 인근 주차 | 🕒 11:00 ~ 21:00", tip: "치즈 풍미가 예술입니다." },
+            { id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, rank: 1, region: "대전", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 대종로480번길 15", menu: "튀김소보로 1,700원", info: "🅿️ 주차 가능 | 🕒 08:00 ~ 22:00", tip: "명란바게트 추천!" },
+            { id: 7, name: "연돈", lat: 33.2492, lng: 126.4075, owner: "🇰🇷", bounty: 0, rank: 1, region: "제주", img: "https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=400&q=80", addr: "제주시 일주서로 968-10", menu: "치즈까스 13,000원", info: "🅿️ 주차 가능 | 🕒 12:00 ~ 21:00", tip: "캐치테이블 예약 필수!" }
+        ];
+
+        // --- 3. 핵심 기능 함수 ---
+        function triggerVibration(pattern) { if ("vibrate" in navigator) navigator.vibrate(pattern); }
+
         function startGPSTracking() {
             if (!navigator.geolocation) return;
             navigator.geolocation.watchPosition((pos) => {
                 const { latitude: lat, longitude: lng } = pos.coords;
-                if (!userMarker) {
-                    userMarker = L.circleMarker([lat, lng], { radius: 10, color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.8 }).addTo(map);
-                } else {
-                    userMarker.setLatLng([lat, lng]);
-                }
-                
-                // 100m 이내 근접 체크
+                if (!userMarker) userMarker = L.circleMarker([lat, lng], { radius: 10, color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.8 }).addTo(map);
+                else userMarker.setLatLng([lat, lng]);
                 spots.forEach(spot => {
                     const dist = map.distance([lat, lng], [spot.lat, spot.lng]);
                     if (dist < 100) {
-                        const alertBox = document.getElementById('mission-alert');
-                        alertBox.innerHTML = `📍 [${spot.name}] 근접! 즉시 점령 가능 (거리: ${Math.round(dist)}m)`;
-                        alertBox.style.display = 'block';
-                        alertBox.onclick = () => { selectedSpot = spot; openPanel(spot); };
+                        const ab = document.getElementById('mission-alert');
+                        ab.innerHTML = `📍 [${spot.name}] 근접! 즉시 점령 가능 (${Math.round(dist)}m)`;
+                        ab.style.display = 'block';
+                        triggerVibration([200, 100, 200]);
+                        ab.onclick = () => { selectedSpot = spot; openPanel(spot); };
                     }
                 });
             }, null, { enableHighAccuracy: true });
         }
 
-        map.on('click', () => {
-            document.getElementById('capture-panel').classList.remove('open');
-            document.getElementById('shop-panel').style.display = 'none';
-            document.getElementById('chat-panel').style.display = 'none';
-        });
+        function makeDraggable(el) {
+            let p1=0, p2=0, p3=0, p4=0;
+            const h = el.querySelector(".panel-header") || el;
+            const saved = JSON.parse(localStorage.getItem('ui_pos_' + el.id));
+            if (saved) { el.style.top = saved.top; el.style.left = saved.left; el.style.bottom = 'auto'; el.style.right = 'auto'; }
+            h.onmousedown = dragStart; h.ontouchstart = dragStart;
+            function dragStart(e) { p3 = e.clientX || e.touches[0].clientX; p4 = e.clientY || e.touches[0].clientY; document.onmouseup = dragEnd; document.ontouchend = dragEnd; document.onmousemove = dragging; document.ontouchmove = dragEnd; }
+            function dragging(e) { const cx = e.clientX || e.touches[0].clientX, cy = e.clientY || e.touches[0].clientY; p1 = p3 - cx; p2 = p4 - cy; p3 = cx; p4 = cy; el.style.top = (el.offsetTop - p2) + "px"; el.style.left = (el.offsetLeft - p1) + "px"; el.style.bottom = 'auto'; el.style.right = 'auto'; }
+            function dragEnd() { document.onmouseup = null; document.onmousemove = null; document.ontouchend = null; document.ontouchmove = null; localStorage.setItem('ui_pos_' + el.id, JSON.stringify({ top: el.style.top, left: el.style.left })); }
+        }
 
         function updateMarker(spot) {
-            const isBounty = spot.bounty > 0;
-            const isTop = spot.owner === topNation;
-            const icon = L.divIcon({
-                className: 'custom-div-icon',
-                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''} ${isTop ? 'top-rank' : ''}">
-                        <div style="position:absolute; top:-12px; font-size:10px; font-weight:900; background:white; padding:1px 4px; border-radius:10px; border:1px solid #334155;">#${spot.rank}</div>
-                        <span>${isBounty ? '💰' : spot.owner}</span>
-                       </div>`,
-                iconSize: [45, 45],
-                iconAnchor: [22, 45]
-            });
+            const isBounty = spot.bounty > 0, isTop = spot.owner === topNation;
+            const icon = L.divIcon({ className: 'custom-div-icon', html: `<div class="marker-pin ${isBounty?'bounty':''} ${isTop?'top-rank':''}"> <div style="position:absolute; top:-12px; font-size:10px; font-weight:900; background:white; padding:1px 4px; border-radius:10px; border:1px solid #334155;">#${spot.rank}</div> <span>${isBounty?'💰':spot.owner}</span></div>`, iconSize: [45, 45], iconAnchor: [22, 45] });
             if (markers[spot.id]) markers[spot.id].setIcon(icon);
-            else {
-                const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
-                markers[spot.id] = marker;
-                marker.on('click', () => { selectedSpot = spot; openPanel(spot); });
-            }
+            else { const m = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map); markers[spot.id] = m; m.on('click', () => { selectedSpot = spot; openPanel(spot); }); }
         }
 
         function openPanel(spot) {
-            document.getElementById('p-name').innerHTML = `<span style="font-size:14px; color:var(--accent)">[${spot.region} 지역 ${spot.rank}위 명물]</span><br>${spot.name}`;
+            document.getElementById('p-name').innerHTML = `<span style="font-size:14px; color:var(--accent)">[${spot.region} 1위 명물]</span><br>${spot.name}`;
             document.getElementById('p-photo').src = spot.img;
-            document.getElementById('p-owner-msg').innerText = spot.msg || `${spot.region}의 명예를 걸고 수호하세요!`;
+            document.getElementById('p-owner-msg').innerText = spot.msg || "명예를 지키세요!";
             document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
-            document.getElementById('p-details').innerHTML = `
-                <div style="margin-top:15px; font-size:13px; color:#1e293b;">
-                    <div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div>
-                    <div><b>🍴 메뉴:</b> ${spot.menu}</div>
-                    <div><b>ℹ️ 정보:</b> ${spot.info}</div>
-                    <div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div>
-                    
-                    <!-- 네비게이션 버튼 -->
-                    <div style="display: flex; gap: 8px; margin-top: 15px;">
-                        <button onclick="goNavi('naver', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex: 1; background: #03c75a; color: white; border: none; border-radius: 8px; padding: 10px; font-size: 12px; font-weight: bold; cursor: pointer;">네이버 지도 🚗</button>
-                        <button onclick="goNavi('kakao', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex: 1; background: #fae100; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-size: 12px; font-weight: bold; cursor: pointer;">카카오 맵 📍</button>
-                    </div>
-                </div>`;
+            document.getElementById('p-details').innerHTML = `<div style="margin-top:15px; font-size:13px; color:#1e293b;"><div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div><div><b>🍴 메뉴:</b> ${spot.menu}</div><div><b>ℹ️ 정보:</b> ${spot.info}</div><div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div><div style="display:flex; gap:8px; margin-top:15px;"><button onclick="goNavi('naver', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex:1; background:#03c75a; color:white; border:none; border-radius:8px; padding:10px; font-size:12px; font-weight:bold; cursor:pointer;">네이버 지도 🚗</button><button onclick="goNavi('kakao', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex:1; background:#fae100; color:#3c1e1e; border:none; border-radius:8px; padding:10px; font-size:12px; font-weight:bold; cursor:pointer;">카카오 맵 📍</button></div></div>`;
             document.getElementById('bounty-info').style.display = spot.bounty > 0 ? 'inline-block' : 'none';
             document.getElementById('capture-panel').classList.add('open');
         }
 
-        let selectedSpot = null;
-        spots.forEach(updateMarker);
-
+        function goNavi(s, n, lt, lg) { let u = s==='naver'?`nmap://route/car?dlat=${lt}&dlng=${lg}&dname=${encodeURIComponent(n)}` : `kakaomap://route?ep=${lt},${lg}&by=CAR`; window.location.href = u; setTimeout(() => window.open(s==='naver'?`https://map.naver.com/v5/directions/-/-/${lt},${lg},${encodeURIComponent(n)}` : `https://map.kakao.com/link/to/${encodeURIComponent(n)},${lt},${lg}`), 500); }
         function toggleShop() { const p = document.getElementById('shop-panel'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
         function toggleChat() { const p = document.getElementById('chat-panel'); p.style.display = p.style.display === 'none' ? 'flex' : 'none'; }
         function buyItem(t) { if(myCash < 2000) { alert('자금 부족!'); return; } myCash -= 2000; document.getElementById('cash-val').innerText = myCash.toLocaleString(); if(t === 'freeze') { isFrozen = true; document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)'; alert('❄️ 얼음 폭풍 발동!'); setTimeout(() => { isFrozen = false; document.getElementById('map').style.filter = ''; }, 10000); } toggleShop(); }
-                function shareKakao() { const t = "🚨 긴급! 성수동 점령 중! 지원해줘! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("공유 메시지:", t); }
-                
-                function goNavi(service, name, lat, lng) {
-                    let url = "";
-                    if(service === 'naver') {
-                        url = `nmap://route/car?dlat=${lat}&dlng=${lng}&dname=${encodeURIComponent(name)}&appname=ys970605-boop.github.io`;
-                        // 모바일 앱 미설치 시 웹 브라우저 네이버 지도로 연결
-                        const webUrl = `https://map.naver.com/v5/directions/-/-/` + lat + `,` + lng + `,` + encodeURIComponent(name) + `/-/car`;
-                        window.location.href = url;
-                        setTimeout(() => { window.open(webUrl, '_blank'); }, 500);
-                    } else if(service === 'kakao') {
-                        url = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
-                        const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`;
-                        window.location.href = url;
-                        setTimeout(() => { window.open(webUrl, '_blank'); }, 500);
-                    }
-                }
-        
-                function sendChatMessage() {
-         const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
+        function shareKakao() { const t = "🚨 긴급! 전장 합류 요청! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("메시지:", t); }
+        function sendChatMessage() { const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
         function setCommanderBounty() { const t = document.getElementById('bounty-target').value, a = parseInt(document.getElementById('bounty-amount').value); if(!t || isNaN(a)) return; if(myCash < a) { alert('공금 부족!'); return; } const s = spots.find(x => x.id == t); s.bounty = a; myCash -= a; document.getElementById('cash-val').innerText = myCash.toLocaleString(); updateMarker(s); const al = document.getElementById('mission-alert'); al.innerText = `🎖️ 작전: [${s.name}] ₩${a.toLocaleString()} 현상금!`; al.style.display = 'block'; setTimeout(() => al.style.display = 'none', 5000); }
         function triggerCamera() { if(isFrozen) { alert('❄️ 마비 상태!'); return; } document.getElementById('camera-input').click(); }
         function handleCameraCapture(i) { if(i.files && i.files[0]) startCapture(); }
-        async function startCapture() { if(!selectedSpot) return; document.getElementById('scan-overlay').style.display = 'flex'; const l = document.getElementById('scan-logs'), b = document.getElementById('scan-bar'); const steps = ["Initializing...", "Scanning Receipt...", "Matching Merchant: " + selectedSpot.name, "GPS Validated", "Success"]; for(let i=0; i<steps.length; i++) { const d = document.createElement('div'); d.innerText = `> ${steps[i]}`; l.appendChild(d); b.style.width = ((i+1)/steps.length*100)+'%'; await new Promise(r => setTimeout(r, 500)); } setTimeout(() => { document.getElementById('scan-overlay').style.display = 'none'; l.innerHTML = ''; const gain = 500 + selectedSpot.bounty; myCash += gain; document.getElementById('cash-val').innerText = myCash.toLocaleString(); alert(`🎯 성공! ₩${gain.toLocaleString()} 지급.`); selectedSpot.owner = "🇰🇷"; selectedSpot.bounty = 0; updateMarker(selectedSpot); document.getElementById('capture-panel').classList.remove('open'); }, 500); }
+        async function startCapture() { if(!selectedSpot) return; document.getElementById('scan-overlay').style.display = 'flex'; const l = document.getElementById('scan-logs'), b = document.getElementById('scan-bar'); const steps = ["Initializing...", "Scanning Receipt...", "Matching Merchant: " + selectedSpot.name, "GPS Validated", "Success"]; for(let i=0; i<steps.length; i++) { const d = document.createElement('div'); d.innerText = `> ${steps[i]}`; l.appendChild(d); b.style.width = ((i+1)/steps.length*100)+'%'; await new Promise(r => setTimeout(r, 400)); } setTimeout(() => { document.getElementById('scan-overlay').style.display = 'none'; l.innerHTML = ''; const gain = 500 + selectedSpot.bounty; myCash += gain; document.getElementById('cash-val').innerText = myCash.toLocaleString(); triggerVibration([100, 50, 100, 50, 300]); alert(`🎯 성공! ₩${gain.toLocaleString()} 지급.`); selectedSpot.owner = "🇰🇷"; selectedSpot.bounty = 0; updateMarker(selectedSpot); document.getElementById('capture-panel').classList.remove('open'); }, 500); }
+        const ANTHEMS = { "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }, "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" } };
         function updateAnthem() { const a = document.getElementById('anthem-audio'), t = document.getElementById('music-title'), an = ANTHEMS[topNation] || ANTHEMS["🇰🇷"]; if(a.src !== an.url) { a.src = an.url; t.innerText = `1위: ${an.title}`; a.play().catch(e => {}); } }
         function toggleMusic() { const a = document.getElementById('anthem-audio'); if(a.paused) a.play(); else a.pause(); }
-        setInterval(updateAnthem, 5000); init();
+        
+        map.on('click', () => { document.getElementById('capture-panel').classList.remove('open'); document.getElementById('shop-panel').style.display = 'none'; document.getElementById('chat-panel').style.display = 'none'; });
+        document.addEventListener('DOMContentLoaded', () => { startGPSTracking(); ['ranking-board', 'shop-panel', 'chat-panel', 'wallet', 'music-player'].forEach(id => { const el = document.getElementById(id); if(el) makeDraggable(el); }); });
+        setInterval(updateAnthem, 5000); spots.forEach(updateMarker);
     </script>
 </body>
 </html>

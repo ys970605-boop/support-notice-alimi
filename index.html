@@ -182,6 +182,13 @@
         let myCash = 1500;
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
         
+        // 지도 클릭 시 모든 열린 패널 닫기 (복귀 기능)
+        map.on('click', () => {
+            document.getElementById('capture-panel').classList.remove('open');
+            document.getElementById('shop-panel').style.display = 'none';
+            document.getElementById('chat-panel').style.display = 'none';
+        });
+
         // 밝고 선명한 주간 지도 (Voyager)
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 

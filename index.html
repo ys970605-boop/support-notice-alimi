@@ -3,322 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Food Conquest | 전국 명물 정복기</title>
-    
-    <!-- 카톡/공유 시 미리보기 설정 (Open Graph) -->
-    <meta property="og:title" content="K-Food Conquest: 전국 맛집 영토 전쟁" />
-    <meta property="og:description" content="전국 각지의 명물 맛집에 내 조국의 깃발을 꽂으세요! 실시간 랭킹 전쟁" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ys970605-boop.github.io/support-notice-alimi/" />
-
+    <title>K-Food Battle | 전 세계 미식 전쟁</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         :root {
-            --china: #ff4d4f; --taiwan: #1890ff; --japan: #ffffff; --korea: #52c41a;
+            --china: #ff4d4f; --korea: #52c41a; --japan: #ffffff;
             --dark: #0f172a; --gold: #fbbf24; --accent: #f43f5e;
         }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background: var(--dark); overflow: hidden; color: white; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; font-family: 'Pretendard', sans-serif; overflow: hidden; color: white; }
         
-        /* 랭킹 및 지휘부 보드 */
-        #ranking-board {
-            position: absolute; top: 15px; left: 15px; z-index: 1000;
-            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155;
-            border-radius: 12px; padding: 12px; width: 220px; pointer-events: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        /* 메인 비디오 피드 레이아웃 */
+        #feed-container {
+            height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
         }
-        .rank-title { font-size: 10px; color: #94a3b8; letter-spacing: 1px; margin-bottom: 8px; }
-        .rank-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; font-weight: 900; }
-        .command-hierarchy { border-top: 1px solid #334155; margin-top: 10px; padding-top: 10px; }
-        .commander-item { font-size: 11px; display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
-        .commander-item.gold { color: var(--gold); }
-        .commander-item.silver { color: #cbd5e1; }
-
-        /* 상단 전황판 */
-        #scoreboard {
-            position: absolute; top: 10px; left: 250px; right: 10px; z-index: 1000;
-            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155;
-            border-radius: 15px; padding: 12px; display: flex; justify-content: space-around;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        .feed-item {
+            height: 100vh; width: 100%; scroll-snap-align: start;
+            position: relative; overflow: hidden;
         }
-        @media (max-width: 600px) { #scoreboard { left: 10px; top: 180px; } }
-        .score-item { text-align: center; }
-        .score-item .flag { font-size: 24px; display: block; }
-        .score-item .val { font-weight: 900; font-size: 16px; color: var(--gold); }
-
-        /* 긴급 미션 알림 */
-        #mission-alert {
-            position: absolute; top: 90px; left: 50%; transform: translateX(-50%); z-index: 1000;
-            background: var(--accent); color: white; padding: 8px 20px; border-radius: 30px;
-            font-size: 13px; font-weight: bold; box-shadow: 0 4px 15px rgba(244,63,94,0.4);
-            animation: slideDown 0.5s ease-out, pulse 1.5s infinite;
-            display: none; white-space: nowrap;
-        }
-        @keyframes slideDown { from { top: -50px; } to { top: 90px; } }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
-
-        /* 지갑 */
-        #wallet {
-            position: absolute; top: 140px; right: 15px; z-index: 1000;
-            background: #10b981; color: white; padding: 8px 15px; border-radius: 12px;
-            font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #34d399;
+        .feed-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; filter: brightness(0.6);
         }
 
-        #map { width: 100%; height: 100%; z-index: 1; transition: filter 0.5s; }
-
-        /* 바텀 시트 */
-        #capture-panel {
-            position: absolute; bottom: -100%; left: 0; right: 0; z-index: 2000;
-            background: #ffffff; border-top: 6px solid var(--gold); border-radius: 30px 30px 0 0;
-            padding: 25px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 -15px 50px rgba(0,0,0,0.2);
-            color: #1e293b; max-height: 85vh; overflow-y: auto;
+        /* 피드 오버레이 UI */
+        .feed-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 100px 20px 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            pointer-events: none; z-index: 10;
         }
-        #capture-panel.open { bottom: 0; }
-        
-        /* 커스텀 핀 스타일 */
-        .marker-pin {
-            width: 45px; height: 45px; border-radius: 50% 50% 50% 0; background: white;
-            position: absolute; transform: rotate(-45deg); left: 50%; top: 50%; margin: -22px 0 0 -22px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #334155;
+        .status-badge {
+            display: inline-block; padding: 5px 12px; border-radius: 20px;
+            font-weight: 900; font-size: 14px; margin-bottom: 10px;
+            border: 2px solid white; box-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
-        .marker-pin span { transform: rotate(45deg); font-size: 24px; }
-        .marker-pin.bounty { background: var(--gold); border-color: white; animation: pulseGold 1s infinite; }
-        .marker-pin.top-rank::after {
-            content: '👑'; position: absolute; top: -25px; left: 5px; transform: rotate(45deg);
-            font-size: 25px; filter: drop-shadow(0 0 5px gold); animation: float 1s infinite alternate;
+        .res-title { font-size: 32px; font-weight: 900; margin: 5px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .bounty-tag { color: var(--gold); font-size: 20px; font-weight: bold; margin-bottom: 15px; display: block; }
+
+        /* 액션 버튼 (우측 세로바) */
+        .side-actions {
+            position: absolute; right: 15px; bottom: 120px; display: flex; flex-direction: column; gap: 20px; z-index: 20;
         }
-        @keyframes float { from { top: -25px; } to { top: -35px; } }
-        @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(251,191,36,0.7); } 70% { box-shadow: 0 0 0 15px rgba(251,191,36,0); } 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); } }
-
-        /* 음식 사진 스타일 */
-        .res-photo {
-            width: 100%; height: 180px; border-radius: 15px; object-fit: cover;
-            margin-bottom: 15px; border: 2px solid #eee;
+        .action-btn {
+            width: 55px; height: 55px; border-radius: 50%; background: rgba(255,255,255,0.1);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+            cursor: pointer; pointer-events: auto;
         }
-        .bounty-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 5px; font-weight: 900; font-size: 12px; margin-bottom: 10px; display: inline-block; }
-        .res-name { font-size: 24px; font-weight: 900; margin: 0; color: #0f172a; line-height: 1.2; }
-        .owner-msg { font-style: italic; color: #64748b; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
+        .action-btn span { font-size: 22px; }
+        .action-btn label { font-size: 10px; margin-top: 3px; font-weight: bold; }
 
-        .btn-capture {
-            width: 100%; padding: 18px; border: none; border-radius: 15px;
-            background: var(--gold); color: #000; font-size: 20px; font-weight: 900;
-            cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(251,191,36,0.3);
+        /* 하단 탭 바 */
+        #nav-bar {
+            position: fixed; bottom: 0; width: 100%; height: 70px; background: rgba(15, 23, 42, 0.95);
+            display: flex; justify-content: space-around; align-items: center; z-index: 100;
+            border-top: 1px solid #334155;
         }
-        .btn-capture:active { transform: scale(0.95); }
+        .nav-item { text-align: center; color: #94a3b8; font-size: 11px; flex: 1; cursor: pointer; }
+        .nav-item.active { color: white; }
+        .nav-item span { font-size: 24px; display: block; }
 
-        /* 전술 상점 및 채팅 트리거 */
-        #shop-trigger, #chat-trigger { position: absolute; z-index: 1000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 20px; }
-        #shop-trigger { top: 190px; right: 15px; background: #3b82f6; color: white; }
-        #chat-trigger { top: 190px; left: 15px; background: var(--accent); color: white; }
+        /* 팝업 지도 */
+        #map-popup {
+            position: fixed; top: 50px; left: 10px; right: 10px; bottom: 80px;
+            background: white; border-radius: 20px; z-index: 500; display: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;
+        }
+        #map { width: 100%; height: 100%; }
+        .close-map { position: absolute; top: 15px; right: 15px; z-index: 600; background: rgba(0,0,0,0.5); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 20px; cursor: pointer; }
 
-        /* 팝업 패널 */
-        .ui-panel { position: absolute; z-index: 1000; background: rgba(15, 23, 42, 0.95); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; overflow: hidden; cursor: move; }
-        .panel-header { background: rgba(255,255,255,0.05); padding: 8px 12px; font-size: 10px; color: #94a3b8; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
-        #shop-panel { top: 240px; right: 15px; width: 180px; border: 1px solid #3b82f6; }
-        #chat-panel { top: 240px; left: 15px; width: 220px; height: 350px; flex-direction: column; border: 1px solid var(--accent); }
-        #wallet { top: 140px; right: 15px; border: 1px solid #34d399; }
-        #music-player { bottom: 85px; left: 15px; border: 1px solid var(--gold); border-radius: 20px; }
-
-        /* AI 스캔 오버레이 */
-        #scan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; flex-direction: column; align-items: center; justify-content: center; color: #00ff00; font-family: monospace; }
-        @keyframes scanAnim { from { top: 0; } to { top: 350px; } }
+        /* 긴급 뉴스 티커 */
+        #news-bar {
+            position: fixed; top: 0; width: 100%; background: var(--accent);
+            padding: 8px; font-size: 12px; font-weight: bold; z-index: 1000; text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div id="ranking-board" class="ui-panel" style="display:block;">
-        <div class="panel-header">🛰️ SYSTEM STATUS <span>:::</span></div>
-        <div style="padding: 12px;">
-            <div class="rank-title">NATION RANKING & COMMAND</div>
-            <div id="ranks">
-                <div class="rank-row"><span>🇨🇳 중국</span><span>42%</span></div>
-                <div class="rank-row" style="color:var(--gold)"><span>🇰🇷 한국</span><span>28%</span></div>
-                <div class="rank-row"><span>🇯🇵 일본</span><span>30%</span></div>
+    <div id="news-bar">🚨 실시간 교전: 리치왕 사령관이 부산 이재모피자 탈환 작전 개시!</div>
+
+    <div id="feed-container">
+        <!-- 피드 아이템 1 -->
+        <div class="feed-item">
+            <img class="feed-bg" src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=800&q=80">
+            <div class="feed-overlay">
+                <div class="status-badge" style="background: var(--china);">🇨🇳 중국 사령부 점령 중</div>
+                <h2 class="res-title">성수족발</h2>
+                <span class="bounty-tag">💰 현상금 +₩ 1,000</span>
+                <p style="font-size: 14px; color: #cbd5e1; margin: 0;">"한국군 여러분, 제발 우리 가게를 찾아주세요!"</p>
             </div>
-            <div class="command-hierarchy">
-                <div class="rank-title">🇰🇷 한국 지휘부</div>
-                <div class="commander-item gold">⭐ 사령관: 미식대장</div>
-                <div class="commander-item silver">🎖️ 부사령관: 성수정복자</div>
+            <div class="side-actions">
+                <div class="action-btn" onclick="openMapAt(37.5446, 127.0565)"><span>📍</span><label>작전지도</label></div>
+                <div class="action-btn" onclick="alert('카메라 구동...')"><span>📷</span><label>점령하기</label></div>
+                <div class="action-btn"><span>💬</span><label>128</label></div>
+                <div class="action-btn"><span>❤️</span><label>4.2k</label></div>
             </div>
         </div>
-    </div>
 
-    <div id="mission-alert">🚨 긴급 탈환 현상금 발생!</div>
-
-    <div id="wallet" class="ui-panel" style="display:block;">
-        <div class="panel-header">💳 WALLET <span>:::</span></div>
-        <div style="padding: 10px 15px; font-weight: bold; color:#10b981;">₩ <span id="cash-val">1,500</span></div>
-    </div>
-
-    <div id="shop-trigger" onclick="toggleShop()">🛒</div>
-    <div id="chat-trigger" onclick="toggleChat()">💬</div>
-
-    <div id="shop-panel" class="ui-panel">
-        <div class="panel-header">🛒 TACTICAL SHOP <span>:::</span></div>
-        <div style="padding: 15px;">
-            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
-                <div style="font-size: 12px; font-weight: bold;">❄️ 얼음 폭풍</div>
-                <div style="font-size: 10px; color: #94a3b8;">10분간 타국 마비</div>
-                <button onclick="buyItem('freeze')" style="width: 100%; margin-top: 5px; background: #3b82f6; color: white; border: none; border-radius: 4px; padding: 5px; font-size: 11px; cursor: pointer;">₩ 2,000 구매</button>
+        <!-- 피드 아이템 2 -->
+        <div class="feed-item">
+            <img class="feed-bg" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80">
+            <div class="feed-overlay">
+                <div class="status-badge" style="background: var(--korea);">🇰🇷 한국군 점령 중</div>
+                <h2 class="res-title">이재모피자 본점</h2>
+                <span class="bounty-tag" style="color:#10b981;">✅ 평화 상태</span>
+                <p style="font-size: 14px; color: #cbd5e1; margin: 0;">부산의 심장을 우리 군이 지켜냈습니다.</p>
             </div>
-            <button onclick="shareKakao()" style="width: 100%; background: #fee500; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">🤝 지원군 요청하기</button>
-        </div>
-    </div>
-
-    <div id="chat-panel" class="ui-panel">
-        <div class="panel-header">💬 WAR ROOM <span>:::</span></div>
-        <div style="padding: 15px; display: flex; flex-direction: column; height: 300px;">
-            <b style="font-size: 14px; color: var(--accent); margin-bottom: 10px; display: block;">🇰🇷 한국군 비밀 전략실</b>
-            <div id="commander-menu" style="background: rgba(244,63,94,0.1); border: 1px dashed var(--accent); padding: 8px; border-radius: 8px; margin-bottom: 10px;">
-                <div style="font-size: 10px; color: var(--accent); font-weight: bold; margin-bottom: 5px;">🎖️ 사령관 전용: 작전 발령</div>
-                <select id="bounty-target" style="width: 100%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155; margin-bottom: 5px;">
-                    <option value="">타겟 선택...</option>
-                    <option value="1">성수족발</option>
-                    <option value="5">이재모피자</option>
-                    <option value="6">성심당</option>
-                    <option value="7">연돈</option>
-                </select>
-                <div style="display: flex; gap: 3px;">
-                    <input type="number" id="bounty-amount" placeholder="₩" style="width: 60%; font-size: 10px; background: #1e293b; color: white; border: 1px solid #334155;">
-                    <button onclick="setCommanderBounty()" style="flex-grow: 1; font-size: 9px; background: var(--accent); color: white; border: none; border-radius: 3px; cursor: pointer;">발령</button>
-                </div>
-            </div>
-            <div id="chat-messages" style="flex-grow: 1; overflow-y: auto; font-size: 12px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px; color:white;">
-                <div style="color: #94a3b8;">[시스템] 전우들과 전략을 공유하세요.</div>
-            </div>
-            <div style="display: flex; gap: 5px;">
-                <input type="text" id="chat-input" placeholder="메시지..." style="flex-grow: 1; background: #1e293b; border: 1px solid #334155; color: white; padding: 5px; border-radius: 4px; font-size: 11px;">
-                <button onclick="sendChatMessage()" style="background: var(--accent); color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;">전송</button>
+            <div class="side-actions">
+                <div class="action-btn" onclick="openMapAt(35.1021, 129.0315)"><span>📍</span><label>작전지도</label></div>
+                <div class="action-btn" onclick="alert('아군 영토입니다.')"><span>🏰</span><label>수비중</label></div>
+                <div class="action-btn"><span>💬</span><label>85</label></div>
+                <div class="action-btn"><span>❤️</span><label>1.5k</label></div>
             </div>
         </div>
     </div>
 
-    <div id="scan-overlay">
-        <div style="width: 250px; height: 350px; border: 2px solid #00ff00; position: relative; overflow: hidden; margin-bottom: 20px;">
-            <div id="scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00ff00; box-shadow: 0 0 15px #00ff00; animation: scanAnim 2s infinite;"></div>
-            <div id="scan-logs" style="padding: 10px; font-size: 10px; color: #00ff00;"></div>
-        </div>
-        <b style="font-size: 18px; letter-spacing: 2px;">AI RECEIPT ANALYZING...</b>
-        <div id="scan-progress" style="width: 200px; height: 4px; background: #111; margin-top: 15px; border-radius: 2px; overflow: hidden;"><div id="scan-bar" style="width: 0%; height: 100%; background: #00ff00; transition: width 0.1s;"></div></div>
+    <!-- 팝업 지도 -->
+    <div id="map-popup">
+        <button class="close-map" onclick="closeMap()">×</button>
+        <div id="map"></div>
     </div>
 
-    <div id="music-player" class="ui-panel" style="display:flex;">
-        <div class="panel-header">🎵 ANTHEM <span>:::</span></div>
-        <div style="padding: 8px 15px; display: flex; align-items: center; gap: 10px;">
-            <marquee id="music-title" style="width: 80px; font-size: 10px; color: var(--gold);">현재 1위 국가 연주 중...</marquee>
-            <button onclick="toggleMusic()" style="background: none; border: none; color: white; cursor: pointer;">⏸</button>
-        </div>
-    </div>
-
-    <audio id="anthem-audio" loop></audio>
-    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" onchange="handleCameraCapture(this)">
-
-    <div id="map"></div>
-
-    <div id="capture-panel">
-        <img id="p-photo" class="res-photo" src="" alt="음식">
-        <div id="bounty-info" class="bounty-badge">💰 특별 현상금 발령</div>
-        <h2 id="p-name" class="res-name">식당 이름</h2>
-        <p id="p-owner-msg" class="owner-msg"></p>
-        <div id="p-details"></div>
-        <div style="background: #f1f5f9; padding: 15px; border-radius: 12px; margin-top: 15px;">
-            <div style="font-size: 12px; color: #64748b; margin-bottom: 5px;">현재 점유 국가</div>
-            <div id="p-current-owner" style="font-size: 18px; font-weight: bold; color:#0f172a;">🇨🇳 중국 사령부</div>
-        </div>
-        <button class="btn-capture" onclick="triggerCamera()">🚩 탈환 작전 개시 (카메라 촬영)</button>
+    <!-- 하단 탭 바 -->
+    <div id="nav-bar">
+        <div class="nav-item active"><span>🏠</span>전쟁피드</div>
+        <div class="nav-item" onclick="openMapAt(36.2, 127.8, 7)"><span>🗺️</span>월드맵</div>
+        <div class="nav-item"><span>🃏</span>전리품</div>
+        <div class="nav-item"><span>🛒</span>상점</div>
+        <div class="nav-item"><span>👤</span>내정보</div>
     </div>
 
     <script>
-        // --- 1. 전역 상태 및 지도 초기화 ---
-        let myCash = 1500;
-        let topNation = "🇨🇳";
-        let isFrozen = false;
-        let selectedSpot = null;
-        let userMarker = null;
-        const markers = {};
-        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([36.2, 127.8], 7);
+        const map = L.map('map', { zoomControl: false, attributionControl: false });
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
-        // 시간대별 테마 전환
-        const isNight = new Date().getHours() >= 19 || new Date().getHours() < 7;
-        L.tileLayer(isNight ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
-
-        // --- 2. 데이터 세팅 (전국 TOP 5) ---
-        const spots = [
-            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, rank: 1, region: "서울", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80", addr: "서울 성동구 아차산로7길 7", menu: "성수족발(대) 45,000원", info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00", tip: "서울 3대 족발! 포장이 빠릅니다." },
-            { id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, rank: 1, region: "부산", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80", addr: "부산 중구 광복중앙로 31", menu: "이재모 크러스트 25,000원", info: "🅿️ 인근 주차 | 🕒 11:00 ~ 21:00", tip: "치즈 풍미가 예술입니다." },
-            { id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, rank: 1, region: "대전", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80", addr: "대전 중구 대종로480번길 15", menu: "튀김소보로 1,700원", info: "🅿️ 주차 가능 | 🕒 08:00 ~ 22:00", tip: "명란바게트 추천!" },
-            { id: 7, name: "연돈", lat: 33.2492, lng: 126.4075, owner: "🇰🇷", bounty: 0, rank: 1, region: "제주", img: "https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=400&q=80", addr: "제주시 일주서로 968-10", menu: "치즈까스 13,000원", info: "🅿️ 주차 가능 | 🕒 12:00 ~ 21:00", tip: "캐치테이블 예약 필수!" }
-        ];
-
-        // --- 3. 핵심 기능 함수 ---
-        function triggerVibration(pattern) { if ("vibrate" in navigator) navigator.vibrate(pattern); }
-
-        function startGPSTracking() {
-            if (!navigator.geolocation) return;
-            navigator.geolocation.watchPosition((pos) => {
-                const { latitude: lat, longitude: lng } = pos.coords;
-                if (!userMarker) userMarker = L.circleMarker([lat, lng], { radius: 10, color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.8 }).addTo(map);
-                else userMarker.setLatLng([lat, lng]);
-                spots.forEach(spot => {
-                    const dist = map.distance([lat, lng], [spot.lat, spot.lng]);
-                    if (dist < 100) {
-                        const ab = document.getElementById('mission-alert');
-                        ab.innerHTML = `📍 [${spot.name}] 근접! 즉시 점령 가능 (${Math.round(dist)}m)`;
-                        ab.style.display = 'block';
-                        triggerVibration([200, 100, 200]);
-                        ab.onclick = () => { selectedSpot = spot; openPanel(spot); };
-                    }
-                });
-            }, null, { enableHighAccuracy: true });
+        function openMapAt(lat, lng, zoom = 16) {
+            document.getElementById('map-popup').style.display = 'block';
+            map.invalidateSize();
+            map.setView([lat, lng], zoom);
+            
+            // 핀 추가 시뮬레이션
+            L.marker([lat, lng]).addTo(map);
         }
 
-        function makeDraggable(el) {
-            let p1=0, p2=0, p3=0, p4=0;
-            const h = el.querySelector(".panel-header") || el;
-            const saved = JSON.parse(localStorage.getItem('ui_pos_' + el.id));
-            if (saved) { el.style.top = saved.top; el.style.left = saved.left; el.style.bottom = 'auto'; el.style.right = 'auto'; }
-            h.onmousedown = dragStart; h.ontouchstart = dragStart;
-            function dragStart(e) { p3 = e.clientX || e.touches[0].clientX; p4 = e.clientY || e.touches[0].clientY; document.onmouseup = dragEnd; document.ontouchend = dragEnd; document.onmousemove = dragging; document.ontouchmove = dragEnd; }
-            function dragging(e) { const cx = e.clientX || e.touches[0].clientX, cy = e.clientY || e.touches[0].clientY; p1 = p3 - cx; p2 = p4 - cy; p3 = cx; p4 = cy; el.style.top = (el.offsetTop - p2) + "px"; el.style.left = (el.offsetLeft - p1) + "px"; el.style.bottom = 'auto'; el.style.right = 'auto'; }
-            function dragEnd() { document.onmouseup = null; document.onmousemove = null; document.ontouchend = null; document.ontouchmove = null; localStorage.setItem('ui_pos_' + el.id, JSON.stringify({ top: el.style.top, left: el.style.left })); }
+        function closeMap() {
+            document.getElementById('map-popup').style.display = 'none';
         }
 
-        function updateMarker(spot) {
-            const isBounty = spot.bounty > 0, isTop = spot.owner === topNation;
-            const icon = L.divIcon({ className: 'custom-div-icon', html: `<div class="marker-pin ${isBounty?'bounty':''} ${isTop?'top-rank':''}"> <div style="position:absolute; top:-12px; font-size:10px; font-weight:900; background:white; padding:1px 4px; border-radius:10px; border:1px solid #334155;">#${spot.rank}</div> <span>${isBounty?'💰':spot.owner}</span></div>`, iconSize: [45, 45], iconAnchor: [22, 45] });
-            if (markers[spot.id]) markers[spot.id].setIcon(icon);
-            else { const m = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map); markers[spot.id] = m; m.on('click', () => { selectedSpot = spot; openPanel(spot); }); }
-        }
-
-        function openPanel(spot) {
-            document.getElementById('p-name').innerHTML = `<span style="font-size:14px; color:var(--accent)">[${spot.region} 1위 명물]</span><br>${spot.name}`;
-            document.getElementById('p-photo').src = spot.img;
-            document.getElementById('p-owner-msg').innerText = spot.msg || "명예를 지키세요!";
-            document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
-            document.getElementById('p-details').innerHTML = `<div style="margin-top:15px; font-size:13px; color:#1e293b;"><div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div><div><b>🍴 메뉴:</b> ${spot.menu}</div><div><b>ℹ️ 정보:</b> ${spot.info}</div><div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div><div style="display:flex; gap:8px; margin-top:15px;"><button onclick="goNavi('naver', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex:1; background:#03c75a; color:white; border:none; border-radius:8px; padding:10px; font-size:12px; font-weight:bold; cursor:pointer;">네이버 지도 🚗</button><button onclick="goNavi('kakao', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex:1; background:#fae100; color:#3c1e1e; border:none; border-radius:8px; padding:10px; font-size:12px; font-weight:bold; cursor:pointer;">카카오 맵 📍</button></div></div>`;
-            document.getElementById('bounty-info').style.display = spot.bounty > 0 ? 'inline-block' : 'none';
-            document.getElementById('capture-panel').classList.add('open');
-        }
-
-        function goNavi(s, n, lt, lg) { let u = s==='naver'?`nmap://route/car?dlat=${lt}&dlng=${lg}&dname=${encodeURIComponent(n)}` : `kakaomap://route?ep=${lt},${lg}&by=CAR`; window.location.href = u; setTimeout(() => window.open(s==='naver'?`https://map.naver.com/v5/directions/-/-/${lt},${lg},${encodeURIComponent(n)}` : `https://map.kakao.com/link/to/${encodeURIComponent(n)},${lt},${lg}`), 500); }
-        function toggleShop() { const p = document.getElementById('shop-panel'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
-        function toggleChat() { const p = document.getElementById('chat-panel'); p.style.display = p.style.display === 'none' ? 'flex' : 'none'; }
-        function buyItem(t) { if(myCash < 2000) { alert('자금 부족!'); return; } myCash -= 2000; document.getElementById('cash-val').innerText = myCash.toLocaleString(); if(t === 'freeze') { isFrozen = true; document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)'; alert('❄️ 얼음 폭풍 발동!'); setTimeout(() => { isFrozen = false; document.getElementById('map').style.filter = ''; }, 10000); } toggleShop(); }
-        function shareKakao() { const t = "🚨 긴급! 전장 합류 요청! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("메시지:", t); }
-        function sendChatMessage() { const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
-        function setCommanderBounty() { const t = document.getElementById('bounty-target').value, a = parseInt(document.getElementById('bounty-amount').value); if(!t || isNaN(a)) return; if(myCash < a) { alert('공금 부족!'); return; } const s = spots.find(x => x.id == t); s.bounty = a; myCash -= a; document.getElementById('cash-val').innerText = myCash.toLocaleString(); updateMarker(s); const al = document.getElementById('mission-alert'); al.innerText = `🎖️ 작전: [${s.name}] ₩${a.toLocaleString()} 현상금!`; al.style.display = 'block'; setTimeout(() => al.style.display = 'none', 5000); }
-        function triggerCamera() { if(isFrozen) { alert('❄️ 마비 상태!'); return; } document.getElementById('camera-input').click(); }
-        function handleCameraCapture(i) { if(i.files && i.files[0]) startCapture(); }
-        async function startCapture() { if(!selectedSpot) return; document.getElementById('scan-overlay').style.display = 'flex'; const l = document.getElementById('scan-logs'), b = document.getElementById('scan-bar'); const steps = ["Initializing...", "Scanning Receipt...", "Matching Merchant: " + selectedSpot.name, "GPS Validated", "Success"]; for(let i=0; i<steps.length; i++) { const d = document.createElement('div'); d.innerText = `> ${steps[i]}`; l.appendChild(d); b.style.width = ((i+1)/steps.length*100)+'%'; await new Promise(r => setTimeout(r, 400)); } setTimeout(() => { document.getElementById('scan-overlay').style.display = 'none'; l.innerHTML = ''; const gain = 500 + selectedSpot.bounty; myCash += gain; document.getElementById('cash-val').innerText = myCash.toLocaleString(); triggerVibration([100, 50, 100, 50, 300]); alert(`🎯 성공! ₩${gain.toLocaleString()} 지급.`); selectedSpot.owner = "🇰🇷"; selectedSpot.bounty = 0; updateMarker(selectedSpot); document.getElementById('capture-panel').classList.remove('open'); }, 500); }
-        const ANTHEMS = { "🇰🇷": { title: "대한민국 - 애국가", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, "🇨🇳": { title: "중국 - 의용군 진행곡", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }, "🇯🇵": { title: "일본 - 기미가요", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" } };
-        function updateAnthem() { const a = document.getElementById('anthem-audio'), t = document.getElementById('music-title'), an = ANTHEMS[topNation] || ANTHEMS["🇰🇷"]; if(a.src !== an.url) { a.src = an.url; t.innerText = `1위: ${an.title}`; a.play().catch(e => {}); } }
-        function toggleMusic() { const a = document.getElementById('anthem-audio'); if(a.paused) a.play(); else a.pause(); }
-        
-        map.on('click', () => { document.getElementById('capture-panel').classList.remove('open'); document.getElementById('shop-panel').style.display = 'none'; document.getElementById('chat-panel').style.display = 'none'; });
-        document.addEventListener('DOMContentLoaded', () => { startGPSTracking(); ['ranking-board', 'shop-panel', 'chat-panel', 'wallet', 'music-player'].forEach(id => { const el = document.getElementById(id); if(el) makeDraggable(el); }); });
-        setInterval(updateAnthem, 5000); spots.forEach(updateMarker);
+        // 스크롤 시 뉴스 티커 변경 시뮬레이션
+        document.getElementById('feed-container').addEventListener('scroll', () => {
+            const news = ["🚨 긴급: 리치왕 사령관 부산 출격!", "🔥 속보: 중국팀 명동 대규모 공세 중!", "💰 기회: 성심당 현상금 2배 이벤트 시작!"];
+            document.getElementById('news-bar').innerText = news[Math.floor(Math.random()*news.length)];
+        });
     </script>
 </body>
 </html>

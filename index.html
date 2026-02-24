@@ -3,94 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Conquest RTS | 원거리 포격전</title>
+    <title>K-Conquest RTS | 사령관 모드</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Courier New', Courier, monospace; color: #0f0; touch-action: none; }
         #game-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
         #ranking-board { position: absolute; top: 15px; left: 15px; background: rgba(0,30,0,0.8); border: 2px solid #0f0; border-radius: 5px; padding: 10px; width: 220px; pointer-events: auto; }
-        .rank-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; font-weight: bold; }
-        .rank-row.eliminated { color: #555; text-decoration: line-through; }
-        .rank-row.me { color: #fadb14; border-bottom: 1px solid #fadb14; }
+        .rank-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; font-weight: bold; }
+        .rank-row.me { color: #fadb14; }
         #res-panel { position: absolute; top: 15px; right: 15px; background: rgba(0,30,0,0.8); border: 2px solid #0f0; padding: 10px 20px; border-radius: 5px; font-weight: bold; pointer-events: auto; }
         .res-val { color: #fadb14; font-size: 20px; }
-        #build-panel { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,30,0,0.9); border: 2px solid #0f0; padding: 15px; border-radius: 10px; display: none; pointer-events: auto; gap: 15px; }
-        .build-btn { background: #020; color: #0f0; border: 1px solid #0f0; padding: 10px; cursor: pointer; text-align: center; font-size: 12px; min-width: 90px; }
-        .build-btn:hover { background: #040; }
-        #msg-log { position: absolute; bottom: 20px; left: 20px; color: #0f0; font-size: 14px; text-shadow: 1px 1px 2px #000; }
+        #build-panel { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,30,0,0.9); border: 2px solid #0f0; padding: 10px; border-radius: 10px; display: none; pointer-events: auto; gap: 10px; }
+        .build-btn { background: #020; color: #0f0; border: 1px solid #0f0; padding: 8px; cursor: pointer; text-align: center; font-size: 11px; min-width: 80px; }
+        #msg-log { position: absolute; bottom: 20px; left: 20px; color: #0f0; font-size: 13px; text-shadow: 1px 1px 2px #000; }
         #game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; border: 3px solid #f00; padding: 40px; text-align: center; display: none; pointer-events: auto; z-index: 100; }
         canvas { display: block; }
     </style>
 </head>
 <body>
     <div id="game-ui">
-        <div id="ranking-board"><div style="font-size: 10px; margin-bottom: 8px; color: #aaa;">WORLD DOMINATION RANKING</div><div id="ranks"></div></div>
+        <div id="ranking-board"><div id="ranks"></div></div>
         <div id="res-panel">GOLD: <span id="gold-val" class="res-val">500</span></div>
-        <div id="msg-log">타워를 건설하여 원거리 방어망을 구축하십시오.</div>
+        <div id="msg-log">드래그하여 유닛을 선택하고 우클릭(또는 길게 터치)으로 이동시키세요.</div>
         <div id="build-panel">
             <button class="build-btn" onclick="produceUnit('worker')">SCV (⛏️)<br>50G</button>
             <button class="build-btn" onclick="produceUnit('soldier')">MARINE (⚔️)<br>100G</button>
-            <button class="build-btn" onclick="produceUnit('tower')">TOWER (🏹)<br>200G</button>
+            <button class="build-btn" onclick="produceUnit('tank')">TANK (💣)<br>300G</button>
+            <button class="build-btn" onclick="produceUnit('tower')">TOWER (🛡️)<br>250G</button>
         </div>
-        <div id="game-over"><h1 id="over-title" style="color:#f00">MISSION FAILED</h1><p id="over-msg"></p><button onclick="location.reload()" style="background:#0f0; color:#000; border:none; padding:10px 20px; cursor:pointer; font-weight:bold;">RESTART</button></div>
+        <div id="game-over"><h1 id="over-title">MISSION FAILED</h1><button onclick="location.reload()" style="background:#0f0; border:none; padding:10px 20px; cursor:pointer;">RESTART</button></div>
     </div>
     <canvas id="gameCanvas"></canvas>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const W = 2000, H = 2000;
-        let camX = 0, camY = 0, gold = 500;
+        const W = 2500, H = 2500;
+        let camX = 0, camY = 0, gold = 600;
+        let selectedUnits = [];
+        let selectionBox = null; // {x1, y1, x2, y2}
 
         const TEAMS = [
-            { id: 1, name: "한국", color: "#52c41a", flag: "🇰🇷", start: {x: 200, y: 1800}, score: 0, alive: true },
-            { id: 2, name: "중국", color: "#ff4d4f", flag: "🇨🇳", start: {x: 1800, y: 200}, score: 0, alive: true },
-            { id: 3, name: "일본", color: "#d9d9d9", flag: "🇯🇵", start: {x: 200, y: 200}, score: 0, alive: true },
-            { id: 4, name: "미국", color: "#1890ff", flag: "🇺🇸", start: {x: 1800, y: 1800}, score: 0, alive: true }
+            { id: 1, name: "한국", color: "#52c41a", flag: "🇰🇷", start: {x: 300, y: 2200}, score: 0, alive: true },
+            { id: 2, name: "중국", color: "#ff4d4f", flag: "🇨🇳", start: {x: 2200, y: 300}, score: 0, alive: true },
+            { id: 3, name: "일본", color: "#d9d9d9", flag: "🇯🇵", start: {x: 300, y: 300}, score: 0, alive: true },
+            { id: 4, name: "미국", color: "#1890ff", flag: "🇺🇸", start: {x: 2200, y: 2200}, score: 0, alive: true }
         ];
 
         let entities = [], minerals = [], projectiles = [];
 
         function initGame() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            TEAMS.forEach(team => { for(let i=0; i<6; i++) minerals.push({ x: team.start.x + (Math.random()-0.5)*400, y: team.start.y + (Math.random()-0.5)*400 }); });
-            TEAMS.forEach(team => entities.push({ id: Math.random(), type: 'hq', team: team.id, x: team.start.x, y: team.start.y, hp: 2500, maxHp: 2500, size: 80 }));
+            TEAMS.forEach(team => { for(let i=0; i<8; i++) minerals.push({ x: team.start.x + (Math.random()-0.5)*500, y: team.start.y + (Math.random()-0.5)*500 }); });
+            TEAMS.forEach(team => entities.push({ id: Math.random(), type: 'hq', team: team.id, x: team.start.x, y: team.start.y, hp: 3000, maxHp: 3000, size: 90 }));
             camX = 0; camY = H - canvas.height;
             setInterval(gameLoop, 50); requestAnimationFrame(draw);
         }
 
         function produceUnit(type) {
-            const costs = { worker: 50, soldier: 100, tower: 200 };
+            const costs = { worker: 50, soldier: 100, tank: 300, tower: 250 };
             if(gold < costs[type]) return;
             gold -= costs[type]; updateUI();
             const hq = entities.find(e => e.team === 1 && e.type === 'hq');
             if(!hq) return;
-            const u = { id: Math.random(), type: type, team: 1, x: hq.x + (Math.random()-0.5)*200, y: hq.y + (Math.random()-0.5)*200, state: 'idle', cooldown: 0 };
-            if(type === 'worker') { u.hp = 100; u.maxHp = 100; u.size = 18; u.speed = 3; }
-            else if(type === 'soldier') { u.hp = 250; u.maxHp = 250; u.size = 18; u.speed = 4.5; u.range = 150; u.damage = 25; }
-            else if(type === 'tower') { u.hp = 1000; u.maxHp = 1000; u.size = 35; u.speed = 0; u.range = 350; u.damage = 40; }
+            const u = { id: Math.random(), type: type, team: 1, x: hq.x + (Math.random()-0.5)*300, y: hq.y + (Math.random()-0.5)*300, state: 'idle', cooldown: 0, targetPos: null };
+            if(type === 'worker') { u.hp = 120; u.maxHp = 120; u.size = 18; u.speed = 3.5; }
+            else if(type === 'soldier') { u.hp = 250; u.maxHp = 250; u.size = 18; u.speed = 4.5; u.range = 160; u.damage = 25; }
+            else if(type === 'tank') { u.hp = 500; u.maxHp = 500; u.size = 25; u.speed = 2.5; u.range = 300; u.damage = 60; u.splash = 80; }
+            else if(type === 'tower') { u.hp = 1200; u.maxHp = 1200; u.size = 40; u.speed = 0; u.range = 650; u.damage = 50; }
             entities.push(u);
         }
 
         function gameLoop() {
-            // 포탄 이동 로직
+            // 포탄 이동 및 처리
             for(let i = projectiles.length - 1; i >= 0; i--) {
                 const p = projectiles[i];
                 if(!p.target || p.target.hp <= 0) { projectiles.splice(i, 1); continue; }
                 const d = Math.hypot(p.target.x - p.x, p.target.y - p.y);
                 if(d < 15) {
-                    p.target.hp -= p.damage;
+                    if(p.splash) {
+                        entities.forEach(ent => { if(ent.team !== p.team && Math.hypot(ent.x - p.x, ent.y - p.y) < p.splash) ent.hp -= p.damage; });
+                    } else { p.target.hp -= p.damage; }
                     const team = TEAMS.find(t => t.id === p.team);
-                    if(p.target.hp <= 0 && team) team.score += (p.target.type === 'hq' ? 100 : 20);
+                    if(p.target.hp <= 0 && team) team.score += (p.target.type === 'hq' ? 150 : 20);
                     projectiles.splice(i, 1);
-                } else {
-                    p.x += (p.target.x - p.x)/d * p.speed; p.y += (p.target.y - p.y)/d * p.speed;
-                }
+                } else { p.x += (p.target.x - p.x)/d * p.speed; p.y += (p.target.y - p.y)/d * p.speed; }
             }
 
             entities.forEach(e => {
                 const team = TEAMS.find(t => t.id === e.team);
                 if(!team.alive) return;
-                if(e.type === 'worker') {
+
+                // 이동 제어 (명령 수행)
+                if(e.targetPos && e.speed > 0) {
+                    const d = Math.hypot(e.targetPos.x - e.x, e.targetPos.y - e.y);
+                    if(d > 10) { e.x += (e.targetPos.x - e.x)/d * e.speed; e.y += (e.targetPos.y - e.y)/d * e.speed; }
+                    else { e.targetPos = null; }
+                }
+
+                if(e.type === 'worker' && !e.targetPos) {
                     if(e.state === 'idle') {
                         let nearest = null, minDist = Infinity;
                         minerals.forEach(m => { let d = Math.hypot(m.x - e.x, m.y - e.y); if(d < minDist) { minDist = d; nearest = m; } });
@@ -107,74 +117,70 @@
                         else { e.x += (e.target.x - e.x)/d * e.speed; e.y += (e.target.y - e.y)/d * e.speed; }
                     }
                 }
-                if(e.type === 'soldier' || e.type === 'tower') {
+
+                if((e.type === 'soldier' || e.type === 'tower' || e.type === 'tank') && !e.targetPos) {
                     if(e.cooldown > 0) e.cooldown--;
-                    let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0);
-                    if(enemy) {
-                        let d = Math.hypot(enemy.x - e.x, enemy.y - e.y);
-                        if(d < e.range) {
-                            if(e.cooldown <= 0) {
-                                projectiles.push({ x: e.x, y: e.y, target: enemy, speed: 20, damage: e.damage, team: e.team, type: e.type });
-                                e.cooldown = e.type === 'tower' ? 30 : 15;
-                            }
-                        } else if(e.type === 'soldier') { e.x += (enemy.x - e.x)/d * e.speed; e.y += (enemy.y - e.y)/d * e.speed; }
+                    let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0 && Math.hypot(ent.x - e.x, ent.y - e.y) < e.range);
+                    if(enemy && e.cooldown <= 0) {
+                        projectiles.push({ x: e.x, y: e.y, target: enemy, speed: 22, damage: e.damage, team: e.team, type: e.type, splash: e.splash });
+                        e.cooldown = e.type === 'tower' ? 40 : (e.type === 'tank' ? 60 : 15);
+                    } else if(!enemy && e.type !== 'tower' && e.team !== 1) { // AI 이동 로직
+                        let targetHQ = entities.find(ent => ent.team === 1 && ent.type === 'hq');
+                        if(targetHQ) { let d = Math.hypot(targetHQ.x-e.x, targetHQ.y-e.y); e.x += (targetHQ.x-e.x)/d * e.speed; e.y += (targetHQ.y-e.y)/d * e.speed; }
                     }
                 }
             });
 
-            TEAMS.forEach(t => { if(t.alive && !entities.some(ent => ent.team === t.id && ent.type === 'hq')) { t.alive = false; entities = entities.filter(ent => ent.team !== t.id); if(t.id === 1) showEndScreen("MISSION FAILED", "본부가 파괴되었습니다."); } });
+            TEAMS.forEach(t => { if(t.alive && !entities.some(ent => ent.team === t.id && ent.type === 'hq')) { t.alive = false; entities = entities.filter(ent => ent.team !== t.id); if(t.id === 1) showEndScreen("MISSION FAILED"); } });
             entities = entities.filter(e => e.hp > 0);
-            if(TEAMS.filter(t => t.alive).length === 1 && TEAMS.find(t => t.alive).id === 1) showEndScreen("VICTORY!", "세계 정복 완료.");
-            
-            // AI 생산 강화
-            if(Math.random() < 0.04) {
-                [2,3,4].forEach(tId => {
-                    const t = TEAMS.find(team => team.id === tId); if(!t.alive) return;
-                    let hq = entities.find(ent => ent.team === tId && ent.type === 'hq');
-                    if(hq) {
-                        const r = Math.random(), type = r < 0.2 ? 'worker' : (r < 0.8 ? 'soldier' : 'tower');
-                        const u = { id: Math.random(), type: type, team: tId, x: hq.x + (Math.random()-0.5)*200, y: hq.y + (Math.random()-0.5)*200, cooldown: 0 };
-                        if(type==='worker'){ u.hp=100; u.maxHp=100; u.size=18; u.speed=3; }
-                        else if(type==='soldier'){ u.hp=250; u.maxHp=250; u.size=18; u.speed=3; u.range=150; u.damage=20; }
-                        else if(type==='tower'){ u.hp=1000; u.maxHp=1000; u.size=35; u.speed=0; u.range=350; u.damage=35; }
-                        entities.push(u);
-                    }
-                });
-            }
             updateRanking();
         }
-
-        function updateRanking() {
-            let sorted = [...TEAMS].sort((a,b) => b.score - a.score);
-            let html = '';
-            sorted.forEach(t => { html += `<div class="rank-row ${t.id === 1 ? 'me' : ''} ${!t.alive ? 'eliminated' : ''}"><span>${t.flag} ${t.name}</span><span>${t.score} PTS</span></div>`; });
-            document.getElementById('ranks').innerHTML = html;
-        }
-
-        function showEndScreen(title, msg) { const s = document.getElementById('game-over'); document.getElementById('over-title').innerText = title; document.getElementById('over-title').style.color = title === "VICTORY!" ? "#0f0" : "#f00"; document.getElementById('over-msg').innerText = msg; s.style.display = 'block'; }
-        function updateUI() { document.getElementById('gold-val').innerText = Math.floor(gold); }
 
         function draw() {
             ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.save(); ctx.translate(-camX, -camY);
             minerals.forEach(m => { ctx.fillStyle = '#0ff'; ctx.beginPath(); ctx.arc(m.x, m.y, 12, 0, Math.PI*2); ctx.fill(); });
-            projectiles.forEach(p => { ctx.fillStyle = p.type === 'tower' ? '#fadb14' : '#fff'; ctx.beginPath(); ctx.arc(p.x, p.y, p.type === 'tower' ? 6 : 3, 0, Math.PI*2); ctx.fill(); if(p.type==='tower'){ ctx.shadowBlur=10; ctx.shadowColor='#fadb14'; } });
-            ctx.shadowBlur = 0;
+            projectiles.forEach(p => { 
+                ctx.fillStyle = p.type === 'tower' ? '#fadb14' : (p.type === 'tank' ? '#f00' : '#fff'); 
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.type === 'tower' ? 8 : 4, 0, Math.PI*2); ctx.fill(); 
+            });
             entities.forEach(e => {
                 const team = TEAMS.find(t => t.id === e.team); ctx.fillStyle = team.color;
-                if(e.type === 'hq') { ctx.fillRect(e.x - 40, e.y - 40, 80, 80); ctx.fillStyle = '#fff'; ctx.font = '30px Arial'; ctx.fillText(team.flag, e.x-20, e.y+12); }
-                else if(e.type === 'tower') { ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(e.x - 17, e.y - 17, 34, 34); ctx.fillRect(e.x - 17, e.y - 17, 34, 34); ctx.fillStyle = '#fff'; ctx.font = '16px Arial'; ctx.fillText('🏹', e.x-10, e.y+8); }
-                else { ctx.beginPath(); ctx.arc(e.x, e.y, 18, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = '#fff'; ctx.font = 'bold 14px Arial'; ctx.fillText(e.type === 'worker' ? '⛏️' : '⚔️', e.x-10, e.y+6); }
-                ctx.fillStyle = '#500'; ctx.fillRect(e.x - 30, e.y - 35, 60, 5); ctx.fillStyle = '#0f0'; ctx.fillRect(e.x - 30, e.y - 35, 60 * (e.hp/e.maxHp), 5);
+                if(selectedUnits.includes(e)) { ctx.strokeStyle = '#0f0'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(e.x, e.y, e.size + 5, 0, Math.PI*2); ctx.stroke(); }
+                if(e.type === 'hq') { ctx.fillRect(e.x - 45, e.y - 45, 90, 90); ctx.fillStyle = '#fff'; ctx.font = '35px Arial'; ctx.fillText(team.flag, e.x-22, e.y+15); }
+                else if(e.type === 'tower') { ctx.fillRect(e.x - 20, e.y - 20, 40, 40); ctx.fillStyle = '#fff'; ctx.font = '18px Arial'; ctx.fillText('🛡️', e.x-12, e.y+8); }
+                else if(e.type === 'tank') { ctx.fillRect(e.x - 15, e.y - 15, 30, 30); ctx.fillStyle = '#fff'; ctx.font = '14px Arial'; ctx.fillText('💣', e.x-10, e.y+6); }
+                else { ctx.beginPath(); ctx.arc(e.x, e.y, 18, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = '#fff'; ctx.font = 'bold 14px Arial'; ctx.fillText(e.type==='worker'?'⛏️':'⚔️', e.x-10, e.y+6); }
+                ctx.fillStyle = '#500'; ctx.fillRect(e.x - 30, e.y - e.size - 10, 60, 5); ctx.fillStyle = '#0f0'; ctx.fillRect(e.x - 30, e.y - e.size - 10, 60 * (e.hp/e.maxHp), 5);
             });
+            if(selectionBox) { ctx.strokeStyle = '#0f0'; ctx.lineWidth = 1; ctx.strokeRect(selectionBox.x1, selectionBox.y1, selectionBox.x2 - selectionBox.x1, selectionBox.y2 - selectionBox.y1); ctx.fillStyle = 'rgba(0,255,0,0.1)'; ctx.fillRect(selectionBox.x1, selectionBox.y1, selectionBox.x2 - selectionBox.x1, selectionBox.y2 - selectionBox.y1); }
             ctx.restore(); requestAnimationFrame(draw);
         }
 
-        canvas.addEventListener('mousedown', e => { const x = e.clientX + camX, y = e.clientY + camY; const clicked = entities.find(ent => Math.hypot(ent.x - x, ent.y - y) < ent.size + 10); if(clicked && clicked.team === 1 && clicked.type === 'hq') document.getElementById('build-panel').style.display = 'flex'; else document.getElementById('build-panel').style.display = 'none'; });
-        let isDragging = false, lastX, lastY;
-        canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
-        window.addEventListener('mousemove', e => { if(!isDragging) return; camX -= (e.clientX - lastX); camY -= (e.clientY - lastY); lastX = e.clientX; lastY = e.clientY; camX = Math.max(0, Math.min(W - canvas.width, camX)); camY = Math.max(0, Math.min(H - canvas.height, camY)); });
-        window.addEventListener('mouseup', () => isDragging = false);
+        canvas.addEventListener('mousedown', e => {
+            const x = e.clientX + camX, y = e.clientY + camY;
+            if(e.button === 0) { // 좌클릭: 선택
+                const clicked = entities.find(ent => Math.hypot(ent.x - x, ent.y - y) < ent.size + 10);
+                if(clicked && clicked.team === 1 && clicked.type === 'hq') document.getElementById('build-panel').style.display = 'flex';
+                else { document.getElementById('build-panel').style.display = 'none'; selectionBox = { x1: x, y1: y, x2: x, y2: y }; }
+            } else if(e.button === 2) { // 우클릭: 이동
+                selectedUnits.forEach(u => { if(u.speed > 0) u.targetPos = { x: x + (Math.random()-0.5)*100, y: y + (Math.random()-0.5)*100 }; });
+            }
+        });
+        window.addEventListener('mousemove', e => { if(selectionBox) { selectionBox.x2 = e.clientX + camX; selectionBox.y2 = e.clientY + camY; } });
+        window.addEventListener('mouseup', e => {
+            if(selectionBox) {
+                const xMin = Math.min(selectionBox.x1, selectionBox.x2), xMax = Math.max(selectionBox.x1, selectionBox.x2);
+                const yMin = Math.min(selectionBox.y1, selectionBox.y2), yMax = Math.max(selectionBox.y1, selectionBox.y2);
+                selectedUnits = entities.filter(ent => ent.team === 1 && ent.speed > 0 && ent.x >= xMin && ent.x <= xMax && ent.y >= yMin && ent.y <= yMax);
+                selectionBox = null;
+            }
+        });
+        canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+        function updateRanking() { let html = ''; [...TEAMS].sort((a,b)=>b.score-a.score).forEach(t => { html += `<div class="rank-row ${t.id === 1 ? 'me' : ''} ${!t.alive?'eliminated':''}"><span>${t.flag} ${t.name}</span><span>${t.score} PTS</span></div>`; }); document.getElementById('ranks').innerHTML = html; }
+        function showEndScreen(title) { document.getElementById('over-title').innerText = title; document.getElementById('game-over').style.display = 'block'; }
+        function updateUI() { document.getElementById('gold-val').innerText = Math.floor(gold); }
         initGame();
     </script>
 </body>

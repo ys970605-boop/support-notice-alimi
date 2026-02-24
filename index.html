@@ -98,8 +98,18 @@
         
         /* 쿠폰함 스타일 */
         #coupon-box { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
-        .coupon-item { background: white; color: black; border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; border-left: 5px solid var(--accent); }
+        .coupon-item { background: white; color: black; border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; border-left: 5px solid var(--accent); position: relative; }
         .coupon-val { font-weight: 900; color: var(--accent); border-right: 1px dashed #ccc; padding-right: 15px; font-size: 18px; }
+        .gift-btn { background: #fee500; color: #3c1e1e; border: none; border-radius: 5px; padding: 5px 10px; font-size: 10px; font-weight: bold; cursor: pointer; }
+        
+        /* 사장님 알림 팝업 */
+        #merchant-alert {
+            position: fixed; top: 10px; left: 10px; right: 10px; z-index: 6000;
+            background: white; color: black; border-radius: 15px; padding: 15px;
+            display: none; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-left: 8px solid var(--gold); animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes slideDown { from { transform: translateY(-100px); } to { transform: translateY(0); } }
         
         /* 스토리 공유 오버레이 */
         #story-share-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; }
@@ -107,7 +117,17 @@
 </head>
 <body>
 
-    <div id="news-bar">📡 #KFoodBattle 실시간 스캔 중... 신규 포스트 8개 발견</div>
+    <!-- 사장님 긴급 푸시 알림 -->
+    <div id="merchant-alert">
+        <div style="font-size: 30px;">👨‍🍳</div>
+        <div style="flex-grow: 1;">
+            <b style="font-size: 14px; color: #000;" id="alert-owner">성수족발 사령부</b>
+            <div style="font-size: 12px; color: #666;" id="alert-msg">카드 보유자 전원에게 <b>'막국수 무료권'</b>을 발송했습니다!</div>
+        </div>
+        <button onclick="this.parentElement.style.display='none'" style="background:none; border:none; font-size:20px;">×</button>
+    </div>
+
+    <div id="news-bar">📡 #KFoodBattle 실시간 데이터 동기화 중... 신규 포스트 8개 발견</div>
 
     <div id="story-bar">
         <div class="story-item"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=1"></div><span class="story-name">나의작전</span></div>
@@ -275,12 +295,31 @@
                         <b style="font-size:14px;">${couponName}</b><br>
                         <small style="color:#666;">유효기간: 2026.12.31</small>
                     </div>
-                    <button onclick="alert('직원 확인용 코드: KFOOD-7788')" style="background:#eee; border:none; padding:5px 10px; border-radius:5px; font-size:10px;">사용하기</button>
+                    <div style="display:flex; flex-direction:column; gap:5px;">
+                        <button onclick="alert('직원 확인용 코드: KFOOD-7788')" style="background:#eee; border:none; padding:5px 10px; border-radius:5px; font-size:10px; cursor:pointer;">사용하기</button>
+                        <button onclick="giftCoupon('${couponName}')" class="gift-btn">선물하기 💝</button>
+                    </div>
                 `;
                 list.appendChild(div);
                 alert('🎉 쿠폰 교환 성공! 내 보유 쿠폰함을 확인하세요.');
             }
         }
+
+        function giftCoupon(name) {
+            const friend = prompt("선물할 친구의 아이디를 입력하세요:");
+            if(friend) {
+                alert(`💝 [${name}] 쿠폰이 [${friend}]님께 성공적으로 전달되었습니다!`);
+                // 실제 구현 시 목록에서 삭제 로직 추가
+            }
+        }
+
+        // 사장님 푸시 알림 시뮬레이션
+        setTimeout(() => {
+            document.getElementById('merchant-alert').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('merchant-alert').style.display = 'none';
+            }, 6000);
+        }, 8000);
 
         setInterval(() => {
             const news = ["📡 #KFoodBattle 스캔: 성수동 신규 포스트 감지", "🔥 속보: 중국팀 명동 대규모 공세 중", "📸 알림: 방금 새로운 정복 스토리가 공유됨"];

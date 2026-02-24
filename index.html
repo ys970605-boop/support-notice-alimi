@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>School Conquest | 머니 워(Money War)</title>
+    <title>School Conquest | 서울 대첩</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -29,20 +29,18 @@
         .feed-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
         .feed-overlay { position: absolute; bottom: 80px; left: 0; width: 100%; padding: 40px 20px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%); pointer-events: none; z-index: 10; }
 
-        .ad-slot { height: 80px; background: rgba(255,255,255,0.05); border: 1px dashed #444; border-radius: 10px; margin-top: 15px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888; }
-
         /* 하단 탭 바 */
         #nav-bar { position: fixed; bottom: 0; width: 100%; height: 65px; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; align-items: center; z-index: 100; border-top: 1px solid #334155; }
         .nav-item { text-align: center; color: #94a3b8; font-size: 10px; flex: 1; cursor: pointer; }
         .nav-item.active { color: white; }
         .nav-item span { font-size: 22px; display: block; }
 
-        /* 우리 학교 아지트 */
-        #school-community { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 2000; display: none; padding: 20px; box-sizing: border-box; flex-direction: column; }
+        /* 공통 패널 스타일 */
+        .full-panel { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 2000; display: none; padding: 20px; box-sizing: border-box; flex-direction: column; overflow-y: auto; }
+        
+        /* 상금 현황판 */
         .prize-pool-card { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); border-radius: 15px; padding: 20px; margin-bottom: 20px; color: #000; text-align: center; box-shadow: 0 10px 20px rgba(251,191,36,0.3); }
         .prize-val { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
-        .comm-tab-btn { flex: 1; background: none; color: #94a3b8; border: none; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 8px; }
-        .comm-tab-btn.active { background: var(--school-primary); color: white; }
 
         #map-popup { position: fixed; top: 50px; left: 10px; right: 10px; bottom: 80px; background: white; border-radius: 20px; z-index: 500; display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; }
         #map { width: 100%; height: 100%; }
@@ -63,13 +61,13 @@
             <img class="feed-bg" src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80">
             <div class="feed-overlay">
                 <div style="font-size:18px;font-weight:900;color:var(--king-gold);">📍 학교 앞 마라탕 (성수고 점령)</div>
-                <div class="ad-slot">Sponsored by CU: 삼각김밥 1+1 이벤트 중!</div>
+                <div style="height: 80px; background: rgba(255,255,255,0.05); border: 1px dashed #444; border-radius: 10px; margin-top: 15px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888;">Sponsored by GS25: 혜자도시락 먹고 전투력 충전!</div>
             </div>
         </div>
     </div>
 
     <!-- 우리 학교 아지트 -->
-    <div id="school-community">
+    <div id="school-community" class="full-panel">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <div><span class="school-badge" style="background:var(--school-primary); color:white;">성수고등학교</span><h2 style="margin: 5px 0; color: white; font-size: 20px;">🏫 우리 학교 아지트</h2></div>
             <button onclick="showSection('feed')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
@@ -79,23 +77,36 @@
             <div class="prize-val">₩ <span id="realtime-prize">154,200</span></div>
             <div style="font-size: 10px; margin-top: 5px;">광고 수익에 따라 실시간 적립 중...</div>
         </div>
-        <div style="display: flex; background: #1e293b; border-radius: 10px; padding: 5px; margin-bottom: 15px;">
-            <button onclick="toggleComm('board')" id="tab-board" class="comm-tab-btn active">비밀 게시판</button>
-            <button onclick="toggleComm('chat')" id="tab-chat" class="comm-tab-btn">실시간 채팅</button>
-        </div>
-        <div id="comm-board" style="flex-grow: 1; overflow-y: auto;">
+        <!-- 탭 생략/축약 로직 적용 -->
+        <div id="comm-board" style="flex-grow: 1;">
             <div style="background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 10px;">
-                <b style="color: var(--king-gold);">[전략]</b> 이번 주 상금 20만 원 넘을 듯? 다들 힘내자
-                <div style="font-size: 11px; color: #64748b; margin-top: 5px;">작성자: 성수고_킹왕짱 | 👍 34</div>
+                <b style="color: var(--king-gold);">[전략]</b> 서울고 상금이 27만 원임. 오늘 하교하고 서울고 거점 털러 가자
+                <div style="font-size: 11px; color: #64748b; margin-top: 5px;">작성자: 성수고_킹왕짱 | 👍 56</div>
             </div>
         </div>
-        <div id="comm-chat" style="flex-grow: 1; display: none; flex-direction: column;">
-            <div id="chat-msgs" style="flex-grow: 1; overflow-y: auto; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 12px; font-size: 13px; margin-bottom: 10px;">
-                <div><b style="color:var(--king-gold);">[시스템]</b> 전략 채널에 접속했습니다.</div>
-            </div>
-            <div style="display: flex; gap: 8px;">
-                <input type="text" id="chat-in" placeholder="메시지..." style="flex-grow: 1; background: #1e293b; border: 1px solid #334155; color: white; padding: 12px; border-radius: 10px;">
-                <button onclick="sendMsg()" style="background: var(--school-primary); color: white; border: none; padding: 0 20px; border-radius: 10px; font-weight: bold;">전송</button>
+    </div>
+
+    <!-- 상금 약탈전 랭킹 -->
+    <div id="rank-container" class="full-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="margin: 0; color: var(--power-red);">⚔️ 서울 상금 약탈 랭킹</h2>
+            <button onclick="showSection('feed')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;">
+            <div style="font-size: 11px; color: #94a3b8; margin-bottom: 15px;">💰 다른 학교 거점을 뺏으면 상금 10%를 강탈합니다!</div>
+            <div id="seoul-rank-list">
+                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
+                    <span>1. 서울고</span><b style="color: var(--king-gold);">₩ 274,500</b>
+                    <button onclick="alert('서울고 약탈 작전 개시!')" style="background:var(--power-red); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold;">약탈</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
+                    <span>2. 단대부고</span><b style="color: var(--king-gold);">₩ 220,500</b>
+                    <button onclick="alert('단대부고 약탈 작전 개시!')" style="background:var(--power-red); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold;">약탈</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
+                    <span>3. 성수고</span><b style="color: var(--king-gold);">₩ 208,500</b>
+                    <button onclick="alert('성수고 수비 강화!')" style="background:var(--school-primary); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold;">수비</button>
+                </div>
             </div>
         </div>
     </div>
@@ -106,7 +117,7 @@
         <div id="nav-feed" class="nav-item active" onclick="showSection('feed')"><span>⚔️</span>서열피드</div>
         <div id="nav-map" class="nav-item" onclick="openMap()"><span>🗺️</span>전쟁지도</div>
         <div id="nav-school" class="nav-item" onclick="showSection('school')"><span>🏫</span>우리학교</div>
-        <div id="nav-rank" class="nav-item"><span>🏆</span>전국랭킹</div>
+        <div id="nav-rank" class="nav-item" onclick="showSection('rank')"><span>🏆</span>상금약탈</div>
         <div id="nav-profile" class="nav-item"><span>👤</span>내프로필</div>
     </div>
 
@@ -115,37 +126,26 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         let currentPrize = 154200;
-        function updatePrize() {
+        setInterval(() => {
             currentPrize += Math.floor(Math.random() * 5);
             const el = document.getElementById('realtime-prize');
             if(el) el.innerText = currentPrize.toLocaleString();
-        }
-        setInterval(updatePrize, 3000);
+        }, 3000);
 
         function showSection(id) {
-            document.getElementById('school-community').style.display = (id === 'school' ? 'flex' : 'none');
+            document.querySelectorAll('.full-panel').forEach(p => p.style.display = 'none');
+            if(id === 'school') document.getElementById('school-community').style.display = 'flex';
+            if(id === 'rank') document.getElementById('rank-container').style.display = 'flex';
+            
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('nav-' + id).classList.add('active');
-        }
-
-        function toggleComm(type) {
-            document.getElementById('comm-board').style.display = (type === 'board' ? 'block' : 'none');
-            document.getElementById('comm-chat').style.display = (type === 'chat' ? 'flex' : 'none');
-            document.getElementById('tab-board').classList.toggle('active', type === 'board');
-            document.getElementById('tab-chat').classList.toggle('active', type === 'chat');
-        }
-
-        function sendMsg() {
-            const input = document.getElementById('chat-in'); if(!input.value) return;
-            const div = document.createElement('div'); div.innerHTML = `<b>나:</b> ${input.value}`;
-            document.getElementById('chat-msgs').appendChild(div); input.value = '';
         }
 
         function openMap() { document.getElementById('map-popup').style.display = 'block'; map.invalidateSize(); }
         function closeMap() { document.getElementById('map-popup').style.display = 'none'; }
 
         setInterval(() => {
-            const news = ["🔥 속보: 성수고 정문 앞 떡볶이집 공격 중!", "👑 알림: 새로운 '학교의 왕' 탄생: 미식대장"];
+            const news = ["🔥 속보: 서울고 상금이 27만 원을 돌파했습니다!", "⚔️ 경보: 단대부고 병력이 성수동으로 진격 중!", "👑 알림: 성수고의 왕 '미식대장'이 수비 명령을 하달했습니다."];
             document.getElementById('war-ticker').innerText = news[Math.floor(Math.random()*news.length)];
         }, 4000);
     </script>

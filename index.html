@@ -22,6 +22,7 @@
             --korea: #52c41a;
             --dark: #1a1a2e;
             --gold: #fadb14;
+            --accent: #ff4d4f;
         }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Apple SD Gothic Neo', sans-serif; background: var(--dark); overflow: hidden; }
         
@@ -37,6 +38,21 @@
         .score-item .val { font-weight: bold; font-size: 14px; color: var(--gold); }
         .score-item .label { font-size: 10px; opacity: 0.8; }
 
+        /* 내 지갑 (Wallet) */
+        #wallet {
+            position: absolute; top: 85px; right: 10px; z-index: 1000;
+            background: rgba(82, 196, 26, 0.9); color: white; padding: 5px 15px;
+            border-radius: 20px; font-weight: bold; font-size: 13px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* 지도 영역 */
         #map { width: 100%; height: 100%; z-index: 1; }
 
@@ -46,12 +62,21 @@
             background: white; border-top-left-radius: 25px; border-top-right-radius: 25px;
             padding: 20px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            max-height: 80vh; overflow-y: auto;
         }
         #capture-panel.open { bottom: 0; }
         .panel-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
         .res-name { font-size: 22px; font-weight: 900; color: var(--dark); margin: 0; }
         .res-addr { font-size: 13px; color: #666; margin: 4px 0; }
         
+        /* 영수증 업로드 시뮬레이션 */
+        .upload-zone {
+            border: 2px dashed #ddd; border-radius: 12px; padding: 20px;
+            text-align: center; color: #999; font-size: 13px; margin-bottom: 15px;
+            background: #fafafa;
+        }
+        .upload-zone b { color: var(--dark); display: block; margin-bottom: 5px; }
+
         /* 별점 시스템 */
         .rating-box { margin: 15px 0; border-top: 1px solid #eee; padding-top: 15px; }
         .rating-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -102,16 +127,26 @@
         </div>
     </div>
 
+    <div id="wallet">
+        <span>💰 My Reward:</span>
+        <span id="my-cash">₩ 1,500</span>
+    </div>
+
     <div id="map"></div>
 
     <div id="capture-panel">
         <div class="panel-header">
             <div>
                 <h2 id="p-name" class="res-name">식당 이름</h2>
-                <p id="p-addr" class="res-addr">주소 정보가 로드 중입니다...</p>
-                <span id="p-owner" style="font-size: 11px; background: #eee; padding: 2px 6px; border-radius: 4px;">현재 점령국: 🇨🇳 중국</span>
+                <p id="p-addr" class="res-addr">주소 정보 로딩 중...</p>
+                <span id="p-owner" style="font-size: 11px; background: #eee; padding: 2px 6px; border-radius: 4px;">현재 점령국: 🇨🇳 중국 사령부</span>
             </div>
             <button onclick="closePanel()" style="background:none; border:none; font-size:24px;">×</button>
+        </div>
+
+        <div class="upload-zone" onclick="alert('카메라 앱을 실행합니다 (인증 모드)')">
+            <b>📸 영수증 인증 (필수)</b>
+            점령을 위해 영수증 사진을 업로드하세요
         </div>
 
         <div class="rating-box">
@@ -129,13 +164,15 @@
             </div>
         </div>
 
-        <button class="btn-capture" onclick="captureAction()">
+        <button class="btn-capture" id="capture-btn" onclick="captureAction()">
             🚩 내 조국의 깃발 꽂기
         </button>
-        <p class="reward-info">💰 정복 성공 시 500원 즉시 적립 (KRW)</p>
+        <p class="reward-info">💸 정복 성공 시 500원 즉시 지갑 적립</p>
     </div>
 
     <script>
+        let myCash = 1500;
+        
         // 지도 초기화 (서울 성수동 중심)
         const map = L.map('map', { zoomControl: false }).setView([37.5445, 127.0560], 16);
         
@@ -180,7 +217,10 @@
             document.getElementById('capture-panel').classList.add('open');
             
             // 별점 초기화
-            document.querySelectorAll('.stars').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.stars').forEach(s => {
+                s.classList.remove('active');
+                s.innerText = "★★★★★";
+            });
         }
 
         function closePanel() {
@@ -189,21 +229,25 @@
 
         function setStar(el) {
             el.classList.add('active');
-            el.innerText = "★★★★★"; // 시뮬레이션용
+            // 시각적 피드백
         }
 
         function captureAction() {
             if(!selectedSpot) return;
             
-            // 점령 애니메이션 효과
-            const btn = document.querySelector('.btn-capture');
-            btn.innerHTML = "⏳ 점령 중 (영수증 검증)...";
+            const btn = document.getElementById('capture-btn');
+            btn.innerHTML = "⌛ 영수증 AI 분석 중...";
             btn.style.background = "#52c41a";
 
             setTimeout(() => {
-                alert(`🚀 정복 성공! ${selectedSpot.name}에 당신의 깃발을 꽂았습니다! 500원이 적립되었습니다.`);
+                // 1. 수익 애니메이션
+                myCash += 500;
+                document.getElementById('my-cash').innerText = `₩ ${myCash.toLocaleString()}`;
+                document.getElementById('my-cash').style.color = "#fadb14";
                 
-                // 마커 국기 변경 (내 국기로 가정: 여기선 한국 🇰🇷로 테스트)
+                alert(`🎯 정복 성공! [${selectedSpot.name}]을(를) 탈환했습니다.\n보상 500원이 지갑에 적립되었습니다.`);
+                
+                // 2. 지도 국기 변경 (한국군 🇰🇷으로 고정 시뮬레이션)
                 selectedSpot.owner = "🇰🇷";
                 selectedSpot.color = "#52c41a";
                 
@@ -216,14 +260,14 @@
                 
                 markers[selectedSpot.id].setIcon(newIcon);
                 
-                // 점수 업데이트 시뮬레이션
+                // 3. 전황판 업데이트 시뮬레이션
                 document.getElementById('score-kr').innerText = "32%";
                 document.getElementById('score-cn').innerText = "40%";
                 
                 btn.innerHTML = "🚩 내 조국의 깃발 꽂기";
                 btn.style.background = "#1a1a2e";
                 closePanel();
-            }, 1500);
+            }, 2000);
         }
     </script>
 </body>

@@ -352,7 +352,19 @@
             document.getElementById('p-photo').src = spot.img;
             document.getElementById('p-owner-msg').innerText = spot.msg || `${spot.region}의 명예를 걸고 수호하세요!`;
             document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
-            document.getElementById('p-details').innerHTML = `<div style="margin-top:15px; font-size:13px; color:#1e293b;"><div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div><div><b>🍴 메뉴:</b> ${spot.menu}</div><div><b>ℹ️ 정보:</b> ${spot.info}</div><div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div></div>`;
+            document.getElementById('p-details').innerHTML = `
+                <div style="margin-top:15px; font-size:13px; color:#1e293b;">
+                    <div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px;"><b>📍 주소:</b> ${spot.addr}</div>
+                    <div><b>🍴 메뉴:</b> ${spot.menu}</div>
+                    <div><b>ℹ️ 정보:</b> ${spot.info}</div>
+                    <div style="color:#3b82f6; font-size:12px; margin-top:5px;"><b>💡 팁:</b> ${spot.tip}</div>
+                    
+                    <!-- 네비게이션 버튼 -->
+                    <div style="display: flex; gap: 8px; margin-top: 15px;">
+                        <button onclick="goNavi('naver', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex: 1; background: #03c75a; color: white; border: none; border-radius: 8px; padding: 10px; font-size: 12px; font-weight: bold; cursor: pointer;">네이버 지도 🚗</button>
+                        <button onclick="goNavi('kakao', '${spot.name}', ${spot.lat}, ${spot.lng})" style="flex: 1; background: #fae100; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-size: 12px; font-weight: bold; cursor: pointer;">카카오 맵 📍</button>
+                    </div>
+                </div>`;
             document.getElementById('bounty-info').style.display = spot.bounty > 0 ? 'inline-block' : 'none';
             document.getElementById('capture-panel').classList.add('open');
         }
@@ -363,8 +375,26 @@
         function toggleShop() { const p = document.getElementById('shop-panel'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
         function toggleChat() { const p = document.getElementById('chat-panel'); p.style.display = p.style.display === 'none' ? 'flex' : 'none'; }
         function buyItem(t) { if(myCash < 2000) { alert('자금 부족!'); return; } myCash -= 2000; document.getElementById('cash-val').innerText = myCash.toLocaleString(); if(t === 'freeze') { isFrozen = true; document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)'; alert('❄️ 얼음 폭풍 발동!'); setTimeout(() => { isFrozen = false; document.getElementById('map').style.filter = ''; }, 10000); } toggleShop(); }
-        function shareKakao() { const t = "🚨 긴급! 성수동 점령 중! 지원해줘! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("공유 메시지:", t); }
-        function sendChatMessage() { const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
+                function shareKakao() { const t = "🚨 긴급! 성수동 점령 중! 지원해줘! \n https://ys970605-boop.github.io/support-notice-alimi/"; prompt("공유 메시지:", t); }
+                
+                function goNavi(service, name, lat, lng) {
+                    let url = "";
+                    if(service === 'naver') {
+                        url = `nmap://route/car?dlat=${lat}&dlng=${lng}&dname=${encodeURIComponent(name)}&appname=ys970605-boop.github.io`;
+                        // 모바일 앱 미설치 시 웹 브라우저 네이버 지도로 연결
+                        const webUrl = `https://map.naver.com/v5/directions/-/-/` + lat + `,` + lng + `,` + encodeURIComponent(name) + `/-/car`;
+                        window.location.href = url;
+                        setTimeout(() => { window.open(webUrl, '_blank'); }, 500);
+                    } else if(service === 'kakao') {
+                        url = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
+                        const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`;
+                        window.location.href = url;
+                        setTimeout(() => { window.open(webUrl, '_blank'); }, 500);
+                    }
+                }
+        
+                function sendChatMessage() {
+         const i = document.getElementById('chat-input'); if(!i.value) return; const m = document.getElementById('chat-messages'); const d = document.createElement('div'); d.style.marginBottom = '5px'; d.innerHTML = `<b>나:</b> ${i.value}`; m.appendChild(d); m.scrollTop = m.scrollHeight; i.value = ''; }
         function setCommanderBounty() { const t = document.getElementById('bounty-target').value, a = parseInt(document.getElementById('bounty-amount').value); if(!t || isNaN(a)) return; if(myCash < a) { alert('공금 부족!'); return; } const s = spots.find(x => x.id == t); s.bounty = a; myCash -= a; document.getElementById('cash-val').innerText = myCash.toLocaleString(); updateMarker(s); const al = document.getElementById('mission-alert'); al.innerText = `🎖️ 작전: [${s.name}] ₩${a.toLocaleString()} 현상금!`; al.style.display = 'block'; setTimeout(() => al.style.display = 'none', 5000); }
         function triggerCamera() { if(isFrozen) { alert('❄️ 마비 상태!'); return; } document.getElementById('camera-input').click(); }
         function handleCameraCapture(i) { if(i.files && i.files[0]) startCapture(); }

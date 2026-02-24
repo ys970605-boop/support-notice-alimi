@@ -3,59 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>K-Infection .io | 글로벌 감염 전쟁</title>
+    <title>K-Infection .io | 리얼 월드 맵</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #050000; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ff4d4f; touch-action: none; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ff4d4f; touch-action: none; }
         #game-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
         
-        /* 뉴스 티커 스타일 */
         #news-ticker {
-            position: absolute; top: 0; left: 0; width: 100%; background: rgba(139, 0, 0, 0.8); color: white; padding: 5px; font-size: 14px; font-weight: bold; overflow: hidden; white-space: nowrap; border-bottom: 2px solid #ff0000;
+            position: absolute; top: 0; left: 0; width: 100%; background: rgba(139, 0, 0, 0.9); color: white; padding: 8px; font-size: 14px; font-weight: bold; overflow: hidden; white-space: nowrap; border-bottom: 2px solid #ff0000; box-shadow: 0 2px 10px rgba(255,0,0,0.5);
         }
-        .ticker-move { display: inline-block; animation: ticker 20s linear infinite; }
+        .ticker-move { display: inline-block; animation: ticker 25s linear infinite; }
         @keyframes ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        /* 데이터 패널 */
         #data-panel {
-            position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); border: 1px solid #ff4d4f; padding: 15px; border-radius: 10px; width: 250px; pointer-events: auto;
+            position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.85); border: 2px solid #ff4d4f; padding: 15px; border-radius: 10px; width: 260px; pointer-events: auto; box-shadow: 0 0 20px rgba(255,77,79,0.3);
         }
         .data-stat { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; font-weight: bold; }
-        .dna-val { color: #fadb14; }
+        .dna-val { color: #fadb14; text-shadow: 0 0 10px rgba(250,219,20,0.5); }
 
-        /* 진화 버튼 */
         .evolve-btn {
-            width: 100%; padding: 10px; background: #8b0000; color: white; border: 1px solid #ff4d4f; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 5px;
+            width: 100%; padding: 12px; background: linear-gradient(to bottom, #8b0000, #4a0000); color: white; border: 1px solid #ff4d4f; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 8px; font-size: 13px;
         }
-        .evolve-btn:hover { background: #ff0000; }
+        .evolve-btn:hover { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
 
-        #ranking-board { position: absolute; top: 50px; left: 20px; background: rgba(0,0,0,0.7); border-left: 4px solid #ff4d4f; padding: 10px; min-width: 180px; }
-        .rank-row { font-size: 13px; margin-bottom: 5px; }
+        #ranking-board { position: absolute; top: 60px; left: 20px; background: rgba(0,0,0,0.8); border-left: 5px solid #ff4d4f; padding: 12px; min-width: 200px; border-radius: 0 8px 8px 0; }
+        .rank-row { font-size: 13px; margin-bottom: 6px; font-weight: 600; }
 
-        #game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #000; border: 5px solid #ff0000; padding: 50px; text-align: center; display: none; pointer-events: auto; z-index: 100; }
+        #game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.95); border: 5px solid #ff0000; padding: 60px; text-align: center; display: none; pointer-events: auto; z-index: 100; border-radius: 20px; }
         
         canvas { display: block; }
     </style>
 </head>
 <body>
     <div id="game-ui">
-        <div id="news-ticker"><div class="ticker-move" id="ticker-text">긴급 속보: 알 수 없는 감염원이 한국에서 최초 발견되었습니다... 전 세계 국가들이 경계 태세에 돌입했습니다...</div></div>
+        <div id="news-ticker"><div class="ticker-move" id="ticker-text">전 지구적 위기: 한국에서 기원한 변종 바이러스가 대륙 간 경계를 넘어 확산 중입니다... WHO, 최고 수준 경보 발령...</div></div>
         
         <div id="ranking-board">
-            <div style="font-size: 10px; margin-bottom: 5px; color: #888;">NATION INFECTION STATUS</div>
+            <div style="font-size: 11px; margin-bottom: 8px; color: #aaa; letter-spacing: 1px;">GLOBAL THREAT LEVEL</div>
             <div id="ranks"></div>
         </div>
 
         <div id="data-panel">
-            <div class="data-stat">DNA: <span id="dna-val" class="dna-val">500</span></div>
-            <div class="data-stat" style="font-size: 14px;">감염률: <span id="infect-rate">0.1</span>%</div>
-            <button class="evolve-btn" onclick="spawnUnit('infector')">감염원 생성 (100 DNA)</button>
-            <button class="evolve-btn" onclick="spawnUnit('mutant')">변종 괴수 진화 (300 DNA)</button>
+            <div class="data-stat">DNA POINTS: <span id="dna-val" class="dna-val">500</span></div>
+            <div class="data-stat" style="font-size: 14px;">지구 점령률: <span id="infect-rate">0.1</span>%</div>
+            <button class="evolve-btn" onclick="spawnUnit('infector')">☣️ 감염체 파견 (100 DNA)</button>
+            <button class="evolve-btn" onclick="spawnUnit('mutant')">🧟 변종 괴수 진화 (300 DNA)</button>
         </div>
 
         <div id="game-over">
-            <h1 style="color:#ff0000; font-size: 48px;">HUMANITY EXTINCT</h1>
-            <p id="over-msg" style="color:white;">전 지구가 감염되었습니다.</p>
-            <button onclick="location.reload()" style="background:#ff0000; color:#fff; border:none; padding:15px 30px; cursor:pointer; font-weight:bold; border-radius:30px;">RESTART VIRUS</button>
+            <h1 style="color:#ff0000; font-size: 56px; margin:0;">EXTINCTION</h1>
+            <p style="color:white; font-size: 20px; margin: 20px 0;">인류 문명이 완전히 종말을 맞이했습니다.</p>
+            <button onclick="location.reload()" style="background:#ff0000; color:#fff; border:none; padding:15px 40px; cursor:pointer; font-weight:bold; border-radius:40px; font-size:18px;">START NEW STRAIN</button>
         </div>
     </div>
     <canvas id="gameCanvas"></canvas>
@@ -66,24 +63,24 @@
         const W = 3000, H = 2000;
         let camX = 0, camY = 0, zoom = 0.3, dna = 500;
         let entities = [], minerals = [], projectiles = [];
+        const worldMap = new Image();
+        // 고해상도 다크 위성 지도 이미지
+        worldMap.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_Next_Generation_-_July_2004.jpg/1280px-Blue_Marble_Next_Generation_-_July_2004.jpg';
 
         const TEAMS = [
-            { id: 1, name: "한국(Virus)", color: "#ff0000", flag: "☣️", start: {x: 2400, y: 1500}, score: 0, alive: true },
-            { id: 2, name: "미국(Defense)", color: "#1890ff", flag: "🛡️", start: {x: 500, y: 500}, score: 0, alive: true },
-            { id: 3, name: "유럽(Center)", color: "#d9d9d9", flag: "🏥", start: {x: 1500, y: 500}, score: 0, alive: true },
-            { id: 4, name: "브라질(Base)", color: "#52c41a", flag: "🌳", start: {x: 800, y: 1500}, score: 0, alive: true }
+            { id: 1, name: "Virus(KR)", color: "#ff0000", flag: "☣️", start: {x: 2450, y: 1450}, score: 0, alive: true },
+            { id: 2, name: "North America", color: "#1890ff", flag: "🇺🇸", start: {x: 600, y: 600}, score: 0, alive: true },
+            { id: 3, name: "Europe", color: "#ffffff", flag: "🇪🇺", start: {x: 1550, y: 550}, score: 0, alive: true },
+            { id: 4, name: "South America", color: "#52c41a", flag: "🇧🇷", start: {x: 900, y: 1550}, score: 0, alive: true }
         ];
 
         function initGame() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            TEAMS.forEach(team => { 
-                for(let i=0; i<10; i++) minerals.push({ x: team.start.x + (Math.random()-0.5)*600, y: team.start.y + (Math.random()-0.5)*600, type: 'bubble' }); 
+            TEAMS.forEach(team => {
+                entities.push({ id: Math.random(), type: 'core', team: team.id, x: team.start.x, y: team.start.y, hp: 6000, maxHp: 6000, size: 130 });
             });
-            TEAMS.forEach(team => entities.push({ id: Math.random(), type: 'core', team: team.id, x: team.start.x, y: team.start.y, hp: 5000, maxHp: 5000, size: 120 }));
-            
             camX = TEAMS[0].start.x; camY = TEAMS[0].start.y;
-            zoom = Math.min(canvas.width/W, canvas.height/H) * 1.2;
-
+            zoom = Math.min(canvas.width/W, canvas.height/H) * 1.3;
             setInterval(gameLoop, 50);
             requestAnimationFrame(draw);
         }
@@ -93,9 +90,10 @@
             if(dna < cost) return;
             dna -= cost; updateUI();
             const core = entities.find(e => e.team === 1 && e.type === 'core');
+            if(!core) return;
             const u = { id: Math.random(), type: type, team: 1, x: core.x, y: core.y, state: 'idle', cooldown: 0, targetPos: null };
-            if(type === 'infector') { u.hp = 200; u.maxHp = 200; u.size = 20; u.speed = 6; u.range = 150; u.damage = 40; }
-            else { u.hp = 1000; u.maxHp = 1000; u.size = 40; u.speed = 3; u.range = 300; u.damage = 150; u.splash = 150; }
+            if(type === 'infector') { u.hp = 250; u.maxHp = 250; u.size = 22; u.speed = 7; u.range = 160; u.damage = 45; }
+            else { u.hp = 1200; u.maxHp = 1200; u.size = 45; u.speed = 3.5; u.range = 350; u.damage = 180; u.splash = 180; }
             entities.push(u);
         }
 
@@ -113,81 +111,85 @@
             entities.forEach(e => {
                 const team = TEAMS.find(t => t.id === e.team);
                 if(!team.alive) return;
-                
-                // 전염병 주식회사 스타일의 자동 이동
                 if(!e.targetPos && e.speed > 0) {
                     let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0);
-                    if(enemy) e.targetPos = { x: enemy.x + (Math.random()-0.5)*200, y: enemy.y + (Math.random()-0.5)*200 };
+                    if(enemy) e.targetPos = { x: enemy.x + (Math.random()-0.5)*300, y: enemy.y + (Math.random()-0.5)*300 };
                 }
-
                 if(e.targetPos && e.speed > 0) {
                     const d = Math.hypot(e.targetPos.x - e.x, e.targetPos.y - e.y);
                     if(d > 10) { e.x += (e.targetPos.x - e.x)/d * e.speed; e.y += (e.targetPos.y - e.y)/d * e.speed; }
                     else e.targetPos = null;
                 }
-
                 if(e.type !== 'core') {
                     if(e.cooldown > 0) e.cooldown--;
                     let enemy = entities.find(ent => ent.team !== e.team && ent.hp > 0 && Math.hypot(ent.x - e.x, ent.y - e.y) < e.range);
                     if(enemy && e.cooldown <= 0) {
-                        projectiles.push({ x: e.x, y: e.y, target: enemy, speed: 20, damage: e.damage, team: e.team, type: e.type, splash: e.splash });
-                        e.cooldown = e.type === 'mutant' ? 60 : 20;
+                        projectiles.push({ x: e.x, y: e.y, target: enemy, speed: 25, damage: e.damage, team: e.team, type: e.type, splash: e.splash });
+                        e.cooldown = e.type === 'mutant' ? 50 : 15;
                     }
                 }
             });
 
-            // 자원 버블 자동 생성 및 획득
-            if(Math.random() < 0.05) dna += 2; updateUI();
-
-            TEAMS.forEach(t => { if(t.alive && !entities.some(ent => ent.team === t.id && ent.type === 'core')) { t.alive = false; entities = entities.filter(ent => ent.team !== t.id); if(t.id === 1) showEndScreen("MISSION FAILED"); } });
+            if(Math.random() < 0.08) dna += 3; updateUI();
+            TEAMS.forEach(t => { if(t.alive && !entities.some(ent => ent.team === t.id && ent.type === 'core')) { t.alive = false; entities = entities.filter(ent => ent.team !== t.id); } });
             entities = entities.filter(e => e.hp > 0);
             
-            const totalInfect = (entities.filter(e => e.team === 1).length / 10).toFixed(1);
+            const totalInfect = (entities.filter(e => e.team === 1).length / 12).toFixed(1);
             document.getElementById('infect-rate').innerText = totalInfect;
-            if(totalInfect > 90) showEndScreen("HUMANITY EXTINCT", "당신의 바이러스가 승리했습니다.");
-
+            if(totalInfect > 95) document.getElementById('game-over').style.display = 'block';
             updateRanking();
         }
 
         function draw() {
-            ctx.fillStyle = '#050000'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.save();
             ctx.translate(canvas.width/2, canvas.height/2);
             ctx.scale(zoom, zoom);
             ctx.translate(-camX, -camY);
 
-            // 그리드 및 배경 지도 느낌
-            ctx.strokeStyle = '#200000'; ctx.lineWidth = 2;
-            for(let i=0; i<=W; i+=200) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H); ctx.stroke(); }
-            for(let i=0; i<=H; i+=200) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(W,i); ctx.stroke(); }
+            // 1. 실제 지도 배경
+            ctx.globalAlpha = 0.6;
+            ctx.drawImage(worldMap, 0, 0, W, H);
+            ctx.globalAlpha = 1.0;
 
-            // 감염 영역 (Heatmap 효과)
+            // 2. 작전 격자선 (Tactical Grid)
+            ctx.strokeStyle = 'rgba(255, 0, 0, 0.15)'; ctx.lineWidth = 1;
+            for(let i=0; i<=W; i+=150) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H); ctx.stroke(); }
+            for(let i=0; i<=H; i+=150) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(W,i); ctx.stroke(); }
+
+            // 3. 감염 히트맵 연출
             entities.filter(e => e.team === 1).forEach(e => {
-                const grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, 300);
-                grad.addColorStop(0, 'rgba(255, 0, 0, 0.2)');
+                const grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, 250);
+                grad.addColorStop(0, 'rgba(255, 0, 0, 0.25)');
                 grad.addColorStop(1, 'rgba(255, 0, 0, 0)');
-                ctx.fillStyle = grad; ctx.fillRect(e.x-300, e.y-300, 600, 600);
+                ctx.fillStyle = grad; ctx.fillRect(e.x-250, e.y-250, 500, 500);
             });
 
             projectiles.forEach(p => {
-                ctx.fillStyle = '#ff4d4f'; ctx.beginPath(); ctx.arc(p.x, p.y, 8, 0, Math.PI*2); ctx.fill();
-                ctx.shadowBlur = 10; ctx.shadowColor = '#ff0000';
+                ctx.fillStyle = '#ff4d4f'; ctx.beginPath(); ctx.arc(p.x, p.y, 10, 0, Math.PI*2); ctx.fill();
+                ctx.shadowBlur = 15; ctx.shadowColor = '#f00';
             });
             ctx.shadowBlur = 0;
 
+            // 4. 유닛 및 코어 렌더링
             entities.forEach(e => {
-                const team = TEAMS.find(t => t.id === e.team); ctx.fillStyle = team.color;
+                const team = TEAMS.find(t => t.id === e.team);
+                ctx.save();
+                ctx.shadowBlur = 20; ctx.shadowColor = team.color;
+                ctx.fillStyle = team.color;
                 if(e.type === 'core') {
                     ctx.beginPath(); ctx.arc(e.x, e.y, e.size/2, 0, Math.PI*2); ctx.fill();
-                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 5; ctx.stroke();
-                    ctx.fillStyle = '#fff'; ctx.font = '50px Arial'; ctx.fillText(team.flag, e.x-35, e.y+20);
+                    ctx.strokeStyle = '#fff'; ctx.lineWidth = 4; ctx.stroke();
+                    ctx.fillStyle = '#fff'; ctx.font = 'bold 60px Arial'; ctx.fillText(team.flag, e.x-45, e.y+22);
                 } else {
                     ctx.beginPath(); ctx.arc(e.x, e.y, e.size, 0, Math.PI*2); ctx.fill();
-                    ctx.fillStyle = '#000'; ctx.font = 'bold 16px Arial'; ctx.fillText(e.type==='infector'?'☣️':'🧟', e.x-12, e.y+8);
+                    ctx.fillStyle = '#000'; ctx.font = 'bold 20px Arial'; ctx.textAlign='center'; ctx.textBaseline='middle';
+                    ctx.fillText(e.type==='infector'?'☣️':'🧟', e.x, e.y+2);
                 }
+                ctx.restore();
                 // HP Bar
-                ctx.fillStyle = '#300'; ctx.fillRect(e.x - 50, e.y - e.size - 20, 100, 8);
-                ctx.fillStyle = '#f00'; ctx.fillRect(e.x - 50, e.y - e.size - 20, 100 * (e.hp/e.maxHp), 8);
+                ctx.fillStyle = 'rgba(255,0,0,0.3)'; ctx.fillRect(e.x - 60, e.y - e.size - 25, 120, 10);
+                ctx.fillStyle = team.color; ctx.fillRect(e.x - 60, e.y - e.size - 25, 120 * (e.hp/e.maxHp), 10);
             });
 
             ctx.restore(); requestAnimationFrame(draw);
@@ -195,24 +197,20 @@
 
         function updateRanking() {
             let html = '';
-            [...TEAMS].forEach(t => {
-                const status = t.alive ? 'NORMAL' : 'EXTINCT';
+            [...TEAMS].sort((a,b) => b.score - a.score).forEach(t => {
                 html += `<div class="rank-row" style="color:${t.color}">
-                    <span>${t.flag} ${t.name}</span>: [${status}]
+                    <span>${t.flag} ${t.name}</span>: ${t.alive?'ACTIVE':'DESTROYED'}
                 </div>`;
             });
             document.getElementById('ranks').innerHTML = html;
         }
 
-        function showEndScreen(title, msg) { document.getElementById('game-over').style.display = 'block'; }
-        function updateUI() { document.getElementById('dna-val').innerText = dna; }
-
-        canvas.addEventListener('wheel', e => { zoom *= (e.deltaY > 0 ? 0.9 : 1.1); zoom = Math.max(0.1, Math.min(2.0, zoom)); });
-        let isDragging = false, lastX, lastY;
-        canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
-        window.addEventListener('mousemove', e => { if(isDragging) { camX -= (e.clientX - lastX)/zoom; camY -= (e.clientY - lastY)/zoom; lastX = e.clientX; lastY = e.clientY; } });
-        window.addEventListener('mouseup', () => isDragging = false);
-
+        function updateUI() { document.getElementById('dna-val').innerText = Math.floor(dna); }
+        canvas.addEventListener('wheel', e => { zoom *= (e.deltaY > 0 ? 0.85 : 1.15); zoom = Math.max(0.1, Math.min(3.0, zoom)); });
+        let isDrag = false, lX, lY;
+        canvas.addEventListener('mousedown', e => { isDrag = true; lX = e.clientX; lY = e.clientY; });
+        window.addEventListener('mousemove', e => { if(isDrag) { camX -= (e.clientX - lX)/zoom; camY -= (e.clientY - lY)/zoom; lX = e.clientX; lY = e.clientY; } });
+        window.addEventListener('mouseup', () => isDrag = false);
         initGame();
     </script>
 </body>

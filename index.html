@@ -227,7 +227,8 @@
         // 주기적으로 국가(Anthem) 업데이트 확인
         setInterval(updateAnthem, 5000);
         let myCash = 1500;
-        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
+        // 전국 지도가 다 보이도록 초기 뷰 설정 (대한민국 중심)
+        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([36.2, 127.8], 7);
         
         // 지도 클릭 시 모든 열린 패널 닫기 (복귀 기능)
         map.on('click', () => {
@@ -240,41 +241,50 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         const spots = [
+            // 서울 거점
             { 
                 id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, 
-                msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!", 
                 img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80",
-                addr: "서울 성동구 아차산로7길 7 (지번: 성수동2가 302-1)",
-                menu: "성수족발(대) 45,000원 | 순대국 8,000원",
-                info: "🅿️ 주차 불가 (공영주차장 이용) | 🕒 12:00 ~ 22:00 | 📅 예약 불가",
-                tip: "오후 5시 이후엔 웨이팅이 길어지니 포장을 추천합니다!"
+                addr: "서울 성동구 아차산로7길 7",
+                menu: "성수족발(대) 45,000원",
+                info: "🅿️ 주차 불가 | 🕒 12:00 ~ 22:00",
+                tip: "서울 3대 족발의 위엄! 포장이 훨씬 빠릅니다."
             },
+            // 부산 거점
             { 
-                id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, 
-                msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!", 
-                img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80",
-                addr: "서울 성동구 아차산로9길 8 (지번: 성수동2가 277-7)",
-                menu: "팡도르 5,500원 | 아메리카노 5,000원",
-                info: "🅿️ 인근 유료주차 | 🕒 08:00 ~ 22:00 | 📅 단체석 완비",
-                tip: "빈티지한 공장 분위기에서 찍는 사진이 아주 잘 나와요!"
+                id: 5, name: "이재모피자 본점", lat: 35.1021, lng: 129.0315, owner: "🇯🇵", bounty: 2000, 
+                img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80",
+                addr: "부산 중구 광복중앙로 31",
+                menu: "이재모 크러스트 25,000원",
+                info: "🅿️ 인근 주차장 이용 | 🕒 11:00 ~ 21:00 (일요일 휴무)",
+                tip: "부산 현지인과 관광객 모두 줄 서는 인생 피자집!"
             },
+            // 대전 거점
             { 
-                id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, 
-                msg: "", 
-                img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80",
-                addr: "서울 성동구 연무장길 45 (지번: 성수동2가 315-100)",
-                menu: "감자탕(소) 26,000원 | 뼈추가 10,000원",
-                info: "🅿️ 발렛 파킹 가능 | 🕒 24시간 영업 | 📅 포장 가능",
-                tip: "백종원의 3대천왕 맛집! 볶음밥은 선택이 아닌 필수입니다."
+                id: 6, name: "성심당 본점", lat: 36.3277, lng: 127.4273, owner: "🇨🇳", bounty: 3000, 
+                img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80",
+                addr: "대전 중구 대종로480번길 15",
+                menu: "튀김소보로 1,700원 | 부추빵 2,000원",
+                info: "🅿️ 전용 주차장 보유 | 🕒 08:00 ~ 22:00",
+                tip: "대전의 자존심! 튀소 세트는 선물용으로 최고입니다."
             },
+            // 제주 거점
             { 
-                id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, 
-                msg: "글로벌 브랜드의 자존심을 찾아주세요!", 
-                img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80",
-                addr: "서울 성동구 아차산로 7 (지번: 성수동1가 656-302)",
-                menu: "뉴올리언스 5,800원 | 지브랄타 5,500원",
-                info: "🅿️ 주차 불가 | 🕒 08:00 ~ 20:00 | 📅 와이파이 없음",
-                tip: "블루보틀 한국 1호점의 상징성! 정갈한 드립 커피를 즐기세요."
+                id: 7, name: "연돈", lat: 33.2492, lng: 126.4075, owner: "🇰🇷", bounty: 0, 
+                img: "https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=400&q=80",
+                addr: "제주 서귀포시 일주서로 968-10",
+                menu: "등심까스 11,000원 | 치즈까스 13,000원",
+                info: "🅿️ 주차 가능 | 🕒 12:00 ~ 21:00",
+                tip: "테이블링 예약 전쟁 필수! 정돈된 맛의 정점입니다."
+            },
+            // 강원 거점
+            { 
+                id: 8, name: "엄지네포장마차", lat: 37.7635, lng: 128.9085, owner: "🇯🇵", bounty: 1500, 
+                img: "https://images.unsplash.com/photo-1534422298391-e4f8c170db06?auto=format&fit=crop&w=400&q=80",
+                addr: "강원 강릉시 경강로2255번길 21",
+                menu: "꼬막무침비빔밥 35,000원",
+                info: "🅿️ 전용 주차장 보유 | 🕒 11:00 ~ 23:00",
+                tip: "꼬막과 밥을 슥슥 비벼 먹는 맛이 일품입니다."
             }
         ];
 

@@ -186,10 +186,42 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         const spots = [
-            { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!", img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80" },
-            { id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80" },
-            { id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, msg: "", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" },
-            { id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, msg: "글로벌 브랜드의 자존심을 찾아주세요!", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" }
+            { 
+                id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, 
+                msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!", 
+                img: "https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=400&q=80",
+                addr: "서울 성동구 아차산로7길 7 (지번: 성수동2가 302-1)",
+                menu: "성수족발(대) 45,000원 | 순대국 8,000원",
+                info: "🅿️ 주차 불가 (공영주차장 이용) | 🕒 12:00 ~ 22:00 | 📅 예약 불가",
+                tip: "오후 5시 이후엔 웨이팅이 길어지니 포장을 추천합니다!"
+            },
+            { 
+                id: 2, name: "어니언 성수", lat: 37.5440, lng: 127.0580, owner: "🇯🇵", bounty: 500, 
+                msg: "일본군이 카페를 점령해 커피 맛이 변했습니다!", 
+                img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80",
+                addr: "서울 성동구 아차산로9길 8 (지번: 성수동2가 277-7)",
+                menu: "팡도르 5,500원 | 아메리카노 5,000원",
+                info: "🅿️ 인근 유료주차 | 🕒 08:00 ~ 22:00 | 📅 단체석 완비",
+                tip: "빈티지한 공장 분위기에서 찍는 사진이 아주 잘 나와요!"
+            },
+            { 
+                id: 3, name: "소문난성수감자탕", lat: 37.5428, lng: 127.0560, owner: "🇰🇷", bounty: 0, 
+                msg: "", 
+                img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80",
+                addr: "서울 성동구 연무장길 45 (지번: 성수동2가 315-100)",
+                menu: "감자탕(소) 26,000원 | 뼈추가 10,000원",
+                info: "🅿️ 발렛 파킹 가능 | 🕒 24시간 영업 | 📅 포장 가능",
+                tip: "백종원의 3대천왕 맛집! 볶음밥은 선택이 아닌 필수입니다."
+            },
+            { 
+                id: 4, name: "블루보틀 성수", lat: 37.5478, lng: 127.0440, owner: "🇨🇳", bounty: 800, 
+                msg: "글로벌 브랜드의 자존심을 찾아주세요!", 
+                img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80",
+                addr: "서울 성동구 아차산로 7 (지번: 성수동1가 656-302)",
+                menu: "뉴올리언스 5,800원 | 지브랄타 5,500원",
+                info: "🅿️ 주차 불가 | 🕒 08:00 ~ 20:00 | 📅 와이파이 없음",
+                tip: "블루보틀 한국 1호점의 상징성! 정갈한 드립 커피를 즐기세요."
+            }
         ];
 
         let selectedSpot = null;
@@ -256,6 +288,28 @@
             document.getElementById('p-photo').src = spot.img;
             document.getElementById('p-owner-msg').innerText = spot.msg || "이 지역을 점령하여 조국의 영광을 높이세요!";
             document.getElementById('p-current-owner').innerText = `${spot.owner} 사령부`;
+            
+            // 상세 정보 업데이트
+            const detailHtml = `
+                <div style="margin-top: 15px; font-size: 13px; color: #1e293b; line-height: 1.6;">
+                    <div style="background: #f8fafc; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                        <b>📍 주소:</b> ${spot.addr}
+                    </div>
+                    <div style="margin-bottom: 8px;"><b>🍴 대표 메뉴:</b> ${spot.menu}</div>
+                    <div style="margin-bottom: 8px;"><b>ℹ️ 이용 정보:</b> ${spot.info}</div>
+                    <div style="color: #3b82f6; font-size: 12px;"><b>💡 꿀팁:</b> ${spot.tip}</div>
+                </div>
+            `;
+            
+            // 기존 owner-msg 뒤에 상세 정보 삽입
+            const existingDetails = document.getElementById('p-details');
+            if(existingDetails) existingDetails.innerHTML = detailHtml;
+            else {
+                const div = document.createElement('div');
+                div.id = 'p-details';
+                div.innerHTML = detailHtml;
+                document.getElementById('p-owner-msg').after(div);
+            }
             
             const bInfo = document.getElementById('bounty-info');
             if(spot.bounty > 0) {

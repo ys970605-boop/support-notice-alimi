@@ -42,16 +42,28 @@
             font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #34d399;
         }
 
-        #map { width: 100%; height: 100%; z-index: 1; filter: brightness(0.8) contrast(1.2); }
+        #map { width: 100%; height: 100%; z-index: 1; }
 
         /* 바텀 시트 */
         #capture-panel {
             position: absolute; bottom: -100%; left: 0; right: 0; z-index: 2000;
-            background: #1e293b; border-top: 4px solid var(--gold); border-radius: 25px 25px 0 0;
+            background: #ffffff; border-top: 6px solid var(--gold); border-radius: 30px 30px 0 0;
             padding: 25px; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 -15px 50px rgba(0,0,0,0.2);
+            color: #1e293b;
         }
         #capture-panel.open { bottom: 0; }
+        
+        /* 커스텀 핀 스타일 */
+        .marker-pin {
+            width: 45px; height: 45px; border-radius: 50% 50% 50% 0; background: white;
+            position: absolute; transform: rotate(-45deg); left: 50%; top: 50%; margin: -22px 0 0 -22px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #334155;
+        }
+        .marker-pin span { transform: rotate(45deg); font-size: 24px; }
+        .marker-pin.bounty { background: var(--gold); border-color: white; animation: pulseGold 1s infinite; }
+        @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(251,191,36,0.7); } 70% { box-shadow: 0 0 0 15px rgba(251,191,36,0); } 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); } }
         .bounty-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 5px; font-weight: 900; font-size: 12px; margin-bottom: 10px; display: inline-block; }
         .res-name { font-size: 26px; font-weight: 900; margin: 0; color: white; }
         .owner-msg { font-style: italic; color: #94a3b8; margin: 10px 0; font-size: 14px; border-left: 3px solid var(--gold); padding-left: 10px; }
@@ -105,7 +117,8 @@
         let myCash = 1500;
         const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
         
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+        // 밝고 선명한 주간 지도 (Voyager)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
 
         const spots = [
             { id: 1, name: "성수족발", lat: 37.5446, lng: 127.0565, owner: "🇨🇳", bounty: 1000, msg: "줄 서서 기다리는 우리 손님들이 불안해합니다. 제발 도와주세요!" },
@@ -118,22 +131,29 @@
         const markers = {};
 
         spots.forEach(spot => {
+            updateMarker(spot);
+        });
+
+        function updateMarker(spot) {
             const isBounty = spot.bounty > 0;
             const icon = L.divIcon({
-                className: 'custom-icon',
-                html: isBounty ? `<div class="bounty-marker">💰</div>` : `<div style="font-size:30px;">${spot.owner}</div>`,
-                iconSize: [40, 40],
-                iconAnchor: [20, 20]
+                className: 'custom-div-icon',
+                html: `<div class="marker-pin ${isBounty ? 'bounty' : ''}"><span>${isBounty ? '💰' : spot.owner}</span></div>`,
+                iconSize: [45, 45],
+                iconAnchor: [22, 45]
             });
 
-            const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
-            markers[spot.id] = marker;
-
-            marker.on('click', () => {
-                selectedSpot = spot;
-                openPanel(spot);
-            });
-        });
+            if (markers[spot.id]) {
+                markers[spot.id].setIcon(icon);
+            } else {
+                const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
+                markers[spot.id] = marker;
+                marker.on('click', () => {
+                    selectedSpot = spot;
+                    openPanel(spot);
+                });
+            }
+        }
 
         function openPanel(spot) {
             document.getElementById('p-name').innerText = spot.name;

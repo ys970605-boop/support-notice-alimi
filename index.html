@@ -107,6 +107,19 @@
 
     <div id="wallet">💳 ₩ <span id="cash-val">1,500</span></div>
 
+    <!-- 전술 상점 -->
+    <div id="shop-trigger" onclick="toggleShop()" style="position: absolute; top: 190px; right: 15px; z-index: 1000; background: #3b82f6; color: white; padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">🛒</div>
+    
+    <div id="shop-panel" style="position: absolute; top: 240px; right: 15px; z-index: 1000; background: white; padding: 15px; border-radius: 12px; width: 180px; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); color: #1e293b;">
+        <b style="font-size: 14px; display: block; margin-bottom: 10px;">전술 상점</b>
+        <div style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+            <div style="font-size: 12px; font-weight: bold;">❄️ 얼음 폭풍</div>
+            <div style="font-size: 10px; color: #64748b;">10분간 타국 활동 중단</div>
+            <button onclick="buyItem('freeze')" style="width: 100%; margin-top: 5px; background: #3b82f6; color: white; border: none; border-radius: 4px; padding: 5px; font-size: 11px; cursor: pointer;">₩ 2,000 구매</button>
+        </div>
+        <button onclick="shareKakao()" style="width: 100%; background: #fee500; color: #3c1e1e; border: none; border-radius: 8px; padding: 10px; font-weight: bold; font-size: 12px; cursor: pointer;">🤝 지원군 요청하기</button>
+    </div>
+
     <div id="map"></div>
 
     <div id="capture-panel">
@@ -140,8 +153,37 @@
         ];
 
         let selectedSpot = null;
-        let topNation = "🇨🇳"; // 현재 1위 (시뮬레이션)
+        let topNation = "🇨🇳";
+        let isFrozen = false;
         const markers = {};
+
+        function toggleShop() {
+            const panel = document.getElementById('shop-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function buyItem(type) {
+            if(myCash < 2000) { alert('자금이 부족합니다!'); return; }
+            myCash -= 2000;
+            document.getElementById('cash-val').innerText = myCash.toLocaleString();
+            
+            if(type === 'freeze') {
+                isFrozen = true;
+                document.getElementById('map').style.filter = 'brightness(0.8) saturate(0.5) hue-rotate(180deg)';
+                alert('❄️ 얼음 폭풍 발동! 10분간 타국의 활동이 중단됩니다.');
+                setTimeout(() => {
+                    isFrozen = false;
+                    document.getElementById('map').style.filter = 'brightness(1) saturate(1) hue-rotate(0deg)';
+                }, 10000); // 시뮬레이션상 10초 후 해제
+            }
+            toggleShop();
+        }
+
+        function shareKakao() {
+            // 실제 카카오 SDK 연동 전 시뮬레이션
+            const shareText = "🚨 긴급 상황! 성수동이 점령당하고 있다! 지금 바로 지원군으로 합류해 깃발을 꽂아줘! \n https://ys970605-boop.github.io/support-notice-alimi/";
+            prompt("카카오톡으로 공유할 메시지입니다. 복사해서 친구에게 보내세요!", shareText);
+        }
 
         spots.forEach(spot => {
             updateMarker(spot);

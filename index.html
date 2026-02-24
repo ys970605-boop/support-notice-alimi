@@ -9,49 +9,61 @@
     <style>
         :root {
             --china: #ff4d4f; --korea: #52c41a; --japan: #ffffff;
-            --dark: #0f172a; --gold: #fbbf24; --accent: #f43f5e;
+            --dark: #000000; --gold: #fbbf24; --accent: #f43f5e;
         }
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; font-family: 'Pretendard', sans-serif; overflow: hidden; color: white; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; color: white; }
         
-        /* 메인 비디오 피드 레이아웃 */
+        /* 인스타그램 스타일 피드 */
         #feed-container {
             height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
+            scrollbar-width: none;
         }
+        #feed-container::-webkit-scrollbar { display: none; }
+        
         .feed-item {
             height: 100vh; width: 100%; scroll-snap-align: start;
-            position: relative; overflow: hidden;
+            position: relative; background: #000;
         }
+        
+        /* 상단 프로필 헤더 */
+        .feed-header {
+            position: absolute; top: 50px; left: 0; width: 100%; padding: 10px 15px;
+            display: flex; align-items: center; gap: 10px; z-index: 20;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+        }
+        .profile-pic { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--accent); padding: 2px; background: white; object-fit: cover; }
+        .user-info { display: flex; flex-direction: column; }
+        .username { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        .username::after { content: '✔'; background: #38bdf8; color: white; font-size: 8px; width: 12px; height: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .location { font-size: 11px; color: #eee; cursor: pointer; }
+
         .feed-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; filter: brightness(0.6);
+            object-fit: cover;
         }
 
-        /* 피드 오버레이 UI */
+        /* 하단 텍스트 오버레이 */
         .feed-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 100px 20px 40px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 120px 20px 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
             pointer-events: none; z-index: 10;
         }
+        .conquest-status {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+        }
         .status-badge {
-            display: inline-block; padding: 5px 12px; border-radius: 20px;
-            font-weight: 900; font-size: 14px; margin-bottom: 10px;
-            border: 2px solid white; box-shadow: 0 0 15px rgba(255,255,255,0.3);
+            padding: 4px 10px; border-radius: 4px; font-weight: 900; font-size: 12px;
         }
-        .res-title { font-size: 32px; font-weight: 900; margin: 5px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .bounty-tag { color: var(--gold); font-size: 20px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .res-title { font-size: 24px; font-weight: 800; margin: 0; }
+        .feed-caption { font-size: 14px; color: #efefef; margin-top: 8px; line-height: 1.4; }
 
-        /* 액션 버튼 (우측 세로바) */
+        /* 인스타 액션 바 (우측) */
         .side-actions {
-            position: absolute; right: 15px; bottom: 120px; display: flex; flex-direction: column; gap: 20px; z-index: 20;
+            position: absolute; right: 10px; bottom: 120px; display: flex; flex-direction: column; align-items: center; gap: 18px; z-index: 20;
         }
-        .action-btn {
-            width: 55px; height: 55px; border-radius: 50%; background: rgba(255,255,255,0.1);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);
-            cursor: pointer; pointer-events: auto;
-        }
-        .action-btn span { font-size: 22px; }
-        .action-btn label { font-size: 10px; margin-top: 3px; font-weight: bold; }
+        .action-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; pointer-events: auto; }
+        .action-item span { font-size: 28px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+        .action-item label { font-size: 12px; font-weight: 600; margin-top: 2px; }
 
         /* 하단 탭 바 */
         #nav-bar {
@@ -84,37 +96,57 @@
     <div id="news-bar">🚨 실시간 교전: 리치왕 사령관이 부산 이재모피자 탈환 작전 개시!</div>
 
     <div id="feed-container">
-        <!-- 피드 아이템 1 -->
+        <!-- 인스타 피드 1: 성수족발 -->
         <div class="feed-item">
-            <img class="feed-bg" src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=800&q=80">
+            <div class="feed-header">
+                <img class="profile-pic" src="https://i.pravatar.cc/100?img=32">
+                <div class="user-info">
+                    <span class="username">미식탐험가_서울</span>
+                    <span class="location" onclick="openMapAt(37.5446, 127.0565)">📍 서울 성수동 성수족발</span>
+                </div>
+            </div>
+            <img class="feed-bg" src="https://images.unsplash.com/photo-1628253747716-0c4f5c90f75c?auto=format&fit=crop&w=1000&q=80">
             <div class="feed-overlay">
-                <div class="status-badge" style="background: var(--china);">🇨🇳 중국 사령부 점령 중</div>
-                <h2 class="res-title">성수족발</h2>
-                <span class="bounty-tag">💰 현상금 +₩ 1,000</span>
-                <p style="font-size: 14px; color: #cbd5e1; margin: 0;">"한국군 여러분, 제발 우리 가게를 찾아주세요!"</p>
+                <div class="conquest-status">
+                    <div class="status-badge" style="background: var(--china);">🇨🇳 중국 점령 중</div>
+                    <b style="color: var(--gold); font-size: 14px;">💰 +₩ 1,000</b>
+                </div>
+                <h2 class="res-title">성수족발 (본점)</h2>
+                <p class="feed-caption">와... 여기 족발은 진짜 차원이 다르네요 🍖 껍데기가 젤리처럼 쫀득함! 현재 중국팀이 점령 중인데 한국군 사령관님들 어디계신가요?? #성수맛집 #KFoodBattle</p>
             </div>
             <div class="side-actions">
-                <div class="action-btn" onclick="openMapAt(37.5446, 127.0565)"><span>📍</span><label>작전지도</label></div>
-                <div class="action-btn" onclick="alert('카메라 구동...')"><span>📷</span><label>점령하기</label></div>
-                <div class="action-btn"><span>💬</span><label>128</label></div>
-                <div class="action-btn"><span>❤️</span><label>4.2k</label></div>
+                <div class="action-item"><span>❤️</span><label>4.2k</label></div>
+                <div class="action-item"><span>💬</span><label>128</label></div>
+                <div class="action-item" onclick="triggerCamera()"><span>📸</span><label>탈환</label></div>
+                <div class="action-item"><span>✈️</span><label>공유</label></div>
+                <div class="action-item"><span>🔖</span><label>수집</label></div>
             </div>
         </div>
 
-        <!-- 피드 아이템 2 -->
+        <!-- 인스타 피드 2: 이재모피자 -->
         <div class="feed-item">
-            <img class="feed-bg" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80">
+            <div class="feed-header">
+                <img class="profile-pic" src="https://i.pravatar.cc/100?img=45">
+                <div class="user-info">
+                    <span class="username">Busan_Foodie</span>
+                    <span class="location" onclick="openMapAt(35.1021, 129.0315)">📍 부산 광복동 이재모피자</span>
+                </div>
+            </div>
+            <img class="feed-bg" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80">
             <div class="feed-overlay">
-                <div class="status-badge" style="background: var(--korea);">🇰🇷 한국군 점령 중</div>
+                <div class="conquest-status">
+                    <div class="status-badge" style="background: var(--korea);">🇰🇷 한국군 수비 중</div>
+                    <b style="color: #10b981; font-size: 14px;">🛡️ 철통 보안</b>
+                </div>
                 <h2 class="res-title">이재모피자 본점</h2>
-                <span class="bounty-tag" style="color:#10b981;">✅ 평화 상태</span>
-                <p style="font-size: 14px; color: #cbd5e1; margin: 0;">부산의 심장을 우리 군이 지켜냈습니다.</p>
+                <p class="feed-caption">부산 오면 무조건 들러야 하는 곳 🍕 치즈 늘어나는 거 보이시나요? 우리 한국군이 굳건히 지키고 있습니다! #부산맛집 #이재모피자 #대한민국만세</p>
             </div>
             <div class="side-actions">
-                <div class="action-btn" onclick="openMapAt(35.1021, 129.0315)"><span>📍</span><label>작전지도</label></div>
-                <div class="action-btn" onclick="alert('아군 영토입니다.')"><span>🏰</span><label>수비중</label></div>
-                <div class="action-btn"><span>💬</span><label>85</label></div>
-                <div class="action-btn"><span>❤️</span><label>1.5k</label></div>
+                <div class="action-item"><span>❤️</span><label>8.5k</label></div>
+                <div class="action-item"><span>💬</span><label>256</label></div>
+                <div class="action-item" onclick="alert('이미 아군 영토입니다!')"><span>🏯</span><label>지원</label></div>
+                <div class="action-item"><span>✈️</span><label>공유</label></div>
+                <div class="action-item"><span>🔖</span><label>수집</label></div>
             </div>
         </div>
     </div>

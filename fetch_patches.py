@@ -46,7 +46,7 @@ def fetch_notion_patches():
                 return items[0].get("plain_text", "") if items else ""
             return ""
 
-        title = safe_get("제목", "title")
+        title = safe_get("업데이트명", "title")
         date = safe_get("날짜", "date")
         category = safe_get("분류", "select")
         version = safe_get("버전", "rich_text")

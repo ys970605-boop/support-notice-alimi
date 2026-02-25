@@ -3,33 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocsHunt AI - 패치노트</title>
+    <title>DocsHunt AI | 패치노트</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* 스크롤바 중복 방지 */
+        :root {
+            --primary: #3b82f6; --bg: #f8fafc; --text: #1e293b; --sub: #64748b;
         }
-        .notion-container {
-            width: 100%;
-            height: 100vh; /* 화면 전체 높이 사용 */
+        body { margin: 0; padding: 0; background: var(--bg); font-family: -apple-system, sans-serif; color: var(--text); }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        
+        header { margin-bottom: 40px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
+        h1 { font-size: 28px; margin: 0; display: flex; align-items: center; gap: 10px; }
+        .updated-at { font-size: 12px; color: var(--sub); margin-top: 8px; }
+
+        .patch-list { display: flex; flex-direction: column; gap: 20px; }
+        .patch-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .patch-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+
+        .patch-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .version-badge { font-weight: 800; color: var(--primary); font-size: 18px; }
+        .patch-date { font-size: 13px; color: var(--sub); }
+
+        .category-tag {
+            font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: 700;
+            display: inline-block; margin-bottom: 10px;
         }
+        .tag-new { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .tag-improve { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+        .tag-bug { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+        .tag-default { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+        .patch-title { font-size: 18px; font-weight: 700; margin: 0 0 10px; line-height: 1.4; }
+        .btn-view {
+            display: inline-block; margin-top: 15px; font-size: 13px; color: var(--primary);
+            text-decoration: none; font-weight: 600;
+        }
+        .btn-view:hover { text-decoration: underline; }
+        
+        .empty-state { text-align: center; padding: 60px; color: var(--sub); }
+        .nav-back { margin-bottom: 20px; display: inline-block; text-decoration: none; color: var(--sub); font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="notion-container">
-        <iframe 
-            src="https://docshunt.notion.site/31245318b86080408bf2e5af3970bc9e?v=31245318b860805e8408000c6e466064" 
-            allowtransparency="true">
-        </iframe>
+<div class="container">
+    <a href="index.html" class="nav-back">← 메인으로 돌아가기</a>
+    <header>
+        <h1>📦 DocsHunt AI 패치노트</h1>
+        <div id="update-info" class="updated-at">최근 업데이트: 로드 중...</div>
+    </header>
+
+    <div id="patch-list" class="patch-list">
+        <!-- 패치노트가 여기에 렌더링됩니다 -->
     </div>
+</div>
+
+<script>
+    async function loadPatches() {
+        try {
+            const response = await fetch('patches.json?v=' + Date.now());
+            const data = await response.json();
+            
+            document.getElementById('update-info').textContent = '최근 업데이트: ' + data.updatedAt;
+            
+            const listContainer = document.getElementById('patch-list');
+            if (data.patches.length === 0) {
+                listContainer.innerHTML = '<div class="empty-state">등록된 패치노트가 없습니다.</div>';
+                return;
+            }
+
+            listContainer.innerHTML = data.patches.map(p => {
+                let tagClass = 'tag-default';
+                if (p.category.includes('신규')) tagClass = 'tag-new';
+                if (p.category.includes('개선')) tagClass = 'tag-improve';
+                if (p.category.includes('버그')) tagClass = 'tag-bug';
+
+                return `
+                    <article class="patch-card">
+                        <div class="patch-header">
+                            <span class="version-badge">${p.version}</span>
+                            <span class="patch-date">${p.date}</span>
+                        </div>
+                        <span class="category-tag ${tagClass}">${p.category}</span>
+                        <h3 class="patch-title">${p.title}</h3>
+                        <a href="${p.url}" target="_blank" class="btn-view">상세 내용 보기 (Notion) →</a>
+                    </article>
+                `;
+            }).join('');
+            
+        } catch (error) {
+            console.error('로드 실패:', error);
+            document.getElementById('patch-list').innerHTML = '<div class="empty-state">데이터를 불러오는 중 오류가 발생했습니다.</div>';
+        }
+    }
+
+    loadPatches();
+</script>
 
 </body>
 </html>

@@ -3,208 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>School Conquest | 서울 대첩</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <title>School Conquest | 소셜 서열 전쟁</title>
     <style>
         :root {
             --school-primary: #3b82f6; --king-gold: #fbbf24;
-            --power-red: #f43f5e; --bg-dark: #0f172a;
+            --power-red: #f43f5e; --bg-dark: #000000;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
-        body, html { margin: 0; padding: 0; height: 100%; background: var(--bg-dark); font-family: 'Pretendard', sans-serif; overflow: hidden; color: white; }
+        body, html { margin: 0; padding: 0; height: 100%; background: var(--bg-dark); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; color: white; }
         
-        #war-ticker { position: fixed; top: 0; width: 100%; background: var(--power-red); padding: 8px; font-size: 12px; font-weight: 900; z-index: 1000; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        /* 상단 전광판: 학교별 화력전 상태 */
+        #war-ticker {
+            position: fixed; top: 0; width: 100%; background: var(--insta-gradient);
+            padding: 10px; font-size: 12px; font-weight: 900; z-index: 1000; text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
 
-        #feed-container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; padding-top: 40px; box-sizing: border-box; }
+        /* 메인 소셜 피드 */
+        #feed-container {
+            height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
+            scrollbar-width: none; padding-top: 45px; padding-bottom: 65px; box-sizing: border-box;
+        }
         #feed-container::-webkit-scrollbar { display: none; }
-        .feed-item { height: calc(100vh - 40px); width: 100%; scroll-snap-align: start; position: relative; background: #000; }
+        
+        .feed-item {
+            height: calc(100vh - 110px); width: 100%; scroll-snap-align: start;
+            position: relative; border-bottom: 0.5px solid #222;
+        }
 
-        .scouter-ui { position: absolute; top: 60px; right: 20px; z-index: 20; background: rgba(244, 63, 94, 0.2); border: 2px solid var(--power-red); border-radius: 15px; padding: 15px; backdrop-filter: blur(5px); width: 120px; text-align: center; }
-        .power-val { font-size: 22px; font-weight: 900; color: var(--power-red); text-shadow: 0 0 10px var(--power-red); }
+        /* 프로필 헤더 */
+        .post-header {
+            padding: 12px 15px; display: flex; align-items: center; gap: 10px;
+        }
+        .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid #f43f5e; padding: 1px; object-fit: cover; }
+        .user-meta { display: flex; flex-direction: column; }
+        .username { font-size: 13px; font-weight: 700; }
+        .school-name { font-size: 11px; color: #aaa; }
 
-        .student-header { position: absolute; top: 20px; left: 20px; z-index: 20; display: flex; align-items: center; gap: 12px; }
-        .school-badge { background: white; color: black; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; margin-bottom: 4px; display: inline-block; }
-        .profile-img { width: 45px; height: 45px; border-radius: 12px; border: 2px solid white; object-fit: cover; }
+        /* 메인 이미지/영상 */
+        .post-content { width: 100%; height: 60%; position: relative; background: #111; }
+        .post-img { width: 100%; height: 100%; object-fit: cover; }
 
-        .feed-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        .feed-overlay { position: absolute; bottom: 80px; left: 0; width: 100%; padding: 40px 20px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%); pointer-events: none; z-index: 10; }
+        /* 실시간 전투력 스카우터 */
+        .scouter-overlay {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(244, 63, 94, 0.8); border-radius: 10px;
+            padding: 8px 12px; text-align: center; backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .scouter-label { font-size: 8px; font-weight: 900; color: white; opacity: 0.8; display: block; }
+        .scouter-val { font-size: 18px; font-weight: 900; color: white; }
+
+        /* 하단 오버레이 (좋아요, 캡션 등) */
+        .post-footer { padding: 15px; }
+        .action-btns { display: flex; gap: 15px; margin-bottom: 10px; font-size: 22px; }
+        .likes-count { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+        .caption { font-size: 13px; line-height: 1.4; opacity: 0.9; }
+        .caption b { margin-right: 5px; }
+
+        /* 상금 기여 알림 애니메이션 */
+        .contribution-pop {
+            position: absolute; color: var(--king-gold); font-weight: 900; font-size: 14px;
+            animation: floatUp 1.5s forwards; pointer-events: none;
+        }
+        @keyframes floatUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-100px); } }
 
         /* 하단 탭 바 */
-        #nav-bar { position: fixed; bottom: 0; width: 100%; height: 65px; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; align-items: center; z-index: 100; border-top: 1px solid #334155; }
-        .nav-item { text-align: center; color: #94a3b8; font-size: 10px; flex: 1; cursor: pointer; }
-        .nav-item.active { color: white; }
-        .nav-item span { font-size: 22px; display: block; }
-
-        /* 공통 패널 스타일 */
-        .full-panel { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 2000; display: none; padding: 20px; box-sizing: border-box; flex-direction: column; overflow-y: auto; }
-        
-        /* 상금 현황판 */
-        .prize-pool-card { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); border-radius: 15px; padding: 20px; margin-bottom: 20px; color: #000; text-align: center; box-shadow: 0 10px 20px rgba(251,191,36,0.3); }
-        .prize-val { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
-
-        /* 승전 연출 */
-        #victory-fx {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 9999; display: none;
-            flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; pointer-events: none;
+        #nav-bar {
+            position: fixed; bottom: 0; width: 100%; height: 65px; background: #000;
+            display: flex; justify-content: space-around; align-items: center; z-index: 100;
+            border-top: 0.5px solid #333;
         }
-        .victory-title { font-size: 60px; font-weight: 900; color: var(--king-gold); text-shadow: 0 0 30px var(--king-gold); animation: conquerBounce 0.5s infinite alternate; }
-        @keyframes conquerBounce { from { transform: scale(1); } to { transform: scale(1.1); } }
+        .nav-item { text-align: center; color: #8e8e8e; font-size: 10px; flex: 1; cursor: pointer; }
+        .nav-item.active { color: white; }
+        .nav-item span { font-size: 24px; display: block; }
 
-        /* 정상회담 패널 */
-        #summit-panel { border: 2px solid var(--king-gold) !important; }
-        .king-only-badge { background: var(--king-gold); color: black; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 900; margin-right: 5px; }
-
-        #map-popup { position: fixed; top: 50px; left: 10px; right: 10px; bottom: 80px; background: white; border-radius: 20px; z-index: 500; display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; }
-        #map { width: 100%; height: 100%; }
-        .close-map { position: absolute; top: 15px; right: 15px; z-index: 600; background: rgba(0,0,0,0.5); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 20px; }
+        /* 랭킹/상금 페이지 (풀 패널) */
+        .full-panel {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 2000; display: none; padding: 20px; box-sizing: border-box; overflow-y: auto;
+        }
+        .prize-card {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            border-radius: 15px; padding: 25px; margin-bottom: 25px; color: #000; text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div id="war-ticker">🔊 실시간: 성수고 '미식대장'이 경일고로부터 CU 성수점을 탈환했습니다!</div>
+    <div id="war-ticker">📡 실시간 화력전: 서울고 '공부벌레'의 피드가 급상승 중! 학교 상금 +₩ 12,000 기여</div>
 
     <div id="feed-container">
-        <div class="feed-item">
-            <div class="student-header">
+        <!-- 소셜 피드 1 -->
+        <div class="feed-item" onclick="addLike(this)">
+            <div class="post-header">
                 <img class="profile-img" src="https://i.pravatar.cc/100?img=12">
-                <div><span class="school-badge">성수고등학교</span><br><b style="font-size: 15px;">미식대장 (학교의 왕 👑)</b></div>
+                <div class="user-meta">
+                    <span class="username">미식대장 ✔</span>
+                    <span class="school-name">성수고등학교</span>
+                </div>
             </div>
-            <div class="scouter-ui"><span style="font-size:9px;opacity:0.7;">S-POWER</span><br><span class="power-val">12,450</span></div>
-            <img class="feed-bg" src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80">
-            <div class="feed-overlay">
-                <div style="font-size:18px;font-weight:900;color:var(--king-gold);">📍 학교 앞 마라탕 (성수고 점령)</div>
-                <div style="height: 80px; background: rgba(255,255,255,0.05); border: 1px dashed #444; border-radius: 10px; margin-top: 15px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888;">Sponsored by GS25: 혜자도시락 먹고 전투력 충전!</div>
+            <div class="post-content">
+                <div class="scouter-overlay">
+                    <span class="scouter-label">S-POWER</span>
+                    <span class="scouter-val">12,450</span>
+                </div>
+                <img class="post-img" src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80">
+            </div>
+            <div class="post-footer">
+                <div class="action-btns"><span>❤️</span><span>💬</span><span>✈️</span><span style="margin-left:auto;">🔖</span></div>
+                <div class="likes-count">좋아요 4,251개</div>
+                <div class="caption"><b>미식대장</b> 오늘 점심 마라탕 폼 미쳤다 🍜 우리 학교 서열 1위 지킵시다!! #성수고 #학교의왕 #S파워</div>
+            </div>
+        </div>
+
+        <!-- 소셜 피드 2 -->
+        <div class="feed-item" onclick="addLike(this)">
+            <div class="post-header">
+                <img class="profile-img" src="https://i.pravatar.cc/100?img=33">
+                <div class="user-meta">
+                    <span class="username">강남정복자</span>
+                    <span class="school-name">휘문고등학교</span>
+                </div>
+            </div>
+            <div class="post-content">
+                <div class="scouter-overlay" style="background: rgba(59, 130, 246, 0.8);">
+                    <span class="scouter-label">S-POWER</span>
+                    <span class="scouter-val">8,920</span>
+                </div>
+                <img class="post-img" src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80">
+            </div>
+            <div class="post-footer">
+                <div class="action-btns"><span>❤️</span><span>💬</span><span>✈️</span><span style="margin-left:auto;">🔖</span></div>
+                <div class="likes-count">좋아요 1,820개</div>
+                <div class="caption"><b>강남정복자</b> 대치동 PC방 점령 완료 🎮 휘문고 화력 보여주자 친구들아!! #휘문고 #서열전쟁 #대치동</div>
             </div>
         </div>
     </div>
 
-    <!-- 우리 학교 아지트 -->
-    <div id="school-community" class="full-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div><span class="school-badge" style="background:var(--school-primary); color:white;">성수고등학교</span><h2 style="margin: 5px 0; color: white; font-size: 20px;">🏫 우리 학교 아지트</h2></div>
-            <button onclick="showSection('feed')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
+    <!-- 우리 학교 상금 현황 -->
+    <div id="school-panel" class="full-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 style="margin:0; color:var(--school-primary);">🏫 성수고등학교 아지트</h2>
+            <button onclick="showSection('feed')" style="background:none; border:none; color:white; font-size:24px;">×</button>
         </div>
-        <div class="prize-pool-card">
-            <div style="font-size: 11px; font-weight: 800; opacity: 0.8; margin-bottom: 5px;">💰 이번 주 학교의 왕 정산 예정금</div>
-            <div class="prize-val">₩ <span id="realtime-prize">154,200</span></div>
-            <div style="font-size: 10px; margin-top: 5px;">광고 수익에 따라 실시간 적립 중...</div>
+        <div class="prize-card">
+            <div style="font-size:12px; font-weight:800; opacity:0.8; margin-bottom:10px;">💰 우리 학교 누적 상금 (정산 예정)</div>
+            <div style="font-size:40px; font-weight:900;">₩ <span id="school-prize">154,200</span></div>
+            <div style="font-size:11px; margin-top:10px;">내가 기여한 상금: ₩ 12,450</div>
         </div>
-        <!-- 탭 생략/축약 로직 적용 -->
-        <div id="comm-board" style="flex-grow: 1;">
-            <div style="background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 10px;">
-                <b style="color: var(--king-gold);">[전략]</b> 서울고 상금이 27만 원임. 오늘 하교하고 서울고 거점 털러 가자
-                <div style="font-size: 11px; color: #64748b; margin-top: 5px;">작성자: 성수고_킹왕짱 | 👍 56</div>
+        <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:15px;">
+            <h3 style="margin-top:0; font-size:16px;">🏆 교내 전투력 랭킹</h3>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #222;">
+                <span>1. 미식대장 👑</span><b style="color:var(--power-red);">12,450 SP</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #222;">
+                <span>2. 성수짱</span><b>9,120 SP</b>
             </div>
         </div>
     </div>
 
-    <!-- 상금 약탈전 랭킹 -->
-    <div id="rank-container" class="full-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 style="margin: 0; color: var(--power-red);">⚔️ 서울 상금 약탈 랭킹</h2>
-            <button onclick="showSection('feed')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
+    <!-- 전국 학교 상금 랭킹 -->
+    <div id="rank-panel" class="full-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 style="margin:0; color:var(--king-gold);">🏆 전국 학교 화력 랭킹</h2>
+            <button onclick="showSection('feed')" style="background:none; border:none; color:white; font-size:24px;">×</button>
         </div>
-        
-        <!-- 정상회담 버튼 -->
-        <button onclick="showSection('summit')" style="width: 100%; background: linear-gradient(90deg, #fbbf24, #d97706); color: black; border: none; padding: 15px; border-radius: 12px; font-weight: 900; margin-bottom: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(251,191,36,0.4);">👑 각 학교 짱들의 '정상회담' 입장</button>
-
-        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;">
-            <div style="font-size: 11px; color: #94a3b8; margin-bottom: 15px;">💰 다른 학교 거점을 뺏으면 상금 10%를 강탈합니다!</div>
-            <div id="seoul-rank-list">
-                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
-                    <span>1. 서울고</span><b style="color: var(--king-gold);">₩ 274,500</b>
-                    <button onclick="executeRaid('서울고')" style="background:var(--power-red); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold; cursor:pointer;">약탈</button>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
-                    <span>2. 단대부고</span><b style="color: var(--king-gold);">₩ 220,500</b>
-                    <button onclick="executeRaid('단대부고')" style="background:var(--power-red); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold; cursor:pointer;">약탈</button>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #1e293b; align-items: center;">
-                    <span>3. 성수고</span><b style="color: var(--king-gold);">₩ 208,500</b>
-                    <button onclick="alert('성수고 수비 강화!')" style="background:var(--school-primary); color:white; border:none; padding:8px 12px; border-radius:6px; font-size:11px; font-weight:bold;">수비</button>
-                </div>
+        <div id="global-rank-list">
+            <div style="display:flex; justify-content:space-between; padding:15px; background:rgba(255,255,255,0.05); border-radius:12px; margin-bottom:10px;">
+                <span>1. 서울고등학교</span><b style="color:var(--king-gold);">₩ 274,500</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:15px; background:rgba(255,255,255,0.05); border-radius:12px; margin-bottom:10px;">
+                <span>2. 단대부고</span><b style="color:var(--king-gold);">₩ 220,500</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:15px; background:rgba(255,255,255,0.05); border-radius:12px; margin-bottom:10px;">
+                <span>3. 성수고등학교</span><b style="color:var(--king-gold);">₩ 208,500</b>
             </div>
         </div>
     </div>
-
-        <!-- 정상회담 패널 -->
-        <div id="summit-panel" class="full-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="margin: 0; color: var(--king-gold);">👑 서울 짱들의 정상회담</h2>
-                <button onclick="showSection('rank')" style="background: none; border: none; color: white; font-size: 24px;">×</button>
-            </div>
-            <div style="flex-grow: 1; background: rgba(0,0,0,0.5); border-radius: 15px; padding: 15px; overflow-y: auto; font-size: 13px;">
-                <div style="margin-bottom: 10px;"><span class="king-only-badge">성수고</span><b>미식대장:</b> 야 서울고 상금 너무 많다. 오늘 각?</div>
-                <div style="margin-bottom: 10px;"><span class="king-only-badge" style="background:#3b82f6;">서울고</span><b>공부벌레:</b> 오기만 해라. 우리 애들 전원 대기 중이다.</div>
-                <div style="margin-bottom: 10px;"><span class="king-only-badge" style="background:#10b981;">단대부고</span><b>강남짱:</b> 성수고랑 동맹 맺고 서울고 텁시다.</div>
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 15px;">
-                <input type="text" placeholder="짱 전용 보안 메시지..." style="flex-grow: 1; background: #1e293b; border: 1px solid var(--king-gold); color: white; padding: 12px; border-radius: 10px;">
-                <button style="background: var(--king-gold); border: none; padding: 0 20px; border-radius: 10px; font-weight: bold;">전송</button>
-            </div>
-        </div>
-    
-        <!-- 승전 연출 오버레이 -->
-        <div id="victory-fx">
-            <div class="victory-title">RAID SUCCESS!</div>
-            <p style="color: white; font-size: 20px;">상금 ₩ 27,450원 강탈 완료!</p>
-            <div style="font-size: 50px; margin-top: 20px;">🎊🎇🎆</div>
-        </div>
-    
-        <div id="map-popup">
-    <button class="close-map" onclick="closeMap()">×</button><div id="map"></div></div>
 
     <div id="nav-bar">
-        <div id="nav-feed" class="nav-item active" onclick="showSection('feed')"><span>⚔️</span>서열피드</div>
-        <div id="nav-map" class="nav-item" onclick="openMap()"><span>🗺️</span>전쟁지도</div>
+        <div id="nav-feed" class="nav-item active" onclick="showSection('feed')"><span>📱</span>피드</div>
         <div id="nav-school" class="nav-item" onclick="showSection('school')"><span>🏫</span>우리학교</div>
-        <div id="nav-rank" class="nav-item" onclick="showSection('rank')"><span>🏆</span>상금약탈</div>
-        <div id="nav-profile" class="nav-item"><span>👤</span>내프로필</div>
+        <div id="nav-rank" class="nav-item" onclick="showSection('rank')"><span>🏆</span>랭킹</div>
+        <div class="nav-item" onclick="location.href='changes.html'"><span>📢</span>소식</div>
+        <div id="nav-profile" class="nav-item"><span>👤</span>프로필</div>
     </div>
 
     <script>
-        const map = L.map('map', { zoomControl: false, attributionControl: false }).setView([37.5445, 127.0560], 16);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
-
-        let currentPrize = 154200;
-        setInterval(() => {
-            currentPrize += Math.floor(Math.random() * 5);
-            const el = document.getElementById('realtime-prize');
-            if(el) el.innerText = currentPrize.toLocaleString();
-        }, 3000);
+        let schoolPrize = 154200;
 
         function showSection(id) {
             document.querySelectorAll('.full-panel').forEach(p => p.style.display = 'none');
-            if(id === 'school') document.getElementById('school-community').style.display = 'flex';
-            if(id === 'rank') document.getElementById('rank-container').style.display = 'flex';
-            if(id === 'summit') document.getElementById('summit-panel').style.display = 'flex';
+            if(id === 'school') document.getElementById('school-panel').style.display = 'block';
+            if(id === 'rank') document.getElementById('rank-panel').style.display = 'block';
             
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById('nav-' + (id === 'summit' ? 'rank' : id)).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+        }
+
+        function addLike(el) {
+            // 좋아요 클릭 시 전투력 상승 연출
+            const scouter = el.querySelector('.scouter-val');
+            let currentPower = parseInt(scouter.innerText.replace(',', ''));
+            currentPower += 10;
+            scouter.innerText = currentPower.toLocaleString();
+
+            // 상금 기여 팝업
+            const pop = document.createElement('div');
+            pop.className = 'contribution-pop';
+            pop.innerText = '+₩ 50';
+            const rect = el.getBoundingClientRect();
+            pop.style.left = (rect.left + rect.width/2) + 'px';
+            pop.style.top = (rect.top + rect.height/2) + 'px';
+            document.body.appendChild(pop);
+            
+            schoolPrize += 50;
+            document.getElementById('school-prize').innerText = schoolPrize.toLocaleString();
+            
+            setTimeout(() => pop.remove(), 1500);
+            if ("vibrate" in navigator) navigator.vibrate(50);
         }
 
         function executeRaid(targetSchool) {
-            const vFx = document.getElementById('victory-fx');
-            vFx.style.display = 'flex';
+            // 약탈 성공 연출
+            const fx = document.getElementById('victory-fx');
+            fx.style.display = 'flex';
             
-            // 승전가 시뮬레이션 (진동 + 화면 흔들림)
-            if ("vibrate" in navigator) navigator.vibrate([200, 100, 200, 100, 500]);
-            
+            // 상금 강탈 로직 (예시: 27,450원 강탈)
+            const stolenAmount = 27450;
+            schoolPrize += stolenAmount;
+            document.getElementById('school-prize').innerText = schoolPrize.toLocaleString();
+
             setTimeout(() => {
-                vFx.style.display = 'none';
-                alert(`${targetSchool} 약탈 성공! 우리 학교 상금이 추가되었습니다.`);
+                fx.style.display = 'none';
+                alert(`${targetSchool} 약탈에 성공하여 ₩${stolenAmount.toLocaleString()}원을 강탈했습니다!`);
+                
+                // 여기에 노션 패치노트 연동(서버 호출 등)을 추가할 수 있습니다.
             }, 3000);
         }
 
-        function openMap() { document.getElementById('map-popup').style.display = 'block'; map.invalidateSize(); }
-        function closeMap() { document.getElementById('map-popup').style.display = 'none'; }
-
+        // 실시간 속보 시뮬레이션
         setInterval(() => {
-            const news = ["🔥 속보: 서울고 상금이 27만 원을 돌파했습니다!", "⚔️ 경보: 단대부고 병력이 성수동으로 진격 중!", "👑 알림: 성수고의 왕 '미식대장'이 수비 명령을 하달했습니다."];
+            const news = [
+                "🔥 속보: 서울고 '공부벌레' 피드 화력 폭발! 상금 +1.2만 원",
+                "👑 알림: 휘문고 '강남짱'이 새로운 학교의 왕으로 등극했습니다.",
+                "📡 실시간: 지금 급식 사진을 올리면 S-POWER 2배 보너스!",
+                "💰 기회: 단대부고 상금 약탈 작전이 시작되었습니다!"
+            ];
             document.getElementById('war-ticker').innerText = news[Math.floor(Math.random()*news.length)];
-        }, 4000);
+        }, 5000);
     </script>
 </body>
 </html>

@@ -23,6 +23,12 @@ jobs:
       - name: Build notices
         run: python3 build_notices.py
 
+      - name: Sync to Notion
+        run: python3 sync_notion.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PAGE_ID: "3129979fd60d80b4b97bd7ad44e2189d"
+
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"
